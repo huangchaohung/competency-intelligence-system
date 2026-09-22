@@ -1,0 +1,91 @@
+"""Route configured sources to the smallest fitting discovery strategy."""
+from src.models.domain import Source, SourceType
+from src.scanner.article_discovery import ArticleDiscovery
+from src.scanner.web_page_scanner import WebPageScanner
+from urllib.parse import urlparse, urljoin
+from bs4 import BeautifulSoup
+from src.core.exceptions import ScanError
+
+
+class SourceRouter:
+    """Select the appropriate discovery strategy for each configured source."""
+    def __init__(self, scanner: WebPageScanner) -> None:
+        self._discovery = ArticleDiscovery(scanner)
+
+    def discover(self, source: Source) -> list[str]:
+        """Return candidate URLs using the strategy best suited to the source type."""
+        if source.url.rstrip('/') == 'https://cuge.nparks.gov.sg/resources/publications':
+            scanner = self._discovery._scanner
+            if not scanner.is_allowed(source.url):
+                raise ScanError('CUGE publications discovery is not permitted')
+            page = scanner.fetch_url(source.url, source.name)
+            urls = [source.url]
+            for link in BeautifulSoup(page.html, 'lxml').select('a[href]'):
+                parsed = urlparse(urljoin(page.url, link['href']))
+                url = parsed._replace(fragment='').geturl()
+                if len(urls) >= source.max_articles_per_scan:
+                    break
+                if (parsed.scheme == 'https' and parsed.netloc == 'isomer-user-content.by.gov.sg'
+                        and parsed.path.startswith('/32/') and parsed.path.lower().endswith('.pdf')
+                        and not parsed.query and url not in urls and scanner.is_allowed(url)):
+                    urls.append(url)
+            return urls
+        if source.url.rstrip('/') == 'https://www.nasa.gov/reference/systems-engineering-handbook':
+            scanner = self._discovery._scanner
+            if not scanner.is_allowed(source.url):
+                raise ScanError('NASA handbook discovery is not permitted')
+            page = scanner.fetch_url(source.url, source.name)
+            soup = BeautifulSoup(page.html, 'lxml')
+            paths = {'/reference/' + slug + '/' for slug in (
+                '1-0-introduction', '2-0-fundamentals-of-systems-engineering',
+                '3-0-nasa-program-project-life-cycle', '4-0-system-design-processes',
+                '5-0-product-realization', '6-0-crosscutting-technical-management',
+                'system-engineering-handbook-appendix')}
+            urls = [source.url]
+            for link in soup.select('a[href]'):
+                parsed = urlparse(urljoin(page.url, link['href']))
+                url = parsed._replace(fragment='').geturl()
+                if len(urls) >= source.max_articles_per_scan:
+                    break
+                if (parsed.scheme == 'https' and parsed.netloc == 'www.nasa.gov'
+                        and parsed.path in paths and not parsed.query
+                        and url not in urls and scanner.is_allowed(url)):
+                    urls.append(url)
+            return urls
+        if source.url.rstrip('/') == 'https://ocw.mit.edu':
+            scanner = self._discovery._scanner
+            if not scanner.is_allowed(source.url):
+                raise ScanError('OCW discovery is not permitted')
+            page = scanner.fetch_url(source.url, source.name)
+            soup = BeautifulSoup(page.html, 'lxml')
+            urls = []
+            for card in soup.select('.course-card'):
+                topics = {a.get_text(strip=True) for a in card.select('.course-card-topics a')}
+                if not topics.intersection({'Science', 'Engineering', 'Mathematics', 'Energy', 'Health and Medicine'}):
+                    continue
+                link = card.select_one('.course-card-title a[href]')
+                if not link:
+                    continue
+                url = urljoin(page.url, link['href'])
+                parsed = urlparse(url)
+                if (parsed.scheme == 'https' and parsed.netloc == 'ocw.mit.edu'
+                        and len(parsed.path.strip('/').split('/')) == 2
+                        and parsed.path.startswith('/courses/') and not parsed.query
+                        and url not in urls and scanner.is_allowed(url)):
+                    urls.append(url)
+                if len(urls) >= source.max_articles_per_scan:
+                    break
+            if not urls:
+                raise ScanError('No permitted STE course cards found on OCW')
+            return urls
+        if source.source_type in {SourceType.FRAMEWORK, SourceType.CATALOGUE}:
+            return self._discovery.discover_resources(source)
+        # A configured research resource can itself hold the evidence. Keep its
+        # research classification rather than pretending it is a course catalogue.
+        if source.source_type == SourceType.ARTICLE and source.evidence_label.strip().lower() == 'research / report':
+            return self._discovery.discover_resources(source)
+        if source.source_type == SourceType.INDEX:
+            return self._discovery.discover_index(source)
+        if source.source_type == SourceType.TREND:
+            return self._discovery.discover_trend(source)
+        return self._discovery.discover(source)

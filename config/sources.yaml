@@ -1,0 +1,3805 @@
+sources:
+- name: AI Singapore
+  url: https://aisingapore.org/research/features/
+  organisation: AI Singapore
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: INDEX
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Government agencies and public institutions
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: CAAS Air Traffic Management Systems and Technology
+  url: https://www.caas.gov.sg/industry/airspace-management-and-aerial-activities/air-traffic-services/air-traffic-management-systems-and-technology
+  organisation: CAAS
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: FRAMEWORK
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Government agencies and public institutions
+  evidence_label: official guidance / research
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NASA Systems Engineering Handbook
+  url: https://www.nasa.gov/reference/systems-engineering-handbook
+  organisation: NASA
+  source_family: GOVERNMENT_AGENCY
+  country: United States
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Government agencies and public institutions
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NASA APPEL Competency Models
+  url: https://www.nasa.gov/learning-resources/for-professionals/appel-competency-models
+  organisation: NASA APPEL Knowledge Services
+  source_family: GOVERNMENT_AGENCY
+  country: United States
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Government agencies and public institutions
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Carnegie Mellon Engineering
+  url: https://engineering.cmu.edu
+  organisation: Carnegie Mellon
+  source_family: HIGHER_LEARNING
+  country: United States
+  source_type: INDEX
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Major universities
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Cornell Systems Engineering MEng
+  url: https://www.duffield.cornell.edu/sys/meng
+  organisation: Cornell
+  source_family: HIGHER_LEARNING
+  country: United States
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Major universities
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Georgia Tech Institute for Systems Transformation and Design
+  url: https://istd.gatech.edu
+  organisation: Georgia Tech
+  source_family: HIGHER_LEARNING
+  country: United States
+  source_type: INDEX
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Major universities
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: A*STAR Research Features
+  url: https://research.a-star.edu.sg/category/features/
+  organisation: A*STAR
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: INDEX
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Government agencies and public institutions
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: DSTA Technology Spotlight
+  url: https://www.dsta.gov.sg/whats-on/spotlight
+  organisation: DSTA
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: TREND
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Government agencies and public institutions
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ^/whats-on/spotlight/.+
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: DSO Media Centre
+  url: https://www.dso.org.sg/media-centre
+  organisation: DSO National Laboratories
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Government agencies and public institutions
+  evidence_label: press release / official notice
+  max_articles_per_scan: 25
+  article_url_pattern: ^/media-article/.+
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: SkillsFuture Skills Frameworks
+  url: https://www.skillsfuture.gov.sg/skills-framework/skills-frameworks-faq
+  organisation: SkillsFuture Singapore
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Government agencies and public institutions
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: PUB Research and Resilience
+  url: https://www.pub.gov.sg/Public/KeyInitiatives/Flood-Resilience/Research
+  organisation: PUB
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Government agencies and public institutions
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: NParks Programmes and Research
+  url: https://www.nparks.gov.sg/services/research-programmes
+  organisation: NParks
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Government agencies and public institutions
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: Engineering Council UK-SPEC
+  url: https://www.engc.org.uk/our-role-as-regulator/setting-standards/professional-engineering-competence-and-commitment
+  organisation: Engineering Council
+  source_family: PROFESSIONAL_BODY
+  country: United Kingdom
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: Engineers Australia News and Media
+  url: https://www.engineersaustralia.org.au/news-and-media
+  organisation: Engineers Australia
+  source_family: PROFESSIONAL_BODY
+  country: Australia
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: press release / official notice
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: GovTech TechNews and Insights
+  url: https://www.tech.gov.sg/technews/
+  organisation: Government Technology Agency of Singapore
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: INDEX
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Government agencies and public institutions
+  evidence_label: press release / official notice
+  max_articles_per_scan: 25
+  article_url_pattern: ^/technews/.+
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: Harvard Professional Learning
+  url: https://pll.harvard.edu/catalog
+  organisation: Harvard University
+  source_family: HIGHER_LEARNING
+  country: United States
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Major universities
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IEEE AI
+  url: https://spectrum.ieee.org/topic/artificial-intelligence/
+  organisation: Institute of Electrical and Electronics Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: TREND
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ^/(?:[a-z0-9-]+/)*[a-z0-9-]+$
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IEEE Aerospace
+  url: https://spectrum.ieee.org/topic/aerospace/
+  organisation: Institute of Electrical and Electronics Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: TREND
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ^/(?:[a-z0-9-]+/)*[a-z0-9-]+$
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IEEE Biomedical
+  url: https://spectrum.ieee.org/topic/biomedical/
+  organisation: Institute of Electrical and Electronics Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: TREND
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ^/(?:[a-z0-9-]+/)*[a-z0-9-]+$
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IEEE Climate Tech
+  url: https://spectrum.ieee.org/topic/climate-tech/
+  organisation: Institute of Electrical and Electronics Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: TREND
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ^/(?:[a-z0-9-]+/)*[a-z0-9-]+$
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IEEE Computing
+  url: https://spectrum.ieee.org/topic/computing/
+  organisation: Institute of Electrical and Electronics Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: TREND
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ^/(?:[a-z0-9-]+/)*[a-z0-9-]+$
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IEEE Consumer Electronics
+  url: https://spectrum.ieee.org/topic/consumer-electronics/
+  organisation: Institute of Electrical and Electronics Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: TREND
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ^/(?:[a-z0-9-]+/)*[a-z0-9-]+$
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IEEE Energy
+  url: https://spectrum.ieee.org/topic/energy/
+  organisation: Institute of Electrical and Electronics Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: TREND
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ^/(?:[a-z0-9-]+/)*[a-z0-9-]+$
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IEEE Robotics
+  url: https://spectrum.ieee.org/topic/robotics/
+  organisation: Institute of Electrical and Electronics Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: TREND
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ^/(?:[a-z0-9-]+/)*[a-z0-9-]+$
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IEEE Semiconductors
+  url: https://spectrum.ieee.org/topic/semiconductors/
+  organisation: Institute of Electrical and Electronics Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: TREND
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ^/(?:[a-z0-9-]+/)*[a-z0-9-]+$
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IEEE Tech History
+  url: https://spectrum.ieee.org/topic/tech-history/
+  organisation: Institute of Electrical and Electronics Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: TREND
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ^/(?:[a-z0-9-]+/)*[a-z0-9-]+$
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IEEE Telecommunications
+  url: https://spectrum.ieee.org/topic/telecommunications/
+  organisation: Institute of Electrical and Electronics Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: TREND
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ^/(?:[a-z0-9-]+/)*[a-z0-9-]+$
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IEEE Transportation
+  url: https://spectrum.ieee.org/topic/transportation/
+  organisation: Institute of Electrical and Electronics Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: TREND
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ^/(?:[a-z0-9-]+/)*[a-z0-9-]+$
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: ISA
+  url: https://www.isa.org/
+  organisation: International Society of Automation
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: ISACA
+  url: https://www.isaca.org/
+  organisation: ISACA
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: Institution of Engineers Singapore Circulars
+  url: https://www.ies.org.sg/publications/agency-circulars/
+  organisation: Institution of Engineers Singapore
+  source_family: PROFESSIONAL_BODY
+  country: Singapore
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: press release / official notice
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: MIT Professional Learning
+  url: https://professional.mit.edu/course-catalog
+  organisation: Massachusetts Institute of Technology
+  source_family: HIGHER_LEARNING
+  country: United States
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Major universities
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: NTU Innovates News
+  url: https://www.ntu.edu.sg/innovates/news-events
+  organisation: Nanyang Technological University
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Major universities
+  evidence_label: press release / official notice
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: NUS Press Releases and Announcements
+  url: https://news.nus.edu.sg/press-releases
+  organisation: National University of Singapore
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Major universities
+  evidence_label: press release / official notice
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: NSPE Ethics Guidance
+  url: https://www.nspe.org/career-growth/ethics
+  organisation: National Society of Professional Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: NSPE Policies and Position Statements
+  url: https://www.nspe.org/nspe-advocacy/explore-issues/professional-policies-and-position-statements
+  organisation: National Society of Professional Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IEEE Standards Autonomous Intelligence
+  url: https://standards.ieee.org/initiatives/autonomous-intelligence-systems/
+  organisation: Institute of Electrical and Electronics Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IEEE CertifAIEd Programme
+  url: https://standards.ieee.org/products-programs/icap/ieee-certifaied/
+  organisation: Institute of Electrical and Electronics Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: IET Skills Surveys and Reports
+  url: https://www.theiet.org/impact-society/policy-and-public-affairs/education-and-skills-policy/reports-and-papers/uk-skills-surveys
+  organisation: Institution of Engineering and Technology
+  source_family: PROFESSIONAL_BODY
+  country: United Kingdom
+  source_type: INDEX
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ^/impact-society/policy-and-public-affairs/education-and-skills-policy/reports-and-papers/uk-skills-surveys(?:/.*)?$
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: Engineers Canada Admission Guidance
+  url: https://engineerscanada.ca/guidelines-and-papers/public-guideline-on-admission-to-the-practice-of-engineering-in-canada
+  organisation: Engineers Canada
+  source_family: PROFESSIONAL_BODY
+  country: Canada
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: ASME Codes and Standards
+  url: https://www.asme.org/codes-standards
+  organisation: American Society of Mechanical Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ^/codes-standards(?:/.*)?$
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: ASCE Codes and Standards Hub
+  url: https://www.asce.org/publications-and-news/codes-and-standards/
+  organisation: American Society of Civil Engineers
+  source_family: PROFESSIONAL_BODY
+  country: United States
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: Royal Academy of Engineering
+  url: https://stemresources.raeng.org.uk/
+  organisation: Royal Academy of Engineering
+  source_family: PROFESSIONAL_BODY
+  country: United Kingdom
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Professional bodies and societies
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: University of Cambridge News
+  url: https://www.cam.ac.uk/news
+  organisation: University of Cambridge
+  source_family: HIGHER_LEARNING
+  country: United Kingdom
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Major universities
+  evidence_label: press release / official notice
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: University of Cambridge Engineering News
+  url: https://www.eng.cam.ac.uk/news
+  organisation: University of Cambridge
+  source_family: HIGHER_LEARNING
+  country: United Kingdom
+  source_type: TREND
+  source_role: TREND_VALIDATION
+  llm_allowed: true
+  category: Major universities
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: NUS CET Learning
+  url: https://cde.nus.edu.sg/cet/
+  organisation: National University of Singapore
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Major universities
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: NTU PACE Learning
+  url: https://www.ntu.edu.sg/pace
+  organisation: Nanyang Technological University
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Major universities
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
+- name: DSTA — What We Do
+  url: https://www.dsta.gov.sg/what-we-do?category=e
+  organisation: DSTA
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: MIT OpenCourseWare — Featured STE Courses
+  url: https://ocw.mit.edu/
+  organisation: MIT OpenCourseWare
+  source_family: HIGHER_LEARNING
+  country: USA
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: MIT Systen Design and Management (SDM) — Integrated Core Curriculum
+  url: https://sdm.mit.edu/programs/integrated-core-curriculum
+  organisation: MIT Systen Design and Management (SDM)
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Oxford — Secure Systems Engineering Course
+  url: https://www.cs.ox.ac.uk/professionalprogramme/subjects/SSE.html
+  organisation: Oxford
+  source_family: HIGHER_LEARNING
+  country: UK
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SUTD — Courses
+  url: https://www.sutd.edu.sg/esd/education/undergraduate/courses
+  organisation: SUTD
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: U Tokyo — Grad Engineering.Html
+  url: https://www.u-tokyo.ac.jp/en/academics/grad_engineering.html
+  organisation: U Tokyo
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: UIUC — Systems Engineering Design Bs
+  url: https://catalog.illinois.edu/undergraduate/engineering/systems-engineering-design-bs/
+  organisation: UIUC
+  source_family: HIGHER_LEARNING
+  country: USA
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: INCOSE — Competency Framework
+  url: https://www.incose.org/resources-publications/publish-with-incose/competency-framework
+  organisation: INCOSE
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: A*STAR — Sustainability
+  url: https://www.a-star.edu.sg/about/corporate-profile/sustainability
+  organisation: A*STAR
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: BCA — Sustainability
+  url: https://www1.bca.gov.sg/sustainability
+  organisation: BCA
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Ministry of Sustainability and the Environment — Policies
+  url: https://www.mse.gov.sg/policies
+  organisation: Ministry of Sustainability and the Environment
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: National Environment Agency — Energy Efficiency
+  url: https://www.nea.gov.sg/our-services/climate-change-energy-efficiency/energy-efficiency
+  organisation: National Environment Agency
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NEA — 3R Programmes And Resources
+  url: https://www.nea.gov.sg/our-services/waste-management/3r-programmes-and-resources
+  organisation: NEA
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NParks — City In Nature Key Strategies
+  url: https://www.nparks.gov.sg/who-we-are/city-in-nature-key-strategies
+  organisation: NParks
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: PUB — Randd
+  url: https://www.pub.gov.sg/Industry/RandD
+  organisation: PUB
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Singapore Green Plan 2030 — Courses
+  url: https://www.greenplan.gov.sg/courses
+  organisation: Singapore Green Plan 2030
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SkillsFuture Singapore — Skills Framework
+  url: https://www.skillsfuture.gov.sg/skills-framework
+  organisation: SkillsFuture Singapore
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Caltech — Education
+  url: https://sustainability.caltech.edu/education
+  organisation: Caltech
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: EPFL — Education
+  url: https://www.epfl.ch/research/domains/energy-center/education
+  organisation: EPFL
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: ETH Zurich
+  url: https://esa.ethz.ch/research.html
+  organisation: ETH Zurich
+  source_family: HIGHER_LEARNING
+  country: Switzerland
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: HKUST — Sustainability
+  url: https://hkust.edu.hk/sustainability
+  organisation: HKUST
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Imperial — Engineering Design And Sustainability
+  url: https://www.imperial.ac.uk/design-engineering/research/engineering-design-and-sustainability
+  organisation: Imperial
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: INDEX
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: McGill — Environment Sustainability And Energy
+  url: https://www.mcgill.ca/strategic-research-plan/research-excellence-themes/environment-sustainability-and-energy
+  organisation: McGill
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: INDEX
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Michigan — Requirements Courses
+  url: https://seas.umich.edu/academics/master-science/sustainable-systems/requirements-courses
+  organisation: Michigan
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: MIT — Sustainable Infrastructure Systems Planning And Operations
+  url: https://professional.mit.edu/course-catalog/sustainable-infrastructure-systems-planning-and-operations
+  organisation: MIT
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NTU Sustainability — Sustainability
+  url: https://www.ntu.edu.sg/sustainability
+  organisation: NTU Sustainability
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS College of Design and Engineering — Courses
+  url: https://cde.nus.edu.sg/cee/undergraduate/beng-env/courses
+  organisation: NUS College of Design and Engineering
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS Sustainability — Continuing
+  url: https://sustainability.nus.edu.sg/education/continuing
+  organisation: NUS Sustainability
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Politecnico di Milano — Building Engineering For Sustainability
+  url: https://www.polimi.it/en/education/laurea-programmes/programme-detail/building-engineering-for-sustainability
+  organisation: Politecnico di Milano
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Purdue — Aboutus
+  url: https://engineering.purdue.edu/SEE/AboutUs
+  organisation: Purdue
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SMU — Master Of Sustainability
+  url: https://masters.smu.edu.sg/programme/master-of-sustainability
+  organisation: SMU
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SMU — Programmes
+  url: https://sustainability.smu.edu.sg/education/programmes
+  organisation: SMU
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Stanford
+  url: https://sustainability.stanford.edu/
+  organisation: Stanford
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SUTD — Sustainability
+  url: https://www.sutd.edu.sg/about/sustainability
+  organisation: SUTD
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Tecnológico de Monterrey — Oferta Educativa
+  url: https://tec.mx/es/profesional/oferta-educativa
+  organisation: Tecnológico de Monterrey
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Tsinghua — Enven
+  url: https://www.tsinghua.edu.cn/enven
+  organisation: Tsinghua
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: UBC — Engineer Sustainable Future Ubc
+  url: https://engineering.ubc.ca/spotlight/why-engineering/engineer-sustainable-future-ubc
+  organisation: UBC
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: UCL — Sustainable Engineering
+  url: https://www.ucl.ac.uk/engineering/study/sustainable-engineering
+  organisation: UCL
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Zhejiang — Main.Htm
+  url: https://www.zju.edu.cn/english/sustainability/main.htm
+  organisation: Zhejiang
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Energy Institute — Academy
+  url: https://learning.energyinst.org/course/index.php
+  organisation: Energy Institute
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: IEMA — Sustainability Skills Map
+  url: https://www.isepglobal.org/sustainability-skills-map
+  organisation: IEMA
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: IET — Sustainability And Climate Change
+  url: https://www.theiet.org/impact-society/sustainability-and-climate-change
+  organisation: IET
+  source_family: PROFESSIONAL_BODY
+  country: UK
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Institution of Civil Engineers (ICE) — Attributes
+  url: https://www.ice.org.uk/attributes
+  organisation: Institution of Civil Engineers (ICE)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NTU Centre for Professional and Continuing Education — Fleximasters In Project
+    Management
+  url: https://www.ntu.edu.sg/pace/for-individuals/fleximasters/fleximasters-mae/fleximasters-in-project-management
+  organisation: NTU Centre for Professional and Continuing Education
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS Department of the Built Environment — Msc Project Management
+  url: https://cde.nus.edu.sg/dbe/graduate/msc-project-management
+  organisation: NUS Department of the Built Environment
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SMU — Project Management Course
+  url: https://academy.smu.edu.sg/courses/project-management-course
+  organisation: SMU
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Association for Project Management (APM) — Overview
+  url: https://www.apm.org.uk/resources/find-a-resource/competence-framework/overview
+  organisation: Association for Project Management (APM)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: International Project Management Association (IPMA) — Icb4
+  url: https://ipma.world/ipma-standards-development-programme/icb4
+  organisation: International Project Management Association (IPMA)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: PMI — Thought Leadership
+  url: https://www.pmi.org/learning/thought-leadership
+  organisation: PMI
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Project Management Institute (PMI) — Program Management Pgmp
+  url: https://www.pmi.org/certifications/program-management-pgmp
+  organisation: Project Management Institute (PMI)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Project Management Institute (PMI) — Program Management Fifth Edition
+  url: https://www.pmi.org/standards/program-management-fifth-edition
+  organisation: Project Management Institute (PMI)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: CAAS — Unmanned Aircraft
+  url: https://www.caas.gov.sg/unmanned-aircraft
+  organisation: CAAS
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Cyber Security Agency of Singapore — Operational Technology Cybersecurity
+    Competency Framework  Otccf
+  url: https://www.csa.gov.sg/resources/publications/operational-technology-cybersecurity-competency-framework--otccf-
+  organisation: Cyber Security Agency of Singapore
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: DSTA — What We Do
+  url: https://www.dsta.gov.sg/what-we-do?category=a
+  organisation: DSTA
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: HTX — What We Do
+  url: https://www.htx.gov.sg/who-we-are/what-we-do
+  organisation: HTX
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: MPA — Innovation And R D
+  url: https://www.mpa.gov.sg/maritime-singapore/innovation-and-r-d
+  organisation: MPA
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NIST — Cyber Physical Systems And Internet Things Program
+  url: https://www.nist.gov/programs-projects/cyber-physical-systems-and-internet-things-program
+  organisation: NIST
+  source_family: GOVERNMENT_AGENCY
+  country: USA
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: KAIST — Robotics Degree Requirements
+  url: https://robots.kaist.ac.kr/english/sub030101
+  organisation: KAIST
+  source_family: HIGHER_LEARNING
+  country: South Korea
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NTU School of EEE — Master Of Science %28Robotics And Intelligent Systems%29
+  url: https://www.ntu.edu.sg/engineering/coe-programmes/graduate/coe-programme-detail/master-of-science-%28robotics-and-intelligent-systems%29
+  organisation: NTU School of EEE
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS Electrical & Computer Engineering — Specialisation In Industry 4 0
+  url: https://cde.nus.edu.sg/ece/undergraduate/electrical-engineering/specialisations-and-minor/specialisation-in-industry-4-0
+  organisation: NUS Electrical & Computer Engineering
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SIT — Engineering Systems
+  url: https://www.singaporetech.edu.sg/undergraduate-programmes/engineering-systems
+  organisation: SIT
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: International Society of Automation (ISA) — Certificate Programs
+  url: https://www.isa.org/certification/certificate-programs
+  organisation: International Society of Automation (ISA)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: International Society of Automation (ISA) — Isa Iec 62443 Cybersecurity Certificate
+    Program
+  url: https://www.isa.org/certification/certificate-programs/isa-iec-62443-cybersecurity-certificate-program
+  organisation: International Society of Automation (ISA)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: International Society of Automation (ISA) — Training And Certificates
+  url: https://www.isa.org/connectivity-and-cybersecurity/training-and-certificates
+  organisation: International Society of Automation (ISA)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: International Society of Automation (ISA) — Isa Standards
+  url: https://www.isa.org/standards-and-publications/isa-standards
+  organisation: International Society of Automation (ISA)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: HDB — Careers
+  url: https://www.hdb.gov.sg/about-us/work-with-us/careers
+  organisation: HDB
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: HDB — Tech Careers
+  url: https://www.hdb.gov.sg/about-us/work-with-us/tech-careers
+  organisation: HDB
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Land Transport Authority — Land Transport Master Plan 2040.Html
+  url: https://www.lta.gov.sg/content/ltagov/en/who_we_are/our_work/land_transport_master_plan_2040.html
+  organisation: Land Transport Authority
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: LTA — Technologies.Html
+  url: https://www.lta.gov.sg/content/ltagov/en/industry_innovations/technologies.html
+  organisation: LTA
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NParks — Enhancing Biodiversity Guidelines Resources
+  url: https://www.nparks.gov.sg/nature/enhancing-biodiversity-guidelines-resources
+  organisation: NParks
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: INDEX
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SLA — Onemap
+  url: https://geoworks.sla.gov.sg/sla-products/onemap
+  organisation: SLA
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: URA — Master Plan
+  url: https://www.ura.gov.sg/Corporate/Planning/Master-Plan
+  organisation: URA
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Urban Redevelopment Authority — Land Planning
+  url: https://www.ura.gov.sg/land-planning
+  organisation: Urban Redevelopment Authority
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Harvard Graduate School of Design — Areas Of Concentration
+  url: https://www.gsd.harvard.edu/urban-planning-design/programs/master-in-urban-planning/areas-of-concentration
+  organisation: Harvard Graduate School of Design
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: MIT Department of Urban Studies and Planning — Undergraduate
+  url: https://dusp.mit.edu/undergraduate
+  organisation: MIT Department of Urban Studies and Planning
+  source_family: HIGHER_LEARNING
+  country: USA
+  source_type: CATALOGUE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS Master of Urban Planning — Curriculum
+  url: https://cde.nus.edu.sg/arch/programmes/master-of-urban-planning/curriculum
+  organisation: NUS Master of Urban Planning
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS Urban Design — Curriculum
+  url: https://cde.nus.edu.sg/arch/programmes/master-of-arts-in-urban-design/curriculum
+  organisation: NUS Urban Design
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SUTD — Courses
+  url: https://www.sutd.edu.sg/asd/education/undergraduate/courses
+  organisation: SUTD
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: U Tokyo — Facultyofengineering.Html
+  url: https://www.u-tokyo.ac.jp/en/academics/facultyofengineering.html
+  organisation: U Tokyo
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Royal Town Planning Institute (RTPI) — Core Cpd Framework
+  url: https://www.rtpi.org.uk/membership/continuing-professional-development/core-cpd-framework
+  organisation: Royal Town Planning Institute (RTPI)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Building and Construction Authority — Skills Framework For Built Environment
+  url: https://www1.bca.gov.sg/growth-and-transformation/manpower/built-environment-professionals/skills-framework-for-built-environment
+  organisation: Building and Construction Authority
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: official guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Building and Construction Authority — Idd Integrated Digital Delivery
+  url: https://www1.bca.gov.sg/growth-and-transformation/productivity/idd-integrated-digital-delivery
+  organisation: Building and Construction Authority
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: official guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Building and Construction Authority — Digital Competency
+  url: https://www1.bca.gov.sg/growth-and-transformation/productivity/idd-integrated-digital-delivery/digital-competency
+  organisation: Building and Construction Authority
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: official guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: JTC — Championing Sustainability
+  url: https://www.jtc.gov.sg/about-jtc/championing-sustainability
+  organisation: JTC
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: PUB — Code Of Practices
+  url: https://www.pub.gov.sg/Professionals/Resources/Code-of-Practices
+  organisation: PUB
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: FRAMEWORK
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: EPFL — Civil Engineering
+  url: https://www.epfl.ch/education/master/programs/civil-engineering
+  organisation: EPFL
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Melbourne — Civil Engineering Systems
+  url: https://handbook.unimelb.edu.au/components/b-des-major-2
+  organisation: Melbourne
+  source_family: HIGHER_LEARNING
+  country: Australia
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NTU Civil & Environmental Engineering — Course Content
+  url: https://www.ntu.edu.sg/cee/admissions/undergraduate/course-content
+  organisation: NTU Civil & Environmental Engineering
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS BTech Civil Engineering — Btech Civil Engineering
+  url: https://scale.nus.edu.sg/programmes/undergraduate-programmes/btech-engineering/btech-civil-engineering
+  organisation: NUS BTech Civil Engineering
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS Civil & Environmental Engineering — Courses
+  url: https://cde.nus.edu.sg/cee/undergraduate/beng-civil/courses
+  organisation: NUS Civil & Environmental Engineering
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Politecnico di Milano — Civil Engineering
+  url: https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering
+  organisation: Politecnico di Milano
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SIT — Sit Civil Engineering
+  url: https://www.singaporetech.edu.sg/undergraduate-programmes/sit-civil-engineering
+  organisation: SIT
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SIT — Sustainable Built Environment
+  url: https://www.singaporetech.edu.sg/undergraduate-programmes/sustainable-built-environment
+  organisation: SIT
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Stanford — Sustainable Design Construction Sdc
+  url: https://cee.stanford.edu/academics-admission/graduate-degrees/ms-programs/sustainable-design-construction-sdc
+  organisation: Stanford
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Texas A&M — Index.Html
+  url: https://engineering.tamu.edu/civil/index.html
+  organisation: Texas A&M
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: TU Delft — Msc Civil Engineering
+  url: https://www.tudelft.nl/en/education/programmes/masters/cie/msc-civil-engineering
+  organisation: TU Delft
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: UCL — Study
+  url: https://www.ucl.ac.uk/bartlett/environment-energy-resources/environmental-design/study
+  organisation: UCL
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: INDEX
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: American Society of Civil Engineers (ASCE) — Cebok
+  url: https://www.asce.org/career-growth/cebok
+  organisation: American Society of Civil Engineers (ASCE)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Institution of Structural Engineers (IStructE) — Training And Development
+  url: https://www.istructe.org/about-us/what-we-do/events-and-training/
+  organisation: Institution of Structural Engineers (IStructE)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Building and Construction Authority — Smart Facilities Management
+  url: https://www1.bca.gov.sg/growth-and-transformation/facilities-management/smart-facilities-management
+  organisation: Building and Construction Authority
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: official guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: HDB
+  url: https://www.hdb.gov.sg/
+  organisation: HDB
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS College of Design and Engineering CET — Continuing Education And Training
+  url: https://cde.nus.edu.sg/continuing-education-and-training
+  organisation: NUS College of Design and Engineering CET
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS Department of Built Environment — Executive Course For Facilities Management
+    Fm
+  url: https://cde.nus.edu.sg/dbe/executive-course-for-facilities-management-fm
+  organisation: NUS Department of Built Environment
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SUSS — Bsc Facilities Management
+  url: https://sims1.suss.edu.sg/eservice/public/viewcp/viewcp.aspx?progcd=fmt-maj1&viewtype=mhtml
+  organisation: SUSS
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: IFMA — Certified Facility Manager Pathway
+  url: https://pages.ifma.org/en-us/path-to-cfm
+  organisation: IFMA
+  source_family: PROFESSIONAL_BODY
+  country: USA
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: International Facility Management Association (IFMA) — Individual Courses
+  url: https://www.ifma.org/professional-development/individual-courses
+  organisation: International Facility Management Association (IFMA)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Royal Institution of Chartered Surveyors (RICS) — Sector Pathways
+  url: https://www.rics.org/join-rics/sector-pathways
+  organisation: Royal Institution of Chartered Surveyors (RICS)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NParks — Nature
+  url: https://cuge.nparks.gov.sg/resources/publications/
+  organisation: NParks
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: FRAMEWORK
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Singapore Land Authority — Geospatial
+  url: https://www.sla.gov.sg/geospatial
+  organisation: Singapore Land Authority
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Singapore Land Authority / GeoWorks — Programmes
+  url: https://geoworks.sla.gov.sg/programmes
+  organisation: Singapore Land Authority / GeoWorks
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SLA
+  url: https://geospatial.sla.gov.sg/
+  organisation: SLA
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SLA — Master Plan
+  url: https://geospatial.sla.gov.sg/discover-geospatial/master-plan
+  organisation: SLA
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NTU Asian School of the Environment — Ase
+  url: https://www.ntu.edu.sg/ase
+  organisation: NTU Asian School of the Environment
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS Geography — Pc In Applied Gis
+  url: https://fass.nus.edu.sg/geog/continuing-education-and-training/pc-in-applied-gis
+  organisation: NUS Geography
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS Geography — Graduate Certificate In Applied Geographic Information Systems
+  url: https://fass.nus.edu.sg/geog/graduate-certificate-in-applied-geographic-information-systems
+  organisation: NUS Geography
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: ASPRS — Asprs Certification Program.Aspx
+  url: https://www.asprs.org/Main/Main/Certification/ASPRS-Certification-Program.aspx
+  organisation: ASPRS
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Royal Geographical Society — Guide To Accreditation For Geospatial Professionals
+  url: https://www.rgs.org/professionals/chartered-geographer/guide-to-accreditation-for-geospatial-professionals
+  organisation: Royal Geographical Society
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: A*STAR SIMTech — Industrial Automation
+  url: https://www.a-star.edu.sg/simtech/kto/industrial-automation
+  organisation: A*STAR SIMTech
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: CAAS — Aircraft Maintenance Design And Production
+  url: https://www.caas.gov.sg/industry/aircraft-maintenance-design-and-production
+  organisation: CAAS
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Enterprise Singapore — Energy And Chemicals
+  url: https://www.enterprisesg.gov.sg/industries/energy-and-chemicals
+  organisation: Enterprise Singapore
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: MPA — Maritime Centres Of Excellence
+  url: https://www.mpa.gov.sg/maritime-singapore/innovation-and-r-d/maritime-innovation-ecosystem/maritime-centres-of-excellence
+  organisation: MPA
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NEA — Overview
+  url: https://www.nea.gov.sg/our-services/waste-management/overview
+  organisation: NEA
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: PUB — Innovationfunding
+  url: https://www.pub.gov.sg/Industry/RandD/InnovationFunding
+  organisation: PUB
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NTU Chemical & Biomolecular Engineering — Bachelor Of Engineering In Chemical
+    And Biomolecular Engineering
+  url: https://www.ntu.edu.sg/education/undergraduate-programme/bachelor-of-engineering-in-chemical-and-biomolecular-engineering
+  organisation: NTU Chemical & Biomolecular Engineering
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS Chemical & Biomolecular Engineering — Specialisation In Process Engineering
+  url: https://cde.nus.edu.sg/chbe/undergraduate/beng-che/specialisation/specialisation-in-process-engineering
+  organisation: NUS Chemical & Biomolecular Engineering
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: TUM — Professorships
+  url: https://www.epe.ed.tum.de/en/epe/about-us/professorships
+  organisation: TUM
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: ASCE – Civil Engineering Certification — Civil Engineering Certification
+  url: https://www.asce.org/career-growth/civil-engineering-certification
+  organisation: ASCE – Civil Engineering Certification
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: IChemE — Knowledge And Competence
+  url: https://www.icheme.org/knowledge-networks/knowledge-resources/safety-centre/framework/knowledge-and-competence
+  organisation: IChemE
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: IChemE — Courses A Z
+  url: https://www.icheme.org/training-events/training/courses-a-z
+  organisation: IChemE
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Institution of Civil Engineers (ICE) — Attributes For Professionally Qualified
+    Membership
+  url: https://www.ice.org.uk/join-ice/attributes-for-professionally-qualified-membership
+  organisation: Institution of Civil Engineers (ICE)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: ISA — Training
+  url: https://www.isa.org/training
+  organisation: ISA
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Building and Construction Authority — Greenmark
+  url: https://www1.bca.gov.sg/sustainability/greenmark
+  organisation: Building and Construction Authority
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: FRAMEWORK
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: official guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: EMA — Energy Grid
+  url: https://www.ema.gov.sg/our-energy-story/energy-grid
+  organisation: EMA
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: EMA — Future Grid Capabilities Roadmap (PDF)
+  url: https://www.ema.gov.sg/content/dam/corporate/our-energy-story/energy-grid/EMA-Our-Energy-Story-Energy-Demand-Future-Grid-Capabilities-Roadmap.pdf
+  organisation: EMA
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: official guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: National Environment Agency — Singapore Certified Energy Manager Scem Programme
+  url: https://www.nea.gov.sg/programmes-grants/grants-and-awards/singapore-certified-energy-manager-scem-programme
+  organisation: National Environment Agency
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Cambridge
+  url: https://www.postgraduate.study.cam.ac.uk/courses/directory/egegmpmet
+  organisation: Cambridge
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Cornell — Sustainable Energy Systems Transition
+  url: https://www.duffield.cornell.edu/sys/professional-certificates/sustainable-energy-systems-transition/
+  organisation: Cornell
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: HKUST — Sustainability Education
+  url: https://sust.hkust.edu.hk/students/sustainability-education
+  organisation: HKUST
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: IIT Delhi — View Program.Php
+  url: https://curriculum.iitd.ac.in/view_program.php?program_code=ESN
+  organisation: IIT Delhi
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: KIT — Master Energy Engineering And Management.Php
+  url: https://www.hectorschool.kit.edu/master-energy-engineering-and-management.php
+  organisation: KIT
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: KTH — Sustainable Energy Engineering
+  url: https://www.kth.se/en/studies/master/sustainable-energy-engineering
+  organisation: KTH
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Oxford
+  url: https://www.energy.ox.ac.uk/research/teaching-and-training/
+  organisation: Oxford
+  source_family: HIGHER_LEARNING
+  country: UK
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Princeton — Engineering
+  url: https://engineering.princeton.edu/undergraduate-studies/majors-minors
+  organisation: Princeton
+  source_family: HIGHER_LEARNING
+  country: USA
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Singapore Institute of Technology — Energy Sustainability Energy Management
+    Systems
+  url: https://www.singaporetech.edu.sg/sitlearn/courses/engineering/energy-sustainability-energy-management-systems
+  organisation: Singapore Institute of Technology
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Tsinghua — Education Teaching En
+  url: https://www.3e.tsinghua.edu.cn/en/category/education-teaching-en
+  organisation: Tsinghua
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: TU Berlin — Energy Management M Ba
+  url: https://www.tu.berlin/en/studying/study-programs/all-programs-offered/study-course/energy-management-m-ba
+  organisation: TU Berlin
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: TUM — Power Engineering M Sc
+  url: https://www.ed.tum.de/en/ed/studies/degree-programs/power-engineering-m-sc
+  organisation: TUM
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: UT Austin — Science Engineering
+  url: https://www.utexas.edu/energy/science-engineering
+  organisation: UT Austin
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Association of Energy Engineers — Certified Energy Manager
+  url: https://education.aeecenter.org/cem-training-programs
+  organisation: Association of Energy Engineers
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Energy Market Authority — Energy Storage Systems
+  url: https://www.ema.gov.sg/our-energy-story/energy-grid/energy-storage-systems
+  organisation: Energy Market Authority
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Berkeley — Summer Electrochemistry Academy
+  url: https://electrochemistry.berkeley.edu/summer-electrochemistry-academy
+  organisation: Berkeley
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Berkeley — Energy Engineering
+  url: https://engineering.berkeley.edu/students/undergraduate-guide/degree-requirements/major-programs/engineering-science/energy-engineering
+  organisation: Berkeley
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: ETH Zurich — Research Areas.Html
+  url: https://epse.ethz.ch/research/research-areas.html
+  organisation: ETH Zurich
+  source_family: HIGHER_LEARNING
+  country: Switzerland
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Imperial — Energy Technologies And Systems
+  url: https://www.imperial.ac.uk/design-engineering/research/energy-technologies-and-systems
+  organisation: Imperial
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: INDEX
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Nanyang Technological University — Master Of Science In Power Engineering
+  url: https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-power-engineering
+  organisation: Nanyang Technological University
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Singapore Institute of Technology — Grid Integrated Energy Storage Systems
+    Technologies Standardisation Applications
+  url: https://www.singaporetech.edu.sg/sitlearn/courses/engineering/grid-integrated-energy-storage-systems-technologies-standardisation-applications
+  organisation: Singapore Institute of Technology
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Waterloo — Energy
+  url: https://uwaterloo.ca/engineering/research/energy
+  organisation: Waterloo
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: INDEX
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: IEEE Power & Energy Society — Storage
+  url: https://resourcecenter.ieee-pes.org/tags/storage
+  organisation: IEEE Power & Energy Society
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: IEEE Standards Association — Pes Ed Tut 02Gest 042522 Sld
+  url: https://resourcecenter.ieee-pes.org/education/tutorials/pes_ed_tut_02gest_042522_sld
+  organisation: IEEE Standards Association
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Land Transport Authority — Our Ev Roadmap.Html
+  url: https://www.lta.gov.sg/content/ltagov/en/industry_innovations/technologies/electric_vehicles/our_ev_roadmap.html
+  organisation: Land Transport Authority
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Land Transport Authority — Regulating Safety Of Ev Chargers.Html
+  url: https://www.lta.gov.sg/content/ltagov/en/industry_innovations/technologies/electric_vehicles/regulating_safety_of_ev_chargers.html
+  organisation: Land Transport Authority
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Ngee Ann Polytechnic — School Of Engineering
+  url: https://www.np.edu.sg/schools-courses/academic-schools/school-of-engineering
+  organisation: Ngee Ann Polytechnic
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Singapore Institute of Technology — Electric Vehicles Charging Infrastructure
+    Decarbonisation Land Transportation
+  url: https://www.singaporetech.edu.sg/sitlearn/courses/executive-education/electric-vehicles-charging-infrastructure-decarbonisation-land-transportation
+  organisation: Singapore Institute of Technology
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: IEEE Power & Energy Society — Electric Vehicles
+  url: https://resourcecenter.ieee-pes.org/tags/electric-vehicles
+  organisation: IEEE Power & Energy Society
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SAE International — Standards
+  url: https://www.sae.org/standards
+  organisation: SAE International
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: FRAMEWORK
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Energy Market Authority — Media Releases
+  url: https://www.ema.gov.sg/news-events/news/media-releases
+  organisation: Energy Market Authority
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: TREND
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: news / commentary
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Georgia Tech
+  url: https://energy.gatech.edu/research/energy-research
+  organisation: Georgia Tech
+  source_family: HIGHER_LEARNING
+  country: USA
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NTU Energy Research Institute @ NTU — Erian
+  url: https://www.ntu.edu.sg/erian
+  organisation: NTU Energy Research Institute @ NTU
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Shanghai Jiao Tong — 794
+  url: https://global.sjtu.edu.cn/en/study-sjtu/prospective/degree-programs/794
+  organisation: Shanghai Jiao Tong
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Singapore Institute of Technology — Smart Grids Masterclass
+  url: https://www.singaporetech.edu.sg/sitlearn/courses/engineering/smart-grids-masterclass
+  organisation: Singapore Institute of Technology
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: IEEE Power & Energy Society — Smart Grid
+  url: https://resourcecenter.ieee-pes.org/tags/smart-grid
+  organisation: IEEE Power & Energy Society
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Energy Market Authority — Solar
+  url: https://www.ema.gov.sg/our-energy-story/energy-supply/solar
+  organisation: Energy Market Authority
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NTU — Undergraduateprograms.Html
+  url: https://me.sjtu.edu.cn/en/UndergraduatePrograms.html
+  organisation: NTU
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS — Green Energy Technologies
+  url: https://www.nus.edu.sg/research/sustainability/research-pillars/green-energy-technologies
+  organisation: NUS
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: INDEX
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS Solar Energy Research Institute of Singapore
+  url: https://www.seris.nus.edu.sg/
+  organisation: NUS Solar Energy Research Institute of Singapore
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Singapore Institute of Technology — Grid Connected Solar Photovoltaic Systems
+  url: https://www.singaporetech.edu.sg/sitlearn/courses/engineering/grid-connected-solar-photovoltaic-systems
+  organisation: Singapore Institute of Technology
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: UNSW — Study Areas
+  url: https://www.unsw.edu.au/engineering/study-with-us/study-areas
+  organisation: UNSW
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: IEEE Power & Energy Society — Solar
+  url: https://resourcecenter.ieee-pes.org/tags/solar
+  organisation: IEEE Power & Energy Society
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: IET — Part 1 Exploring Wiring Systems For Unearthed Dc Solar Pv Systems
+  url: https://electrical.theiet.org/wiring-matters/years/2025/104-march-2025/part-1-exploring-wiring-systems-for-unearthed-dc-solar-pv-systems
+  organisation: IET
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: A*STAR — Medical Technologies
+  url: https://www.a-star.edu.sg/Research/medical-technologies
+  organisation: A*STAR
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: A*STAR — Research
+  url: https://www.a-star.edu.sg/research
+  organisation: A*STAR
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: INDEX
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: A*STAR Singapore Biodesign — Medical Technologies
+  url: https://www.a-star.edu.sg/research/medical-technologies
+  organisation: A*STAR Singapore Biodesign
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: INDEX
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Health Sciences Authority — Medical Devices
+  url: https://www.hsa.gov.sg/medical-devices
+  organisation: Health Sciences Authority
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: HSA — Guidance Documents
+  url: https://www.hsa.gov.sg/medical-devices/guidance-documents
+  organisation: HSA
+  source_family: GOVERNMENT_AGENCY
+  country: Singapore
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: HSA — Health Products Regulation
+  url: https://www.hsa.gov.sg/about-us/health-products-regulation
+  organisation: HSA
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SFA — Food Science And Technology
+  url: https://www.sfa.gov.sg/food-science-and-technology
+  organisation: SFA
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: SFA — Genetically Engineered Food And Feed
+  url: https://www.sfa.gov.sg/regulatory-standards-frameworks-guidelines/genetically-engineered-food-and-feed
+  organisation: SFA
+  source_family: GOVERNMENT_AGENCY
+  country: Unknown
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: standards / guidance
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Harvard University – Molecular & Cellular Biology — Courses
+  url: https://www.mcb.harvard.edu/undergraduate/molecular-and-cellular-biology-mcb/courses
+  organisation: Harvard University – Molecular & Cellular Biology
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Kyoto — Undergraduate Degree Programs
+  url: https://www.kyoto-u.ac.jp/en/education-campus/education-and-admissions/undergraduate-degree-programs
+  organisation: Kyoto
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Manchester — Biosciences
+  url: https://www.bmh.manchester.ac.uk/study/biosciences
+  organisation: Manchester
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Michigan — Undergraduate
+  url: https://bme.umich.edu/academics/undergraduate
+  organisation: Michigan
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NTU School of Biological Sciences — Bs Curriculum Ay2026
+  url: https://www.ntu.edu.sg/sbs/admissions/undergraduate/curriculum/bs/bs-curriculum-ay2026
+  organisation: NTU School of Biological Sciences
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS Biological Sciences — Life Sciences Course Catalogue
+  url: https://www.dbs.nus.edu.sg/wp-content/uploads/sites/7/2025/07/lsm_course_listing.pdf
+  organisation: NUS Biological Sciences
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: NUS Biomedical Engineering — Undergraduate
+  url: https://cde.nus.edu.sg/bme/undergraduate
+  organisation: NUS Biomedical Engineering
+  source_family: HIGHER_LEARNING
+  country: Singapore
+  source_type: CATALOGUE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Peking University — 88.Html
+  url: https://web.bio.pku.edu.cn/en/index/index/degrees/cid/88.html
+  organisation: Peking University
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Peking University — 134.Html
+  url: https://web.bio.pku.edu.cn/en/index/index/graduate/cid/134.html
+  organisation: Peking University
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Peking University — 80.Html
+  url: https://www.bio.pku.edu.cn/en/index/index/under_admiss/cid/80.html
+  organisation: Peking University
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Seoul National — Undergraduate
+  url: https://en.snu.ac.kr/academics/programs/undergraduate
+  organisation: Seoul National
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Sydney — Unit Of Study Table.Html
+  url: https://www.sydney.edu.au/handbooks/science/table-a/subject-areas/life-sciences/unit-of-study-table.html
+  organisation: Sydney
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: INDEX
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: research / report
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Toronto — Engineering Programs
+  url: https://discover.engineering.utoronto.ca/programs/engineering-programs
+  organisation: Toronto
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: UCLA — Graduate Training
+  url: https://lifesciences.ucla.edu/graduate-training
+  organisation: UCLA
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: UCLA — Undergraduates
+  url: https://lifesciences.ucla.edu/undergraduates
+  organisation: UCLA
+  source_family: HIGHER_LEARNING
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: American Society for Biochemistry and Molecular Biology (ASBMB) — Training
+  url: https://www.asbmb.org/training
+  organisation: American Society for Biochemistry and Molecular Biology (ASBMB)
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: ASBMB — Certification Exam Goals And Objectives
+  url: https://www.asbmb.org/education/exam/certification-exam-goals-and-objectives
+  organisation: ASBMB
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: catalogue / training
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
+- name: Royal Society of Biology — Cpd
+  url: https://www.rsb.org.uk/careers-and-cpd/cpd
+  organisation: Royal Society of Biology
+  source_family: PROFESSIONAL_BODY
+  country: Unknown
+  source_type: ARTICLE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  category: Imported STE source list
+  evidence_label: professional resource
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
