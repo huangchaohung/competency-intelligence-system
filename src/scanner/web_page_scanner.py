@@ -70,6 +70,14 @@ class WebPageScanner:
             if (len(visible.split()) < 100 and 'request unsuccessful' in visible
                     and 'incapsula incident id' in visible):
                 raise ScanError(f'Access blocked by Incapsula; no source content retrieved: {source_name}')
+            readable = BeautifulSoup(html or '', 'lxml')
+            for element in readable.select('script, style, head, template'):
+                element.decompose()
+            if not readable.get_text(' ', strip=True):
+                raise ScanError(
+                    f'No readable HTML content retrieved: {source_name}. '
+                    'The response may require browser rendering or be access-restricted; '
+                    'this does not establish that the source has no information.')
             return DownloadedPage(response.url, html or '', content_type="text/html")
         except requests.RequestException as error:
             raise ScanError(f"Unable to download {source_name}: {error}") from error
