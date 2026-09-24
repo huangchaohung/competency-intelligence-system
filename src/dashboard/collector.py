@@ -34,6 +34,7 @@ def home(services):
 
 def run_scan(services, *, allow_scan=True):
     st.header('Scan & Download')
+    completed_here = None
     sources = services['source_repository'].list_enabled()
     st.write(f'{len(sources)} enabled sources. This scan makes no AI requests.')
     if not allow_scan:
@@ -48,14 +49,15 @@ def run_scan(services, *, allow_scan=True):
                 run = services['scan_workflow'].run(progress_callback=update)
             progress.progress(1.0, text='Scan finished')
             st.success(f'Batch {run.id} finished. Download its evidence below.')
+            completed_here = run.id
             if run.error_summary:
                 st.warning(run.error_summary)
         except CompetencyIntelligenceError as error:
             st.error(str(error))
-    history(services)
+    history(services, completed_here=completed_here)
 
 
-def history(services):
+def history(services, *, completed_here=None):
     """Render the latest result only; retained storage is not a history UI."""
     st.subheader('Latest scan result')
     repo = services['scan_repository']
@@ -68,7 +70,7 @@ def history(services):
     st.caption(f"Status: {run.status.value.replace('_', ' ').title()}")
     evidence = repo.list_evidence_for_run(run.id)
     summary = repo.get_summary(run.id)
-    render_download(run, evidence, summary)
+    render_download(run, evidence, summary, prepare_now=run.id == completed_here)
     st.metric('Stored evidence in this batch', len(evidence))
     if summary is not None:
         st.caption(f"Originally collected: {summary['evidence_count']} evidence records. Source health below was saved when the scan completed.")
@@ -102,7 +104,7 @@ def history(services):
                 st.write(' '.join(item.article_text.split()[:100]))
 
 
-def render_download(run, evidence, summary):
+def render_download(run, evidence, summary, *, prepare_now=False):
     st.subheader('Download evidence TXT')
     st.caption('All evidence from the latest scan is included, regardless of preview filters. Save this file as your archive; cloud storage is temporary.')
     key = f'public_evidence_only_{run.id}'
@@ -113,7 +115,11 @@ def render_download(run, evidence, summary):
     if not evidence or not run.completed_at:
         st.info('A completed scan with retained evidence is required for download.')
         return
-    if key not in st.session_state:
+    requested = False
+    if key not in st.session_state and not prepare_now:
+        st.caption('This is an existing scan result. Opening this page does not start a scan or prepare a file.')
+        requested = st.button('Prepare TXT from this existing result', key=f'prepare_txt_{run.id}')
+    if key not in st.session_state and (prepare_now or requested):
         try:
             with st.spinner('Preparing complete evidence TXT…'):
                 st.session_state[key] = build_transfer_handover(run, evidence, retention_eligible=True, scan_summary=summary)

@@ -2,7 +2,7 @@
 from datetime import datetime
 import json
 import re
-from urllib.parse import urlparse
+from urllib.parse import urlparse, unquote
 from bs4 import BeautifulSoup
 from src.core.exceptions import ExtractionError
 from src.models.domain import Evidence, EvidenceType, Source, SourceType
@@ -31,6 +31,19 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
+        if (parsed_url.hostname == 'www.a-star.edu.sg'
+                and unquote(parsed_url.path).lower().rstrip('/') == '/simtech/research/sustainability-informatics-strategy-(sis)'):
+            content = soup.select_one('main .rich-text.rte')
+            if content is None:
+                raise ExtractionError('SIMTech research content block unavailable')
+            for unwanted in content.select('script, style, nav, form'):
+                unwanted.decompose()
+            text = content.get_text('\n', strip=True)
+            if len(text.split()) < self._MIN_WORDS:
+                raise ExtractionError('Insufficient SIMTech research text')
+            return Evidence(None, scan_run_id, source.id or 0, EvidenceType.RESEARCH_CAPABILITY.value,
+                            title, self._publication_date(soup), source.organisation, page.url,
+                            text, datetime.now().astimezone(), 'EXPLICIT')
         if (parsed_url.hostname == 'www.a-star.edu.sg'
                 and parsed_url.path.lower().rstrip('/') in {
                     '/research/medical-technologies',

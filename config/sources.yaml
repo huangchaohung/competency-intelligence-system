@@ -672,10 +672,10 @@ sources:
   max_listing_pages: 5
   use_browser_rendering: false
 - name: A*STAR — Sustainability
-  url: https://www.a-star.edu.sg/about/corporate-profile/sustainability
+  url: https://www.a-star.edu.sg/simtech/research/sustainability-informatics-strategy-%28sis%29
   organisation: A*STAR
   source_family: GOVERNMENT_AGENCY
-  source_type: ARTICLE
+  source_type: RESEARCH
   source_role: PRIMARY_DISCOVERY
   llm_allowed: true
   max_articles_per_scan: 25

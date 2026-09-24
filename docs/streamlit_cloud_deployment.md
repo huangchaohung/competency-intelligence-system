@@ -1,5 +1,7 @@
 # Private Streamlit Community Cloud trial
 
+Latest download behaviour: entering Scan & Download never prepares an export automatically. Existing results offer **Prepare TXT from this existing result**; after a newly completed scan, preparation runs once automatically. **Download evidence TXT** still requires a user click to save the file. This supersedes earlier automatic-on-entry wording.
+
 ## Avoid repeated ZIP uploads
 
 Update 2026-09-24: a clean checkout now exists at `.cloud-deploy`, connected to `https://github.com/huangchaohung/competency-intelligence-system.git`, branch `main`. Run `python scripts/sync_cloud.py` to copy only allowlisted deployment code/configuration into that checkout, inspect `git -C .cloud-deploy diff`, then commit and push reviewed changes. The sync script does not push or delete files. Future assistant updates can use this checkout; manual document uploads are no longer required. Cloud rebuild/restart must still be checked after a push.
