@@ -1,63 +1,47 @@
-# Private Streamlit Community Cloud trial
+# Private Streamlit Cloud deployment
 
-Latest download behaviour: entering Scan & Download never prepares an export automatically. Existing results offer **Prepare TXT from this existing result**; after a newly completed scan, preparation runs once automatically. **Download evidence TXT** still requires a user click to save the file. This supersedes earlier automatic-on-entry wording.
+Deploy the code repository, **not the original development workspace**. No database, framework, evidence exports, logs or secrets belong in Git. The active app is a public-evidence collector; government analysis is separate.
 
-## Avoid repeated ZIP uploads
+## Setup
 
-Update 2026-09-24: a clean checkout now exists at `.cloud-deploy`, connected to `https://github.com/huangchaohung/competency-intelligence-system.git`, branch `main`. Run `python scripts/sync_cloud.py` to copy only allowlisted deployment code/configuration into that checkout, inspect `git -C .cloud-deploy diff`, then commit and push reviewed changes. The sync script does not push or delete files. Future assistant updates can use this checkout; manual document uploads are no longer required. Cloud rebuild/restart must still be checked after a push.
-
-Schema 20 removes country/category/evidence_label from active source storage. Research routing moves into visible RESEARCH source type. Old scan snapshots remain unchanged. Cloud runtime YAML is migrated in place with a pre-migration YAML copy; repository seed updates do not overwrite users' edited URLs. Database metadata (ID, active flag and article URL patterns) remains necessary internal infrastructure.
-
-The application files are already cloud-deployable without format conversion: keep `cloud_app.py`, `requirements.txt` and `packages.txt` at repository root. Streamlit can track the connected GitHub branch, so subsequent code changes should be committed and pushed to that branch rather than manually uploaded as documents.
-
-This local working folder is currently not a Git repository. Before setting up synchronization, identify the exact GitHub repository/branch used by the deployed app. Use a clean deployment checkout containing only the allowlisted files from scripts/package_cloud.py; do not upload the full working folder or its legacy/data files. Repository connection and external pushes have not yet been performed. Cloud runtime source edits are still separate and must not be overwritten automatically.
-
-## Current UI — 2026-09-24 (supersedes History references below)
-
-Use **Scan & Download**. Administrators can scan; viewers can download the latest shared result. The TXT is automatically prepared, without a separate history/batch selector. Review source health and previews below it. Local history is preserved in storage but hidden from navigation. Source tuning is paused at the Singapore Biodesign checkpoint.
-
-Update `app.py`, `cloud_app.py` and `src/dashboard/collector.py` in the deployed GitHub repository (or use the new clean deployment ZIP). This does not automatically change the cloud runtime source catalogue. After deployment, open Scan & Download and test the evidence TXT. Under Download troubleshooting, try the small TXT. Record the browser error, file size and whether the small test works if the real download still fails. Government filtering/proxy restrictions require IT assistance; this change does not bypass them. The app-side rerun/memory issues are addressed, but the original cloud failure has not been reproduced on the government laptop.
-
-This deployment is the public evidence collector only. Do not upload government competency frameworks, credentials, confidential data, or local databases. Government analysis remains in the approved government environment.
-
-## Deploy step by step
-
-1. Extract the prepared `dist/streamlit-cloud-*.zip` into an empty folder. Review `config/sources.yaml` for public-only metadata. The archive excludes your existing database, logs, secrets, frameworks and scan exports.
-2. Create a **private GitHub repository** and upload the extracted files, preserving folders. Upload the files, not the ZIP. `cloud_app.py` must be at the repository root.
-3. Sign in at https://share.streamlit.io and choose **Create app**. Select the repository and branch; set the entrypoint to **cloud_app.py**, not app.py.
-4. In Advanced settings select Python **3.12**. In Secrets add the following, replacing the example with a unique randomly generated password of at least 20 characters:
+1. Connect the reviewed repository/branch in Streamlit Community Cloud. Set entrypoint **`cloud_app.py`**, not `app.py`.
+2. Use Python 3.12 for the cloud trial and complete Linux acceptance below. Local Windows tests alone do not prove browser compatibility.
+3. Set the following in the hosting secret settings (or `.streamlit/secrets.toml` only when testing locally):
 
    ```toml
-   ADMIN_PASSWORD = "REPLACE-WITH-A-LONG-RANDOM-SECRET"
+   ADMIN_PASSWORD = "REPLACE-WITH-A-UNIQUE-RANDOM-SECRET-AT-LEAST-20-CHARACTERS"
    ```
 
-   No OpenAI API key is needed. Never put the password in GitHub. Missing/short secrets leave the app read-only.
-5. Deploy. Python packages install from requirements.txt and Linux Chromium from packages.txt. Check build logs for installation errors. The Windows test suite is not proof of Linux/browser compatibility: complete the checks below before inviting users.
-6. Verify Sharing is **Only specific people can view this app** and invite your testers. The in-app administrator password only protects scan/configuration actions; it does not replace private app access. Do not expose this trial publicly.
-7. Open Administrator access in the sidebar and sign in to edit sources or run scans. Other viewers can browse and download the shared public scan history.
+   Never commit the real value. No OpenAI key is required. Missing/short admin secrets leave the app read-only.
+4. Python dependencies install from `requirements.txt`; `packages.txt` requests Linux Chromium. Check build logs.
+5. Restrict platform sharing to approved testers. The in-app admin password controls edits/scans, not viewer access to shared evidence. Do not expose the trial publicly.
 
-## First cloud acceptance check
+The receiving team must verify available platform sharing controls and organisational approval. Official references: [deployment](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy), [dependencies](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies), [secrets](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/secrets-management), [sharing](https://docs.streamlit.io/deploy/streamlit-community-cloud/share-your-app).
 
-- Sign out: Source Configuration and Run Scan must disappear.
-- Sign in and enable only 3–5 representative sources initially, including a browser-rendered source. Apply validated changes.
-- Run a small scan, inspect substantive text and source health, and download the evidence TXT.
-- In another browser session, confirm an overlapping operation displays the busy message rather than starting a second scan.
-- Confirm History & Export works after completion. Gradually increase the source set only after checking runtime and memory. A full catalogue/browser scan may exceed Community Cloud resources.
+## Acceptance after deployment
 
-## Important operating limits
+- Signed-out viewers must not see Source Configuration or the scan action. They may view/download the latest shared result.
+- Sign in via Administrator access. Enable a small representative set, including one rendered source; validate/apply.
+- Scan, inspect substantive evidence text and source health, download/parse the TXT.
+- Opening Scan & Download alone must not prepare or start a download. Existing results require **Prepare TXT from this existing result**. A newly completed scan prepares once; the final browser download always needs a click.
+- Try the small TXT under download troubleshooting from the actual government browser. If only the large file fails, record size and browser error for IT.
+- In a second session confirm overlapping execution shows the busy message rather than another scan.
+- Increase catalogue size only after checking memory and runtime. A full browser-heavy scan may exceed hosting resources.
 
-- **Shared trial, not isolated user workspaces:** all viewers see the same history and all administrators edit the same catalogue.
-- A nonblocking file lock serializes page execution, startup synchronization and scans on this single app instance. While a scan runs, other sessions may only see a busy message. This is not a distributed-worker design.
-- Cloud state lives in `.cloud_runtime/`, separate from local data. Only the public source catalogue is copied on first startup. Existing local history is intentionally not deployed.
-- Community Cloud local storage is **not durable**. Restarts/redeployments can lose scans and catalogue edits. Download important results immediately. Catalogue changes are not committed back to GitHub. Retention of five batches is a maximum policy, not a backup guarantee.
-- Source sites may reject cloud IP addresses even when local crawling works. Robots/access restrictions remain respected. System Chromium is used on Linux; compatibility must be confirmed in the cloud smoke test. Local Windows uses the existing Playwright browser installation.
-- Dependency ranges are bounded, not a reproducible lockfile. Review dependency upgrades before a wider release.
-- For reliable long-term shared use, add durable storage, identity-based authorization and a background job queue. This trial does not certify government hosting/security approval.
+## State and updates
 
-## Local use and rebuilding
+Cloud state lives in `.cloud_runtime/`. The first startup copies only the public catalogue seed, never local history. Later repository catalogue updates do **not** overwrite edited runtime URLs. Update them through Source Configuration deliberately.
 
-Local `streamlit run app.py` is unchanged. To test the cloud entrypoint locally, install `pip install -r requirements.txt`, configure `.streamlit/secrets.toml`, then run `streamlit run cloud_app.py`. It starts separate empty cloud history. Never commit secrets.toml.
+Schema 20 migrates obsolete source fields; cloud YAML migration makes a pre-migration YAML copy. This is not a database backup. Back up controlled installations before schema upgrades.
 
-Rebuild the clean ZIP with `python scripts/package_cloud.py`. Review the archive before uploading. Do not upload the entire working directory.
+All users share the same latest result/catalogue. A file lock serializes initialization/page execution/scanning on one instance; other sessions can be busy throughout a scan. There is no background worker or distributed coordination.
 
-Official references: [deployment](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy), [dependencies](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies), [secrets](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/secrets-management), [sharing](https://docs.streamlit.io/deploy/streamlit-community-cloud/share-your-app), [storage limitations](https://docs.streamlit.io/develop/concepts/connections/connecting-to-data).
+Cloud filesystem storage is temporary. Restarts/redeployments can lose edits and evidence. Download archives promptly; five-batch retention is a maximum policy, not durability. Catalogue edits are not committed back to GitHub.
+
+## Maintainer publication
+
+Teams cloning GitHub can commit reviewed changes normally. In the original maintainer's separate working folder, `python scripts/sync_cloud.py` copies allowlisted files into `.cloud-deploy`; inspect its diff before commit/push. It does not push or delete files and is not a required setup step for other teams.
+
+`python scripts/package_cloud.py` creates an optional code-only ZIP in `dist/`. The allowlist includes documentation/tests but excludes the historical README archive and operational data. A push is not proof of successful cloud rebuild: perform acceptance above.
+
+For reliable production operation, replace temporary storage/shared passwords with approved durable storage, identity-based authorization, controlled egress and a background-job architecture.
