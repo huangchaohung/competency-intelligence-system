@@ -15,6 +15,9 @@ class SourceRouter:
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
         parsed_source = urlparse(source.url)
+        from src.scanner.nparks_resources import matches as is_nparks_resource, discover as discover_nparks
+        if is_nparks_resource(source.url):
+            return discover_nparks(source, self._discovery._scanner)
         from src.scanner.nus_curriculum import matches as is_nus_curriculum
         if source.use_browser_rendering and is_nus_curriculum(source.url):
             if not self._discovery._scanner.is_allowed(source.url):

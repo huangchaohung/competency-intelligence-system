@@ -31,6 +31,21 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
+        if (parsed_url.hostname == 'www.nparks.gov.sg' and page.content_type != 'application/pdf'
+                and (parsed_url.path.rstrip('/') == '/who-we-are/city-in-nature-key-strategies'
+                     or parsed_url.path.startswith('/services/research-programmes')
+                     or parsed_url.path.startswith('/nature/enhancing-biodiversity-guidelines-resources'))):
+            content = soup.select_one('.main-body')
+            if content is None:
+                raise ExtractionError('NParks resource body missing; navigation is not evidence')
+            for element in content.select('script, style, nav, header, footer, form'):
+                element.decompose()
+            text = content.get_text('\n', strip=True)
+            if len(text.split()) < self._MIN_WORDS:
+                raise ExtractionError('Insufficient NParks resource text')
+            return Evidence(None, scan_run_id, source.id or 0, self._classify_evidence_type(source).value,
+                            title, self._publication_date(soup), source.organisation, page.url,
+                            text, datetime.now().astimezone(), 'EXPLICIT' if source.source_type == SourceType.RESEARCH else 'INFERRED')
         from src.scanner.nus_curriculum import matches as is_nus_curriculum
         if is_nus_curriculum(page.url):
             curriculum = soup.select_one('#main-container .template-b .col-md-9')

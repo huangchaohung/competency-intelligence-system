@@ -1,5 +1,14 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Latest Cloud export review and NParks correction
+
+- Supplied public_evidence.txt: 236 configured sources, 1,611 records / 131 organisations; count matches completion manifest. 107 Error, 65 Low evidence, 64 Healthy. Of Error sources, 63 produced some evidence and 44 produced zero. Error status does not mean all evidence from that source was lost.
+- Checked actual text, not only counts: NParks included recreation/navigation and repeated anchor variants; IEEE resource descriptions and some university pages repeat text across distinct URLs. Very short catalogue records also need further review. No matches for the sampled common access-challenge markers were found, which is not a comprehensive quality certification.
+- NParks routes now scope discovery to research-programme children or biodiversity-resource children/PDFs; City in Nature is standalone. Body extraction uses the observed .main-body container, including accordion text, excluding the header/footer and menus. Research seed type corrected from CATALOGUE to RESEARCH. URLs/enabled flags unchanged.
+- Live check: research root 207 words, sampled biosurveillance page 584; strategy 898; biodiversity overview 879. Candidate counts 6 / 1 / 12 respectively; those are not validated full-scan evidence counts. One sampled PDF exceeded the existing 2 MB retrieval limit and was skipped; limit unchanged.
+- 245 tests passed. Runtime build nparks-tuning-1 refreshes idle scanner objects. Existing sessions keep their own source-type edits; Restore default sources loads the corrected research type but also resets temporary catalogue edits.
+- Next review short ISA/Energy Institute catalogue items, remaining duplicated resource descriptions and the 44 empty sources. Do not disable 107 sources merely because a partial page failure gives Error status.
+
 This is not a certification that every source is healthy. Local/cloud IP behavior differs; inspect exported text.
 
 | Source | Verified work / limitation |

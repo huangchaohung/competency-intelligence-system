@@ -147,7 +147,7 @@ sources:
   url: https://www.nparks.gov.sg/services/research-programmes
   organisation: NParks
   source_family: GOVERNMENT_AGENCY
-  source_type: CATALOGUE
+  source_type: RESEARCH
   source_role: PRIMARY_DISCOVERY
   llm_allowed: true
   max_articles_per_scan: 25
