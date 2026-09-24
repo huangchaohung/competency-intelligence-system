@@ -2,7 +2,7 @@
 from src.models.domain import Source, SourceType
 from src.scanner.article_discovery import ArticleDiscovery
 from src.scanner.web_page_scanner import WebPageScanner
-from urllib.parse import urlparse, urljoin
+from urllib.parse import urlparse, urljoin, unquote
 from bs4 import BeautifulSoup
 from src.core.exceptions import ScanError
 
@@ -15,6 +15,14 @@ class SourceRouter:
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
         parsed_source = urlparse(source.url)
+        if (parsed_source.hostname == 'www.a-star.edu.sg'
+                and unquote(parsed_source.path).lower().rstrip('/') == '/simtech/research/sustainability-informatics-strategy-(sis)'):
+            # This is a standalone research summary, not a listing. Its content
+            # block has no onward resource links; global menus create noise and
+            # encoded/unencoded duplicates of the same evidence.
+            if not self._discovery._scanner.is_allowed(source.url):
+                raise ScanError('SIMTech research discovery is not permitted')
+            return [source.url]
         if (parsed_source.hostname == 'www.a-star.edu.sg'
                 and parsed_source.path.lower().rstrip('/') == '/research/medical-technologies'):
             scanner = self._discovery._scanner
