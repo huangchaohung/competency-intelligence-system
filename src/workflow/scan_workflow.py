@@ -1,6 +1,7 @@
 """End-to-end evidence scan orchestration."""
 import logging
 import re
+import sqlite3
 from datetime import datetime
 from typing import Callable
 from urllib.parse import urlparse
@@ -44,6 +45,7 @@ class ScanWorkflow:
         total_sources = len(enabled_sources)
         for index, source in enumerate(enabled_sources, start=1):
             source_started_at = datetime.now().astimezone()
+            article_errors = []
             source_stats = {
                 "scan_run_id": run.id,
                 "source_id": source.id,
@@ -69,6 +71,8 @@ class ScanWorkflow:
                 progress_callback(index, total_sources, source.name, source.source_family.value, source.source_type.value, "start")
             try:
                 discovered_urls = self._router.discover(source)
+                if not discovered_urls:
+                    raise ScanError('No permitted evidence links were returned; source skipped.')
                 source_stats["discovered_url_count"] = len(discovered_urls)
                 self._operational_logger.event("source_urls_discovered", source_stats)
                 if progress_callback:
@@ -104,9 +108,16 @@ class ScanWorkflow:
                             LOGGER.info("Skipping out-of-scope evidence '%s' from '%s'", evidence.url, source.name)
                             source_stats["skipped_out_of_scope_count"] += 1
                             continue
-                    except CompetencyIntelligenceError as error:
+                    except Exception as error:
+                        # Third-party browser/parser exceptions and reloaded plugin
+                        # exception classes must not terminate unrelated sources.
+                        # Storage/resource failures are not website failures.
+                        if isinstance(error, (sqlite3.Error, MemoryError)):
+                            raise
                         LOGGER.info("Skipping article '%s' from '%s': %s", url, source.name, error)
                         source_stats["skipped_extraction_error_count"] += 1
+                        if len(article_errors) < 3:
+                            article_errors.append(f'{url}: {type(error).__name__}: {error}')
                         continue
                     if evidence.url in stored_urls:
                         source_stats["skipped_duplicate_count"] += 1
@@ -114,11 +125,18 @@ class ScanWorkflow:
                     self._scans.add_evidence(evidence)
                     stored_urls.add(evidence.url)
                     source_stats["stored_evidence_count"] += 1
+                if article_errors:
+                    message = (f"{source_stats['skipped_extraction_error_count']} page(s) skipped. "
+                               + ' | '.join(article_errors))
+                    errors.append(f'{source.name}: {message}')
+                    source_stats['error'] = message
                 if progress_callback:
-                    progress_callback(index, total_sources, source.name, source.source_family.value, source.source_type.value, "done")
+                    progress_callback(index, total_sources, source.name, source.source_family.value, source.source_type.value, "error" if article_errors else "done")
                 source_stats["duration_seconds"] = (datetime.now().astimezone() - source_started_at).total_seconds()
                 self._operational_logger.event("source_scan_completed", source_stats)
-            except CompetencyIntelligenceError as error:
+            except Exception as error:
+                if isinstance(error, (sqlite3.Error, MemoryError)):
+                    raise
                 LOGGER.warning("Source '%s' failed: %s", source.name, error)
                 errors.append(f"{source.name}: {error}")
                 source_stats["error"] = str(error)
