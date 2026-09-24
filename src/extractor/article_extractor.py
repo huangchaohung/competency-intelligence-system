@@ -31,6 +31,13 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
+        from src.scanner.nus_curriculum import matches as is_nus_curriculum
+        if is_nus_curriculum(page.url):
+            curriculum = soup.select_one('#main-container .template-b .col-md-9')
+            if curriculum is not None:
+                # Preserve complete programme paragraphs and course tables,
+                # excluding the neighbouring admissions/faculty sidebar.
+                soup = BeautifulSoup(str(curriculum), 'lxml')
         if (parsed_url.hostname == 'www.a-star.edu.sg'
                 and unquote(parsed_url.path).lower().rstrip('/') == '/simtech/research/sustainability-informatics-strategy-(sis)'):
             content = soup.select_one('main .rich-text.rte')
