@@ -1,5 +1,11 @@
 # Private Streamlit Community Cloud trial
 
+## Current UI — 2026-09-24 (supersedes History references below)
+
+Use **Scan & Download**. Administrators can scan; viewers can download the latest shared result. The TXT is automatically prepared, without a separate history/batch selector. Review source health and previews below it. Local history is preserved in storage but hidden from navigation. Source tuning is paused at the Singapore Biodesign checkpoint.
+
+Update `app.py`, `cloud_app.py` and `src/dashboard/collector.py` in the deployed GitHub repository (or use the new clean deployment ZIP). This does not automatically change the cloud runtime source catalogue. After deployment, open Scan & Download and test the evidence TXT. Under Download troubleshooting, try the small TXT. Record the browser error, file size and whether the small test works if the real download still fails. Government filtering/proxy restrictions require IT assistance; this change does not bypass them. The app-side rerun/memory issues are addressed, but the original cloud failure has not been reproduced on the government laptop.
+
 This deployment is the public evidence collector only. Do not upload government competency frameworks, credentials, confidential data, or local databases. Government analysis remains in the approved government environment.
 
 ## Deploy step by step

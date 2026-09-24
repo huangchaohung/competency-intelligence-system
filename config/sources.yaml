@@ -3444,15 +3444,15 @@ sources:
   max_listing_pages: 5
   use_browser_rendering: false
 - name: A*STAR Singapore Biodesign — Medical Technologies
-  url: https://www.a-star.edu.sg/research/medical-technologies
+  url: https://sgbiodesign.sg/fellowships/
   organisation: A*STAR Singapore Biodesign
   source_family: GOVERNMENT_AGENCY
-  country: Unknown
-  source_type: INDEX
+  country: Singapore
+  source_type: CATALOGUE
   source_role: SUPPORTING_DISCOVERY
   llm_allowed: true
   category: Imported STE source list
-  evidence_label: research / report
+  evidence_label: catalogue / training
   max_articles_per_scan: 25
   article_url_pattern: ''
   enabled: true

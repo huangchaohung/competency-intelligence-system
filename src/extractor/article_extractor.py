@@ -31,6 +31,11 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
+        if parsed_url.hostname == 'sgbiodesign.sg':
+            # Observed programme-page sections, not phrase-based truncation:
+            # keep curriculum text but omit the alumni directory and consent UI.
+            for element in soup.select('#meet_the_fellows, #moove_gdpr_cookie_modal, #moove_gdpr_cookie_info_bar'):
+                element.decompose()
         # Login destinations can have plausible resource URLs and >100 words.
         # Require both a login-page title and account/access instructions.
         title_lower = title.casefold()

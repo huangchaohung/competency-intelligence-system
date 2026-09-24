@@ -27,16 +27,18 @@ def manual_health_rows(run, evidence):
 def home(services):
     st.title('STE Public Evidence Collector')
     st.info('Public sources only. Keep internal frameworks and AI analysis on government-approved systems.')
-    st.markdown('1. **Configure sources** — select public websites.\n2. **Run Scan** — extract evidence without AI.\n3. **Review history** — inspect source health and text.\n4. **Export and transfer** — prepare the evidence handover in History & Export, review it, then use an IT-approved transfer route.')
+    st.markdown('1. **Configure sources** — select public websites.\n2. **Scan & Download** — collect public evidence without AI.\n3. **Review and download** — inspect the latest scan and save its TXT file directly to your laptop.\n4. **Analyse securely** — use the downloaded evidence with your approved government assistant. Keep internal frameworks off this website.')
     st.metric('Enabled sources', len(services['source_repository'].list_enabled()))
     st.caption('Use an IT-approved transfer route. Do not transfer the database, logs or legacy exports.')
 
 
-def run_scan(services):
-    st.header('Run Scan')
+def run_scan(services, *, allow_scan=True):
+    st.header('Scan & Download')
     sources = services['source_repository'].list_enabled()
     st.write(f'{len(sources)} enabled sources. This scan makes no AI requests.')
-    if st.button('Scan enabled sources', disabled=not sources, type='primary'):
+    if not allow_scan:
+        st.info('Sign in under Administrator access to run a scan. You can download the latest shared result below.')
+    if st.button('Scan enabled sources', disabled=not sources or not allow_scan, type='primary'):
         progress = st.progress(0.0, text='Starting scan…')
         def update(index, total, name, family, source_type, stage):
             done = index if stage in {'done', 'error'} else index - 1
@@ -45,24 +47,28 @@ def run_scan(services):
             with st.spinner('Collecting public evidence…'):
                 run = services['scan_workflow'].run(progress_callback=update)
             progress.progress(1.0, text='Scan finished')
-            st.success(f'Batch {run.id} saved. Open History & Export to review it.')
+            st.success(f'Batch {run.id} finished. Download its evidence below.')
             if run.error_summary:
                 st.warning(run.error_summary)
         except CompetencyIntelligenceError as error:
             st.error(str(error))
+    history(services)
 
 
 def history(services):
-    st.header('History & Export')
+    """Render the latest result only; retained storage is not a history UI."""
+    st.subheader('Latest scan result')
     repo = services['scan_repository']
-    runs = repo.list_runs(limit=10000)
+    runs = repo.list_runs(limit=1)
     if not runs:
         st.info('No scans yet. Configure sources, then run a scan.')
         return
-    run = st.selectbox('Scan batch', runs, format_func=lambda r: f'{fmt(r.started_at)} · Batch {r.id}')
+    run = runs[0]
+    st.caption(f'{fmt(run.started_at)} · Batch {run.id} · Shared result; download before starting another scan.')
     st.caption(f"Status: {run.status.value.replace('_', ' ').title()}")
     evidence = repo.list_evidence_for_run(run.id)
     summary = repo.get_summary(run.id)
+    render_download(run, evidence, summary)
     st.metric('Stored evidence in this batch', len(evidence))
     if summary is not None:
         st.caption(f"Originally collected: {summary['evidence_count']} evidence records. Source health below was saved when the scan completed.")
@@ -94,25 +100,30 @@ def history(services):
                 st.text(f'{item.evidence_type} · Fetched {fmt(item.extracted_at)}')
                 st.text(item.url)
                 st.write(' '.join(item.article_text.split()[:100]))
-    st.subheader('Government handover')
-    st.caption('The handover includes all retained evidence in this batch, regardless of the organisation filter above. No internal framework, recommendations or chats are included.')
-    st.warning('Review public content and source metadata before transfer. Export is not a security approval. Do not email the database or logs.')
-    eligible = run.id in {r.id for r in runs[:5]}
+
+
+def render_download(run, evidence, summary):
+    st.subheader('Download evidence TXT')
+    st.caption('All evidence from the latest scan is included, regardless of preview filters. Save this file as your archive; cloud storage is temporary.')
     key = f'public_evidence_only_{run.id}'
-    if st.button('Prepare handover files', disabled=not evidence or not eligible or not run.completed_at):
+    # Bound session memory to one prepared batch, including legacy cache keys.
+    for old_key in list(st.session_state):
+        if (old_key.startswith('public_handover_') or old_key.startswith('public_evidence_only_')) and old_key != key:
+            del st.session_state[old_key]
+    if not evidence or not run.completed_at:
+        st.info('A completed scan with retained evidence is required for download.')
+        return
+    if key not in st.session_state:
         try:
-            with st.spinner('Preparing complete retained evidence and checksums…'):
-                files = build_transfer_handover(run, evidence, retention_eligible=eligible, scan_summary=summary)
-                # Retain only the latest prepared package in session memory.
-                for old_key in list(st.session_state):
-                    if old_key.startswith('public_handover_'):
-                        del st.session_state[old_key]
-                st.session_state[key] = files
+            with st.spinner('Preparing complete evidence TXT…'):
+                st.session_state[key] = build_transfer_handover(run, evidence, retention_eligible=True, scan_summary=summary)
         except ValueError as error:
             st.error(str(error))
     if key in st.session_state:
         files = st.session_state[key]
-        st.success('One TXT file: complete public evidence. The assistant guide and handover-batch file are not included.')
         for name, data in files.items():
-            st.download_button(name, data, file_name=name, mime='text/plain; charset=utf-8', key=f'{key}_{name}')
-        st.caption('Full text is preserved. Large files may exceed government portal limits; no evidence is silently removed.')
+            st.download_button('Download evidence TXT', data, file_name=name, mime='text/plain', on_click='ignore')
+            st.caption(f'{name} · {len(data)/1_000_000:.2f} MB · Full text preserved')
+        with st.expander('Download troubleshooting'):
+            st.download_button('Download small test TXT', b'STE download test: public text only.\n', file_name='download_test.txt', mime='text/plain', on_click='ignore')
+            st.write('If neither file downloads, check browser downloads and ask IT whether downloads from this app are permitted. If only the large file fails, record its size and the browser error. After a cloud restart, refresh this page to rebuild the download. Do not bypass government security controls.')

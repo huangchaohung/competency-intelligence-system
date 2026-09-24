@@ -40,7 +40,7 @@ def main():
     services = build_services()
     try:
         pages = {"Home": collector.home, "Source Configuration": source_configuration.render,
-                 "Run Scan": collector.run_scan, "History & Export": collector.history}
+                 "Scan & Download": collector.run_scan}
         pages[st.sidebar.radio("Navigation", list(pages))](services)
     finally:
         services["connection"].close()

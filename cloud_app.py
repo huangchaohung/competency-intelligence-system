@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parent
 
 def main():
     st.set_page_config(page_title='STE Collector — Cloud Trial', layout='wide')
-    st.warning('Trial: public information only. All viewers share scan history. Cloud storage can be lost; download important results.')
+    st.warning('Public information only. Viewers share the latest scan result. Download your TXT archive before leaving; cloud storage is temporary.')
     try:
         password = str(st.secrets.get('ADMIN_PASSWORD', ''))
     except FileNotFoundError:
@@ -34,10 +34,10 @@ def main():
                     st.error('Incorrect password.')
         else:
             st.info('Read-only mode. Administrator password is not configured (minimum 20 characters).')
-    pages = {'Home': collector.home, 'History & Export': collector.history}
+    pages = {'Home': collector.home, 'Scan & Download': lambda services: collector.run_scan(services, allow_scan=False)}
     if admin:
         pages = {'Home': collector.home, 'Source Configuration': source_configuration.render,
-                 'Run Scan': collector.run_scan, 'History & Export': collector.history}
+                 'Scan & Download': collector.run_scan}
     selected = st.sidebar.radio('Navigation', list(pages))
     # Serialize ALL app DB/config access, including startup synchronization.
     # Nonblocking: other sessions get a message rather than starting another scan.
