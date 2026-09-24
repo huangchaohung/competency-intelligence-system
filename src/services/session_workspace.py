@@ -18,6 +18,23 @@ from src.services.source_service import SourceService
 from src.workflow.scan_workflow import ScanWorkflow
 from src.workflow.source_configuration_workflow import SourceConfigurationWorkflow
 
+RUNTIME_REVISION = 'scan-isolation-2'
+
+
+def refresh_scan_runtime(services):
+    """Replace pre-deployment session objects, only while the caller holds its lock."""
+    from src.services.scan_job import ScanJob
+    job = services.get('scan_job')
+    if job is not None and job.snapshot()['running']:
+        return False
+    if services.get('runtime_revision') == RUNTIME_REVISION:
+        return False
+    services['scan_workflow'] = ScanWorkflow(services['source_repository'], services['scan_repository'],
+                                           WebPageScanner(), ArticleExtractor())
+    services['scan_job'] = ScanJob()
+    services['runtime_revision'] = RUNTIME_REVISION
+    return True
+
 
 class MemoryConfiguration(ConfigurationService):
     def __init__(self, sources):
@@ -44,7 +61,7 @@ def build_session_services(root: Path):
     service = SourceService(sources)
     service.synchronise(master)
     return {
-        'connection': connection, 'lock': Lock(), 'session_only': True,
+        'connection': connection, 'lock': Lock(), 'session_only': True, 'runtime_revision': RUNTIME_REVISION,
         'source_repository': sources, 'scan_repository': scans,
         'configuration_service': configuration,
         'source_configuration_workflow': SourceConfigurationWorkflow(configuration, service),

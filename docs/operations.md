@@ -10,6 +10,8 @@ Old database/log directories are not used or automatically deleted. They may con
 
 ## Troubleshooting
 
+The page shows an App build identifier (`scan-isolation-2` for the session-runtime refresh fix). If a reported issue contradicts the current code, record that identifier and confirm the hosting branch/rebuild. Idle sessions refresh outdated workflow/job objects without removing evidence or catalogue edits; active scans are not replaced. Unexpected worker failures now log a traceback with current source/progress to the hosting console. Do not diagnose from the final exception message alone.
+
 | Symptom | Action |
 | --- | --- |
 | Zero evidence | Inspect error, robots policy and extracted text; count alone is not quality |

@@ -14,6 +14,7 @@ def test_canonical_app_has_no_admin_and_session_navigation(monkeypatch, tmp_path
         def close(self):
             closed.append(True)
     monkeypatch.setattr(app, 'ROOT', tmp_path)
+    monkeypatch.setattr(app, 'refresh_scan_runtime', lambda services: False)
     from threading import Lock
     monkeypatch.setattr(app, 'build_session_services', lambda root: {'connection': Connection(), 'lock': Lock()})
     monkeypatch.setattr(app.collector, 'home', lambda services: None)

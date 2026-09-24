@@ -1,5 +1,8 @@
 """Session-owned scan worker and thread-safe progress; no Streamlit calls."""
 from threading import Lock, Thread
+import logging
+
+LOGGER = logging.getLogger(__name__)
 
 
 class ScanJob:
@@ -33,6 +36,8 @@ class ScanJob:
             with self._guard:
                 self._state.update(completed=self._state['total'], stage='finished')
         except Exception as error:
+            LOGGER.exception('Scan worker stopped unexpectedly (source=%s, completed=%s/%s)',
+                             self.snapshot()['source'], self.snapshot()['completed'], self.snapshot()['total'])
             with self._guard:
                 self._state.update(error=f'{type(error).__name__}: {error}', stage='failed')
         finally:

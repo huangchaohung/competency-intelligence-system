@@ -6,6 +6,37 @@ from src.models.domain import Evidence
 from src.services.session_workspace import build_session_services, clear_current_scan, parse_source_csv, session_sources_csv
 
 
+def test_idle_runtime_upgrade_preserves_user_state(tmp_path):
+    from src.services.session_workspace import refresh_scan_runtime, RUNTIME_REVISION
+    root_with_master(tmp_path)
+    services = build_session_services(tmp_path)
+    try:
+        source = services['source_repository'].list_all()[0]
+        services['source_configuration_workflow'].replace_catalogue([replace(source, name='User edit')])
+        services['scan_repository'].create_run(datetime.now().astimezone(), [])
+        old_connection = services['connection']
+        services['runtime_revision'] = 'previous-build'
+        services['scan_workflow'] = object()
+        assert refresh_scan_runtime(services)
+        assert services['runtime_revision'] == RUNTIME_REVISION
+        assert services['connection'] is old_connection
+        assert services['source_repository'].list_all()[0].name == 'User edit'
+        assert len(services['scan_repository'].list_runs()) == 1
+        assert not refresh_scan_runtime(services)
+    finally:
+        services['connection'].close()
+
+
+def test_upgrade_never_replaces_running_scan(tmp_path):
+    from types import SimpleNamespace
+    from src.services.session_workspace import refresh_scan_runtime
+    active = object()
+    services = dict(scan_workflow=active, runtime_revision='old',
+                    scan_job=SimpleNamespace(snapshot=lambda: {'running': True}))
+    assert not refresh_scan_runtime(services)
+    assert services['scan_workflow'] is active
+
+
 def root_with_master(tmp_path):
     (tmp_path / 'config').mkdir()
     master = tmp_path / 'config/sources.yaml'
