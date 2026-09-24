@@ -4,6 +4,7 @@ import streamlit as st
 from src.core.exceptions import CompetencyIntelligenceError
 from src.services.source_health_service import source_health_rows
 from src.services.public_handover import build_transfer_handover
+from src.services.session_workspace import clear_current_scan
 
 
 def fmt(value):
@@ -29,7 +30,7 @@ def home(services):
     st.info('Public sources only. Keep internal frameworks and AI analysis on government-approved systems.')
     st.markdown('1. **Configure sources** — select public websites.\n2. **Scan & Download** — collect public evidence without AI.\n3. **Review and download** — inspect the latest scan and save its TXT file directly to your laptop.\n4. **Analyse securely** — use the downloaded evidence with your approved government assistant. Keep internal frameworks off this website.')
     st.metric('Enabled sources', len(services['source_repository'].list_enabled()))
-    st.caption('Use an IT-approved transfer route. Do not transfer the database, logs or legacy exports.')
+    st.caption('Your source edits and evidence are temporary and private to this session. A new session starts with default sources and no evidence. Download before leaving; use Start fresh to discard this workspace immediately.')
 
 
 def run_scan(services, *, allow_scan=True):
@@ -40,6 +41,11 @@ def run_scan(services, *, allow_scan=True):
     if not allow_scan:
         st.info('Sign in under Administrator access to run a scan. You can download the latest shared result below.')
     if st.button('Scan enabled sources', disabled=not sources or not allow_scan, type='primary'):
+        if services.get('session_only'):
+            clear_current_scan(services)
+            for key in list(st.session_state):
+                if key.startswith(('public_evidence_only_', 'public_handover_', 'org_', 'page_', 'prepare_txt_')):
+                    del st.session_state[key]
         progress = st.progress(0.0, text='Starting scan…')
         def update(index, total, name, family, source_type, stage):
             done = index if stage in {'done', 'error'} else index - 1
@@ -48,7 +54,7 @@ def run_scan(services, *, allow_scan=True):
             with st.spinner('Collecting public evidence…'):
                 run = services['scan_workflow'].run(progress_callback=update)
             progress.progress(1.0, text='Scan finished')
-            st.success(f'Batch {run.id} finished. Download its evidence below.')
+            st.success('Scan finished. Prepare and download your current evidence below.')
             completed_here = run.id
             if run.error_summary:
                 st.warning(run.error_summary)
@@ -59,19 +65,19 @@ def run_scan(services, *, allow_scan=True):
 
 def history(services, *, completed_here=None):
     """Render the latest result only; retained storage is not a history UI."""
-    st.subheader('Latest scan result')
+    st.subheader('Current scan result')
     repo = services['scan_repository']
     runs = repo.list_runs(limit=1)
     if not runs:
-        st.info('No scans yet. Configure sources, then run a scan.')
+        st.info('No evidence in this session. Use the default sources, adjust your copy or upload a source CSV, then run a scan.')
         return
     run = runs[0]
-    st.caption(f'{fmt(run.started_at)} · Batch {run.id} · Shared result; download before starting another scan.')
+    st.caption(f'{fmt(run.started_at)} · Your current scan only. Download before starting another scan or leaving.')
     st.caption(f"Status: {run.status.value.replace('_', ' ').title()}")
     evidence = repo.list_evidence_for_run(run.id)
     summary = repo.get_summary(run.id)
-    render_download(run, evidence, summary, prepare_now=run.id == completed_here)
-    st.metric('Stored evidence in this batch', len(evidence))
+    render_download(run, evidence, summary)
+    st.metric('Evidence in this scan', len(evidence))
     if summary is not None:
         st.caption(f"Originally collected: {summary['evidence_count']} evidence records. Source health below was saved when the scan completed.")
         st.subheader('Source health at scan completion')
@@ -86,10 +92,10 @@ def history(services, *, completed_here=None):
     if run.error_summary:
         with st.expander('Recorded scan errors'):
             st.text(run.error_summary)
-    with st.expander('Configured sources used in this batch'):
+    with st.expander('Configured sources used in this scan'):
         fields = ('name', 'url', 'organisation', 'source_family', 'source_type')
         st.dataframe([{k: s.get(k, 'Unknown') for k in fields} for s in run.sources_snapshot], hide_index=True, width='stretch')
-    st.subheader('Batch evidence')
+    st.subheader('Current evidence')
     if evidence:
         org = st.selectbox('Organisation', ['All organisations'] + sorted({e.organisation for e in evidence}), key=f'org_{run.id}')
         visible = [e for e in evidence if org == 'All organisations' or e.organisation == org]
@@ -106,7 +112,7 @@ def history(services, *, completed_here=None):
 
 def render_download(run, evidence, summary, *, prepare_now=False):
     st.subheader('Download evidence TXT')
-    st.caption('All evidence from the latest scan is included, regardless of preview filters. Save this file as your archive; cloud storage is temporary.')
+    st.caption('All evidence from your current scan is included, regardless of preview filters. It is held only in session memory; download to keep your own copy.')
     key = f'public_evidence_only_{run.id}'
     # Bound session memory to one prepared batch, including legacy cache keys.
     for old_key in list(st.session_state):
@@ -116,10 +122,10 @@ def render_download(run, evidence, summary, *, prepare_now=False):
         st.info('A completed scan with retained evidence is required for download.')
         return
     requested = False
-    if key not in st.session_state and not prepare_now:
-        st.caption('This is an existing scan result. Opening this page does not start a scan or prepare a file.')
-        requested = st.button('Prepare TXT from this existing result', key=f'prepare_txt_{run.id}')
-    if key not in st.session_state and (prepare_now or requested):
+    if key not in st.session_state:
+        st.caption('Opening this page never prepares a file. Click below when you are ready.')
+        requested = st.button('Prepare evidence TXT', key=f'prepare_txt_{run.id}')
+    if key not in st.session_state and requested:
         try:
             with st.spinner('Preparing complete evidence TXT…'):
                 st.session_state[key] = build_transfer_handover(run, evidence, retention_eligible=True, scan_summary=summary)
@@ -128,8 +134,9 @@ def render_download(run, evidence, summary, *, prepare_now=False):
     if key in st.session_state:
         files = st.session_state[key]
         for name, data in files.items():
-            st.download_button('Download evidence TXT', data, file_name=name, mime='text/plain', on_click='ignore')
-            st.caption(f'{name} · {len(data)/1_000_000:.2f} MB · Full text preserved')
+            filename = 'public_evidence.txt'
+            st.download_button('Download evidence TXT', data, file_name=filename, mime='text/plain', on_click='ignore')
+            st.caption(f'{filename} · {len(data)/1_000_000:.2f} MB · Full text preserved')
         with st.expander('Download troubleshooting'):
             st.download_button('Download small test TXT', b'STE download test: public text only.\n', file_name='download_test.txt', mime='text/plain', on_click='ignore')
-            st.write('If neither file downloads, check browser downloads and ask IT whether downloads from this app are permitted. If only the large file fails, record its size and the browser error. After a cloud restart, refresh this page to rebuild the download. Do not bypass government security controls.')
+            st.write('If neither file downloads, ask IT whether downloads from this app are permitted. If only the large file fails, record its size and browser error. A new session or server restart loses this scan; download before leaving. Do not bypass government security controls.')

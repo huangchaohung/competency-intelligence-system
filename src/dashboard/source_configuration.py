@@ -5,6 +5,7 @@ import streamlit as st
 from src.core.exceptions import ConfigurationError
 from src.models.domain import Source, SourceFamily, SourceRole, SourceType
 from src.services.source_catalogue_export import sources_csv
+from src.services.session_workspace import parse_source_csv, session_sources_csv
 
 
 def _type_badge(source_type: SourceType) -> str:
@@ -54,6 +55,8 @@ def _family_description(source_family: SourceFamily) -> str:
 def render(services: dict) -> None:
     """Render a validated, officer-controlled source catalogue editor."""
     st.header("Source Configuration")
+    if services.get('session_only'):
+        _render_session_sources(services)
     sources = services["source_repository"].list_all()
     enabled_sources = [source for source in sources if source.enabled]
     st.info("Colour guide: 🟢 professional bodies; 🔵 higher learning; 🟣 government agencies.")
@@ -64,6 +67,33 @@ def render(services: dict) -> None:
     st.caption("Use these controls to make changes to the source catalogue. They are separate from the approved source list above.")
     with st.expander("Edit Sources"):
         _render_bulk_editor(services, sources)
+
+
+def _render_session_sources(services):
+    st.info('You are editing your temporary copy. Other users and the master source list are unaffected. Use the defaults, make temporary edits below, or upload your own CSV.')
+    from pathlib import Path
+    from src.services.configuration_service import ConfigurationService
+    master = ConfigurationService(Path(__file__).resolve().parents[2] / 'config' / 'sources.yaml')
+    if st.button('Restore default sources'):
+        services['source_configuration_workflow'].replace_catalogue(master.load_sources())
+        st.session_state.pop('pending_source_catalogue', None)
+        st.session_state['source_editor_revision'] = st.session_state.get('source_editor_revision', 0) + 1
+        st.rerun()
+    with st.expander('Upload your own sources (CSV)'):
+        st.caption('Download your current source list as a template, edit it, then upload. The upload replaces only your session catalogue after validation and confirmation. UTF-8 CSV, maximum 1 MB / 500 rows.')
+        st.download_button('Download source CSV template', session_sources_csv(services['source_repository'].list_all()),
+                           file_name='my_sources.csv', mime='text/csv', on_click='ignore')
+        upload = st.file_uploader('Source CSV', type=['csv'])
+        if st.button('Validate uploaded sources', disabled=upload is None):
+            st.session_state.pop('pending_source_catalogue', None)
+            try:
+                proposed = parse_source_csv(upload.getvalue(), services['configuration_service'])
+                services['source_configuration_workflow'].validate_catalogue(proposed)
+                st.session_state['pending_source_catalogue'] = proposed
+                st.session_state['pending_source_baseline'] = services['source_repository'].list_all()
+                st.success('Validated. Open Edit Sources below to review and apply the proposed changes.')
+            except ConfigurationError as error:
+                st.error(str(error))
 
 
 def _render_catalogue_exports(sources: list[Source], enabled_sources: list[Source]) -> None:
@@ -82,7 +112,7 @@ def _render_bulk_editor(services: dict, sources: list[Source]) -> None:
         "**Add or edit:** Enter a source in the blank row at the bottom, or click an existing cell to change it.\n\n"
         "**Delete:** Hover over the far-left edge of a row, select it using the row-selection control, "
         "then click the trash/bin icon in the table toolbar. Unticking Enabled only stops scanning; "
-        "it does not select or delete the row. Past evidence is kept when a source is removed.\n\n"
+        "it does not select or delete the row. Your current scan remains unchanged when a source is removed.\n\n"
         "**Validate and save:** Changes remain a draft until you click Validate catalogue changes, "
         "review the changes, confirm any removals, and click Apply validated changes. "
         "Use Discard draft after validation if you do not want to save them."
@@ -147,7 +177,7 @@ def _render_pending_changes(services: dict, current: list[Source], pending: list
     if newly_enabled:
         st.warning("Sources being enabled: " + ", ".join(newly_enabled))
     removed = [row for row in changes if row["Change"] == "Removed source"]
-    confirmed = not removed or st.checkbox(f"I understand that {len(removed)} source(s) will be removed from the active catalogue; past evidence is kept.")
+    confirmed = not removed or st.checkbox(f"I understand that {len(removed)} source(s) will be removed from my catalogue copy; the current scan remains unchanged.")
     first, second = st.columns(2)
     if first.button("Apply validated changes", type="primary", disabled=not confirmed):
         try:

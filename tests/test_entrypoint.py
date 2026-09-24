@@ -7,18 +7,21 @@ def test_cloud_alias_uses_canonical_main():
     assert cloud_app.main is app.main
 
 
-def test_canonical_app_is_read_only_without_admin_secret(monkeypatch, tmp_path):
+def test_canonical_app_has_no_admin_and_session_navigation(monkeypatch, tmp_path):
     import app
     closed = []
     class Connection:
         def close(self):
             closed.append(True)
     monkeypatch.setattr(app, 'ROOT', tmp_path)
-    monkeypatch.setattr(app, 'initialise_cloud_root', lambda root: root)
-    monkeypatch.setattr(app, 'build_services', lambda root: {'connection': Connection()})
+    from threading import Lock
+    monkeypatch.setattr(app, 'build_session_services', lambda root: {'connection': Connection(), 'lock': Lock()})
     monkeypatch.setattr(app.collector, 'home', lambda services: None)
     test = AppTest.from_string('import app\napp.main()').run()
     assert not test.exception
-    assert test.sidebar.radio[0].options == ['Home', 'Scan & Download']
-    assert any('Read-only mode' in item.value for item in test.info)
+    assert test.sidebar.radio[0].options == ['Home', 'Source Configuration', 'Scan & Download']
+    assert not test.text_input
+    assert closed == []
+    test.sidebar.button[0].click().run()
+    assert not test.exception
     assert closed == [True]

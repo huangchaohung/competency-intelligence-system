@@ -116,7 +116,7 @@ def connect(database_path: Path) -> sqlite3.Connection:
     return connection
 
 
-def initialise(connection: sqlite3.Connection) -> None:
+def initialise(connection: sqlite3.Connection, *, allow_legacy_reset: bool = True) -> None:
     """Apply the current schema migrations once, in order."""
     connection.executescript(SCHEMA)
     connection.execute("INSERT OR IGNORE INTO schema_migrations(version, applied_at) VALUES (1, datetime('now'))")
@@ -214,7 +214,7 @@ def initialise(connection: sqlite3.Connection) -> None:
                 connection.execute(f'ALTER TABLE sources DROP COLUMN {column}')
         connection.execute("INSERT INTO schema_migrations(version, applied_at) VALUES (20, datetime('now'))")
     reset_flag = Path("data/reset_history.flag")
-    if os.getenv("RESET_HISTORY_ON_START") == "1" or reset_flag.exists():
+    if allow_legacy_reset and (os.getenv("RESET_HISTORY_ON_START") == "1" or reset_flag.exists()):
         connection.executescript(
             """
             DELETE FROM recommendations;

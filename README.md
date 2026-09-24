@@ -21,15 +21,15 @@ python -m streamlit run app.py
 
 On Linux/macOS activate with `source .venv/bin/activate`. Linux browser dependencies require system installation; the cloud deployment uses Chromium from `packages.txt`.
 
-Use **`app.py` everywhere**, locally and on Streamlit Cloud. Configure `ADMIN_PASSWORD` (at least 20 characters) in hosting secrets or local `.streamlit/secrets.toml`, then sign in under Administrator access to edit/scan. Missing secrets leave the app read-only. See [deployment instructions](docs/streamlit_cloud_deployment.md).
+Use **`app.py` everywhere**, locally and on Streamlit Cloud. There is no administrator mode or API key. Each browser session gets its own temporary workspace. See [deployment instructions](docs/streamlit_cloud_deployment.md).
 
-Both environments use `.cloud_runtime/` for runtime state. Existing root `data/` is not deleted or automatically imported. `cloud_app.py` is only a compatibility alias for older deployments, not a separate app.
+Sources and evidence are held in a session-specific in-memory database, not saved to `.cloud_runtime/` or `data/`. Existing disk data is left untouched and never loaded by the UI. `cloud_app.py` is only a compatibility alias. New sessions start from the read-only master `config/sources.yaml` with no evidence. Brief reconnections may resume a session; **Start fresh** explicitly discards it.
 
 ## Officer workflow
 
-1. **Source Configuration:** edit/add/delete rows, validate the draft and apply changes. Enable the sources to scan.
+1. **Source Configuration:** use defaults, temporarily edit/add/delete rows, or upload a CSV using the downloadable template. Validate and apply changes to your copy only. Restore default sources whenever needed.
 2. **Scan & Download:** click **Scan enabled sources**. Inspect source health and actual extracted text, not just record counts.
-3. Save **public_evidence_batch_N.txt**. For an existing result, first click **Prepare TXT from this existing result**. Opening the page does not start a scan/download.
+3. Click **Prepare evidence TXT**, then download **public_evidence.txt**. Opening the page or completing a scan never prepares the file automatically. Starting another scan discards the previous result in your session.
 4. Transfer through an approved channel and analyse against the internal framework inside the approved government environment.
 
 The TXT contains UTF-8 JSON and full retained text, not just the shortened UI previews. The download is the officer's archive. There is no History page in the current UI.
@@ -64,7 +64,7 @@ docs/                  Technical handover
 ## Release limitations
 
 - **Private trial, not government-approved production hosting.** The receiving team must approve hosting, transfers and downstream AI use.
-- Cloud users share results/catalogue; the admin password is not enterprise SSO. Local cloud storage is temporary.
+- Users do not share catalogues/results. Session memory is temporary; download before leaving. This is not authentication or an enterprise security boundary. Keep hosting restricted to approved users and enforce network egress controls.
 - Robots, authentication, anti-bot controls and website changes can prevent retrieval. Successful counts do not prove useful text or complete coverage.
 - No LLM fallback crawler runs; unhealthy URLs require manual review. No automatic URL substitution occurs.
 - Dependency versions use ranges, not a lockfile. OpenAI/framework dependencies support legacy modules/tests, not active AI calls.

@@ -1,11 +1,11 @@
-# Security boundaries — private trial
+# Session collector security boundaries
 
-- Public STE data only. Internal frameworks and analysis belong in the approved government environment.
-- `app.py` uses a shared admin password for edits/scans locally and in cloud; missing secrets fail closed to read-only. `cloud_app.py` delegates to the same entrypoint. Separately restrict platform access for viewers. This is not SSO, MFA, individual attribution or enterprise brute-force protection.
-- All cloud viewers share results. TXT does not imply transfer approval. Public text can contain personal information, copyrighted content or prompt injection; treat it as untrusted data downstream.
-- Editing URLs is privileged. HTTPS validation/basic export URL checks are **not comprehensive SSRF protection**. Private addresses, DNS rebinding and redirects need IT-managed egress controls before allowing untrusted configuration.
-- No CAPTCHA/access-control bypass, authentication-cookie sharing or TLS-verification disabling.
-- Keep secrets, databases, logs, evidence and backups out of Git. Old databases may still contain sensitive framework/recommendation/chat data.
-- Cloud storage is temporary; locking is single-instance. Review dependency updates, browser sandboxing, resource quotas and hosting approval before production.
+- No in-app administrator panel. All approved visitors can scan/edit **their own temporary copy**, never the master. Use platform-level restricted sharing; the application is not hardened for arbitrary anonymous internet users.
+- Session isolation is not enterprise authentication, secure memory erasure or an OS boundary. Scan evidence is not saved by the app to disk; hosting/browser/process diagnostics and caches are outside that guarantee.
+- URL configuration is now available to visitors. HTTPS validation is **not comprehensive SSRF protection**: private IP ranges, redirects and DNS rebinding require an IT-managed egress policy before wider exposure. Do not deploy on an internal network with unrestricted access to internal services.
+- Multiple scans can exhaust RAM/browser/network resources. There is no per-user quota or distributed queue. Restrict testers and load-test before production.
+- Public STE data only; internal frameworks and AI analysis belong on approved government systems. Downloaded text can contain PII/copyrighted content/prompt injection. Treat it as untrusted data.
+- Do not bypass robots/challenges, share authentication cookies or disable TLS verification.
+- Keep legacy databases, logs, backups, evidence and secrets out of Git. Existing old disk files are not erased by this release and may need separately authorized cleanup.
 
-Report suspected vulnerabilities privately to the repository owner through an established team channel. Stop affected sharing, retain sanitized diagnostics and rotate exposed secrets. Do not post sensitive data or exploitable deployment details in public issues. Assign a security owner before operational rollout.
+Report vulnerabilities privately through an established team channel. Never post secrets/internal data in public issues. Assign a security owner before operational rollout.

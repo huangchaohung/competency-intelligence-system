@@ -36,3 +36,18 @@ render_download(SimpleNamespace(id=8, completed_at=None), [], None)
 ''').run()
     assert not app.exception
     assert not app.get('download_button')
+
+
+def test_completion_flag_cannot_automatically_prepare(monkeypatch):
+    from src.dashboard import collector
+    def forbidden(*args, **kwargs):
+        raise AssertionError('Preparation needs a click')
+    monkeypatch.setattr(collector, 'build_transfer_handover', forbidden)
+    app = AppTest.from_string('''
+from types import SimpleNamespace
+from src.dashboard.collector import render_download
+render_download(SimpleNamespace(id=1, completed_at=True), [object()], None, prepare_now=True)
+''').run()
+    assert not app.exception
+    assert app.button[0].label == 'Prepare evidence TXT'
+    assert not app.get('download_button')
