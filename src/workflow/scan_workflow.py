@@ -83,7 +83,11 @@ class ScanWorkflow:
                         continue
                     seen_urls.add(url)
                     try:
-                        page = self._scanner.fetch_url(url, source.name)
+                        from src.scanner.nus_curriculum import matches as is_nus_curriculum, fetch_curriculum
+                        if source.use_browser_rendering and is_nus_curriculum(url):
+                            page = fetch_curriculum(self._scanner, url)
+                        else:
+                            page = self._scanner.fetch_url(url, source.name)
                         if page.url in stored_urls:
                             source_stats["skipped_duplicate_count"] += 1
                             continue

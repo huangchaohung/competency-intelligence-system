@@ -15,6 +15,11 @@ class SourceRouter:
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
         parsed_source = urlparse(source.url)
+        from src.scanner.nus_curriculum import matches as is_nus_curriculum
+        if source.use_browser_rendering and is_nus_curriculum(source.url):
+            if not self._discovery._scanner.is_allowed(source.url):
+                raise ScanError('NUS curriculum discovery is not permitted')
+            return [source.url]
         if source.url.rstrip('/') == 'https://www.energy.ox.ac.uk/research/teaching-and-training':
             scanner = self._discovery._scanner
             if not scanner.is_allowed(source.url):

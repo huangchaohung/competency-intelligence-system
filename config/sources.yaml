@@ -1489,7 +1489,7 @@ sources:
   article_url_pattern: ''
   enabled: true
   max_listing_pages: 5
-  use_browser_rendering: false
+  use_browser_rendering: true
 - name: NUS Urban Design — Curriculum
   url: https://cde.nus.edu.sg/arch/programmes/master-of-arts-in-urban-design/curriculum
   organisation: NUS Urban Design
@@ -1501,7 +1501,7 @@ sources:
   article_url_pattern: ''
   enabled: true
   max_listing_pages: 5
-  use_browser_rendering: false
+  use_browser_rendering: true
 - name: SUTD — Courses
   url: https://www.sutd.edu.sg/asd/education/undergraduate/courses
   organisation: SUTD
