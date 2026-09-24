@@ -12,7 +12,7 @@ For Zscaler/proxy environments, obtain approved proxy settings, enterprise CA an
 
 ## Logs
 
-Inspect `logs/operational_audit.jsonl` locally or `.cloud_runtime/logs/operational_audit.jsonl` in cloud mode. Correlate timestamps and batch/source IDs: scan/source start/completion, discovery counts and errors. Current collector events do not include active AI calls.
+Inspect `.cloud_runtime/logs/operational_audit.jsonl` in both local and cloud mode. The former local entrypoint's logs remain under `logs/`. Correlate timestamps and batch/source IDs: scan/source start/completion, discovery counts and errors. Current collector events do not include active AI calls.
 
 Rotation threshold is approximately 5 MB with three backups; one large event can exceed the threshold. Secret-pattern redaction is not DLP. Restrict log access through hosting/filesystem controls and sanitize before sharing. The app does not implement an engineer-only log viewer or filesystem authorization.
 
@@ -41,7 +41,7 @@ To restore: stop the app, preserve current state, restore matched catalogue/data
 - Run tests in the deployment checkout, not only the original workspace.
 - Inspect staged files for secrets, private paths, logs, databases and real exports.
 - Back up state; record commit and migration version.
-- Deploy `cloud_app.py`; verify viewer/admin separation and Linux rendered retrieval.
+- Deploy `app.py`; verify viewer/admin separation and Linux rendered retrieval.
 - Verify real TXT download on the target user's device; a Git push alone is not cloud acceptance.
 - Record unresolved sources rather than claiming comprehensive coverage.
 

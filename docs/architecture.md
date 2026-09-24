@@ -13,7 +13,7 @@ No internal framework or AI API is involved in the active collection path. Web t
 
 | Component | Implementation |
 | --- | --- |
-| UI | Streamlit; local `app.py`, shared-trial `cloud_app.py` |
+| UI | Streamlit; `app.py` locally and in cloud; `cloud_app.py` is a compatibility alias |
 | Configuration | YAML synchronized with SQLite; validated catalogue drafts |
 | Scan | `src/workflow/scan_workflow.py`; progress, per-source failures, deduplication and completion |
 | Discovery | `src/scanner/article_discovery.py` and source routing; generic and site-specific links |
@@ -29,10 +29,12 @@ The browser toggle primarily affects discovery, not universal rendered article e
 
 | Mode | Catalogue | Database and logs |
 | --- | --- | --- |
-| Local | `config/sources.yaml` | `data/competency_intelligence.db`, `logs/` |
+| Local (current app.py) | `.cloud_runtime/config/sources.yaml` | `.cloud_runtime/data/competency_intelligence.db`, `.cloud_runtime/logs/` |
 | Cloud | `.cloud_runtime/config/sources.yaml` | `.cloud_runtime/data/competency_intelligence.db`, `.cloud_runtime/logs/` |
 
 Cloud first startup copies the catalogue seed. Later Git seed changes **do not overwrite existing runtime edits**. Code publication and catalogue maintenance are separate operations.
+
+The unified entrypoint uses the same safeguards locally. Previous root `data/` and `logs/` remain untouched and are not automatically imported into runtime storage.
 
 Cloud uses a nonblocking file lock around initialization and page execution, including scans. Other sessions may see a busy message. This is single-instance serialization, not a distributed job queue.
 

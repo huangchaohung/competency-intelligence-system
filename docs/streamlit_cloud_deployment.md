@@ -4,7 +4,7 @@ Deploy the code repository, **not the original development workspace**. No datab
 
 ## Setup
 
-1. Connect the reviewed repository/branch in Streamlit Community Cloud. Set entrypoint **`cloud_app.py`**, not `app.py`.
+1. Connect the reviewed repository/branch in Streamlit Community Cloud. Set entrypoint **`app.py`**. Existing `cloud_app.py` deployments remain supported through an alias to the same app; it is not a separate design.
 2. Use Python 3.12 for the cloud trial and complete Linux acceptance below. Local Windows tests alone do not prove browser compatibility.
 3. Set the following in the hosting secret settings (or `.streamlit/secrets.toml` only when testing locally):
 

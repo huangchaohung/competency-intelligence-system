@@ -21,7 +21,9 @@ python -m streamlit run app.py
 
 On Linux/macOS activate with `source .venv/bin/activate`. Linux browser dependencies require system installation; the cloud deployment uses Chromium from `packages.txt`.
 
-`app.py` has **no authentication** and is for trusted local use. Use `cloud_app.py` for the private shared trial. Do not expose the local entrypoint to an untrusted network.
+Use **`app.py` everywhere**, locally and on Streamlit Cloud. Configure `ADMIN_PASSWORD` (at least 20 characters) in hosting secrets or local `.streamlit/secrets.toml`, then sign in under Administrator access to edit/scan. Missing secrets leave the app read-only. See [deployment instructions](docs/streamlit_cloud_deployment.md).
+
+Both environments use `.cloud_runtime/` for runtime state. Existing root `data/` is not deleted or automatically imported. `cloud_app.py` is only a compatibility alias for older deployments, not a separate app.
 
 ## Officer workflow
 
@@ -46,7 +48,7 @@ The TXT contains UTF-8 JSON and full retained text, not just the shortened UI pr
 ## Repository map
 
 ```text
-app.py / cloud_app.py    Local and private-cloud entrypoints
+app.py                  Single supported local/cloud entrypoint
 config/sources.yaml     Public catalogue seed
 src/dashboard/         Streamlit UI; collector.py is Scan & Download
 src/workflow/          Scan orchestration and catalogue workflow
