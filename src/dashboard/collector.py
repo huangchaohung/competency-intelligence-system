@@ -5,6 +5,24 @@ from src.core.exceptions import CompetencyIntelligenceError
 from src.services.source_health_service import source_health_rows
 from src.services.public_handover import build_transfer_handover
 from src.services.session_workspace import clear_current_scan
+from src.services.scan_job import ScanJob
+
+
+@st.fragment(run_every=1)
+def render_scan_progress(services):
+    state = services['scan_job'].snapshot()
+    if not state['running']:
+        if services['lock'].locked():
+            st.info('Finishing your current update…')
+            return
+        st.rerun()
+    total, done = state['total'], state['completed']
+    fraction = min(1.0, done / max(total, 1))
+    st.header('Scanning your sources')
+    st.progress(fraction, text=f'{done}/{total} sources completed · {fraction:.0%} · {max(0, total-done)} remaining')
+    st.write(f"Current source: {state['source'] or 'Starting…'}")
+    st.caption('Each configured source has equal weight. Completed includes sources with errors; review source health afterwards. Some sources take longer than others.')
+    st.info('Scanning continues while this progress display refreshes. Please keep this tab open. Editing and reset are available when the scan finishes.')
 
 
 def fmt(value):
@@ -35,6 +53,27 @@ def home(services):
 
 def run_scan(services, *, allow_scan=True):
     st.header('Scan & Download')
+    if services.get('session_only'):
+        job = services.setdefault('scan_job', ScanJob())
+        if job.snapshot()['running']:
+            render_scan_progress(services)
+            return
+        sources = services['source_repository'].list_enabled()
+        st.write(f'{len(sources)} enabled sources. This scan makes no AI requests.')
+        if st.button('Scan enabled sources', disabled=not sources, type='primary'):
+            for key in list(st.session_state):
+                if key.startswith(('public_evidence_only_', 'public_handover_', 'org_', 'page_', 'prepare_txt_')):
+                    del st.session_state[key]
+            job.start(services, len(sources))
+            render_scan_progress(services)
+            return
+        state = job.snapshot()
+        if state['error']:
+            st.error(f"Scan stopped: {state['error']}. You can try a new scan.")
+        elif state['stage'] == 'finished':
+            st.success(f"{state['completed']}/{state['total']} sources completed. Review source health, then prepare your TXT.")
+        history(services)
+        return
     completed_here = None
     sources = services['source_repository'].list_enabled()
     st.write(f'{len(sources)} enabled sources. This scan makes no AI requests.')

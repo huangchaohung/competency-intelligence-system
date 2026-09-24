@@ -17,6 +17,8 @@ Discovery uses `article_discovery.py` and site-specific routing. Requests fetche
 
 ## Lifetime and isolation
 
+Scans run in a session-owned background thread with the workspace DB lock. The worker makes no Streamlit calls; a one-second fragment reads a thread-safe progress snapshot. Reruns do not restart scans. Completed source counts include errors. Editing/reset wait until completion. Closing the tab is not cancellation: the worker may finish its current scan in memory; process restart interrupts it. This is not a durable job queue.
+
 The master YAML is loaded only when a workspace starts or defaults are restored. An upload replaces only the current user's catalogue after validation and confirmation. Other sessions retain their own copies.
 
 Before a new scan, prior evidence, scan summaries and run rows are removed from that session's memory database; prepared TXT bytes are also cleared. Only current results appear. Users download their own archive; the app does not save the downloaded file or an evidence database to disk.

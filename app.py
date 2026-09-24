@@ -3,6 +3,7 @@ from pathlib import Path
 import streamlit as st
 from src.dashboard import collector, source_configuration
 from src.services.session_workspace import build_session_services
+from src.services.scan_job import ScanJob
 # Kept for legacy integration callers, never used by this entrypoint.
 from src.services.collector_services import build_services
 
@@ -15,8 +16,13 @@ def main():
     if 'workspace' not in st.session_state:
         st.session_state['workspace'] = build_session_services(ROOT)
     services = st.session_state['workspace']
+    if 'scan_job' not in services:
+        services['scan_job'] = ScanJob()
+    if services['scan_job'].snapshot()['running']:
+        collector.render_scan_progress(services)
+        return
     if not services['lock'].acquire(blocking=False):
-        st.info('Your current operation is still running. Please wait for it to finish.')
+        collector.render_scan_progress(services)
         return
     try:
         with st.sidebar:
