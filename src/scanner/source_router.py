@@ -15,6 +15,27 @@ class SourceRouter:
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
         parsed_source = urlparse(source.url)
+        if source.url.rstrip('/') == 'https://www.energy.ox.ac.uk/research/teaching-and-training':
+            scanner = self._discovery._scanner
+            if not scanner.is_allowed(source.url):
+                raise ScanError('Oxford teaching discovery is not permitted')
+            page = scanner.fetch_url(source.url, source.name)
+            urls = [source.url]
+            content = BeautifulSoup(page.html, 'lxml').select_one('article#single_article')
+            if content is not None:
+                for link in content.select('a[href]'):
+                    parsed = urlparse(urljoin(page.url, link['href']))
+                    url = parsed._replace(fragment='').geturl()
+                    if len(urls) >= source.max_articles_per_scan:
+                        break
+                    # Only actually linked official graduate course pages;
+                    # exclude research navigation, profiles and partner sites.
+                    if (parsed.scheme == 'https' and parsed.netloc == 'www.ox.ac.uk'
+                            and parsed.path.startswith('/admissions/graduate/courses/')
+                            and parsed.path.removeprefix('/admissions/graduate/courses/').strip('/')
+                            and not parsed.query and url not in urls and scanner.is_allowed(url)):
+                        urls.append(url)
+            return urls
         if (parsed_source.hostname == 'www.a-star.edu.sg'
                 and unquote(parsed_source.path).lower().rstrip('/') == '/simtech/research/sustainability-informatics-strategy-(sis)'):
             # This is a standalone research summary, not a listing. Its content
