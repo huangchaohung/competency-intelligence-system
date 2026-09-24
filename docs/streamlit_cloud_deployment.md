@@ -1,5 +1,15 @@
 # Private Streamlit Community Cloud trial
 
+## Avoid repeated ZIP uploads
+
+Update 2026-09-24: a clean checkout now exists at `.cloud-deploy`, connected to `https://github.com/huangchaohung/competency-intelligence-system.git`, branch `main`. Run `python scripts/sync_cloud.py` to copy only allowlisted deployment code/configuration into that checkout, inspect `git -C .cloud-deploy diff`, then commit and push reviewed changes. The sync script does not push or delete files. Future assistant updates can use this checkout; manual document uploads are no longer required. Cloud rebuild/restart must still be checked after a push.
+
+Schema 20 removes country/category/evidence_label from active source storage. Research routing moves into visible RESEARCH source type. Old scan snapshots remain unchanged. Cloud runtime YAML is migrated in place with a pre-migration YAML copy; repository seed updates do not overwrite users' edited URLs. Database metadata (ID, active flag and article URL patterns) remains necessary internal infrastructure.
+
+The application files are already cloud-deployable without format conversion: keep `cloud_app.py`, `requirements.txt` and `packages.txt` at repository root. Streamlit can track the connected GitHub branch, so subsequent code changes should be committed and pushed to that branch rather than manually uploaded as documents.
+
+This local working folder is currently not a Git repository. Before setting up synchronization, identify the exact GitHub repository/branch used by the deployed app. Use a clean deployment checkout containing only the allowlisted files from scripts/package_cloud.py; do not upload the full working folder or its legacy/data files. Repository connection and external pushes have not yet been performed. Cloud runtime source edits are still separate and must not be overwritten automatically.
+
 ## Current UI — 2026-09-24 (supersedes History references below)
 
 Use **Scan & Download**. Administrators can scan; viewers can download the latest shared result. The TXT is automatically prepared, without a separate history/batch selector. Review source health and previews below it. Local history is preserved in storage but hidden from navigation. Source tuning is paused at the Singapore Biodesign checkpoint.

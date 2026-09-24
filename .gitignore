@@ -16,3 +16,5 @@ logs/
 *.db-shm
 *.sqlite*
 dist/
+.cloud-deploy/
+backups/

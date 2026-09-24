@@ -8,6 +8,8 @@ from src.services.source_catalogue_export import sources_csv
 
 
 def _type_badge(source_type: SourceType) -> str:
+    if source_type == SourceType.RESEARCH:
+        return "🔵 research"
     if source_type == SourceType.FRAMEWORK:
         return "🟢 framework"
     if source_type == SourceType.CATALOGUE:
@@ -20,6 +22,8 @@ def _type_badge(source_type: SourceType) -> str:
 
 
 def _type_description(source_type: SourceType) -> str:
+    if source_type == SourceType.RESEARCH:
+        return "Research capabilities, reports and technical resource pages."
     if source_type == SourceType.FRAMEWORK:
         return "Authoritative competency structures or standards documents."
     if source_type == SourceType.CATALOGUE:
@@ -93,20 +97,20 @@ def _render_bulk_editor(services: dict, sources: list[Source]) -> None:
             key=f"source_editor_{revision}",
             disabled=["_key"],
             width="stretch",
-            column_order=["Enabled", "Browser", "Country", "Source family", "Source type", "Source role", "Evidence label", "Name", "Discovery URL", "Organisation", "Category", "Max articles", "Listing pages"],
+            column_order=["Enabled", "Browser", "Source family", "Source type", "Source role", "Name", "Discovery URL", "Organisation", "Max articles", "Listing pages"],
             column_config={
                 "_key": None,
                 "Enabled": st.column_config.CheckboxColumn(default=True),
                 "Browser": st.column_config.CheckboxColumn("Browser"),
-                "Country": st.column_config.TextColumn(default="Unknown"),
+                "Country": None,
                 "Source family": st.column_config.SelectboxColumn("Source family", options=[item.value for item in SourceFamily]),
                 "Source type": st.column_config.SelectboxColumn("Source type", options=[item.value for item in SourceType]),
                 "Source role": st.column_config.SelectboxColumn("Source role", options=[item.value for item in SourceRole]),
-                "Evidence label": st.column_config.SelectboxColumn("Evidence label", options=["standards / guidance", "official guidance / research", "news / commentary", "catalogue / training", "press release / official notice", "research / report"]),
+                "Evidence label": None,
                 "Name": st.column_config.TextColumn(required=True),
                 "Discovery URL": st.column_config.TextColumn(required=True),
                 "Organisation": st.column_config.TextColumn(required=True),
-                "Category": st.column_config.TextColumn(default="Uncategorised"),
+                "Category": None,
                 "Max articles": st.column_config.NumberColumn(min_value=1, max_value=100, default=25),
                 "Listing pages": st.column_config.NumberColumn(min_value=1, max_value=25, default=5),
             },
@@ -179,22 +183,19 @@ def _render_grouped_enabled_sources(services: dict, sources: list[Source]) -> No
                 for source in sorted(orgs[organisation], key=lambda item: item.evidence_label):
                     rows.append({
                         "Name": source.name,
-                        "Country": source.country,
                         "Source family": _family_badge(source.source_family),
                         "Source type": _type_badge(source.source_type),
                         "Source role": source.source_role.value,
-                        "Evidence label": source.evidence_label,
                         "Discovery URL": source.url,
-                        "Category": source.category,
                         "Evidence records": health.get(source.id).evidence_count if source.id in health else 0,
                         "Last evidence": health[source.id].last_evidence_at.strftime("%Y-%m-%d %H:%M") if source.id in health else "Not yet scanned",
                         "Max articles": source.max_articles_per_scan,
                         "Listing pages": source.max_listing_pages,
                     })
                 st.dataframe(rows, hide_index=True, width="stretch")
-EDITOR_COLUMNS = ["_key", "Enabled", "Browser", "Country", "Source family", "Source type",
-                  "Source role", "Evidence label", "Name", "Discovery URL", "Organisation",
-                  "Category", "Max articles", "Listing pages"]
+EDITOR_COLUMNS = ["_key", "Enabled", "Browser", "Source family", "Source type",
+                  "Source role", "Name", "Discovery URL", "Organisation",
+                  "Max articles", "Listing pages"]
 
 
 def _row_key(source, index):

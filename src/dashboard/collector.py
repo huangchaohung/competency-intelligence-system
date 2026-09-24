@@ -85,7 +85,7 @@ def history(services):
         with st.expander('Recorded scan errors'):
             st.text(run.error_summary)
     with st.expander('Configured sources used in this batch'):
-        fields = ('name', 'url', 'organisation', 'country', 'source_family', 'source_type', 'evidence_label')
+        fields = ('name', 'url', 'organisation', 'source_family', 'source_type')
         st.dataframe([{k: s.get(k, 'Unknown') for k in fields} for s in run.sources_snapshot], hide_index=True, width='stretch')
     st.subheader('Batch evidence')
     if evidence:

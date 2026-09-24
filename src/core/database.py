@@ -202,6 +202,17 @@ def initialise(connection: sqlite3.Connection) -> None:
     if 19 not in applied:
         connection.executescript(MIGRATION_19)
         connection.execute("INSERT INTO schema_migrations(version, applied_at) VALUES (19, datetime('now'))")
+    if 20 not in applied:
+        from src.services.source_schema import migrated_type
+        columns = {row[1] for row in connection.execute('PRAGMA table_info(sources)')}
+        if 'evidence_label' in columns:
+            for row in connection.execute('SELECT id, source_type, evidence_label FROM sources').fetchall():
+                connection.execute('UPDATE sources SET source_type=? WHERE id=?',
+                                   (migrated_type(row[1], row[2]).value, row[0]))
+        for column in ('country', 'category', 'evidence_label'):
+            if column in columns:
+                connection.execute(f'ALTER TABLE sources DROP COLUMN {column}')
+        connection.execute("INSERT INTO schema_migrations(version, applied_at) VALUES (20, datetime('now'))")
     reset_flag = Path("data/reset_history.flag")
     if os.getenv("RESET_HISTORY_ON_START") == "1" or reset_flag.exists():
         connection.executescript(
@@ -212,7 +223,7 @@ def initialise(connection: sqlite3.Connection) -> None:
             DELETE FROM scan_runs;
             DELETE FROM fallback_recoveries;
             DELETE FROM source_url_recommendations;
-            DELETE FROM schema_migrations WHERE version > 19;
+            DELETE FROM schema_migrations WHERE version > 20;
             """
         )
         try:

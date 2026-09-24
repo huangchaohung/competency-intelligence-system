@@ -20,4 +20,15 @@ def initialise_cloud_root(project: Path) -> Path:
     target.parent.mkdir(parents=True, exist_ok=True)
     if not target.exists():
         shutil.copyfile(project / 'config' / 'sources.yaml', target)
+    # Upgrade an existing cloud catalogue without replacing user-edited URLs.
+    import yaml
+    from src.services.configuration_service import ConfigurationService
+    document = yaml.safe_load(target.read_text(encoding='utf-8')) or {}
+    if isinstance(document, dict) and any(any(field in item for field in ('country', 'category', 'evidence_label'))
+           for item in document.get('sources', [])):
+        backup = target.with_suffix('.pre-schema20.yaml')
+        if not backup.exists():
+            shutil.copyfile(target, backup)
+        configuration = ConfigurationService(target)
+        configuration.save_sources(configuration.load_sources())
     return root

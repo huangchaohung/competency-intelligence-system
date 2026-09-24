@@ -11,6 +11,7 @@ class ScanStatus(str, Enum):
 
 
 class SourceType(str, Enum):
+    RESEARCH = "RESEARCH"
     FRAMEWORK = "FRAMEWORK"
     CATALOGUE = "CATALOGUE"
     INDEX = "INDEX"
@@ -43,6 +44,8 @@ class EvidenceType(str, Enum):
 
 @dataclass(frozen=True)
 class Source:
+    # country/category/evidence_label remain compatibility inputs for legacy
+    # scripts and snapshots only; active SQLite/YAML no longer stores them.
     id: int | None
     name: str
     url: str

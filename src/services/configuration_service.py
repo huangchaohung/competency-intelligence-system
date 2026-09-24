@@ -5,6 +5,7 @@ import re
 import yaml
 from src.core.exceptions import ConfigurationError
 from src.models.domain import Source, SourceFamily, SourceRole, SourceType
+from src.services.source_schema import migrated_type
 
 
 class ConfigurationService:
@@ -42,8 +43,10 @@ class ConfigurationService:
             parsed = urlparse(item["url"])
             if parsed.scheme != "https" or not parsed.netloc:
                 raise ConfigurationError(f"Source URL must be HTTPS: {item['url']}")
-            evidence_label = str(item.get("evidence_label") or self._default_evidence_label(item["name"], item["url"], item["organisation"]))
+            evidence_label = str(item.get("evidence_label") or ("" if item.get('source_type') else self._default_evidence_label(item["name"], item["url"], item["organisation"])))
             source_type = SourceType(str(item.get("source_type") or self._default_source_type(evidence_label, item["name"], item["url"], item["organisation"])))
+            if 'evidence_label' in item:
+                source_type = migrated_type(source_type, item['evidence_label'])
             source_role = SourceRole(str(item.get("source_role") or self._default_source_role(evidence_label, item["name"], item["url"], item["organisation"])))
             source_family = SourceFamily(str(item.get("source_family") or self._default_source_family(item["organisation"], item["url"])))
             llm_allowed = bool(item.get("llm_allowed", True))
@@ -117,6 +120,10 @@ class ConfigurationService:
         self._validate_sources(sources)
         document = {"sources": [{"name": source.name, "url": source.url, "organisation": source.organisation, "source_family": source.source_family.value, "country": source.country, "source_type": source.source_type.value, "source_role": source.source_role.value, "llm_allowed": source.llm_allowed, "category": source.category, "evidence_label": source.evidence_label, "max_articles_per_scan": source.max_articles_per_scan, "article_url_pattern": source.article_url_pattern, "enabled": source.enabled, "max_listing_pages": source.max_listing_pages, "use_browser_rendering": source.use_browser_rendering} for source in sources if source.is_active]}
         temporary_path = self._configuration_path.with_suffix(".tmp")
+        for item in document['sources']:
+            item['source_type'] = migrated_type(item['source_type'], item.get('evidence_label')).value
+            for removed in ('country', 'category', 'evidence_label'):
+                item.pop(removed, None)
         try:
             temporary_path.write_text(yaml.safe_dump(document, sort_keys=False, allow_unicode=True), encoding="utf-8")
             temporary_path.replace(self._configuration_path)

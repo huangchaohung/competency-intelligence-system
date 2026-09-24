@@ -14,6 +14,26 @@ class SourceRouter:
 
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
+        parsed_source = urlparse(source.url)
+        if (parsed_source.hostname == 'www.a-star.edu.sg'
+                and parsed_source.path.lower().rstrip('/') == '/research/medical-technologies'):
+            scanner = self._discovery._scanner
+            if not scanner.is_allowed(source.url):
+                raise ScanError('A*STAR MedTech discovery is not permitted')
+            page = scanner.fetch_url(source.url, source.name)
+            urls = [page.url]
+            for link in BeautifulSoup(page.html, 'lxml').select('a[href]'):
+                parsed = urlparse(urljoin(page.url, link['href']))
+                url = parsed._replace(fragment='').geturl()
+                if len(urls) >= source.max_articles_per_scan:
+                    break
+                if (parsed.scheme == 'https' and parsed.hostname == 'www.a-star.edu.sg'
+                        and parsed.path.lower().rstrip('/') in {
+                            '/research/medical-technologies/innovation-pillars',
+                            '/research/medical-technologies/enablers'}
+                        and not parsed.query and url not in urls and scanner.is_allowed(url)):
+                    urls.append(url)
+            return urls
         if source.url.rstrip('/') == 'https://cuge.nparks.gov.sg/resources/publications':
             scanner = self._discovery._scanner
             if not scanner.is_allowed(source.url):
@@ -82,7 +102,7 @@ class SourceRouter:
             return self._discovery.discover_resources(source)
         # A configured research resource can itself hold the evidence. Keep its
         # research classification rather than pretending it is a course catalogue.
-        if source.source_type == SourceType.ARTICLE and source.evidence_label.strip().lower() == 'research / report':
+        if source.source_type == SourceType.RESEARCH or (source.source_type == SourceType.ARTICLE and source.evidence_label.strip().lower() == 'research / report'):
             return self._discovery.discover_resources(source)
         if source.source_type == SourceType.INDEX:
             return self._discovery.discover_index(source)

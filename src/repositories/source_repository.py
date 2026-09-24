@@ -1,68 +1,64 @@
-"""SQLite persistence for sources."""
-import sqlite3
+"""SQLite persistence for the active source configuration."""
 from src.models.domain import Source, SourceFamily, SourceRole, SourceType
+from src.services.source_schema import migrated_type
 
 
 class SourceRepository:
-    """Persist source records without applying business rules."""
-    def __init__(self, connection: sqlite3.Connection) -> None:
+    FIELDS = ('name', 'url', 'organisation', 'source_family', 'source_type', 'source_role',
+              'llm_allowed', 'enabled', 'max_articles_per_scan', 'article_url_pattern',
+              'is_active', 'max_listing_pages', 'use_browser_rendering')
+
+    def __init__(self, connection):
         self._connection = connection
 
-    def upsert(self, source: Source) -> Source:
-        """Insert or update a source by URL."""
-        self._connection.execute("INSERT INTO sources(name,url,organisation,source_family,country,source_type,source_role,llm_allowed,enabled,category,evidence_label,max_articles_per_scan,article_url_pattern,is_active,max_listing_pages,use_browser_rendering) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(url) DO UPDATE SET name=excluded.name, organisation=excluded.organisation, source_family=excluded.source_family, country=excluded.country, source_type=excluded.source_type, source_role=excluded.source_role, llm_allowed=excluded.llm_allowed, enabled=excluded.enabled, category=excluded.category, evidence_label=excluded.evidence_label, max_articles_per_scan=excluded.max_articles_per_scan, article_url_pattern=excluded.article_url_pattern, is_active=excluded.is_active, max_listing_pages=excluded.max_listing_pages, use_browser_rendering=excluded.use_browser_rendering", (source.name, source.url, source.organisation, source.source_family.value, source.country, source.source_type.value, source.source_role.value, int(source.llm_allowed), source.enabled, source.category, source.evidence_label, source.max_articles_per_scan, source.article_url_pattern, source.is_active, source.max_listing_pages, source.use_browser_rendering))
-        self._connection.commit()
-        row = self._connection.execute("SELECT * FROM sources WHERE url=?", (source.url,)).fetchone()
-        return self._to_source(row)
+    @classmethod
+    def _values(cls, source):
+        values = []
+        for field in cls.FIELDS:
+            value = getattr(source, field)
+            if field == 'source_type':
+                value = migrated_type(value, source.evidence_label)
+            values.append(value.value if hasattr(value, 'value') else value)
+        return tuple(values)
 
-    def update(self, source: Source) -> Source:
-        """Update an existing source by its immutable database identity."""
+    def upsert(self, source):
+        columns = ','.join(self.FIELDS)
+        marks = ','.join('?' for _ in self.FIELDS)
+        updates = ','.join(f'{f}=excluded.{f}' for f in self.FIELDS if f != 'url')
+        self._connection.execute(f'INSERT INTO sources({columns}) VALUES({marks}) ON CONFLICT(url) DO UPDATE SET {updates}', self._values(source))
+        self._connection.commit()
+        return self._to_source(self._connection.execute('SELECT * FROM sources WHERE url=?', (source.url,)).fetchone())
+
+    def update(self, source):
         if source.id is None:
-            raise ValueError("A source ID is required for update")
-        self._connection.execute("UPDATE sources SET name=?,url=?,organisation=?,source_family=?,country=?,source_type=?,source_role=?,llm_allowed=?,enabled=?,category=?,evidence_label=?,max_articles_per_scan=?,article_url_pattern=?,is_active=?,max_listing_pages=?,use_browser_rendering=? WHERE id=?", (source.name, source.url, source.organisation, source.source_family.value, source.country, source.source_type.value, source.source_role.value, int(source.llm_allowed), source.enabled, source.category, source.evidence_label, source.max_articles_per_scan, source.article_url_pattern, source.is_active, source.max_listing_pages, source.use_browser_rendering, source.id))
+            raise ValueError('A source ID is required for update')
+        assignments = ','.join(f'{f}=?' for f in self.FIELDS)
+        self._connection.execute(f'UPDATE sources SET {assignments} WHERE id=?', self._values(source) + (source.id,))
         self._connection.commit()
-        row = self._connection.execute("SELECT * FROM sources WHERE id=?", (source.id,)).fetchone()
+        row = self._connection.execute('SELECT * FROM sources WHERE id=?', (source.id,)).fetchone()
         if row is None:
-            raise ValueError(f"Source does not exist: {source.id}")
+            raise ValueError(f'Source does not exist: {source.id}')
         return self._to_source(row)
 
-    def list_enabled(self) -> list[Source]:
-        """Return enabled sources in stable name order."""
-        rows = self._connection.execute("SELECT * FROM sources WHERE enabled=1 AND is_active=1 ORDER BY name").fetchall()
-        return [self._to_source(row) for row in rows]
+    def list_enabled(self):
+        return [self._to_source(r) for r in self._connection.execute('SELECT * FROM sources WHERE enabled=1 AND is_active=1 ORDER BY name')]
 
-    def list_all(self) -> list[Source]:
-        """Return all configured sources."""
-        rows = self._connection.execute("SELECT * FROM sources WHERE is_active=1 ORDER BY name").fetchall()
-        return [self._to_source(row) for row in rows]
+    def list_all(self):
+        return [self._to_source(r) for r in self._connection.execute('SELECT * FROM sources WHERE is_active=1 ORDER BY name')]
 
-    def retire_missing(self, active_urls: set[str]) -> None:
-        """Soft-delete sources no longer present in the active catalogue."""
-        placeholders = ",".join("?" for _ in active_urls) if active_urls else ""
+    def retire_missing(self, active_urls):
         if active_urls:
-            self._connection.execute(f"UPDATE sources SET is_active=0, enabled=0 WHERE url NOT IN ({placeholders})", tuple(active_urls))
+            marks = ','.join('?' for _ in active_urls)
+            self._connection.execute(f'UPDATE sources SET is_active=0, enabled=0 WHERE url NOT IN ({marks})', tuple(active_urls))
         else:
-            self._connection.execute("UPDATE sources SET is_active=0, enabled=0")
+            self._connection.execute('UPDATE sources SET is_active=0, enabled=0')
         self._connection.commit()
 
     @staticmethod
-    def _to_source(row: sqlite3.Row) -> Source:
-        return Source(
-            row["id"],
-            row["name"],
-            row["url"],
-            row["organisation"],
-            row["country"] if "country" in row.keys() else "",
-            bool(row["enabled"]),
-            row["category"],
-            row["max_articles_per_scan"],
-            row["article_url_pattern"],
-            bool(row["is_active"]) if "is_active" in row.keys() else True,
-            row["max_listing_pages"] if "max_listing_pages" in row.keys() else 3,
-            bool(row["use_browser_rendering"]) if "use_browser_rendering" in row.keys() else False,
-            row["evidence_label"] if "evidence_label" in row.keys() else "news / commentary",
-            SourceType(str(row["source_type"]) if "source_type" in row.keys() and row["source_type"] else SourceType.ARTICLE.value),
-            SourceRole(str(row["source_role"]) if "source_role" in row.keys() and row["source_role"] else SourceRole.PRIMARY_DISCOVERY.value),
-            bool(row["llm_allowed"]) if "llm_allowed" in row.keys() else True,
-            SourceFamily(str(row["source_family"]) if "source_family" in row.keys() and row["source_family"] else SourceFamily.PROFESSIONAL_BODY.value),
-        )
+    def _to_source(row):
+        fields = {field: row[field] for field in SourceRepository.FIELDS}
+        for key in ('enabled', 'is_active', 'use_browser_rendering', 'llm_allowed'):
+            fields[key] = bool(fields[key])
+        for key, enum in [('source_type', SourceType), ('source_family', SourceFamily), ('source_role', SourceRole)]:
+            fields[key] = enum(fields[key])
+        return Source(id=row['id'], **fields)

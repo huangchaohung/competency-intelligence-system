@@ -31,6 +31,14 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
+        if (parsed_url.hostname == 'www.a-star.edu.sg'
+                and parsed_url.path.lower().rstrip('/') in {
+                    '/research/medical-technologies',
+                    '/research/medical-technologies/innovation-pillars',
+                    '/research/medical-technologies/enablers'}):
+            body = soup.select_one('section.page-content__inner')
+            if body is not None:
+                soup = BeautifulSoup(str(body), 'lxml')
         if parsed_url.hostname == 'sgbiodesign.sg':
             # Observed programme-page sections, not phrase-based truncation:
             # keep curriculum text but omit the alumni directory and consent UI.
@@ -139,7 +147,7 @@ class ArticleExtractor:
             return EvidenceType.EXPLICIT_COMPETENCY
         if "catalogue" in label or "training" in label or source.source_type == SourceType.CATALOGUE:
             return EvidenceType.PROFESSIONAL_RESOURCE
-        if "research" in label or "report" in label:
+        if source.source_type == SourceType.RESEARCH or "research" in label or "report" in label:
             return EvidenceType.RESEARCH_CAPABILITY
         if "standard" in label or "guidance" in label:
             return EvidenceType.EXPLICIT_COMPETENCY

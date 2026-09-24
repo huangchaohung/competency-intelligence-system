@@ -10,8 +10,8 @@ from zipfile import ZipFile, ZIP_DEFLATED
 from src.services.source_health_service import source_health_rows
 
 SCHEMA = 'ste-public-evidence/1.0'
-SOURCE_FIELDS = ('id', 'name', 'url', 'organisation', 'country', 'source_family',
-                 'source_type', 'source_role', 'evidence_label', 'enabled',
+SOURCE_FIELDS = ('id', 'name', 'url', 'organisation', 'source_family',
+                 'source_type', 'source_role', 'enabled',
                  'max_articles_per_scan', 'max_listing_pages', 'use_browser_rendering')
 
 
@@ -60,8 +60,8 @@ def build_handover(run, evidence, *, max_part_bytes=2_000_000, retention_eligibl
             'id': item.id, 'evidence_key': f'{run.id}:{item.id}', 'source_id': item.source_id,
             'organisation': item.organisation, 'source_name': source.get('name', 'Unknown'),
             'configured_url': source.get('url'), 'url': public_url(item.url),
-            'country': source.get('country', 'Unknown'), 'source_family': source.get('source_family', 'Unknown'),
-            'source_type': source.get('source_type', 'Unknown'), 'source_label': source.get('evidence_label', 'Unknown'),
+            'source_family': source.get('source_family', 'Unknown'),
+            'source_type': source.get('source_type', 'Unknown'),
             'evidence_type': item.evidence_type, 'title': item.title,
             'publication_date': item.publication_date, 'extracted_at': timestamp(item.extracted_at),
             'article_text': item.article_text, 'explicit_or_inferred': item.explicit_or_inferred,
