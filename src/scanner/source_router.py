@@ -15,6 +15,9 @@ class SourceRouter:
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
         parsed_source = urlparse(source.url)
+        from src.scanner.aisg_research import ROOT as aisg_root, discover as discover_aisg
+        if source.url.rstrip('/') == aisg_root.rstrip('/'):
+            return discover_aisg(source, self._discovery._scanner)
         from src.scanner.np_engineering import matches as is_np_engineering, discover as discover_np
         if is_np_engineering(source.url):
             return discover_np(source, self._discovery._scanner)

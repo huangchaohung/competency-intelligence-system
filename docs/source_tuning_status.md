@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## AI Singapore / SkillsFuture follow-up — 2026-09-28
+
+- The old AISG research/features page links mostly to connect.aisingapore.org, whose robots endpoint returned 401; no bypass attempted. The publisher-linked research category archive on aisingapore.org is accessible. Master AI Singapore URL replaced with https://aisingapore.org/category/ai-research/ (same organisation and INDEX classification).
+- Scoped article-card discovery with bounded listing pagination, robots checks, same-domain links and tracking-query removal yielded 25 candidates. Three sampled full article extractions returned 580, 526 and 673 words with substantive research descriptions. This is research/news signal evidence, not a competency framework or a full-scan validation of every candidate.
+- Both configured SkillsFuture framework/FAQ URLs still yield no readable HTML through permission-checked HTTP; indexed search content does not establish crawler access. URLs unchanged, unresolved.
+- Build aisg-research-1. Existing sessions retain their source copy: edit the AI Singapore URL manually or Restore default sources (which discards temporary source edits). Cloud acceptance pending.
+
 ## Ngee Ann engineering / SMU follow-up — 2026-09-28
 
 - Ngee Ann engineering root is accessible locally. Scoped discovery follows only the nine direct full-time course/programme links in its actual listing, deduplicating card links and respecting robots and article caps. General site links are excluded.
