@@ -15,6 +15,11 @@ class SourceRouter:
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
         parsed_source = urlparse(source.url)
+        from src.scanner.structured_pages import body_selector
+        if body_selector(source.url):
+            if not self._discovery._scanner.is_allowed(source.url):
+                raise ScanError('Structured resource discovery is not permitted')
+            return [source.url]
         if source.url.rstrip('/') == 'https://programs.isa.org/ic32-cyber-training':
             if not self._discovery._scanner.is_allowed(source.url):
                 raise ScanError('ISA course description is not permitted')

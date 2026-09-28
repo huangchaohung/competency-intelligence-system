@@ -31,6 +31,23 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
+        from src.scanner.structured_pages import body_selector
+        selector = body_selector(source.url)
+        if selector:
+            if body_selector(page.url) != selector:
+                raise ExtractionError('Structured resource redirected away from the reviewed page')
+            body = soup.select_one(selector)
+            if body is None:
+                raise ExtractionError('Structured resource body unavailable; navigation is not evidence')
+            for element in body.select('script, style, nav, header, footer, aside, form'):
+                element.decompose()
+            text = body.get_text('\n', strip=True)
+            if len(text.split()) < self._MIN_WORDS:
+                raise ExtractionError('Insufficient structured resource text')
+            return Evidence(None, scan_run_id, source.id or 0, self._classify_evidence_type(source).value,
+                            title, self._publication_date(soup), source.organisation, page.url,
+                            text, datetime.now().astimezone(),
+                            'EXPLICIT' if source.source_type == SourceType.FRAMEWORK else 'INFERRED')
         if parsed_url.hostname == 'www.isa.org' and parsed_url.path.startswith('/products/'):
             body = soup.select_one('main')
             if body is not None:

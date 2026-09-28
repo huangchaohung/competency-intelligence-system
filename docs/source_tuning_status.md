@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## ICE / HKUST zero-output follow-up — 2026-09-28
+
+- Both configured official pages now return readable text through local permission-checked HTTP: ICE `/join-ice/attributes-for-professionally-qualified-membership` and HKUST `/students/sustainability-education`. This does not establish why the earlier Cloud scan failed or guarantee Cloud access.
+- Added exact-page standalone routing, avoiding generic secondary navigation. ICE extraction retains the three attribute tabs (IEng, CEng, EngTech), excluding related event cards: 1,641 words locally. HKUST retains its education article: 1,374 words, including programme/credit and learning-outcome information; this is an overview, not every linked course syllabus.
+- Missing content containers, insufficient text and off-resource redirects are rejected rather than treated as evidence. Robots restrictions remain enforced. No master URLs or enabled flags changed; the separate legacy ICE `/attributes` source remains unresolved.
+- 254 tests passed. Build `structured-pages-1`; Cloud acceptance remains pending. Continue reviewing remaining zero-output sources before requesting a consolidated scan.
+
 ## Duplicate descriptions — 2026-09-28
 
 - Latest supplied export contains three IEEE PES webinar video/slides pairs with identical public descriptions (three redundant records). Keep the first representative URL within a scan only when the webinar path matches after removing the slides suffix, organisation/query match, and whitespace-normalised text is identical.
