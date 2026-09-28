@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Ngee Ann engineering / SMU follow-up — 2026-09-28
+
+- Ngee Ann engineering root is accessible locally. Scoped discovery follows only the nine direct full-time course/programme links in its actual listing, deduplicating card links and respecting robots and article caps. General site links are excluded.
+- Course extraction retains about/overview/learning sections, not admissions, testimonials or video promotions. All nine linked pages returned 123–807 words locally. Eight diploma pages have empty server-rendered module accordions: evidence explicitly says some module details require interactive loading and were not retrieved. These are useful course overviews, NOT verified complete syllabuses.
+- SMU Master of Sustainability remains empty through permission-checked HTTP even though the official page is indexed. No verified replacement or access workaround claimed; URL unchanged.
+- Build `np-curriculum-1`. No master catalogue changes. Cloud acceptance remains pending; continue remaining empty-source review before a consolidated scan.
+
 ## ICE / HKUST zero-output follow-up — 2026-09-28
 
 - Both configured official pages now return readable text through local permission-checked HTTP: ICE `/join-ice/attributes-for-professionally-qualified-membership` and HKUST `/students/sustainability-education`. This does not establish why the earlier Cloud scan failed or guarantee Cloud access.

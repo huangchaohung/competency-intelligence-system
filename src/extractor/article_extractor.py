@@ -31,6 +31,25 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
+        from src.scanner.np_engineering import is_course as is_np_course
+        if is_np_course(page.url):
+            curriculum = soup.select_one('main #what-you-will-learn')
+            if curriculum is None:
+                raise ExtractionError('NP course curriculum unavailable; navigation is not evidence')
+            # Some module accordions are empty in server HTML. Keep the
+            # published course overview, but never claim full syllabus coverage.
+            sections = soup.select('main [id^="about-"], main #overview, main #what-you-will-learn')
+            body = BeautifulSoup(''.join(str(section) for section in sections), 'lxml')
+            for element in body.select('script, style, nav, form'):
+                element.decompose()
+            text = body.get_text('\n', strip=True)
+            if len(text.split()) < self._MIN_WORDS:
+                raise ExtractionError('Insufficient NP course curriculum text')
+            if any(not item.get_text(strip=True) for item in curriculum.select('[data-slot="accordion-content"]')):
+                text = 'Public course overview; some module details require interactive loading and were not retrieved.\n\n' + text
+            return Evidence(None, scan_run_id, source.id or 0, EvidenceType.PROFESSIONAL_RESOURCE.value,
+                            title, self._publication_date(soup), source.organisation, page.url,
+                            text, datetime.now().astimezone(), 'INFERRED')
         from src.scanner.structured_pages import body_selector
         selector = body_selector(source.url)
         if selector:
