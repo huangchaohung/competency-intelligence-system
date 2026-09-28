@@ -13,6 +13,7 @@ from src.repositories.source_repository import SourceRepository
 from src.scanner.source_router import SourceRouter
 from src.scanner.web_page_scanner import WebPageScanner
 from src.services.operational_logger import NullOperationalLogger, OperationalLogger
+from src.services.evidence_duplicates import public_description_key
 
 LOGGER = logging.getLogger(__name__)
 
@@ -42,6 +43,7 @@ class ScanWorkflow:
         errors: list[str] = []
         seen_urls: set[str] = set()
         stored_urls: set[str] = set()
+        stored_descriptions: set[tuple] = set()
         total_sources = len(enabled_sources)
         for index, source in enumerate(enabled_sources, start=1):
             source_started_at = datetime.now().astimezone()
@@ -122,8 +124,14 @@ class ScanWorkflow:
                     if evidence.url in stored_urls:
                         source_stats["skipped_duplicate_count"] += 1
                         continue
+                    description_key = public_description_key(evidence)
+                    if description_key is not None and description_key in stored_descriptions:
+                        source_stats['skipped_duplicate_count'] += 1
+                        continue
                     self._scans.add_evidence(evidence)
                     stored_urls.add(evidence.url)
+                    if description_key is not None:
+                        stored_descriptions.add(description_key)
                     source_stats["stored_evidence_count"] += 1
                 if article_errors:
                     message = (f"{source_stats['skipped_extraction_error_count']} page(s) skipped. "

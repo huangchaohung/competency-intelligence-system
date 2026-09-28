@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Duplicate descriptions — 2026-09-28
+
+- Latest supplied export contains three IEEE PES webinar video/slides pairs with identical public descriptions (three redundant records). Keep the first representative URL within a scan only when the webinar path matches after removing the slides suffix, organisation/query match, and whitespace-normalised text is identical.
+- Different webinar IDs, different descriptions and other websites are not merged. These remain public landing descriptions, not downloaded videos/slides or full training materials. The duplicate guard resets for every scan.
+- 252 tests passed, including workflow repeat-scan coverage. Runtime build `description-dedup-1`. No source URLs or enabled flags changed this round; next priority remains reviewing the 44 zero-output sources. A full scan is not yet needed solely for this cleanup.
+
 ## Catalogue cleanup — 2026-09-28
 
 - Energy Institute's LMS yielded policy pages, test categories, staff training and bespoke training along with technical listings. The exact configured root now discovers only nine verified public technical category links; no admin/policy/test/staff categories. The original URL remains unchanged. These are course-title lists, not full syllabuses; sampled energy category remains a useful 43-word listing. The alternative public academy site's robots endpoint returned 403, so no replacement there was made.
