@@ -15,6 +15,31 @@ class SourceRouter:
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
         parsed_source = urlparse(source.url)
+        if source.url.rstrip('/') == 'https://programs.isa.org/ic32-cyber-training':
+            if not self._discovery._scanner.is_allowed(source.url):
+                raise ScanError('ISA course description is not permitted')
+            return [source.url]
+        if source.url == 'https://learning.energyinst.org/course/index.php':
+            from urllib.parse import parse_qs
+            scanner = self._discovery._scanner
+            if not scanner.is_allowed(source.url):
+                raise ScanError('Energy Institute catalogue is not permitted')
+            page = scanner.fetch_url(source.url, source.name)
+            urls = []
+            # Verified public technical categories. Exclude staff, test, bespoke,
+            # volunteer, assessment/resit and policy/admin destinations.
+            categories = {'52', '1', '6', '10', '32', '34', '36', '40', '41'}
+            for link in BeautifulSoup(page.html, 'lxml').select('a[href]'):
+                parsed = urlparse(urljoin(page.url, link['href']))
+                if (parsed.scheme == 'https' and parsed.netloc == 'learning.energyinst.org'
+                        and parsed.path == '/course/index.php'
+                        and parse_qs(parsed.query).get('categoryid', []) in [[value] for value in categories]):
+                    url = parsed._replace(fragment='').geturl()
+                    if url not in urls and scanner.is_allowed(url):
+                        urls.append(url)
+                    if len(urls) >= source.max_articles_per_scan:
+                        break
+            return urls
         from src.scanner.nparks_resources import matches as is_nparks_resource, discover as discover_nparks
         if is_nparks_resource(source.url):
             return discover_nparks(source, self._discovery._scanner)

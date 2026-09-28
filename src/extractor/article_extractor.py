@@ -31,6 +31,21 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
+        if parsed_url.hostname == 'www.isa.org' and parsed_url.path.startswith('/products/'):
+            body = soup.select_one('main')
+            if body is not None:
+                content = BeautifulSoup(str(body), 'lxml')
+                for heading in content.select('h1, h2, h3, script, style, nav, form'):
+                    heading.decompose()
+                # A title alone is not a curriculum. Do not reject concise
+                # listings elsewhere or invent details from the title.
+                if len(content.get_text(' ', strip=True).split()) < 20:
+                    raise ExtractionError('ISA product page contains a title but no substantive course description')
+        if parsed_url.hostname == 'programs.isa.org' and parsed_url.path.rstrip('/') == '/ic32-cyber-training':
+            body = soup.select_one('main.body-container-wrapper')
+            if body is None:
+                raise ExtractionError('ISA course description body unavailable')
+            soup = BeautifulSoup(str(body), 'lxml')
         if (parsed_url.hostname == 'www.nparks.gov.sg' and page.content_type != 'application/pdf'
                 and (parsed_url.path.rstrip('/') == '/who-we-are/city-in-nature-key-strategies'
                      or parsed_url.path.startswith('/services/research-programmes')

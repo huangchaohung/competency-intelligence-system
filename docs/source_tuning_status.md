@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Catalogue cleanup — 2026-09-28
+
+- Energy Institute's LMS yielded policy pages, test categories, staff training and bespoke training along with technical listings. The exact configured root now discovers only nine verified public technical category links; no admin/policy/test/staff categories. The original URL remains unchanged. These are course-title lists, not full syllabuses; sampled energy category remains a useful 43-word listing. The alternative public academy site's robots endpoint returned 403, so no replacement there was made.
+- Four ISA IC32 product pages yielded only headings. Scoped ISA product extraction now rejects pages without substantive body text. Added official `https://programs.isa.org/ic32-cyber-training` as an enabled standalone catalogue source; live extraction returns 341 words with learning outcomes and course topics. Existing ISA certificate source retained. This is a public course description, not retrieved training materials.
+- Runtime build catalogue-tuning-2. New sessions receive the new master source; active sessions require Restore default sources (which resets their source edits) or may add the ISA URL manually. No global short-text threshold was raised, preserving concise legitimate course lists.
+
 ## Latest Cloud export review and NParks correction
 
 - Supplied public_evidence.txt: 236 configured sources, 1,611 records / 131 organisations; count matches completion manifest. 107 Error, 65 Low evidence, 64 Healthy. Of Error sources, 63 produced some evidence and 44 produced zero. Error status does not mean all evidence from that source was lost.

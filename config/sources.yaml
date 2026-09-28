@@ -1043,6 +1043,18 @@ sources:
   enabled: true
   max_listing_pages: 5
   use_browser_rendering: false
+- name: ISA — IC32 Cybersecurity Course Description
+  url: https://programs.isa.org/ic32-cyber-training
+  organisation: International Society of Automation (ISA)
+  source_family: PROFESSIONAL_BODY
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
 - name: Energy Institute — Academy
   url: https://learning.energyinst.org/course/index.php
   organisation: Energy Institute
