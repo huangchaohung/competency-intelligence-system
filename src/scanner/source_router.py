@@ -15,6 +15,25 @@ class SourceRouter:
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
         parsed_source = urlparse(source.url)
+        if source.url.rstrip('/') == 'https://www.zju.edu.cn/english/sustainability/main.htm':
+            import re
+            scanner = self._discovery._scanner
+            if not scanner.is_allowed(source.url):
+                raise ScanError('Zhejiang sustainability discovery is not permitted')
+            page = scanner.fetch_url(source.url, source.name)
+            if page.url.rstrip('/') != source.url.rstrip('/'):
+                raise ScanError('Zhejiang sustainability redirected away from the listing')
+            urls = []
+            for field in BeautifulSoup(page.html, 'lxml').select('span.url'):
+                parsed = urlparse(urljoin(page.url, field.get_text(strip=True)))
+                candidate = parsed._replace(fragment='').geturl()
+                if (parsed.scheme == 'https' and parsed.netloc == 'www.zju.edu.cn'
+                        and re.fullmatch(r'/english/\d{4}/\d{4}/c\d+a\d+/page\.psp', parsed.path)
+                        and not parsed.query and candidate not in urls and scanner.is_allowed(candidate)):
+                    urls.append(candidate)
+                if len(urls) >= source.max_articles_per_scan:
+                    break
+            return urls
         if (parsed_source.hostname == 'www.ntu.edu.sg' and unquote(parsed_source.path).rstrip('/') ==
                 '/engineering/coe-programmes/graduate/coe-programme-detail/master-of-science-(robotics-and-intelligent-systems)'):
             if not self._discovery._scanner.is_allowed(source.url):

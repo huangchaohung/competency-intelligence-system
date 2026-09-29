@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Zhejiang structured listing — 2026-09-29
+
+- Sustainability root embeds article destinations in span.url fields rather than normal anchors. Exact-page discovery now reads those fields and admits only same-host dated English article paths, with robots checks, deduplication and article caps. Listing snippets, assets and external URLs are not returned as evidence.
+- Local check: eight candidates; first two extracted 733 and 303 words. These are campus sustainability/news signals, not competency lists. Dates include older material; no freshness or comprehensive-coverage claim. Linked report PDF is not included in this article-only route.
+- 275 tests passed. Build zju-discovery-1; no catalogue changes. Cloud acceptance pending.
+
 ## SLA content scoping — 2026-09-29
 
 - Both configured SLA Master Plan and OneMap pages are readable locally. Exact standalone routing and the main content-column selector now retain the actual policy/platform descriptions rather than government-banner articles or navigation. Verified 197 and 169 words respectively. These are overviews, not full competency lists or the linked master-plan document.
