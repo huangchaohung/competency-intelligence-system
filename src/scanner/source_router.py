@@ -15,6 +15,11 @@ class SourceRouter:
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
         parsed_source = urlparse(source.url)
+        if (parsed_source.hostname == 'www.ntu.edu.sg' and unquote(parsed_source.path).rstrip('/') ==
+                '/engineering/coe-programmes/graduate/coe-programme-detail/master-of-science-(robotics-and-intelligent-systems)'):
+            if not self._discovery._scanner.is_allowed(source.url):
+                raise ScanError('NTU robotics programme is not permitted')
+            return [source.url]
         if source.url.rstrip('/') == 'https://resourcecenter.ieee-pes.org/education/tutorials/pes_ed_tut_02gest_042522_sld':
             if not self._discovery._scanner.is_allowed(source.url):
                 raise ScanError('IEEE storage tutorial is not permitted')

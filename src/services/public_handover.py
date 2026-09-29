@@ -97,8 +97,12 @@ def build_handover(run, evidence, *, max_part_bytes=2_000_000, retention_eligibl
     # Use generated status/counts only: never export raw errors or AI advice.
     health = [{k: row[k] for k in ('Status', 'Evidence items', 'Source', 'Organisation', 'Source URL', 'Reason')}
               for row in source_health_rows(run, evidence)]
+    from src.services.scan_diagnostics import source_diagnostics
+    diagnostics = source_diagnostics(run)
+    for row in health:
+        row['Diagnostic categories'] = diagnostics.get(row['Source'], [])
     files['source_health.json'] = encoded({'batch_id': run.id, 'rows': health,
-        'guidance': 'Counts are not proof of quality. Inspect content; change URLs manually. Raw errors omitted.'})
+        'guidance': 'Counts are not proof of quality. Inspect content; change URLs manually. Raw errors omitted. Diagnostic categories are inferred from recorded errors; an empty list does not prove source health.'})
     files['HANDOVER.md'] = (
         '# Public STE evidence handover\n\n'
         f'Batch {run.id}: {len(records)} retained records in {len(groups)} evidence part(s).\n\n'

@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Post-export corrections — 2026-09-29
+
+- NTU MSc Robotics supplied export has a substantive 2,323-word programme record plus a scholarship form, generic programme listing and unrelated undergraduate degrees. Exact programme discovery now returns only its configured page, retaining existing extraction. This deliberately does not claim retrieval of every linked syllabus. No global NTU restriction or catalogue edit.
+- New TXT exports include source-specific fixed Diagnostic categories derived from recorded errors (timeouts, access restrictions, missing bodies, insufficient text, etc.). Raw exceptions, URLs embedded in errors, local paths and secrets are not copied. Categories are hints, not proof of root cause; empty categories do not certify health. Existing exported files cannot be retroactively diagnosed.
+- Build cloud-review-1. Tests cover source-name separation, safe category output, and scoped NTU routing. Next examine remaining content quality before requesting another full scan.
+
 ## Cloud acceptance export — 2026-09-29
 
 - User confirmed deployment/URL/scan/download checkpoint and supplied public_evidence (1).txt. Scan 02:37–03:09 UTC: 237 sources, 1,580 evidence, 133 organisations, COMPLETED_WITH_ERRORS. Actual evidence count and summed health counts both equal 1,580. Previous export: 236 sources, 1,611 evidence, 131 organisations. These different catalogues are not a controlled benchmark.
