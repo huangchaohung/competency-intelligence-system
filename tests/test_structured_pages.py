@@ -8,6 +8,10 @@ from src.core.exceptions import ExtractionError, ScanError
 
 
 @pytest.mark.parametrize('url,body,kind', [
+    ('https://web.bio.pku.edu.cn/en/index/index/graduate/cid/134.html',
+     '<nav>OUTSIDE MENU</nav><main class="pad80">{}</main>', SourceType.CATALOGUE),
+    ('https://web.bio.pku.edu.cn/en/index/index/degrees/cid/88.html',
+     '<nav>OUTSIDE MENU</nav><main class="pad80">{}</main>', SourceType.CATALOGUE),
     ('https://geospatial.sla.gov.sg/discover-geospatial/master-plan',
      '<article>OUTSIDE MENU</article><main id="main-content"><h1 class="break-words">Title</h1><div class="col-span-12 break-words">{}</div></main>', SourceType.FRAMEWORK),
     ('https://geoworks.sla.gov.sg/sla-products/onemap',

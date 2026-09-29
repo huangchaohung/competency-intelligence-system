@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Peking programme scope — 2026-09-29
+
+- Latest export includes homepage text and scholarship navigation attributed to the graduate-programme source. Local configured graduate introduction and biotechnology degree pages both return substantive programme bodies (213 and 741 visible main-body words before cleanup), including research-training skills and degree outcomes.
+- Added exact standalone routes and main.pad80 extraction for those two configured pages. No scholarship/admissions/student-life expansion; a homepage redirect lacks the reviewed route and is rejected. This is programme-page coverage, not all linked curricula. No URLs or enabled flags changed.
+- 278 tests passed; build pku-programmes-1. Cloud acceptance pending. Continue remaining evidence-content review before the next consolidated scan.
+
 ## Duplicate-content review — 2026-09-29
 
 - Supplied export includes identical 850-word SUTD ESD course lists under the same path with and without a trailing slash. Narrow within-scan dedup now retains the first only when organisation, query and whitespace-normalised text also match. Changed content remains distinct; other sites unaffected.

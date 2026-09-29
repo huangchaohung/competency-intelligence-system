@@ -6,6 +6,10 @@ def body_selector(url):
     parsed = urlparse(url)
     if parsed.scheme != 'https':
         return None
+    if (parsed.hostname == 'web.bio.pku.edu.cn' and parsed.path in {
+            '/en/index/index/graduate/cid/134.html',
+            '/en/index/index/degrees/cid/88.html'}):
+        return 'main.pad80'
     if (parsed.hostname, parsed.path.rstrip('/')) in {
             ('geospatial.sla.gov.sg', '/discover-geospatial/master-plan'),
             ('geoworks.sla.gov.sg', '/sla-products/onemap')}:
