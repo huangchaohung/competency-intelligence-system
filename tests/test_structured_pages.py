@@ -8,6 +8,10 @@ from src.core.exceptions import ExtractionError, ScanError
 
 
 @pytest.mark.parametrize('url,body,kind', [
+    ('https://geospatial.sla.gov.sg/discover-geospatial/master-plan',
+     '<article>OUTSIDE MENU</article><main id="main-content"><h1 class="break-words">Title</h1><div class="col-span-12 break-words">{}</div></main>', SourceType.FRAMEWORK),
+    ('https://geoworks.sla.gov.sg/sla-products/onemap',
+     '<article>OUTSIDE MENU</article><main id="main-content"><h1 class="break-words">Title</h1><div class="col-span-12 break-words">{}</div></main>', SourceType.CATALOGUE),
     ('https://www.a-star.edu.sg/simtech/kto/industrial-automation',
      '<main><div class="rich-text rte block">{}</div><div>OUTSIDE MENU</div></main>', SourceType.CATALOGUE),
     ('https://www.polimi.it/en/education/laurea-programmes/programme-detail/building-engineering-for-sustainability',

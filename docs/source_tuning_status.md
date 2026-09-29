@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SLA content scoping — 2026-09-29
+
+- Both configured SLA Master Plan and OneMap pages are readable locally. Exact standalone routing and the main content-column selector now retain the actual policy/platform descriptions rather than government-banner articles or navigation. Verified 197 and 169 words respectively. These are overviews, not full competency lists or the linked master-plan document.
+- Selector regression includes a similarly classed heading to ensure the body, not just the title, is selected. Robots/missing-body/short-text guards remain. No URL or catalogue edits.
+- Zhejiang sustainability root returns HTML (1,138 total visible words) locally, but content quality and discovery are not yet verified; no recovery claim or code change there.
+- 274 tests passed. Build sla-content-1. Prior Cloud failure causes remain unconfirmed; these are local extraction checks. No new full scan required yet.
+
 ## Newly empty PUB / Cambridge access checks — 2026-09-29
 
 - PUB robots.txt returned HTTP200 with `User-agent: *` and `Disallow: /`. Permission checks deny the configured R&D and Code of Practices URLs. This explains current local inability to crawl; it does not prove the exact cause of the earlier Cloud failure. No alternate path on the same host can bypass this rule. Keep catalogue unchanged pending an authorised accessible equivalent; do not fetch disallowed pages.

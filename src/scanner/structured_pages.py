@@ -6,6 +6,10 @@ def body_selector(url):
     parsed = urlparse(url)
     if parsed.scheme != 'https':
         return None
+    if (parsed.hostname, parsed.path.rstrip('/')) in {
+            ('geospatial.sla.gov.sg', '/discover-geospatial/master-plan'),
+            ('geoworks.sla.gov.sg', '/sla-products/onemap')}:
+        return 'main#main-content div.col-span-12.break-words'
     if (parsed.hostname in {'www.ice.org.uk', 'ice.org.uk'} and
             parsed.path.rstrip('/') in {'/attributes', '/join-ice/attributes-for-professionally-qualified-membership'}):
         return 'main.main-landing .accordion-tabs'
