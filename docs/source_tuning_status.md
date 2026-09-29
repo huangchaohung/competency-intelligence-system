@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SIMTech training / ICE alias / EMA — 2026-09-29
+
+- SIMTech Industrial Automation is locally readable. Exact standalone routing and the main rich-text block preserve a 239-word overview with four named 42-hour modules, excluding global navigation and fee/funding blocks. This is a programme overview, not retrieval of every module syllabus.
+- Legacy ICE /attributes locally reproduces the reviewed attributes page. Discovery now maps it to the existing canonical membership-attributes URL, respecting permission on both URLs. Existing within-scan URL deduplication prevents duplicate storage when both sources are enabled; the first source owns the retained evidence. No catalogue rows deleted.
+- EMA media releases still returns no readable HTML through permission-checked HTTP. Remains unresolved and unchanged; no bypass attempted.
+- 261 tests passed. Build simtech-training-1; no master catalogue changes or reset needed. Local success does not prove Cloud recovery. Consolidated Cloud acceptance remains pending.
+
 ## Polimi / Tokyo follow-up — 2026-09-29
 
 - Both configured Polimi programme pages return useful local HTML. Exact-page standalone routing now avoids unrelated secondary discovery; extraction preserves main programme content, degree level, subjects and career information, excluding global navigation. Building Engineering for Sustainability yielded 694 words; Civil Engineering yielded 611.

@@ -25,6 +25,11 @@ class SourceRouter:
         if body_selector(source.url):
             if not self._discovery._scanner.is_allowed(source.url):
                 raise ScanError('Structured resource discovery is not permitted')
+            if parsed_source.hostname in {'www.ice.org.uk', 'ice.org.uk'} and parsed_source.path.rstrip('/') == '/attributes':
+                canonical = 'https://www.ice.org.uk/join-ice/attributes-for-professionally-qualified-membership'
+                if not self._discovery._scanner.is_allowed(canonical):
+                    raise ScanError('ICE canonical attributes page is not permitted')
+                return [canonical]
             return [source.url]
         if source.url.rstrip('/') == 'https://programs.isa.org/ic32-cyber-training':
             if not self._discovery._scanner.is_allowed(source.url):

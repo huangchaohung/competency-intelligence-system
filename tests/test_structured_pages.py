@@ -8,6 +8,8 @@ from src.core.exceptions import ExtractionError, ScanError
 
 
 @pytest.mark.parametrize('url,body,kind', [
+    ('https://www.a-star.edu.sg/simtech/kto/industrial-automation',
+     '<main><div class="rich-text rte block">{}</div><div>OUTSIDE MENU</div></main>', SourceType.CATALOGUE),
     ('https://www.polimi.it/en/education/laurea-programmes/programme-detail/building-engineering-for-sustainability',
      '<main id="page-content">{}</main>', SourceType.CATALOGUE),
     ('https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering',
@@ -34,3 +36,11 @@ def test_structured_overview_keeps_tabs_and_tables_not_navigation(url, body, kin
         ArticleExtractor().extract(DownloadedPage('https://example.org/login', html), source, 1)
     with pytest.raises(ScanError, match='not permitted'):
         SourceRouter(SimpleNamespace(is_allowed=lambda u: False)).discover(source)
+
+
+def test_ice_alias_uses_same_canonical_url_and_checks_permission():
+    canonical = 'https://www.ice.org.uk/join-ice/attributes-for-professionally-qualified-membership'
+    source = Source(1, 'ICE', 'https://www.ice.org.uk/attributes', 'ICE')
+    assert SourceRouter(SimpleNamespace(is_allowed=lambda u: True)).discover(source) == [canonical]
+    with pytest.raises(ScanError, match='not permitted'):
+        SourceRouter(SimpleNamespace(is_allowed=lambda u: u != canonical)).discover(source)
