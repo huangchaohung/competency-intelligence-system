@@ -15,6 +15,10 @@ class SourceRouter:
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
         parsed_source = urlparse(source.url)
+        if source.url.rstrip('/') == 'https://resourcecenter.ieee-pes.org/education/tutorials/pes_ed_tut_02gest_042522_sld':
+            if not self._discovery._scanner.is_allowed(source.url):
+                raise ScanError('IEEE storage tutorial is not permitted')
+            return [source.url]
         from src.scanner.aisg_research import ROOT as aisg_root, discover as discover_aisg
         if source.url.rstrip('/') == aisg_root.rstrip('/'):
             return discover_aisg(source, self._discovery._scanner)

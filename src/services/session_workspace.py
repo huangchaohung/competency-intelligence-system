@@ -18,7 +18,7 @@ from src.services.source_service import SourceService
 from src.workflow.scan_workflow import ScanWorkflow
 from src.workflow.source_configuration_workflow import SourceConfigurationWorkflow
 
-RUNTIME_REVISION = 'simtech-training-1'
+RUNTIME_REVISION = 'ieee-outline-1'
 
 
 def refresh_scan_runtime(services):

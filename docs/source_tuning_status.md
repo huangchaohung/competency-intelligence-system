@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## IEEE short outline / SAE / HDB — 2026-09-29
+
+- Reviewed IEEE PES Grid Energy Storage tutorial: public body contains a useful 65-word four-session outline, rejected by the 100-word minimum. Exact standalone routing now targets the resource itself. A narrow 50-word minimum applies only to this exact page when all four session markers and energy-storage content remain present; other descriptions retain the existing threshold. Evidence still explicitly states full resource not retrieved. Slides were not downloaded.
+- SAE standards root returns only 26 words locally, insufficient to verify standards content. HDB homepage redirects to a general housing-services homepage, not a useful competency/course source. No replacement verified in this round; both remain unchanged and unresolved for tuning.
+- 262 tests passed. Build ieee-outline-1. No master catalogue changes; Cloud acceptance pending.
+
 ## NUS access-limited programmes — 2026-09-29
 
 - Reviewed configured SCALE BTech Civil Engineering, CDE Biomedical Engineering undergraduate, and FASS Professional Certificate in Applied GIS pages. Robots permitted requests; HTTP returned no readable HTML. Normal Chromium returned HTTP 200 with only six-word `Request unsuccessful / Incapsula incident ID` notices on all three, not programme evidence. No challenge interaction or bypass attempted.
