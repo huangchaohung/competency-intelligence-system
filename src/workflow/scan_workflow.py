@@ -220,6 +220,16 @@ class ScanWorkflow:
         parsed = urlparse(url)
         value = url.lower()
         path = parsed.path.lower().rstrip("/")
+        # Content-reviewed non-evidence destinations from the Cloud export.
+        # Exact host/path matches avoid rejecting technical articles merely
+        # mentioning privacy, recruitment, grants or applications.
+        reviewed_utility_pages = {
+            ('www.asce.org', '/publications-and-news/codes-and-standards/committee-application-form'),
+            ('www.nea.gov.sg', '/programmes-grants/grants-and-awards'),
+            ('www.3e.tsinghua.edu.cn', '/en/category/research-recruit-ra-en'),
+        }
+        if (parsed.hostname, path) in reviewed_utility_pages:
+            return True
         # Reviewed official training landing page, not general About navigation.
         if (parsed.scheme == 'https' and parsed.hostname == 'www.istructe.org'
                 and path == '/about-us/what-we-do/events-and-training' and not parsed.query):

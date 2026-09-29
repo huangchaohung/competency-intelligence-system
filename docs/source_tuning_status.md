@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Reviewed administrative noise — 2026-09-29
+
+- Reviewed the seven records under 30 words and administrative-title candidates in the latest export. Four short EI records are legitimate named-course lists and remain accepted. AI Singapore's privacy research article is useful, not a privacy-policy page.
+- Added exact host/path exclusions at the scan boundary for ASCE committee-application-form, NEA grants-and-awards listing (12 words), and Tsinghua research-recruit-ra-en listing (17 words). These records contain administrative/navigation content rather than technical competencies or courses. No blanket keyword rejection; technical child pages and other domains remain unaffected. Configured sources stay enabled.
+- The NTU generic listing was already addressed by programme-scoped discovery in the preceding update. Build cloud-noise-1; 272 tests passed. Existing exports unchanged; these exclusions apply on the next scan. Continue reviewing current evidence before another full scan.
+
 ## Post-export corrections — 2026-09-29
 
 - NTU MSc Robotics supplied export has a substantive 2,323-word programme record plus a scholarship form, generic programme listing and unrelated undergraduate degrees. Exact programme discovery now returns only its configured page, retaining existing extraction. This deliberately does not claim retrieval of every linked syllabus. No global NTU restriction or catalogue edit.
