@@ -1,5 +1,14 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Cloud acceptance export — 2026-09-29
+
+- User confirmed deployment/URL/scan/download checkpoint and supplied public_evidence (1).txt. Scan 02:37–03:09 UTC: 237 sources, 1,580 evidence, 133 organisations, COMPLETED_WITH_ERRORS. Actual evidence count and summed health counts both equal 1,580. Previous export: 236 sources, 1,611 evidence, 131 organisations. These different catalogues are not a controlled benchmark.
+- Health: 106 Error, 66 Low evidence, 64 Healthy, one No evidence. Zero-output sources rose from 44 to 47. Partial Error sources can still retain useful evidence. No sampled access-challenge marker matches found in stored text; not a comprehensive quality guarantee.
+- Confirmed useful Cloud output: AISG 25 substantial research articles; NParks research six records with programme content; EI nine course lists (not syllabuses); HKUST education 1,374 words; Polimi 694/611 words; ISA IC32 341 words; IEEE storage outline 73 words including disclaimer. NUS Urban Design also now has one record. General HKUST root recovered 17 records but still needs content review.
+- ICE both rows zero, SIMTech industrial automation zero, NP engineering zero: local fixes not accepted as Cloud recovery. ICE canonical row can be skipped after the alias attempted the same URL, since dedup tracks attempted URLs. Export has generic reasons only, so exact Cloud exception cannot be established here. Need source-level error diagnostics before prescribing an access/parser fix.
+- Newly zero compared with previous export include ISA certificate programme, four PUB sources, two SLA sources, Tokyo graduate engineering, Cambridge news and Zhejiang. Do not infer permanent removal from one failed run.
+- Content issue remains: NTU robotics source includes application-form material and an unrelated cultural-leadership item; seven total records have fewer than 30 words (some are legitimate course lists). Next priority: narrow NTU programme discovery and improve exported failure diagnostics. Do not ask for another full scan solely to repeat these observations.
+
 ## NUS curricula follow-up / next Cloud checkpoint — 2026-09-29
 
 - Configured Civil Engineering courses, Environmental Engineering courses, Industry 4.0 specialisation and MSc Project Management pages all returned no readable HTML through permission-checked HTTP. This check does not establish that the underlying programmes lack content.
