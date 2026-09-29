@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Polimi / Tokyo follow-up — 2026-09-29
+
+- Both configured Polimi programme pages return useful local HTML. Exact-page standalone routing now avoids unrelated secondary discovery; extraction preserves main programme content, degree level, subjects and career information, excluding global navigation. Building Engineering for Sustainability yielded 694 words; Civil Engineering yielded 611.
+- The Civil Engineering page explicitly says Bachelor of Science despite the configured URL containing laurea-magistrale. Preserve the publisher's actual text; do not infer degree level from URL. Building Engineering for Sustainability explicitly says Master of Science. No URLs or source types changed.
+- University of Tokyo's configured engineering page still times out during connection; unresolved, not disabled or replaced. HKUST general sustainability root is readable (about 1,003 main-body words), but mostly institutional overview; no additional tuning or recovery claim in this round.
+- 259 tests passed. Build polimi-programmes-1. These are local checks, not confirmation of earlier Cloud failure causes or Cloud recovery. Continue empty-source review; consolidated scan acceptance remains pending.
+
 ## AI Singapore / SkillsFuture follow-up — 2026-09-28
 
 - The old AISG research/features page links mostly to connect.aisingapore.org, whose robots endpoint returned 401; no bypass attempted. The publisher-linked research category archive on aisingapore.org is accessible. Master AI Singapore URL replaced with https://aisingapore.org/category/ai-research/ (same organisation and INDEX classification).

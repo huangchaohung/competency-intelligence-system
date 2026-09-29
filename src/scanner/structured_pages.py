@@ -12,4 +12,8 @@ def body_selector(url):
     if (parsed.hostname == 'sust.hkust.edu.hk' and
             parsed.path.rstrip('/') == '/students/sustainability-education'):
         return 'main article.node'
+    if (parsed.hostname == 'www.polimi.it' and parsed.path.rstrip('/') in {
+            '/en/education/laurea-programmes/programme-detail/building-engineering-for-sustainability',
+            '/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering'}):
+        return 'main#page-content'
     return None

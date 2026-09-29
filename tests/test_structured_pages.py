@@ -8,6 +8,10 @@ from src.core.exceptions import ExtractionError, ScanError
 
 
 @pytest.mark.parametrize('url,body,kind', [
+    ('https://www.polimi.it/en/education/laurea-programmes/programme-detail/building-engineering-for-sustainability',
+     '<main id="page-content">{}</main>', SourceType.CATALOGUE),
+    ('https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering',
+     '<main id="page-content">{}</main>', SourceType.CATALOGUE),
     ('https://www.ice.org.uk/join-ice/attributes-for-professionally-qualified-membership',
      '<main class="main-landing"><div class="accordion-tabs">{}</div><p>OUTSIDE MENU</p></main>', SourceType.FRAMEWORK),
     ('https://sust.hkust.edu.hk/students/sustainability-education',
