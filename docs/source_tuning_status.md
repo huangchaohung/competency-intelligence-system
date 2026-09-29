@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## NUS access-limited programmes — 2026-09-29
+
+- Reviewed configured SCALE BTech Civil Engineering, CDE Biomedical Engineering undergraduate, and FASS Professional Certificate in Applied GIS pages. Robots permitted requests; HTTP returned no readable HTML. Normal Chromium returned HTTP 200 with only six-word `Request unsuccessful / Incapsula incident ID` notices on all three, not programme evidence. No challenge interaction or bypass attempted.
+- Official search results confirm the BTech and PC GIS pages contain relevant programme information, but search indexing is not evidence of collector access. Tested the current AY2026/27 NUS Bulletin undergraduate SCALE page as a same-programme alternative: HTTP also returned no readable HTML. Historical 2019/20 bulletins were not substituted for current curricula.
+- Decision: keep existing URLs and enablement unchanged; no accessible same-programme replacement verified in this round. Do not turn Browser on globally or accept blocked text. A source-specific access failure must continue to be skipped and reported while other sources scan.
+- This round changes documentation only; last code verification remains 261 passing tests. Cloud behaviour may differ and has not been retested. These sources remain unresolved, not marked healthy or deleted.
+
 ## SIMTech training / ICE alias / EMA — 2026-09-29
 
 - SIMTech Industrial Automation is locally readable. Exact standalone routing and the main rich-text block preserve a 239-word overview with four named 42-hour modules, excluding global navigation and fee/funding blocks. This is a programme overview, not retrieval of every module syllabus.
