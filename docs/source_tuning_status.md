@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## NUS curricula follow-up / next Cloud checkpoint — 2026-09-29
+
+- Configured Civil Engineering courses, Environmental Engineering courses, Industry 4.0 specialisation and MSc Project Management pages all returned no readable HTML through permission-checked HTTP. This check does not establish that the underlying programmes lack content.
+- Official Civil Engineering `https://cde.nus.edu.sg/cee/undergraduate/beng-civil/build-your-own-degree-civil-engineering/` is indexed with relevant curriculum information, but HTTP and normal Chromium both returned an Incapsula access notice (browser HTTP200, six words). No replacement made; no bypass attempted. The other three pages were HTTP-tested only this round.
+- Documentation-only update; no catalogue or runtime changes, last full code suite 262 passed.
+- NEXT CHECKPOINT: run a full Streamlit Cloud scan on the deployed updates, then export public_evidence.txt. Existing sessions must use the revised AI Singapore research archive URL to exercise that change; Restore defaults also loads other master additions but discards temporary source edits. Build ieee-outline-1 identifies the latest runtime. Compare extracted content and failures against the September24 export, not just evidence counts. Cloud recovery is still unverified until this scan.
+
 ## IEEE short outline / SAE / HDB — 2026-09-29
 
 - Reviewed IEEE PES Grid Energy Storage tutorial: public body contains a useful 65-word four-session outline, rejected by the 100-word minimum. Exact standalone routing now targets the resource itself. A narrow 50-word minimum applies only to this exact page when all four session markers and energy-storage content remain present; other descriptions retain the existing threshold. Evidence still explicitly states full resource not retrieved. Slides were not downloaded.
