@@ -6,6 +6,12 @@ from urllib.parse import urlparse
 def public_description_key(evidence):
     parsed = urlparse(evidence.url)
     text = getattr(evidence, 'article_text', '')
+    nea_root = '/our-services/waste-management/3r-programmes-and-resources'
+    if (parsed.scheme == 'https' and parsed.hostname == 'www.nea.gov.sg'
+            and parsed.path.rstrip('/') in {nea_root, nea_root + '/waste-minimisation-and-recycling'}
+            and text.strip()):
+        digest = sha256(' '.join(text.split()).encode('utf-8')).hexdigest()
+        return (evidence.organisation, parsed.hostname + nea_root, parsed.query, digest)
     if (parsed.scheme == 'https' and parsed.hostname == 'www.sutd.edu.sg'
             and parsed.path.rstrip('/') == '/esd/education/undergraduate/courses' and text.strip()):
         digest = sha256(' '.join(text.split()).encode('utf-8')).hexdigest()

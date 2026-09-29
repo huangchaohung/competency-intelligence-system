@@ -12,6 +12,17 @@ def test_same_webinar_slide_description_has_same_identity():
     assert public_description_key(evidence()) == public_description_key(evidence('example_sld'))
 
 
+def test_nea_overview_alias_requires_identical_content_and_keeps_children():
+    root = 'https://www.nea.gov.sg/our-services/waste-management/3r-programmes-and-resources'
+    a = SimpleNamespace(url=root, organisation='NEA', article_text='Waste minimisation overview')
+    b = SimpleNamespace(url=root+'/waste-minimisation-and-recycling', organisation='NEA', article_text=a.article_text)
+    assert public_description_key(a) == public_description_key(b)
+    b.article_text += ' Updated guidance'
+    assert public_description_key(a) != public_description_key(b)
+    b.url += '/at-work'
+    assert public_description_key(b) is None
+
+
 def test_sutd_trailing_slash_alias_requires_identical_text_and_organisation():
     a = SimpleNamespace(url='https://www.sutd.edu.sg/esd/education/undergraduate/courses',
                         organisation='SUTD', article_text='Course one and course two')

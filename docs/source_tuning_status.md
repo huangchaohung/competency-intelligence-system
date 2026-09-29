@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## NEA overview duplicate — 2026-09-29
+
+- Supplied export has identical 554-word Waste Minimisation and Recycling text at the 3R root and its waste-minimisation-and-recycling child. A narrow within-scan guard now keeps the first only when organisation, query and normalised full text match.
+- Other child pages (including at-work, food waste, EPR and the Zero Waste Manager Course) remain separate. Different overview content is retained; no global text deduplication or catalogue change. Existing exports are unchanged.
+- 279 tests passed; build nea-dedup-1. Cloud acceptance pending. Continue remaining content review before requesting the next consolidated scan.
+
 ## Peking programme scope — 2026-09-29
 
 - Latest export includes homepage text and scholarship navigation attributed to the graduate-programme source. Local configured graduate introduction and biotechnology degree pages both return substantive programme bodies (213 and 741 visible main-body words before cleanup), including research-training skills and degree outcomes.
