@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Newly empty PUB / Cambridge access checks — 2026-09-29
+
+- PUB robots.txt returned HTTP200 with `User-agent: *` and `Disallow: /`. Permission checks deny the configured R&D and Code of Practices URLs. This explains current local inability to crawl; it does not prove the exact cause of the earlier Cloud failure. No alternate path on the same host can bypass this rule. Keep catalogue unchanged pending an authorised accessible equivalent; do not fetch disallowed pages.
+- Cambridge engineering news returned HTTP503. A subsequent official homepage alternative check stopped because robots.txt itself returned HTTP503. This is current unavailability, not evidence that the engineering news has permanently moved. The general Cambridge news source still has 21 records in the supplied Cloud export.
+- No parser, URL or enablement change is justified by these checks. Documentation-only round; last code verification 272 tests passed. Next review other newly empty sources and continue using the supplied export; no full rescan requested solely for these access checks.
+
 ## Reviewed administrative noise — 2026-09-29
 
 - Reviewed the seven records under 30 words and administrative-title candidates in the latest export. Four short EI records are legitimate named-course lists and remain accepted. AI Singapore's privacy research article is useful, not a privacy-policy page.
