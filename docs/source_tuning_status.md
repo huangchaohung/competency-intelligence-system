@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Duplicate-content review — 2026-09-29
+
+- Supplied export includes identical 850-word SUTD ESD course lists under the same path with and without a trailing slash. Narrow within-scan dedup now retains the first only when organisation, query and whitespace-normalised text also match. Changed content remains distinct; other sites unaffected.
+- Other exact-text pairs include distinct IEEE webinar IDs and NTU programme variants. These are deliberately not globally merged: identical text does not prove identical resources. NEA parent/child, Peking scholarship/homepage and RICS duplicate-document pairs remain candidates for provenance/content review, not silently removed.
+- 276 tests passed. Build sutd-dedup-1; no catalogue edits. Existing exported file unchanged; next scan applies the guard. No full rescan needed solely for this duplicate.
+
 ## Zhejiang structured listing — 2026-09-29
 
 - Sustainability root embeds article destinations in span.url fields rather than normal anchors. Exact-page discovery now reads those fields and admits only same-host dated English article paths, with robots checks, deduplication and article caps. Listing snippets, assets and external URLs are not returned as evidence.

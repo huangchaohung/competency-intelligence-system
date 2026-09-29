@@ -12,6 +12,19 @@ def test_same_webinar_slide_description_has_same_identity():
     assert public_description_key(evidence()) == public_description_key(evidence('example_sld'))
 
 
+def test_sutd_trailing_slash_alias_requires_identical_text_and_organisation():
+    a = SimpleNamespace(url='https://www.sutd.edu.sg/esd/education/undergraduate/courses',
+                        organisation='SUTD', article_text='Course one and course two')
+    b = SimpleNamespace(**vars(a))
+    b.url += '/'
+    assert public_description_key(a) == public_description_key(b)
+    b.article_text += ' Course three'
+    assert public_description_key(a) != public_description_key(b)
+    b.article_text = a.article_text
+    b.organisation = 'Other'
+    assert public_description_key(a) != public_description_key(b)
+
+
 def test_different_webinars_and_content_remain_distinct():
     assert public_description_key(evidence()) != public_description_key(evidence('another'))
     assert public_description_key(evidence()) != public_description_key(evidence('example_sld','Additional learning outcomes'))
