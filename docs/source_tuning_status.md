@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## IMDA GenAI PDF enabled — 2026-10-01
+
+- Bounded production retrieval/extraction of the GenAI asset succeeds locally: 20 text-bearing pages, 5,620 document words. It includes named technical skills, descriptions, knowledge, abilities and proficiency descriptors. Added a separate enabled government FRAMEWORK / PRIMARY_DISCOVERY source with direct PDF discovery and robots checks; browser rendering is unnecessary.
+- Extraction requires the exact final PDF URL, PDF content type and substantive competency markers. Stored evidence is explicit competency text with a warning that multi-column reading order/table alignment may differ. This is text-level validation, not visual verification of proficiency-column relationships; no claim of perfectly reconstructed tables.
+- The larger ICT framework is rejected by the 400-page limit. No partial document is stored and no source for it was added. Existing overview references remain references, not proof of PDF coverage.
+- Live end-to-end GenAI evidence: 5,642 words including warning; 296 tests passed; build imda-genai-pdf-1. Cloud acceptance pending. Fresh sessions receive the new source; existing session source edits remain untouched.
+
 ## PDF retrieval limits foundation — 2026-10-01
 
 - Added an 8,000,000-byte allowance only for the two reviewed exact IMDA PDF asset URLs when the final URL matches and robots permission succeeds. Other PDF/HTML downloads retain the 2,000,000-byte limit. PDF extraction rejects over 400 pages or 2,000,000 extracted characters, with no partial evidence returned.

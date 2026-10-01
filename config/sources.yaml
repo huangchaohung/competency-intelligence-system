@@ -1,4 +1,16 @@
 sources:
+- name: IMDA GenAI Technical Skills and Competencies
+  url: https://www.imda.gov.sg/assets/f9e0ac04-898f-4de7-bc89-e6b34aa2e7d8.pdf
+  organisation: Infocomm Media Development Authority (IMDA)
+  source_family: GOVERNMENT_AGENCY
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
 - name: IMDA ICT Skills Framework Overview
   url: https://www.imda.gov.sg/how-we-can-help/techskills-accelerator-tesa/skills-framework-for-infocomm-technology-sfw-for-ict
   organisation: Infocomm Media Development Authority (IMDA)

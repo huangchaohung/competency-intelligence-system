@@ -31,7 +31,18 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
-        from src.scanner.imda_framework import matches as is_imda_framework, overview_text
+        from src.scanner.imda_framework import matches as is_imda_framework, overview_text, GENAI_PDF_URL
+        if source.url == GENAI_PDF_URL:
+            if page.url != GENAI_PDF_URL or page.content_type != 'application/pdf':
+                raise ExtractionError('IMDA GenAI document response is not the reviewed PDF')
+            body = soup.select_one('article')
+            text = body.get_text('\n', strip=True) if body else ''
+            if len(text.split()) < 100 or not all(term in text.casefold() for term in ('skill description', 'generative ai', 'knowledge', 'abilities')):
+                raise ExtractionError('Insufficient IMDA GenAI competency document text')
+            return Evidence(None, scan_run_id, source.id or 0, EvidenceType.EXPLICIT_COMPETENCY.value,
+                            source.name, None, source.organisation, page.url,
+                            'PDF text extraction; multi-column reading order and table alignment may differ from the original. Consult the source PDF for precise proficiency-column relationships.\n\n' + text,
+                            datetime.now().astimezone(), 'EXPLICIT')
         if is_imda_framework(source.url):
             if not is_imda_framework(page.url):
                 raise ExtractionError('IMDA overview redirected away from reviewed page')

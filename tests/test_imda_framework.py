@@ -8,6 +8,23 @@ from src.models.domain import Source
 from src.core.exceptions import ScanError, ExtractionError
 
 
+def test_genai_pdf_is_direct_and_requires_real_pdf_content():
+    from src.scanner.imda_framework import GENAI_PDF_URL
+    source = Source(1, 'IMDA GenAI', GENAI_PDF_URL, 'IMDA')
+    assert SourceRouter(SimpleNamespace(is_allowed=lambda u: True)).discover(source) == [GENAI_PDF_URL]
+    text = 'Generative AI skill description knowledge abilities. ' * 25
+    html = '<article>'+text+'</article>'
+    result = ArticleExtractor().extract(DownloadedPage(GENAI_PDF_URL, html, 'application/pdf'), source, 1)
+    assert result.explicit_or_inferred == 'EXPLICIT'
+    assert 'multi-column reading order' in result.article_text
+    with pytest.raises(ExtractionError):
+        ArticleExtractor().extract(DownloadedPage(GENAI_PDF_URL, html), source, 1)
+    with pytest.raises(ExtractionError):
+        ArticleExtractor().extract(DownloadedPage(GENAI_PDF_URL, '<article>empty</article>', 'application/pdf'), source, 1)
+    with pytest.raises(ScanError):
+        SourceRouter(SimpleNamespace(is_allowed=lambda u: False)).discover(source)
+
+
 def test_imda_scope_and_overview_provenance():
     source = Source(1, 'IMDA ICT', URL, 'IMDA')
     text = 'Skills Framework ICT technical skills and career pathways. ' * 15
