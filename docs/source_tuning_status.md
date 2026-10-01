@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## MedTech short overview — 2026-10-01
+
+- Normal permitted local retrieval finds 129/176/78 visible body words on the root/pillars/enablers pages. Production extraction retains 119/156 words on the first two but rejected Enablers under the general 100-word minimum.
+- Exact Enablers route now accepts at least 50 words only with all five reviewed names present, preserves its body and labels it as a public overview, not a detailed competency framework. Missing reviewed sections now fail closed rather than falling back to page navigation. General thresholds unchanged.
+- 285 tests passed; build medtech-overview-1. No catalogue edits. This fixes a reproduced short-page rejection, not the unconfirmed reason for all Cloud MedTech output being empty. Cloud verification pending.
+
 ## SIMTech missing-body review — 2026-10-01
 
 - Investigated the two CONTENT_BODY_MISSING zero-output rows in the October 1 export: Sustainability Informatics & Strategy and Industrial Automation. Both URLs pass current local robots checks, retain their configured URL and expose the expected rich-text body.

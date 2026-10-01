@@ -123,8 +123,22 @@ class ArticleExtractor:
                     '/research/medical-technologies/innovation-pillars',
                     '/research/medical-technologies/enablers'}):
             body = soup.select_one('section.page-content__inner')
-            if body is not None:
-                soup = BeautifulSoup(str(body), 'lxml')
+            if body is None:
+                raise ExtractionError('MedTech content block unavailable')
+            soup = BeautifulSoup(str(body), 'lxml')
+            if parsed_url.path.lower().rstrip('/').endswith('/enablers'):
+                for unwanted in soup.select('script, style, nav, form'):
+                    unwanted.decompose()
+                text = soup.get_text('\n', strip=True)
+                names = ('Needs-Based Innovation', 'Talent Development',
+                         'Streamlined Funding and Evaluation', 'Market Access and Implementation',
+                         'National Platforms')
+                if len(text.split()) < 50 or not all(name.casefold() in text.casefold() for name in names):
+                    raise ExtractionError('Insufficient MedTech enablers overview')
+                return Evidence(None, scan_run_id, source.id or 0, self._classify_evidence_type(source).value,
+                                title, self._publication_date(soup), source.organisation, page.url,
+                                'Public enablers overview only; not a detailed competency framework.\n\n' + text,
+                                datetime.now().astimezone(), 'INFERRED')
         if parsed_url.hostname == 'sgbiodesign.sg':
             # Observed programme-page sections, not phrase-based truncation:
             # keep curriculum text but omit the alumni directory and consent UI.
