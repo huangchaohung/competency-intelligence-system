@@ -10,6 +10,11 @@ from src.services.collector_services import build_services
 ROOT = Path(__file__).resolve().parent
 
 
+def remember_navigation():
+    # Keep a non-widget key: Streamlit cleans up widgets omitted during work.
+    st.session_state['selected_page'] = st.session_state['navigation_widget']
+
+
 def main():
     st.set_page_config(page_title='STE Public Evidence Collector', layout='wide')
     st.caption('Your temporary workspace · Public information only · Download before leaving')
@@ -35,7 +40,13 @@ def main():
                 st.rerun()
         pages = {'Home': collector.home, 'Source Configuration': source_configuration.render,
                  'Scan & Download': collector.run_scan}
-        pages[st.sidebar.radio('Navigation', list(pages))](services)
+        selected = st.session_state.get('selected_page', 'Home')
+        if selected not in pages:
+            selected = 'Home'
+        st.session_state['navigation_widget'] = selected
+        page = st.sidebar.radio('Navigation', list(pages), key='navigation_widget',
+                                on_change=remember_navigation)
+        pages[page](services)
     finally:
         services['lock'].release()
 

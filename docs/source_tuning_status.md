@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## October 1 full-scan acceptance and navigation fix
+
+- Reviewed public_evidence (2).txt: 237 sources, 1,591 records across 132 organisations; per-source counts sum to 1,591 and match the manifest. Health: 109 Error, 64 Low evidence, 63 Healthy, 1 No evidence. Errors can include partial success; 48 sources actually have zero records.
+- Zero-output diagnostic occurrences: 21 EMPTY_HTML, 11 ROBOTS_RESTRICTED, 7 ACCESS_BLOCKED, 4 INSUFFICIENT_TEXT, 2 CONTENT_BODY_MISSING, 1 NO_LINKS, 1 OTHER_SCAN_ERROR. Categories are recorded hints, not definitive causes; the remaining zero-output row has no category.
+- SLA reviewed pages retain 197/169 words; RICS reviewed duplicate pair appears once; Zhejiang yields seven items (with a partial insufficient-text error); NTU Robotics has one scoped programme. Peking graduate/degree pages remain zero under robots restrictions. Ngee Ann engineering remains zero with OTHER_SCAN_ERROR and needs more specific diagnostics before a parser change.
+- Fixed page reset after operations: persist navigation in a separate non-widget session key, restored when the sidebar returns after scan/lock early exits. Regression tests cover both hidden-sidebar paths. Existing download tests verify explicit preparation and reuse without regeneration. 282 tests passed. No source catalogue edits this round; user should verify scan and TXT preparation stay on Scan & Download after deployment.
+
 ## RICS PDF alias review — 2026-10-01
 
 - Supplied September 29 export records 1233 and 1240 contain the same 3,839-word Real Estate Agency Associate Assessment guide at two PDF URLs. Added an exact-pair within-scan identity requiring matching organisation, query and whitespace-normalised full text. Other pathway guides and changed versions remain separate.

@@ -1,4 +1,40 @@
 from streamlit.testing.v1 import AppTest
+import pytest
+
+
+@pytest.mark.parametrize('busy_kind', ['scan', 'locked'])
+def test_navigation_survives_operation_without_sidebar(monkeypatch, busy_kind):
+    import app
+    from threading import Lock
+    from types import SimpleNamespace
+    import streamlit as st
+    state = {'running': False}
+    lock = Lock()
+    services = {'lock': lock, 'scan_job': SimpleNamespace(snapshot=lambda: state)}
+    monkeypatch.setattr(app, 'build_session_services', lambda root: services)
+    monkeypatch.setattr(app, 'refresh_scan_runtime', lambda services: False)
+    monkeypatch.setattr(app.collector, 'home', lambda services: st.header('Home test'))
+    monkeypatch.setattr(app.collector, 'run_scan', lambda services: st.header('Scan test'))
+    monkeypatch.setattr(app.collector, 'render_scan_progress', lambda services: st.info('Working'))
+    test = AppTest.from_string('import app\napp.main()').run()
+    test.sidebar.radio[0].set_value('Scan & Download').run()
+    assert test.session_state['selected_page'] == 'Scan & Download'
+    if busy_kind == 'scan':
+        state['running'] = True
+    else:
+        lock.acquire()
+    try:
+        test.run()
+        assert not test.sidebar.radio
+        assert not test.exception
+    finally:
+        state['running'] = False
+        if lock.locked():
+            lock.release()
+    test.run()
+    assert not test.exception
+    assert test.sidebar.radio[0].value == 'Scan & Download'
+    assert test.header[0].value == 'Scan test'
 
 
 def test_cloud_alias_uses_canonical_main():
