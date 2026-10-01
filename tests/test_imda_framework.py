@@ -32,6 +32,19 @@ def test_imda_rejects_empty_loading_and_denied_responses(html):
         overview_text(html)
 
 
+def test_document_references_are_scoped_and_not_claimed_as_retrieved():
+    text = 'Skills Framework ICT technical skills and career pathways. ' * 15
+    links = ('<a href="/assets/framework.pdf">Navigate SFw for ICT</a>' * 2
+             + '<a href="/assets/genai.pdf">New skills in GenAI</a>'
+             + '<a href="https://other.example/foreign.pdf">New skills in GenAI</a>'
+             + '<a href="/assets/tracking.pdf?secret=1">New skills in GenAI</a>')
+    result = overview_text('<main><article class="detail-content">'+text+links+'</article></main>')
+    assert 'Linked documents (not retrieved or analysed)' in result
+    assert result.count('https://www.imda.gov.sg/assets/framework.pdf') == 1
+    assert 'https://www.imda.gov.sg/assets/genai.pdf' in result
+    assert 'other.example' not in result and 'secret=1' not in result
+
+
 def test_browser_waits_for_content_and_closes_on_failure(monkeypatch):
     from unittest.mock import MagicMock
     import playwright.sync_api

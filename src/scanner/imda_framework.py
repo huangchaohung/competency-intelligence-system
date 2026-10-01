@@ -1,5 +1,5 @@
 """Bounded browser retrieval of the reviewed public ICT framework overview."""
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
 from src.core.exceptions import ScanError
 from src.scanner.web_page_scanner import DownloadedPage, MAX_RESPONSE_BYTES
@@ -29,6 +29,22 @@ def overview_text(html):
         raise ScanError('IMDA overview access-blocked')
     if len(text.split()) < 100 or 'skills framework' not in lowered or 'ict' not in lowered:
         raise ScanError('Insufficient IMDA framework overview text')
+    # Preserve auditable document references without claiming PDF retrieval.
+    # Only the two reviewed link labels inside the main overview are admitted.
+    references = []
+    seen = set()
+    for link in body.select('a[href]'):
+        label = link.get_text(' ', strip=True)
+        target = urljoin(URL, link['href'])
+        parsed = urlparse(target)
+        if (label in {'Navigate SFw for ICT', 'New skills in GenAI'}
+                and parsed.scheme == 'https' and parsed.netloc == 'www.imda.gov.sg'
+                and parsed.path.startswith('/assets/') and parsed.path.lower().endswith('.pdf')
+                and not parsed.query and not parsed.fragment and target not in seen):
+            seen.add(target)
+            references.append(f'{label}: {target}')
+    if references:
+        text += '\n\nLinked documents (not retrieved or analysed):\n' + '\n'.join(references)
     return text
 
 

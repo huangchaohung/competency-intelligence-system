@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## IMDA document references — 2026-10-01
+
+- Two actual rendered overview links were checked with normal robots permission and bounded HTTP reads. Both returned HTTP200 application/pdf: Navigate SFw for ICT (Content-Length 5,223,203 bytes) and New skills in GenAI (2,804,080 bytes). Both exceed the global 2,000,000-byte ceiling; reads stopped at its first exceeding chunk. PDF content was not parsed or validated.
+- Preserve the two reviewed same-host /assets/ PDF link titles and URLs in overview text, explicitly marked not retrieved or analysed. Reject external/query/fragment links and deduplicate references. No PDF-content claim, global limit increase or catalogue change.
+- 291 tests passed; build imda-document-links-1. Larger-document retrieval remains pending a bounded PDF-specific design. Cloud acceptance pending; no full scan needed solely for these references.
+
 ## IMDA scoped browser adapter implemented — 2026-10-01
 
 - Added the separate enabled IMDA ICT Skills Framework Overview source (government agency, supporting discovery, ARTICLE). SkillsFuture and ISA are unchanged. This adds ICT coverage; it does not replace the general sector framework sources.
