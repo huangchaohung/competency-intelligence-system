@@ -5,6 +5,23 @@ from src.scanner import web_page_scanner as module
 from src.core.exceptions import ScanError
 
 
+def test_pdf_page_references_preserve_original_numbers_when_pages_are_blank(monkeypatch):
+    from bs4 import BeautifulSoup
+    pages = [SimpleNamespace(extract_text=lambda: 'First page skills'),
+             SimpleNamespace(extract_text=lambda: ''),
+             SimpleNamespace(extract_text=lambda: 'Third page competencies')]
+    monkeypatch.setattr(module, 'PdfReader', lambda stream: SimpleNamespace(pages=pages))
+    response = Mock()
+    response.iter_content.return_value = [b'%PDF-1.7 test']
+    response.url = 'https://example.org/file.pdf'
+    result = module.WebPageScanner()._download_pdf(response, 'Test')
+    text = BeautifulSoup(result.html, 'lxml').get_text(' ', strip=True)
+    assert '[PDF page 1]' in text and '[PDF page 3]' in text
+    assert '[PDF page 2]' not in text
+    assert result.url == response.url
+    response.close.assert_called_once()
+
+
 def test_larger_limit_only_for_exact_reviewed_final_url(monkeypatch):
     scanner = module.WebPageScanner()
     scanner.is_allowed = lambda url: True

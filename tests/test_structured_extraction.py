@@ -108,7 +108,7 @@ def test_pdf_scanner_output_is_readable_as_catalogue(monkeypatch):
         url='https://example.org/curriculum'), 'Course & programme')
     source = Source(1, 'Curriculum', page.url, 'Org', source_type=SourceType.CATALOGUE)
     evidence = ArticleExtractor().extract(page, source, 1)
-    assert text == evidence.article_text
+    assert '[PDF page 1]\n' + text == evidence.article_text
 
 
 def test_framework_sources_preserve_hierarchy_and_are_explicit() -> None:

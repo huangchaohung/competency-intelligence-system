@@ -122,13 +122,13 @@ class WebPageScanner:
                 raise ScanError(f'PDF exceeds page limit: {source_name}')
             pages_text: list[str] = []
             text_chars = 0
-            for page in reader.pages:
+            for page_number, page in enumerate(reader.pages, start=1):
                 text = (page.extract_text() or "").strip()
                 text_chars += len(text)
                 if text_chars > MAX_PDF_TEXT_CHARS:
                     raise ScanError(f'PDF exceeds extracted text limit: {source_name}')
                 if text:
-                    pages_text.append(text)
+                    pages_text.append(f'[PDF page {page_number}]\n{text}')
         except ScanError:
             raise
         except Exception as error:

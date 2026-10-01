@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## PDF page provenance — 2026-10-01
+
+- Read-only bounded inspection confirms the large ICT framework is 561 pages / 5,223,203 bytes. Eight sampled pages show introductory navigation, tracks and a job-role table; this is not full content validation or visual table verification. It remains excluded by the 400-page production limit.
+- PDF text now retains [PDF page N] markers using original document numbering, including gaps for pages without extractable text. This supports officer cross-checking and future explicit section ranges; it does not reconstruct table columns or add OCR.
+- Existing PDF catalogue regression updated for the intentional page marker. No new sources or scan limits changed. Sectioned retrieval is still pending, not silently enabled. Build pdf-page-references-1.
+
 ## IMDA GenAI PDF enabled — 2026-10-01
 
 - Bounded production retrieval/extraction of the GenAI asset succeeds locally: 20 text-bearing pages, 5,620 document words. It includes named technical skills, descriptions, knowledge, abilities and proficiency descriptors. Added a separate enabled government FRAMEWORK / PRIMARY_DISCOVERY source with direct PDF discovery and robots checks; browser rendering is unnecessary.
