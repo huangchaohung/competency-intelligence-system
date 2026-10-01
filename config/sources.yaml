@@ -1,4 +1,16 @@
 sources:
+- name: IMDA ICT Skills Framework Overview
+  url: https://www.imda.gov.sg/how-we-can-help/techskills-accelerator-tesa/skills-framework-for-infocomm-technology-sfw-for-ict
+  organisation: Infocomm Media Development Authority (IMDA)
+  source_family: GOVERNMENT_AGENCY
+  source_type: ARTICLE
+  source_role: SUPPORTING_DISCOVERY
+  llm_allowed: true
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: true
 - name: AI Singapore
   url: https://aisingapore.org/category/ai-research/
   organisation: AI Singapore

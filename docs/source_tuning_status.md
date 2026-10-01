@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## IMDA scoped browser adapter implemented — 2026-10-01
+
+- Added the separate enabled IMDA ICT Skills Framework Overview source (government agency, supporting discovery, ARTICLE). SkillsFuture and ISA are unchanged. This adds ICT coverage; it does not replace the general sector framework sources.
+- Exact-page discovery and browser retrieval preserve robots checks, response status/scope checks, bounded navigation/content waits, rendered-size limits and browser cleanup. Reviewed main article selector excludes site navigation and Contact. Access notices, loading-only or short bodies fail closed; exceptions remain source-level failures, not whole-scan termination.
+- Initial live test exposed the container mounting before text; bounded text readiness fixed it. Production adapter then returned 397 overview words locally. Evidence explicitly says linked framework documents were not retrieved and remains inferred professional-resource evidence, not an explicit competency list.
+- 290 tests passed; build imda-overview-1. Cloud acceptance pending. Fresh sessions receive the added master source; existing session catalogues are intentionally preserved. Add the exact URL manually with browser rendering, or restore defaults only if willing to discard temporary source edits. Linked PDF retrieval remains separate future work.
+
 ## Framework browser checks — 2026-10-01
 
 - Ordinary headless Chromium, after robots permission checks on the configured URLs, was tested without challenge solving or login. SkillsFuture skills-framework redirects to jobsandskills.skillsfuture.gov.sg/frameworks/sector-information and displays an explicit access-restricted message. No further access attempted; not evidence of an empty framework.

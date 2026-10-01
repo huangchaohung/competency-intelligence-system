@@ -15,6 +15,11 @@ class SourceRouter:
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
         parsed_source = urlparse(source.url)
+        from src.scanner.imda_framework import matches as is_imda_framework
+        if is_imda_framework(source.url):
+            if not self._discovery._scanner.is_allowed(source.url):
+                raise ScanError('IMDA overview discovery is not permitted')
+            return [source.url]
         if source.url.rstrip('/') == 'https://www.zju.edu.cn/english/sustainability/main.htm':
             import re
             scanner = self._discovery._scanner

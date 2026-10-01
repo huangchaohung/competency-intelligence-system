@@ -90,7 +90,10 @@ class ScanWorkflow:
                     seen_urls.add(url)
                     try:
                         from src.scanner.nus_curriculum import matches as is_nus_curriculum, fetch_curriculum
-                        if source.use_browser_rendering and is_nus_curriculum(url):
+                        from src.scanner.imda_framework import matches as is_imda_framework, fetch_overview
+                        if source.use_browser_rendering and is_imda_framework(url):
+                            page = fetch_overview(self._scanner, url)
+                        elif source.use_browser_rendering and is_nus_curriculum(url):
                             page = fetch_curriculum(self._scanner, url)
                         else:
                             page = self._scanner.fetch_url(url, source.name)

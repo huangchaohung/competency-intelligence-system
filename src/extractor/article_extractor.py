@@ -31,6 +31,15 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
+        from src.scanner.imda_framework import matches as is_imda_framework, overview_text
+        if is_imda_framework(source.url):
+            if not is_imda_framework(page.url):
+                raise ExtractionError('IMDA overview redirected away from reviewed page')
+            text = overview_text(page.html)
+            return Evidence(None, scan_run_id, source.id or 0, EvidenceType.PROFESSIONAL_RESOURCE.value,
+                            title, None, source.organisation, page.url,
+                            'Public ICT framework overview only; linked framework documents were not retrieved.\n\n' + text,
+                            datetime.now().astimezone(), 'INFERRED')
         from src.scanner.np_engineering import is_course as is_np_course
         if is_np_course(page.url):
             curriculum = soup.select_one('main #what-you-will-learn')
