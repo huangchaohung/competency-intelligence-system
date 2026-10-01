@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## PDF retrieval limits foundation — 2026-10-01
+
+- Added an 8,000,000-byte allowance only for the two reviewed exact IMDA PDF asset URLs when the final URL matches and robots permission succeeds. Other PDF/HTML downloads retain the 2,000,000-byte limit. PDF extraction rejects over 400 pages or 2,000,000 extracted characters, with no partial evidence returned.
+- These are byte/page/output safeguards, not a hard CPU-time or decompression-memory sandbox. Document text quality remains unverified. Automatic IMDA document discovery and catalogue entries are deliberately not added yet; the overview still reports linked documents as not retrieved.
+- Regression coverage checks exact URL allowance, ordinary/redirected defaults, byte/page/text rejection and response cleanup. Next verify actual document parsing/content before enabling them in scans.
+
 ## IMDA document references — 2026-10-01
 
 - Two actual rendered overview links were checked with normal robots permission and bounded HTTP reads. Both returned HTTP200 application/pdf: Navigate SFw for ICT (Content-Length 5,223,203 bytes) and New skills in GenAI (2,804,080 bytes). Both exceed the global 2,000,000-byte ceiling; reads stopped at its first exceeding chunk. PDF content was not parsed or validated.

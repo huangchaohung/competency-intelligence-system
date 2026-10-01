@@ -17,6 +17,14 @@ except ImportError:  # pragma: no cover - optional dependency
 
 LOGGER = logging.getLogger(__name__)
 MAX_RESPONSE_BYTES = 2_000_000
+# Larger allowance only for the two reviewed IMDA framework assets.
+REVIEWED_LARGE_PDFS = {
+    'https://www.imda.gov.sg/assets/61b11126-441b-48fb-baed-5cebb6279305.pdf',
+    'https://www.imda.gov.sg/assets/f9e0ac04-898f-4de7-bc89-e6b34aa2e7d8.pdf',
+}
+MAX_FRAMEWORK_PDF_BYTES = 8_000_000
+MAX_PDF_PAGES = 400
+MAX_PDF_TEXT_CHARS = 2_000_000
 DEFAULT_HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
@@ -48,7 +56,13 @@ class WebPageScanner:
             response.raise_for_status()
             content_type = response.headers.get("Content-Type", "")
             if "pdf" in content_type.lower() or url.lower().endswith(".pdf"):
-                return self._download_pdf(response, source_name)
+                limit = MAX_RESPONSE_BYTES
+                if url in REVIEWED_LARGE_PDFS and response.url == url:
+                    if not self.is_allowed(url):
+                        response.close()
+                        raise ScanError('Reviewed PDF retrieval is not permitted')
+                    limit = MAX_FRAMEWORK_PDF_BYTES
+                return self._download_pdf(response, source_name, max_bytes=limit)
             if "html" not in content_type.lower():
                 raise ScanError(f"Source did not return HTML: {source_name}")
             chunks: list[bytes] = []
@@ -82,16 +96,19 @@ class WebPageScanner:
         except requests.RequestException as error:
             raise ScanError(f"Unable to download {source_name}: {error}") from error
 
-    def _download_pdf(self, response: requests.Response, source_name: str) -> DownloadedPage:
+    def _download_pdf(self, response: requests.Response, source_name: str, *, max_bytes=None) -> DownloadedPage:
         """Download a PDF and expose its extracted text as article-like HTML."""
+        if max_bytes is None:
+            max_bytes = MAX_RESPONSE_BYTES
         if PdfReader is None:
+            response.close()
             raise ScanError(f"PDF extraction requires pypdf for {source_name}")
         chunks = []
         total = 0
         try:
             for chunk in response.iter_content(8192):
                 total += len(chunk)
-                if total > MAX_RESPONSE_BYTES:
+                if total > max_bytes:
                     raise ScanError(f"Source response exceeds size limit: {source_name}")
                 chunks.append(chunk)
         finally:
@@ -101,11 +118,19 @@ class WebPageScanner:
             raise ScanError(f"Expected PDF but received non-PDF content: {source_name}")
         try:
             reader = PdfReader(BytesIO(content))
+            if len(reader.pages) > MAX_PDF_PAGES:
+                raise ScanError(f'PDF exceeds page limit: {source_name}')
             pages_text: list[str] = []
+            text_chars = 0
             for page in reader.pages:
                 text = (page.extract_text() or "").strip()
+                text_chars += len(text)
+                if text_chars > MAX_PDF_TEXT_CHARS:
+                    raise ScanError(f'PDF exceeds extracted text limit: {source_name}')
                 if text:
                     pages_text.append(text)
+        except ScanError:
+            raise
         except Exception as error:
             raise ScanError(f"Unable to extract PDF text: {source_name} ({type(error).__name__})") from error
         if not pages_text:
