@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## RICS PDF alias review — 2026-10-01
+
+- Supplied September 29 export records 1233 and 1240 contain the same 3,839-word Real Estate Agency Associate Assessment guide at two PDF URLs. Added an exact-pair within-scan identity requiring matching organisation, query and whitespace-normalised full text. Other pathway guides and changed versions remain separate.
+- No catalogue changes, archived-export rewrites or broad PDF deduplication. Review uses supplied content, not a new live-site availability check. Older document dates remain in their text; retrieval does not establish current applicability.
+- 280 tests passed; build rics-dedup-1. Cloud verification pending. Next consolidated scan should verify the accumulated scoped extraction and diagnostic changes; no scan required solely for this duplicate pair.
+
 ## NEA overview duplicate — 2026-09-29
 
 - Supplied export has identical 554-word Waste Minimisation and Recycling text at the 3R root and its waste-minimisation-and-recycling child. A narrow within-scan guard now keeps the first only when organisation, query and normalised full text match.

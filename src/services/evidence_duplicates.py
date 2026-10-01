@@ -6,6 +6,15 @@ from urllib.parse import urlparse
 def public_description_key(evidence):
     parsed = urlparse(evidence.url)
     text = getattr(evidence, 'article_text', '')
+    rics_root = '/content/dam/ricsglobal/documents/join-rics/'
+    rics_aliases = {
+        rics_root + 'RICS-Associate-Assessment-Real-Estate-Agency-Feb-2017.pdf',
+        rics_root + 'real-estate-agency-pathway-guide-associate-rics%20(1).pdf',
+    }
+    if (parsed.scheme == 'https' and parsed.hostname == 'www.rics.org'
+            and parsed.path in rics_aliases and text.strip()):
+        digest = sha256(' '.join(text.split()).encode('utf-8')).hexdigest()
+        return (evidence.organisation, parsed.hostname + rics_root + 'real-estate-agency', parsed.query, digest)
     nea_root = '/our-services/waste-management/3r-programmes-and-resources'
     if (parsed.scheme == 'https' and parsed.hostname == 'www.nea.gov.sg'
             and parsed.path.rstrip('/') in {nea_root, nea_root + '/waste-minimisation-and-recycling'}

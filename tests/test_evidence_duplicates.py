@@ -12,6 +12,22 @@ def test_same_webinar_slide_description_has_same_identity():
     assert public_description_key(evidence()) == public_description_key(evidence('example_sld'))
 
 
+def test_rics_reviewed_pdf_aliases_require_matching_content_and_provenance():
+    root = 'https://www.rics.org/content/dam/ricsglobal/documents/join-rics/'
+    a = SimpleNamespace(url=root+'RICS-Associate-Assessment-Real-Estate-Agency-Feb-2017.pdf',
+                        organisation='RICS', article_text='Associate assessment Real Estate Agency')
+    b = SimpleNamespace(url=root+'real-estate-agency-pathway-guide-associate-rics%20(1).pdf',
+                        organisation='RICS', article_text=a.article_text)
+    assert public_description_key(a) == public_description_key(b)
+    for field, value in [('article_text', a.article_text+' Revised'),
+                         ('organisation', 'Other'), ('url', b.url+'?version=2')]:
+        changed = SimpleNamespace(**vars(b))
+        setattr(changed, field, value)
+        assert public_description_key(a) != public_description_key(changed)
+    b.url = root+'building_control_pathway_guide_associate_rics.pdf'
+    assert public_description_key(b) is None
+
+
 def test_nea_overview_alias_requires_identical_content_and_keeps_children():
     root = 'https://www.nea.gov.sg/our-services/waste-management/3r-programmes-and-resources'
     a = SimpleNamespace(url=root, organisation='NEA', article_text='Waste minimisation overview')
