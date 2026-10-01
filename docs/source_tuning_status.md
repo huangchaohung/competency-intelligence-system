@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Framework browser checks — 2026-10-01
+
+- Ordinary headless Chromium, after robots permission checks on the configured URLs, was tested without challenge solving or login. SkillsFuture skills-framework redirects to jobsandskills.skillsfuture.gov.sg/frameworks/sector-information and displays an explicit access-restricted message. No further access attempted; not evidence of an empty framework.
+- IMDA's https://www.imda.gov.sg/how-we-can-help/techskills-accelerator-tesa/skills-framework-for-infocomm-technology-sfw-for-ict renders substantive public overview content normally after JavaScript. It describes ICT skill areas and links to the framework and GenAI materials. HTTP-only main content had been loading-only. Browser rendering therefore helps this exact candidate, but does not resolve SkillsFuture access.
+- Candidate scope is ICT, not all STE sectors. Do not silently replace the general SkillsFuture source or attribute IMDA content solely to SSG. No catalogue edits yet. Next implement a bounded exact-page browser body extraction with provenance and loading/access checks, then test linked document handling separately. The overview is not the full framework or linked PDF content.
+- Documentation-only; last suite 285 passed. ISA remains unchanged per user direction.
+
 ## SkillsFuture replacement review — 2026-10-01
 
 - Both configured skills-framework and skills-framework/skills-frameworks-faq URLs pass local robots checks but the normal HTTP scanner reports no readable HTML. This differs from the export's insufficient-text category; neither establishes that the underlying organisation lacks useful frameworks.
