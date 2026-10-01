@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## October 1 export (3) Cloud review
+
+- Latest supplied export: 239 scanned sources, 1,579 retained records across 133 organisations. Source totals equal the manifest count. Health: 111 Error, 65 Low evidence, 62 Healthy, 1 No evidence. These counts do not imply all partial-error sources are unusable.
+- IMDA overview and GenAI PDF each have zero records and OTHER_SCAN_ERROR. Optional full ICT PDF is absent from the scanned source snapshot, so sectioned retrieval was not tested. Do not mark either IMDA adapter Cloud-verified or infer a particular failure cause.
+- NP now reports LISTING_MISSING; MedTech and both SIMTech pages report CONTENT_BODY_MISSING. These remain differences from locally successful responses, not grounds to accept navigation text.
+- Requested the two IMDA messages from Recorded scan errors. Added fixed browser/PDF/dependency/code diagnostic categories for future exports while retaining the no-raw-error rule. This does not recover omitted details from an old export or fix the unconfirmed Cloud failure. Catalogue unchanged; no additional full scan requested yet.
+
 ## Optional sectioned ICT framework — 2026-10-01
 
 - Supersedes the earlier large-document exclusion: the exact reviewed ICT asset now permits up to 600 pages, retaining its 8 MB and 2 million extracted-character bounds. Other PDFs remain at 400 pages and their existing byte limits. This is not a hard CPU/memory sandbox.

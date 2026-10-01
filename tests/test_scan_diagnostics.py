@@ -1,5 +1,19 @@
 from types import SimpleNamespace
 from src.services.scan_diagnostics import source_diagnostics
+import pytest
+
+
+@pytest.mark.parametrize('message,code', [
+    ('IMDA browser retrieval failed: Error', 'BROWSER_ERROR'),
+    ('IMDA GenAI document response is not the reviewed PDF', 'PDF_INVALID_RESPONSE'),
+    ('Unable to extract PDF text: Test (PdfReadError)', 'PDF_EXTRACTION_ERROR'),
+    ('PDF exceeds page limit: Test', 'PDF_RESOURCE_LIMIT'),
+    ('cannot import name private from private/path', 'DEPENDENCY_ERROR'),
+    ('NameError: secret_private_variable is not defined', 'CODE_ERROR'),
+])
+def test_actionable_categories_do_not_expose_raw_details(message, code):
+    run = SimpleNamespace(sources_snapshot=[{'name': 'A'}], error_summary='A: '+message)
+    assert source_diagnostics(run) == {'A': [code]}
 
 
 def test_diagnostics_are_source_specific_and_never_copy_secrets():
