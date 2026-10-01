@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SkillsFuture replacement review — 2026-10-01
+
+- Both configured skills-framework and skills-framework/skills-frameworks-faq URLs pass local robots checks but the normal HTTP scanner reports no readable HTML. This differs from the export's insufficient-text category; neither establishes that the underlying organisation lacks useful frameworks.
+- Search identified official IMDA alternatives: https://www.imda.gov.sg/how-we-can-help/skills-framework and its directly linked https://www.imda.gov.sg/how-we-can-help/techskills-accelerator-tesa/skills-framework-for-infocomm-technology-sfw-for-ict . Normal permitted retrieval returns only Loading in main on both, not usable framework content. Search snippets are not substituted for extracted evidence; no replacement made.
+- These responses may need rendering, but browser success is not yet verified. Do not lower thresholds or treat navigation/loading text as competencies. Catalogue unchanged; no new test run for this documentation-only review (last suite 285 passed).
+- User decision: leave all ISA sources unchanged for now; retain permission review as a later task, not an automatic exclusion.
+
 ## ISA programme review — 2026-10-01
 
 - Configured ISA/IEC 62443 Cybersecurity Certificate Program URL is robots-permitted and returns substantive programme content locally, including certificate levels, prerequisites and linked training formats. This differs from the supplied Cloud insufficient-text outcome; Cloud cause remains unconfirmed.
