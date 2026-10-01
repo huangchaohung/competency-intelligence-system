@@ -239,6 +239,11 @@ class ArticleExtractor:
         for element in soup(["script", "style", "nav", "header", "footer", "aside", "form", "noscript"]):
             element.decompose()
         text = self._extract_catalogue_text(soup)
+        parsed = urlparse(page.url)
+        if (parsed.hostname == 'professional.mit.edu' and parsed.path.rstrip('/') == '/course-catalog'
+                and len(text.split()) < 100
+                and text.casefold().startswith('explore our course catalog below')):
+            raise ExtractionError('Navigation-only catalogue introduction; no course records extracted')
         if len(text.split()) < 8:
             raise ExtractionError(f"Insufficient catalogue text for {source.name}")
         if self._is_short_catalogue_utility(title, text):

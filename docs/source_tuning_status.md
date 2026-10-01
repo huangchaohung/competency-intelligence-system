@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Export (3) content-quality review
+
+- Reviewed the shortest 16 records and searched retained text for several common access/challenge phrases; none of those markers matched. This is a limited audit, not certification of all 1,579 records.
+- Exclude the exact ASCE committee meeting information form (35 words, administrative submission instructions). Reject MIT professional course-catalog only when extracted text is a short browse-the-catalogue introduction without course records (observed 47 words). Discovery remains enabled; substantive future catalogue content and short named-course lists are not blanket-rejected.
+- Preserve concise Energy Institute and Tsinghua course lists. No source removal or master URL changes. IMDA Cloud cause remains unresolved pending recorded errors. Build export3-content-1; new guards apply to subsequent scans, not the supplied export.
+
 ## October 1 export (3) Cloud review
 
 - Latest supplied export: 239 scanned sources, 1,579 retained records across 133 organisations. Source totals equal the manifest count. Health: 111 Error, 65 Low evidence, 62 Healthy, 1 No evidence. These counts do not imply all partial-error sources are unusable.
