@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## ISA programme review — 2026-10-01
+
+- Configured ISA/IEC 62443 Cybersecurity Certificate Program URL is robots-permitted and returns substantive programme content locally, including certificate levels, prerequisites and linked training formats. This differs from the supplied Cloud insufficient-text outcome; Cloud cause remains unconfirmed.
+- The same response displays a publisher notice restricting entry of ISA intellectual property into AI tools without express permission. Because the intended downstream workflow uploads collected evidence to a government AI assistant, seek organisational permission/licensing review before expanding extraction or transferring ISA material. Robots permission and public accessibility do not resolve that question. This is an observed notice, not a legal determination.
+- No parser expansion, replacement URL, disabling or deletion performed. Existing ISA sources remain unchanged pending user direction on permission or exclusion. Documentation-only; last code suite 285 passed. Other organisations can continue to be tuned independently.
+
 ## MedTech short overview — 2026-10-01
 
 - Normal permitted local retrieval finds 129/176/78 visible body words on the root/pillars/enablers pages. Production extraction retains 119/156 words on the first two but rejected Enablers under the general 100-word minimum.
