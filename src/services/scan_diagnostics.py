@@ -15,6 +15,10 @@ def source_diagnostics(run):
         'ROBOTS_RESTRICTED': ('robots.txt', 'not permitted'),
         'ACCESS_BLOCKED': ('incapsula', 'access-blocked', '403 client error', '401 client error', 'http 403', 'http 401'),
         'TIMEOUT': ('timeout', 'timed out'),
+        'NETWORK_ERROR': ('connection aborted', 'remotedisconnected', 'connection reset', 'name resolution', 'sslerror'),
+        'HTTP_ERROR': ('404 client error', '429 client error', '500 server error', '502 server error', '503 server error', '504 server error'),
+        'UNEXPECTED_REDIRECT': ('redirected away',),
+        'LISTING_MISSING': ('course listing unavailable',),
         'EMPTY_HTML': ('no readable html',),
         'CONTENT_BODY_MISSING': ('body unavailable', 'body missing', 'content block unavailable', 'curriculum unavailable'),
         'INSUFFICIENT_TEXT': ('insufficient', 'title but no substantive'),
@@ -24,5 +28,7 @@ def source_diagnostics(run):
     }
     for i, match in enumerate(matches):
         text = run.error_summary[match.end():matches[i+1].start() if i+1 < len(matches) else None].casefold()
-        result[match.group(1)] = [code for code, markers in rules.items() if any(m in text for m in markers)] or ['OTHER_SCAN_ERROR']
+        codes = [code for code, markers in rules.items() if any(m in text for m in markers)] or ['OTHER_SCAN_ERROR']
+        existing = result.setdefault(match.group(1), [])
+        existing.extend(code for code in codes if code not in existing)
     return result

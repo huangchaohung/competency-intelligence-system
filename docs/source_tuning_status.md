@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## NP Cloud discrepancy diagnostics — 2026-10-01
+
+- Normal robots-aware local discovery still returns nine NP engineering course links. This does not reproduce the Cloud zero-output result and is not proof of recovered Cloud extraction. No speculative catalogue or selector changes made.
+- Diagnostic export now distinguishes missing course listings, unexpected redirects, network failures and common HTTP failures. Repeated source errors retain the union of their categories rather than overwriting earlier errors. Only fixed categories are exported, never raw exception details or secret URLs.
+- 284 tests passed. Prior OTHER_SCAN_ERROR cannot be retroactively resolved from the supplied export. Next relevant scan can carry the richer categories; no full scan needed solely for this diagnostic change.
+
 ## October 1 full-scan acceptance and navigation fix
 
 - Reviewed public_evidence (2).txt: 237 sources, 1,591 records across 132 organisations; per-source counts sum to 1,591 and match the manifest. Health: 109 Error, 64 Low evidence, 63 Healthy, 1 No evidence. Errors can include partial success; 48 sources actually have zero records.

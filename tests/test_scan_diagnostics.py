@@ -13,3 +13,16 @@ def test_diagnostics_empty_and_unknown():
     assert source_diagnostics(run) == {}
     run.error_summary = 'A: unexpected secret detail'
     assert source_diagnostics(run) == {'A':['OTHER_SCAN_ERROR']}
+
+
+def test_repeated_source_errors_preserve_all_categories_without_duplicates():
+    run = SimpleNamespace(sources_snapshot=[{'name': 'NP'}], error_summary=
+        'NP: NP engineering course listing unavailable; NP: Connection aborted RemoteDisconnected; '
+        'NP: NP engineering redirected away from the listing; NP: Connection reset')
+    assert source_diagnostics(run) == {'NP': ['LISTING_MISSING', 'NETWORK_ERROR', 'UNEXPECTED_REDIRECT']}
+
+
+def test_http_diagnostics_do_not_export_error_urls():
+    run = SimpleNamespace(sources_snapshot=[{'name': 'A'}], error_summary=
+        'A: 503 Server Error for url https://example.org/private?token=secret')
+    assert source_diagnostics(run) == {'A': ['HTTP_ERROR']}
