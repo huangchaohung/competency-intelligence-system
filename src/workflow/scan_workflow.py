@@ -104,7 +104,13 @@ class ScanWorkflow:
                             LOGGER.info("Skipping utility redirect '%s' from '%s'", page.url, source.name)
                             source_stats["skipped_utility_count"] += 1
                             continue
-                        evidence = self._extractor.extract(page, source, run.id or 0)
+                        from src.scanner.web_page_scanner import ICT_FRAMEWORK_URL
+                        from src.extractor.ict_sections import extract_sections
+                        if source.url == ICT_FRAMEWORK_URL:
+                            records = extract_sections(page, source, run.id or 0)
+                        else:
+                            records = [self._extractor.extract(page, source, run.id or 0)]
+                        evidence = records[0]
                         if self._is_utility_url(evidence.url):
                             LOGGER.info("Skipping utility evidence '%s' from '%s'", evidence.url, source.name)
                             source_stats["skipped_utility_count"] += 1
@@ -124,18 +130,20 @@ class ScanWorkflow:
                         if len(article_errors) < 3:
                             article_errors.append(f'{url}: {type(error).__name__}: {error}')
                         continue
-                    if evidence.url in stored_urls:
-                        source_stats["skipped_duplicate_count"] += 1
-                        continue
-                    description_key = public_description_key(evidence)
-                    if description_key is not None and description_key in stored_descriptions:
-                        source_stats['skipped_duplicate_count'] += 1
-                        continue
-                    self._scans.add_evidence(evidence)
-                    stored_urls.add(evidence.url)
-                    if description_key is not None:
-                        stored_descriptions.add(description_key)
-                    source_stats["stored_evidence_count"] += 1
+                    for evidence in records:
+                        if evidence.url in stored_urls:
+                            source_stats["skipped_duplicate_count"] += 1
+                            continue
+                        description_key = public_description_key(evidence)
+                        if description_key is not None and description_key in stored_descriptions:
+                            source_stats['skipped_duplicate_count'] += 1
+                            continue
+                        self._scans.add_evidence(evidence)
+                        stored_urls.add(evidence.url)
+                        if description_key is not None:
+                            stored_descriptions.add(description_key)
+                        source_stats["stored_evidence_count"] += 1
+                    stored_urls.add(page.url)
                 if article_errors:
                     message = (f"{source_stats['skipped_extraction_error_count']} page(s) skipped. "
                                + ' | '.join(article_errors))

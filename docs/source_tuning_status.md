@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Optional sectioned ICT framework — 2026-10-01
+
+- Supersedes the earlier large-document exclusion: the exact reviewed ICT asset now permits up to 600 pages, retaining its 8 MB and 2 million extracted-character bounds. Other PDFs remain at 400 pages and their existing byte limits. This is not a hard CPU/memory sandbox.
+- Live full text extraction succeeds: 12 records covering pages 1–561, approximately 138,000 words including page labels/caveats. One download per scan, sections of up to 50 original page numbers, page-fragment URLs and range titles. These are retrieval boundaries, not semantic categories; table alignment/OCR completeness are not claimed.
+- Added IMDA ICT Full Framework (large PDF - optional), disabled by default to avoid unexpectedly swelling government-assistant uploads. Existing sources unchanged. If enabled, the configured evidence cap must accommodate all sections or the source fails without silently returning a partial document.
+- Regression tests cover page numbering, invalid markers, cap rejection and a single-download/multi-record workflow. Build ict-pdf-sections-1; Cloud verification pending. Use an isolated optional-source test before a full scan; existing sessions must add the source or deliberately reload defaults (discarding temporary edits).
+
 ## PDF page provenance — 2026-10-01
 
 - Read-only bounded inspection confirms the large ICT framework is 561 pages / 5,223,203 bytes. Eight sampled pages show introductory navigation, tracks and a job-role table; this is not full content validation or visual table verification. It remains excluded by the 400-page production limit.

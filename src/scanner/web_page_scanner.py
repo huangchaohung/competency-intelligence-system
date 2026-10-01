@@ -24,6 +24,7 @@ REVIEWED_LARGE_PDFS = {
 }
 MAX_FRAMEWORK_PDF_BYTES = 8_000_000
 MAX_PDF_PAGES = 400
+ICT_FRAMEWORK_URL = 'https://www.imda.gov.sg/assets/61b11126-441b-48fb-baed-5cebb6279305.pdf'
 MAX_PDF_TEXT_CHARS = 2_000_000
 DEFAULT_HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
@@ -62,7 +63,8 @@ class WebPageScanner:
                         response.close()
                         raise ScanError('Reviewed PDF retrieval is not permitted')
                     limit = MAX_FRAMEWORK_PDF_BYTES
-                return self._download_pdf(response, source_name, max_bytes=limit)
+                pages = 600 if url == ICT_FRAMEWORK_URL and response.url == url else MAX_PDF_PAGES
+                return self._download_pdf(response, source_name, max_bytes=limit, max_pages=pages)
             if "html" not in content_type.lower():
                 raise ScanError(f"Source did not return HTML: {source_name}")
             chunks: list[bytes] = []
@@ -96,10 +98,12 @@ class WebPageScanner:
         except requests.RequestException as error:
             raise ScanError(f"Unable to download {source_name}: {error}") from error
 
-    def _download_pdf(self, response: requests.Response, source_name: str, *, max_bytes=None) -> DownloadedPage:
+    def _download_pdf(self, response: requests.Response, source_name: str, *, max_bytes=None, max_pages=None) -> DownloadedPage:
         """Download a PDF and expose its extracted text as article-like HTML."""
         if max_bytes is None:
             max_bytes = MAX_RESPONSE_BYTES
+        if max_pages is None:
+            max_pages = MAX_PDF_PAGES
         if PdfReader is None:
             response.close()
             raise ScanError(f"PDF extraction requires pypdf for {source_name}")
@@ -118,7 +122,7 @@ class WebPageScanner:
             raise ScanError(f"Expected PDF but received non-PDF content: {source_name}")
         try:
             reader = PdfReader(BytesIO(content))
-            if len(reader.pages) > MAX_PDF_PAGES:
+            if len(reader.pages) > max_pages:
                 raise ScanError(f'PDF exceeds page limit: {source_name}')
             pages_text: list[str] = []
             text_chars = 0

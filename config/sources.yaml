@@ -1,4 +1,16 @@
 sources:
+- name: IMDA ICT Full Framework (large PDF - optional)
+  url: https://www.imda.gov.sg/assets/61b11126-441b-48fb-baed-5cebb6279305.pdf
+  organisation: Infocomm Media Development Authority (IMDA)
+  source_family: GOVERNMENT_AGENCY
+  source_type: FRAMEWORK
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: false
+  max_listing_pages: 5
+  use_browser_rendering: false
 - name: IMDA GenAI Technical Skills and Competencies
   url: https://www.imda.gov.sg/assets/f9e0ac04-898f-4de7-bc89-e6b34aa2e7d8.pdf
   organisation: Infocomm Media Development Authority (IMDA)
