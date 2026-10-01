@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SIMTech missing-body review — 2026-10-01
+
+- Investigated the two CONTENT_BODY_MISSING zero-output rows in the October 1 export: Sustainability Informatics & Strategy and Industrial Automation. Both URLs pass current local robots checks, retain their configured URL and expose the expected rich-text body.
+- End-to-end production extraction succeeds locally: 211 words of sustainability research capabilities (performance quantification, decarbonisation, resource circularity and digital platforms), and 239 words of industrial automation programme overview. These are overview records, not complete module syllabi.
+- The existing selectors match both local responses; no broader selector, URL replacement or source disablement is justified. Cloud response differences remain unresolved. This is a local check, not a Cloud recovery claim. Future investigation should use the Recorded scan errors section and richer diagnostics; never relax missing-body guards to admit navigation content.
+- Documentation-only checkpoint; no code changes or new test run. Last full regression suite: 284 passed. Continue remaining insufficient-content cases; no full rescan requested solely for these checks.
+
 ## NP Cloud discrepancy diagnostics — 2026-10-01
 
 - Normal robots-aware local discovery still returns nine NP engineering course links. This does not reproduce the Cloud zero-output result and is not proof of recovered Cloud extraction. No speculative catalogue or selector changes made.
