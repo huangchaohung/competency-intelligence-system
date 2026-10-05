@@ -31,8 +31,8 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
-        from src.extractor.harvard_course import URL as harvard_course_url, course_text as harvard_course_text
-        if page.url.rstrip('/') == harvard_course_url:
+        from src.extractor.harvard_course import matches as is_harvard_course, course_text as harvard_course_text
+        if is_harvard_course(page.url):
             return Evidence(None, scan_run_id, source.id or 0, EvidenceType.COURSE.value,
                             title, self._publication_date(soup), source.organisation, page.url,
                             harvard_course_text(page.html), datetime.now().astimezone(), 'EXPLICIT')

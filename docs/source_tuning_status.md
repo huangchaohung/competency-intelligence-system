@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Harvard course learning outcomes — 2026-10-05
+
+- Export review found related-course cards across Harvard PLL course records. Verified the shared course-description and course-nutshell fields on R Basics, neural networks/Python and entropy/equilibria pages. Apply scoped extraction to HTTPS pll.harvard.edu/course/ detail paths, preserving both description and available learning outcomes. Missing/ambiguous fields fail closed; catalogues and other hosts unaffected.
+- Live permitted results: 252, 383 and 275 words including notes respectively, learning outcomes present, related-course section absent. 333 tests passed; harvard-outcomes-1. Catalogue unchanged; Cloud acceptance pending. This cleans text, not automatic STE relevance certification for all Harvard offerings.
+
 ## Harvard reviewed course description — 2026-10-05
 
 - Export (3) AI Strategy for Business Leaders record included related-course titles. Exact reviewed course URL now reads only .group-course-description .body.field--name-body, excluding instructors and suggested-course cards. The broader body class was rejected after live verification showed navigation reuse; regression fixture includes that reuse.

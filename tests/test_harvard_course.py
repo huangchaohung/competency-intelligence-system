@@ -4,6 +4,20 @@ from src.extractor.article_extractor import ArticleExtractor
 from src.models.domain import Source
 from src.scanner.web_page_scanner import DownloadedPage
 from src.core.exceptions import ExtractionError
+from src.extractor.harvard_course import matches
+
+
+def test_harvard_learning_outcomes_are_preserved():
+    html = '<div class="group-course-description"><div class="field--name-field-course-nutshell">'
+    html += '<h2 class="field__label">What you will learn</h2><ul><li>Build neural networks with Python and explain backpropagation.</li></ul></div>'
+    html += '<div class="body field--name-body">Study practical models for supervised learning and evaluate their predictions with appropriate validation techniques.</div></div>'
+    html += '<aside>You may also like: unrelated course</aside>'
+    text = course_text(html)
+    assert 'backpropagation' in text and 'validation techniques' in text
+    assert 'unrelated course' not in text
+    assert matches('https://pll.harvard.edu/course/data-science-r-basics')
+    for url in ('https://pll.harvard.edu/catalog', 'https://other.example/course/test', 'https://pll.harvard.edu/course/', 'https://pll.harvard.edu.evil.example/course/test'):
+        assert not matches(url)
 
 
 def test_short_reviewed_description_excludes_related_courses():
