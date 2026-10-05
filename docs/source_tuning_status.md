@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SJTU GIFT section extraction — 2026-10-05
+
+- The configured /794 programme page mixed global navigation and lengthy admission paperwork into evidence. Exact-page extraction now retains reviewed programme-introduction, Sustainable Energy/Health Science, international opportunities and industrial experience sections, including nested headings. Other SJTU pages are unchanged.
+- Live permitted extraction yields 859 words including scope disclaimer; both programmes remain and Work@SJTU menu text is absent. Admission, scholarship, fee and contact sections are omitted. Missing reviewed content fails closed. This is a selected programme overview, not a complete syllabus.
+- Build sjtu-programme-1; no catalogue edits. Cloud acceptance pending. IMDA recorded errors remain outstanding independently.
+
 ## SJTU duplicate admissions review — 2026-10-05
 
 - Export (3) records 1301/1302 have identical 1,976-word text at degree-programs/267 and /270. Permitted local retrieval confirms shared graduate-admission content: general introduction, eligibility, deadlines, documents, fees, scholarships, contacts and appendix links; not actual curriculum or competency descriptions.
