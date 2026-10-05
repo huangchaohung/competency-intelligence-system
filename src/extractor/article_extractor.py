@@ -31,11 +31,11 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
-        from src.extractor.sjtu_programme import URL as sjtu_gift_url, programme_text
-        if page.url.rstrip('/') == sjtu_gift_url:
-            text = programme_text(page.html)
+        from src.extractor.sjtu_programme import TITLES as sjtu_titles, programme_text
+        if page.url.rstrip('/') in sjtu_titles:
+            text = programme_text(page.html, page.url.rstrip('/'))
             return Evidence(None, scan_run_id, source.id or 0, EvidenceType.PROFESSIONAL_RESOURCE.value,
-                            'SJTU GIFT undergraduate programmes: Sustainable Energy and Health Science and Technology',
+                            sjtu_titles[page.url.rstrip('/')],
                             self._publication_date(soup), source.organisation, page.url, text,
                             datetime.now().astimezone(), 'INFERRED')
         from src.scanner.imda_framework import matches as is_imda_framework, overview_text, GENAI_PDF_URL

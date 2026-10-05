@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SJTU civil engineering programme — 2026-10-05
+
+- Reviewed official degree-programs/778 HTML. Exact-page extraction retains Programme Introduction, What You’ll Study, career prospects, facilities and global mobilities, excluding navigation, fees and application paperwork. Programme-specific title prevents confusion with the configured GIFT discovery source.
+- Permitted live extraction: 509 words including selected-overview disclaimer; Digital Twin Technology retained, Work@SJTU and application-material instructions absent. Missing study section fails closed rather than falling back to navigation. Other programme pages unchanged.
+- 317 tests passed. Build sjtu-civil-1; catalogue unchanged. Cloud acceptance pending; changes apply to subsequent scans. Continue reviewing remaining programme pages; IMDA error details still outstanding.
+
 ## SJTU index and placeholder review — 2026-10-05
 
 - Export (3) stored degree-programs/825 as 257 words of navigation plus a link-out instruction, and /en/news-events/meet-sjtu/research as 249 words of navigation. Official-page review confirms the first is a School of Medicine link placeholder and the second a research-news index, not an article body.

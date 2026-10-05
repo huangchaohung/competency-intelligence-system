@@ -2,6 +2,33 @@ import pytest
 from src.extractor.sjtu_programme import programme_text
 from src.core.exceptions import ExtractionError
 from src.workflow.scan_workflow import ScanWorkflow
+from src.extractor.sjtu_programme import CIVIL_URL
+from src.extractor.article_extractor import ArticleExtractor
+from src.scanner.web_page_scanner import DownloadedPage
+from src.models.domain import Source
+
+
+def civil_html():
+    return ('<nav>Work@SJTU MENU</nav><div class="page-item"><div class="title">Programme Introduction</div>'
+            + 'Civil engineering and sustainable construction. ' * 22 + '</div>'
+            '<div class="page-item"><div class="title">What You’ll Study</div>Digital Twin Technology and Smart Construction Robotics</div>'
+            '<div class="page-item"><div class="title">Fees</div>FEE NOISE</div>')
+
+
+def test_civil_programme_extracts_study_content_with_specific_title():
+    source = Source(1, 'GIFT', 'https://example.org', 'SJTU')
+    result = ArticleExtractor().extract(DownloadedPage(CIVIL_URL, civil_html()), source, 1)
+    assert 'Civil Engineering' in result.title
+    assert 'Digital Twin Technology' in result.article_text
+    assert 'Work@SJTU' not in result.article_text and 'FEE NOISE' not in result.article_text
+    assert result.url == CIVIL_URL
+
+
+def test_civil_requires_study_section_and_reviewed_url():
+    with pytest.raises(ExtractionError):
+        programme_text(civil_html().replace('What You’ll Study', 'Admissions'), CIVIL_URL)
+    with pytest.raises(ExtractionError):
+        programme_text(civil_html(), 'https://example.org/778')
 
 
 def test_sjtu_placeholder_and_index_are_not_evidence_bodies():
