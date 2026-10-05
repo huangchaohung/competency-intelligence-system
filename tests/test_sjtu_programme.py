@@ -9,6 +9,23 @@ from src.models.domain import Source
 from src.extractor.sjtu_programme import CLUSTER_LANGUAGES
 from src.extractor.sjtu_programme import SUMMER_URL
 from src.extractor.sjtu_programme import EXCHANGE_URL
+from src.extractor.sjtu_programme import INTERNSHIP_URL
+
+
+def test_internship_retains_training_not_eligibility():
+    html = '<nav>MENU</nav><h2>About Summer Program</h2><div class="mce-content-body">'
+    html += 'Research training with academic mentors and project collaboration. ' * 15 + '</div>'
+    html += '<h2>What will participants receive?</h2><div class="mce-content-body">Research experience</div>'
+    html += '<h2>Eligibility Requirements</h2><div class="mce-content-body">GPA NOISE</div>'
+    result = ArticleExtractor().extract(DownloadedPage(INTERNSHIP_URL+'/', html), Source(1, 'SJTU', INTERNSHIP_URL, 'SJTU'), 1)
+    assert 'Research experience' in result.article_text
+    assert 'GPA NOISE' not in result.article_text and 'MENU' not in result.article_text
+    assert 'not a list of lab projects' in result.article_text
+    assert 'Internship' in result.title
+    with pytest.raises(ExtractionError):
+        programme_text(html.replace('What will participants receive?', 'Other'), INTERNSHIP_URL)
+    with pytest.raises(ExtractionError):
+        programme_text(html + html, INTERNSHIP_URL)
 
 
 def test_exchange_keeps_academic_section_and_restrictions_only():

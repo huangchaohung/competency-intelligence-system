@@ -8,6 +8,7 @@ HEADINGS = {'Programs Introduction', 'Sustainable Energy (SE)',
 CIVIL_URL = 'https://global.sjtu.edu.cn/en/study-sjtu/prospective/degree-programs/778'
 SUMMER_URL = 'https://global.sjtu.edu.cn/en/study-sjtu/prospective/non-degree-programs/522'
 EXCHANGE_URL = 'https://global.sjtu.edu.cn/en/study-sjtu/prospective/non-degree-programs/281'
+INTERNSHIP_URL = 'https://global.sjtu.edu.cn/en/summer-program'
 CLUSTER_LANGUAGES = {
     'https://global.sjtu.edu.cn/en/study-sjtu/prospective/degree-programs/278': 'English',
     'https://global.sjtu.edu.cn/en/study-sjtu/prospective/degree-programs/279': 'French',
@@ -17,6 +18,7 @@ TITLES = {
     CIVIL_URL: 'SJTU BEng in Civil Engineering (Smart and Sustainable Construction)',
     SUMMER_URL: 'SJTU Global Summer School overview (mixed disciplines)',
     EXCHANGE_URL: 'SJTU semester exchange: programmes and courses (mixed disciplines)',
+    INTERNSHIP_URL: 'SJTU Summer Research Internship: training overview',
 }
 TITLES.update({url: f'SJTU undergraduate Engineering Cluster ({language}-taught)'
                for url, language in CLUSTER_LANGUAGES.items()})
@@ -29,6 +31,8 @@ def programme_text(html, url=URL):
         raise ExtractionError('Unreviewed SJTU programme URL')
     allowed = CIVIL_HEADINGS if url == CIVIL_URL else HEADINGS
     soup = BeautifulSoup(html, 'lxml')
+    if url == INTERNSHIP_URL:
+        return _internship_text(soup)
     if url == EXCHANGE_URL:
         return _exchange_text(soup)
     if url == SUMMER_URL:
@@ -106,3 +110,23 @@ def _exchange_text(soup):
     return ('Selected exchange programmes and courses section, including access restrictions; '
             'not a complete syllabus. Mixed disciplines: select STE-relevant entries. '
             'Linked course documents have not been retrieved in this record.\n\n' + candidates[0])
+
+
+def _internship_text(soup):
+    wanted = ('About Summer Program', 'What will participants receive?')
+    sections = {}
+    for body in soup.select('.mce-content-body'):
+        heading = body.find_previous('h2')
+        label = heading.get_text(' ', strip=True) if heading else ''
+        if label not in wanted:
+            continue
+        if label in sections:
+            raise ExtractionError('SJTU internship section is ambiguous')
+        for unwanted in body.select('script, style, nav, form'):
+            unwanted.decompose()
+        sections[label] = body.get_text('\n', strip=True)
+    text = '\n\n'.join(label + '\n' + sections[label] for label in wanted if label in sections)
+    if len(sections) != 2 or len(text.split()) < 100 or 'research' not in text.casefold():
+        raise ExtractionError('SJTU internship academic sections unavailable')
+    return ('Research-training overview only, not a list of lab projects or a complete syllabus. '
+            'Eligibility and dates omitted.\n\n' + text)

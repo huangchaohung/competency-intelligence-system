@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SJTU summer research internship — 2026-10-05
+
+- Reviewed /en/summer-program/: preserve the About Summer Program and participant-benefit text blocks, excluding menu, eligibility and timeline. Label as research-training overview, not a complete project list or syllabus. Exact URL profile; missing or duplicate academic sections fail closed.
+- Live permitted extraction: 232 words including scope note; research-skills text retained, GPA instructions absent. 327 tests passed; build sjtu-internship-1. Catalogue unchanged, Cloud acceptance pending.
+- Research institutions directory inspected: predominantly policy/social-science think-tank descriptions with some interdisciplinary content. Left unchanged pending closer STE scope review rather than blanket exclusion.
+
 ## SJTU exchange and visiting pages — 2026-10-05
 
 - /281 has a reviewed accordion block headed 3. PROGRAMS & COURSES. Keep that block, including access restrictions and school descriptions; omit nomination, visa, accommodation, transcript and scholarship blocks. Mixed disciplines and unvisited linked-document scope are explicit. Live permitted extraction: 1,542 words including note; mechanical engineering and restrictions retained, visa section absent.
