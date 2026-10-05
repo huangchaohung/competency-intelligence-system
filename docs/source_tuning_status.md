@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Harvard reviewed course description — 2026-10-05
+
+- Export (3) AI Strategy for Business Leaders record included related-course titles. Exact reviewed course URL now reads only .group-course-description .body.field--name-body, excluding instructors and suggested-course cards. The broader body class was rejected after live verification showed navigation reuse; regression fixture includes that reuse.
+- Short substantive description is preserved: 41 words including scope note locally. This is a description, not a full syllabus. Missing/duplicate/empty body fails closed. Other Harvard URLs unchanged pending review. 332 tests passed; harvard-description-1. Catalogue unchanged; Cloud acceptance pending.
+
 ## SJTU overview checkpoint — 2026-10-05
 
 - Reviewed /en/research live with permitted retrieval: research metrics/rankings, navigation and news headlines, not detailed programme/course content. Exclude only this exact hub from storage; /research/institutions and other child pages remain eligible. Catalogue unchanged; existing exports unchanged.
