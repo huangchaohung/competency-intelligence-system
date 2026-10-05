@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Harvard subject-first discovery — 2026-10-05
+
+- The existing /catalog configuration now discovers course cards from official Computer Science, Data Science, Mathematics, Programming and Science subject pages, sharing max_listing_pages across requests. Interleave results to avoid first-subject dominance; deduplicate exact URLs and honour article cap/robots. Five-page default visits one page per subject; larger budgets can follow observed same-subject pagination.
+- Permitted local check found 25 unique course URLs within five listing requests. Harvard cross-lists business courses within technical subjects: this improves discovery focus but does not certify STE relevance. Additional clinical-only and general-business catalogue coverage is not the purpose of this route. 334 tests passed; harvard-subjects-1. No master catalogue changes; Cloud acceptance pending.
+
 ## Harvard course learning outcomes — 2026-10-05
 
 - Export review found related-course cards across Harvard PLL course records. Verified the shared course-description and course-nutshell fields on R Basics, neural networks/Python and entropy/equilibria pages. Apply scoped extraction to HTTPS pll.harvard.edu/course/ detail paths, preserving both description and available learning outcomes. Missing/ambiguous fields fail closed; catalogues and other hosts unaffected.

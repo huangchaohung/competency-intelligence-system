@@ -15,6 +15,9 @@ class SourceRouter:
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
         parsed_source = urlparse(source.url)
+        from src.scanner.harvard_catalogue import ROOT as harvard_root, discover as discover_harvard
+        if source.url.rstrip('/') == harvard_root:
+            return discover_harvard(source, self._discovery._scanner)
         from src.extractor.sjtu_catalogue import URL as sjtu_catalogue_url
         if source.url == sjtu_catalogue_url:
             if not self._discovery._scanner.is_allowed(source.url):
