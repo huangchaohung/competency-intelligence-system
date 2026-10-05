@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SJTU mixed research directory — 2026-10-05
+
+- Exact /en/research/institutions extraction now preserves accordion institute names and descriptions while removing menus and contact blocks. Retain interdisciplinary/policy material rather than claim every entry is STE. Title and preface explicitly distinguish this directory from courses or competency frameworks.
+- Permitted live check: 3,953 words including scope note, institute names retained, Work@SJTU and Tel: blocks absent. Missing heading/body fails closed. 329 tests passed; sjtu-directory-1. Catalogue unchanged; Cloud acceptance pending.
+- Further STE relevance is for downstream evidence assessment, not inferred from a research-directory URL. No blanket institution exclusion or fabricated course mapping.
+
 ## SJTU summer research internship — 2026-10-05
 
 - Reviewed /en/summer-program/: preserve the About Summer Program and participant-benefit text blocks, excluding menu, eligibility and timeline. Label as research-training overview, not a complete project list or syllabus. Exact URL profile; missing or duplicate academic sections fail closed.

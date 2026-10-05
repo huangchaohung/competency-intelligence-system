@@ -31,6 +31,11 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
+        from src.extractor.sjtu_institutes import URL as institute_url, TITLE as institute_title, directory_text
+        if page.url.rstrip('/') == institute_url:
+            return Evidence(None, scan_run_id, source.id or 0, EvidenceType.PROFESSIONAL_RESOURCE.value,
+                            institute_title, None, source.organisation, page.url, directory_text(page.html),
+                            datetime.now().astimezone(), 'INFERRED')
         from src.extractor.sjtu_catalogue import URL as sjtu_catalogue_url, TITLE as sjtu_catalogue_title, catalogue_text
         if source.url == sjtu_catalogue_url or page.url == sjtu_catalogue_url:
             text = catalogue_text(page)
