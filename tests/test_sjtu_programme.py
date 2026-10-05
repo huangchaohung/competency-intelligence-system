@@ -6,6 +6,23 @@ from src.extractor.sjtu_programme import CIVIL_URL
 from src.extractor.article_extractor import ArticleExtractor
 from src.scanner.web_page_scanner import DownloadedPage
 from src.models.domain import Source
+from src.extractor.sjtu_programme import CLUSTER_LANGUAGES
+
+
+@pytest.mark.parametrize('url,language', CLUSTER_LANGUAGES.items())
+def test_cluster_keeps_programme_identity_and_planned_status(url, language):
+    body = (f'Engineering Cluster Program in {language}. Mechanical Engineering. Robotics (Planned). '
+            + 'Engineering learning and programme information. ' * 25)
+    html = '<nav>MENU NOISE</nav><div class="page-item">'+body+'</div>'
+    html += '<div class="page-item"><div class="title">Fees</div>FEE NOISE</div>'
+    result = ArticleExtractor().extract(DownloadedPage(url, html), Source(1, 'GIFT', url, 'SJTU'), 1)
+    assert language in result.title and result.url == url
+    assert 'Robotics (Planned)' in result.article_text
+    assert 'NOISE' not in result.article_text
+    with pytest.raises(ExtractionError):
+        programme_text('<main>'+body+'</main>', url)
+    with pytest.raises(ExtractionError):
+        programme_text(html + '<div class="page-item">'+body+'</div>', url)
 
 
 def civil_html():

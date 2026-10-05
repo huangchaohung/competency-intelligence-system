@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SJTU engineering cluster programmes — 2026-10-05
+
+- Reviewed /278 English and /279 French pages using permitted live retrieval. Their substantive introductions are unheaded .page-item blocks; named sections contain admissions, fees and application paperwork. Exact-page profiles retain the introductions with distinct language-specific titles and a selected-overview disclaimer. Planned-offering qualifiers are preserved verbatim.
+- Live extraction: English 313 words, French 217 words; navigation and application-material sections absent. Missing or ambiguous introduction fails closed. 319 tests passed; build sjtu-cluster-1. Catalogue unchanged; Cloud acceptance pending.
+- /387 Chinese-taught page remains unchanged pending linked programme-list review: its visible Program List section is a link and administrative note, not the actual programme list. Do not claim that linked content was extracted.
+
 ## SJTU civil engineering programme — 2026-10-05
 
 - Reviewed official degree-programs/778 HTML. Exact-page extraction retains Programme Introduction, What You’ll Study, career prospects, facilities and global mobilities, excluding navigation, fees and application paperwork. Programme-specific title prevents confusion with the configured GIFT discovery source.
