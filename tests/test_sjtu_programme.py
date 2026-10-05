@@ -1,6 +1,18 @@
 import pytest
 from src.extractor.sjtu_programme import programme_text
 from src.core.exceptions import ExtractionError
+from src.workflow.scan_workflow import ScanWorkflow
+
+
+def test_sjtu_placeholder_and_index_are_not_evidence_bodies():
+    for path in ('/en/study-sjtu/prospective/degree-programs/825',
+                 '/en/news-events/meet-sjtu/research'):
+        assert ScanWorkflow._is_utility_url('https://global.sjtu.edu.cn' + path)
+        assert ScanWorkflow._is_utility_url('https://global.sjtu.edu.cn' + path + '/')
+        assert not ScanWorkflow._is_utility_url('https://other.example' + path)
+    assert not ScanWorkflow._is_utility_url('https://global.sjtu.edu.cn/en/news-events/meet-sjtu/research/1234')
+    for programme in ('794', '778', '278', '279', '387'):
+        assert not ScanWorkflow._is_utility_url('https://global.sjtu.edu.cn/en/study-sjtu/prospective/degree-programs/' + programme)
 
 
 def test_sjtu_keeps_study_sections_and_nested_health_not_admin():

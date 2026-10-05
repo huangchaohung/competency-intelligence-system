@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SJTU index and placeholder review — 2026-10-05
+
+- Export (3) stored degree-programs/825 as 257 words of navigation plus a link-out instruction, and /en/news-events/meet-sjtu/research as 249 words of navigation. Official-page review confirms the first is a School of Medicine link placeholder and the second a research-news index, not an article body.
+- Exclude these two exact destinations from evidence storage. Research article child URLs and programme pages remain eligible; no catalogue deletion or broad research exclusion. The index may still serve discovery, but its menu must not count as substantive evidence.
+- Build sjtu-index-1. Applies on a new scan; existing downloads unchanged. Cloud verification pending. Remaining programme-body cleanup and IMDA raw-error diagnosis remain open.
+
 ## SJTU GIFT section extraction — 2026-10-05
 
 - The configured /794 programme page mixed global navigation and lengthy admission paperwork into evidence. Exact-page extraction now retains reviewed programme-introduction, Sustainable Energy/Health Science, international opportunities and industrial experience sections, including nested headings. Other SJTU pages are unchanged.
