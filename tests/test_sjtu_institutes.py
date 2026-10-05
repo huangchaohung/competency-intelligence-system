@@ -4,6 +4,16 @@ from src.extractor.article_extractor import ArticleExtractor
 from src.scanner.web_page_scanner import DownloadedPage
 from src.models.domain import Source
 from src.core.exceptions import ExtractionError
+from src.workflow.scan_workflow import ScanWorkflow
+
+
+def test_research_hub_exclusion_preserves_detailed_directory():
+    root = 'https://global.sjtu.edu.cn/en/research'
+    assert ScanWorkflow._is_utility_url(root)
+    assert ScanWorkflow._is_utility_url(root + '/')
+    assert not ScanWorkflow._is_utility_url(URL)
+    assert not ScanWorkflow._is_utility_url(root + '/academic-strengths')
+    assert not ScanWorkflow._is_utility_url('https://other.example/en/research')
 
 
 def test_directory_preserves_attribution_and_mixed_scope():

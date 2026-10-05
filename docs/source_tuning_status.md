@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SJTU overview checkpoint — 2026-10-05
+
+- Reviewed /en/research live with permitted retrieval: research metrics/rankings, navigation and news headlines, not detailed programme/course content. Exclude only this exact hub from storage; /research/institutions and other child pages remain eligible. Catalogue unchanged; existing exports unchanged.
+- Build sjtu-overview-1; Cloud verification pending. This closes the reviewed SJTU overview cleanup. Next content-review candidate from export (3): Harvard course text containing a You may also like related-course block. Preserve concise legitimate course lists at Energy Institute and Tsinghua; word count alone is not a rejection rule.
+
 ## SJTU mixed research directory — 2026-10-05
 
 - Exact /en/research/institutions extraction now preserves accordion institute names and descriptions while removing menus and contact blocks. Retain interdisciplinary/policy material rather than claim every entry is STE. Title and preface explicitly distinguish this directory from courses or competency frameworks.

@@ -235,6 +235,8 @@ class ScanWorkflow:
         # Exact host/path matches avoid rejecting technical articles merely
         # mentioning privacy, recruitment, grants or applications.
         reviewed_utility_pages = {
+            # Research navigation/statistics hub, not a programme or article body.
+            ('global.sjtu.edu.cn', '/en/research'),
             # Visiting-student application/registration instructions, no subject catalogue.
             ('global.sjtu.edu.cn', '/en/study-sjtu/prospective/non-degree-programs/282'),
             # Admissions instructions; actual programme list is a separate PDF source.
