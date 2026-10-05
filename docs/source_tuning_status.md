@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SJTU exchange and visiting pages — 2026-10-05
+
+- /281 has a reviewed accordion block headed 3. PROGRAMS & COURSES. Keep that block, including access restrictions and school descriptions; omit nomination, visa, accommodation, transcript and scholarship blocks. Mixed disciplines and unvisited linked-document scope are explicit. Live permitted extraction: 1,542 words including note; mechanical engineering and restrictions retained, visa section absent.
+- /282 reviewed introduction and registration content offer visiting-student application procedures, not named subject programmes or competencies. Exclude only that exact destination from storage; exchange and summer-school pages remain eligible. No catalogue removal.
+- 326 tests passed; sjtu-exchange-1. Cloud acceptance pending; existing exports unchanged. Next: review remaining research institute and summer internship records; SJTU-only Cloud check is still suitable.
+
 ## SJTU summer-school overview — 2026-10-05
 
 - Reviewed non-degree /522: export had 424 words including extensive global navigation. Exact-page extraction retains the single unheaded overview and named course examples, with mixed-discipline/partial-catalogue scope explicit. No claim of full syllabi. Other non-degree pages remain unchanged.

@@ -8,6 +8,30 @@ from src.scanner.web_page_scanner import DownloadedPage
 from src.models.domain import Source
 from src.extractor.sjtu_programme import CLUSTER_LANGUAGES
 from src.extractor.sjtu_programme import SUMMER_URL
+from src.extractor.sjtu_programme import EXCHANGE_URL
+
+
+def test_exchange_keeps_academic_section_and_restrictions_only():
+    academic = '3. PROGRAMS &amp; COURSES Restricted Programs and Courses. Mechanical Engineering. '
+    academic += 'Academic programme descriptions and research fields. ' * 20
+    block = '<div class="slide-door">'+academic+'</div>'
+    html = '<div class="page-item"><div class="mce-content-body">'+block
+    html += '<div class="slide-door">4. PREPARATION BEFORE ARRIVAL VISA NOISE</div></div></div>'
+    text = programme_text(html, EXCHANGE_URL)
+    assert 'Mechanical Engineering' in text and 'Restricted Programs' in text
+    assert 'VISA NOISE' not in text and 'Mixed disciplines' in text
+    with pytest.raises(ExtractionError):
+        programme_text('<main>'+academic+'</main>', EXCHANGE_URL)
+    with pytest.raises(ExtractionError):
+        programme_text(html + html, EXCHANGE_URL)
+
+
+def test_visiting_application_exclusion_is_exact():
+    url = 'https://global.sjtu.edu.cn/en/study-sjtu/prospective/non-degree-programs/282'
+    assert ScanWorkflow._is_utility_url(url)
+    assert not ScanWorkflow._is_utility_url(EXCHANGE_URL)
+    assert not ScanWorkflow._is_utility_url(SUMMER_URL)
+    assert not ScanWorkflow._is_utility_url(url.replace('global.sjtu.edu.cn', 'other.example'))
 
 
 def test_summer_overview_keeps_examples_and_mixed_scope_not_menu():

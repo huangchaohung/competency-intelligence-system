@@ -7,6 +7,7 @@ HEADINGS = {'Programs Introduction', 'Sustainable Energy (SE)',
             'Health Science and Technology (HST)', 'International Opportunities', 'Industrial Experience'}
 CIVIL_URL = 'https://global.sjtu.edu.cn/en/study-sjtu/prospective/degree-programs/778'
 SUMMER_URL = 'https://global.sjtu.edu.cn/en/study-sjtu/prospective/non-degree-programs/522'
+EXCHANGE_URL = 'https://global.sjtu.edu.cn/en/study-sjtu/prospective/non-degree-programs/281'
 CLUSTER_LANGUAGES = {
     'https://global.sjtu.edu.cn/en/study-sjtu/prospective/degree-programs/278': 'English',
     'https://global.sjtu.edu.cn/en/study-sjtu/prospective/degree-programs/279': 'French',
@@ -15,6 +16,7 @@ TITLES = {
     URL: 'SJTU GIFT undergraduate programmes: Sustainable Energy and Health Science and Technology',
     CIVIL_URL: 'SJTU BEng in Civil Engineering (Smart and Sustainable Construction)',
     SUMMER_URL: 'SJTU Global Summer School overview (mixed disciplines)',
+    EXCHANGE_URL: 'SJTU semester exchange: programmes and courses (mixed disciplines)',
 }
 TITLES.update({url: f'SJTU undergraduate Engineering Cluster ({language}-taught)'
                for url, language in CLUSTER_LANGUAGES.items()})
@@ -27,6 +29,8 @@ def programme_text(html, url=URL):
         raise ExtractionError('Unreviewed SJTU programme URL')
     allowed = CIVIL_HEADINGS if url == CIVIL_URL else HEADINGS
     soup = BeautifulSoup(html, 'lxml')
+    if url == EXCHANGE_URL:
+        return _exchange_text(soup)
     if url == SUMMER_URL:
         return _summer_text(soup)
     if url in CLUSTER_LANGUAGES:
@@ -86,3 +90,19 @@ def _summer_text(soup):
         raise ExtractionError('SJTU summer school overview unavailable or ambiguous')
     return ('Public summer-school overview with example courses, not a complete course catalogue or syllabus. '
             'Mixed disciplines: select STE-relevant courses for downstream analysis.\n\n' + candidates[0])
+
+
+def _exchange_text(soup):
+    candidates = []
+    for item in soup.select('.page-item .mce-content-body > .slide-door'):
+        for unwanted in item.select('script, style, nav, form'):
+            unwanted.decompose()
+        text = item.get_text('\n', strip=True)
+        normalised = ' '.join(text.split())
+        if normalised.startswith('3. PROGRAMS & COURSES') and len(text.split()) >= 100:
+            candidates.append(text)
+    if len(candidates) != 1:
+        raise ExtractionError('SJTU exchange academic section unavailable or ambiguous')
+    return ('Selected exchange programmes and courses section, including access restrictions; '
+            'not a complete syllabus. Mixed disciplines: select STE-relevant entries. '
+            'Linked course documents have not been retrieved in this record.\n\n' + candidates[0])
