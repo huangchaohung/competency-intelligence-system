@@ -55,7 +55,7 @@ def test_sjtu_placeholder_and_index_are_not_evidence_bodies():
         assert ScanWorkflow._is_utility_url('https://global.sjtu.edu.cn' + path + '/')
         assert not ScanWorkflow._is_utility_url('https://other.example' + path)
     assert not ScanWorkflow._is_utility_url('https://global.sjtu.edu.cn/en/news-events/meet-sjtu/research/1234')
-    for programme in ('794', '778', '278', '279', '387'):
+    for programme in ('794', '778', '278', '279'):
         assert not ScanWorkflow._is_utility_url('https://global.sjtu.edu.cn/en/study-sjtu/prospective/degree-programs/' + programme)
 
 

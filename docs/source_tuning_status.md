@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SJTU admissions wrapper cleanup — 2026-10-05
+
+- Completed the /387 follow-up: exclude its exact HTML destination from stored evidence. Prior permitted content review found a programme-list link followed by application eligibility, deadlines, scholarships, fees and contacts; the actual PDF now has its own enabled source. Other programme pages and the PDF remain eligible.
+- Added ArticleExtractor integration checks for PDF organisation/source/scan provenance, mixed-scope disclaimer, page markers, and empty/redirected responses. 323 tests passed; build sjtu-admissions-2. No further catalogue changes or retrospective edits. Cloud acceptance pending.
+- Suitable next checkpoint: a fresh-session SJTU-only scan covering the GIFT source and new Chinese-taught PDF source; inspect programme text and PDF output before the next broad scan. Existing session source copies are not overwritten.
+
 ## SJTU linked programme PDF — 2026-10-05
 
 - /387 links directly to the official isc.sjtu.edu.cn 2026 Chinese-taught undergraduate programme PDF. Added that reviewed document as a separate enabled catalogue source; original GIFT source unchanged. Direct robots-checked PDF routing avoids treating admissions HTML as the programme list.

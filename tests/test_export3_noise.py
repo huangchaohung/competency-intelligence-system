@@ -15,10 +15,9 @@ def test_asce_meeting_form_is_not_a_standard():
 
 def test_sjtu_admissions_aliases_do_not_exclude_real_programmes():
     root = 'https://global.sjtu.edu.cn/en/study-sjtu/prospective/degree-programs/'
-    for slug in ('267', '270'):
+    for slug in ('267', '270', '387'):
         assert ScanWorkflow._is_utility_url(root+slug)
     assert not ScanWorkflow._is_utility_url(root+'794')
-    assert not ScanWorkflow._is_utility_url(root+'387')
     assert not ScanWorkflow._is_utility_url('https://other.example/en/study-sjtu/prospective/degree-programs/267')
 
 
