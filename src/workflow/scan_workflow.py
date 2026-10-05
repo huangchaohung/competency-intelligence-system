@@ -235,6 +235,8 @@ class ScanWorkflow:
         # Exact host/path matches avoid rejecting technical articles merely
         # mentioning privacy, recruitment, grants or applications.
         reviewed_utility_pages = {
+            ('global.sjtu.edu.cn', '/en/study-sjtu/prospective/degree-programs/267'),
+            ('global.sjtu.edu.cn', '/en/study-sjtu/prospective/degree-programs/270'),
             ('www.asce.org', '/publications-and-news/codes-and-standards/committee-meeting-information-form'),
             ('www.asce.org', '/publications-and-news/codes-and-standards/committee-application-form'),
             ('www.nea.gov.sg', '/programmes-grants/grants-and-awards'),

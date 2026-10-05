@@ -13,6 +13,15 @@ def test_asce_meeting_form_is_not_a_standard():
     assert not ScanWorkflow._is_utility_url('https://other.example'+path)
 
 
+def test_sjtu_admissions_aliases_do_not_exclude_real_programmes():
+    root = 'https://global.sjtu.edu.cn/en/study-sjtu/prospective/degree-programs/'
+    for slug in ('267', '270'):
+        assert ScanWorkflow._is_utility_url(root+slug)
+    assert not ScanWorkflow._is_utility_url(root+'794')
+    assert not ScanWorkflow._is_utility_url(root+'387')
+    assert not ScanWorkflow._is_utility_url('https://other.example/en/study-sjtu/prospective/degree-programs/267')
+
+
 def test_mit_intro_only_is_rejected_but_short_course_lists_remain(monkeypatch):
     url = 'https://professional.mit.edu/course-catalog'
     source = Source(1, 'MIT', url, 'MIT', source_type=SourceType.CATALOGUE)

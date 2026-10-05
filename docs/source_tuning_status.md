@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SJTU duplicate admissions review — 2026-10-05
+
+- Export (3) records 1301/1302 have identical 1,976-word text at degree-programs/267 and /270. Permitted local retrieval confirms shared graduate-admission content: general introduction, eligibility, deadlines, documents, fees, scholarships, contacts and appendix links; not actual curriculum or competency descriptions.
+- Exclude these two exact host/path destinations from stored evidence instead of treating them as two programmes or retaining one as primary evidence. Other SJTU pages (including configured /794 with substantive Sustainable Energy/Health Science programme descriptions) remain unchanged. No blanket admissions keyword exclusion or catalogue removal.
+- Build sjtu-admissions-1. Applies next scan; original exports are untouched. Appendix links may be useful future discovery candidates but their document content has not been validated. IMDA Cloud failure still awaits recorded errors.
+
 ## Tsinghua alias guard — 2026-10-05
 
 - Resumed the interrupted change from the export (3) audit. Tsinghua School of Environment /enven/ and /enven/index.htm contain identical 515-word text in the supplied export. Deduplicate only this exact pair within a scan when organisation, query and whitespace-normalised full text match.
