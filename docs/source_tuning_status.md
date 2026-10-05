@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SJTU summer-school overview — 2026-10-05
+
+- Reviewed non-degree /522: export had 424 words including extensive global navigation. Exact-page extraction retains the single unheaded overview and named course examples, with mixed-discipline/partial-catalogue scope explicit. No claim of full syllabi. Other non-degree pages remain unchanged.
+- Permitted live result: 196 words including scope note, surgical robotics retained, Work@SJTU absent. Missing/ambiguous body fails closed. 324 tests passed; sjtu-summer-1. Catalogue unchanged; Cloud acceptance pending.
+- /281 exchange fact sheet and /282 visiting-student page inspected: useful fragments are intermixed with substantial administrative material. Leave unchanged until section-level review; do not blanket-exclude non-degree programmes.
+
 ## SJTU admissions wrapper cleanup — 2026-10-05
 
 - Completed the /387 follow-up: exclude its exact HTML destination from stored evidence. Prior permitted content review found a programme-list link followed by application eligibility, deadlines, scholarships, fees and contacts; the actual PDF now has its own enabled source. Other programme pages and the PDF remain eligible.

@@ -7,6 +7,22 @@ from src.extractor.article_extractor import ArticleExtractor
 from src.scanner.web_page_scanner import DownloadedPage
 from src.models.domain import Source
 from src.extractor.sjtu_programme import CLUSTER_LANGUAGES
+from src.extractor.sjtu_programme import SUMMER_URL
+
+
+def test_summer_overview_keeps_examples_and_mixed_scope_not_menu():
+    text = 'Global Summer School courses include Data Science and Surgical Robotics. Chinese Law. '
+    text += 'Academic lectures and cultural activities for international students. ' * 15
+    html = '<nav>Work@SJTU</nav><div class="page-item">'+text+'</div>'
+    result = ArticleExtractor().extract(DownloadedPage(SUMMER_URL, html), Source(1, 'SJTU', SUMMER_URL, 'SJTU'), 1)
+    assert 'Surgical Robotics' in result.article_text and 'Chinese Law' in result.article_text
+    assert 'Mixed disciplines' in result.article_text and 'not a complete' in result.article_text
+    assert 'Work@SJTU' not in result.article_text
+    assert 'Summer School' in result.title and result.url == SUMMER_URL
+    with pytest.raises(ExtractionError):
+        programme_text('<main>'+text+'</main>', SUMMER_URL)
+    with pytest.raises(ExtractionError):
+        programme_text(html + '<div class="page-item">'+text+'</div>', SUMMER_URL)
 
 
 @pytest.mark.parametrize('url,language', CLUSTER_LANGUAGES.items())
