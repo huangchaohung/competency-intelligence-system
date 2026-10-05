@@ -6,6 +6,10 @@ from urllib.parse import urlparse
 def public_description_key(evidence):
     parsed = urlparse(evidence.url)
     text = getattr(evidence, 'article_text', '')
+    if (parsed.scheme == 'https' and parsed.hostname == 'www.tsinghua.edu.cn'
+            and parsed.path in {'/enven/', '/enven/index.htm'} and text.strip()):
+        digest = sha256(' '.join(text.split()).encode('utf-8')).hexdigest()
+        return (evidence.organisation, parsed.hostname + '/enven/', parsed.query, digest)
     rics_root = '/content/dam/ricsglobal/documents/join-rics/'
     rics_aliases = {
         rics_root + 'RICS-Associate-Assessment-Real-Estate-Agency-Feb-2017.pdf',

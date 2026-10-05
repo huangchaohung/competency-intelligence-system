@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Tsinghua alias guard — 2026-10-05
+
+- Resumed the interrupted change from the export (3) audit. Tsinghua School of Environment /enven/ and /enven/index.htm contain identical 515-word text in the supplied export. Deduplicate only this exact pair within a scan when organisation, query and whitespace-normalised full text match.
+- Different content, organisations and other department pages stay separate. Distinct IEEE webinars and NTU programme variants with shared descriptions are intentionally preserved. Shanghai Jiao Tong's identical programme-page pair remains pending content/provenance review.
+- No catalogue edits or retrospective export changes. Build tsinghua-alias-1; Cloud acceptance pending. IMDA failures still require Recorded scan errors; this change does not resolve them.
+
 ## Export (3) content-quality review
 
 - Reviewed the shortest 16 records and searched retained text for several common access/challenge phrases; none of those markers matched. This is a limited audit, not certification of all 1,579 records.

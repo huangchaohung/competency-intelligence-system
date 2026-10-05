@@ -12,6 +12,20 @@ def test_same_webinar_slide_description_has_same_identity():
     assert public_description_key(evidence()) == public_description_key(evidence('example_sld'))
 
 
+def test_tsinghua_environment_home_alias_only_when_content_matches():
+    a = SimpleNamespace(url='https://www.tsinghua.edu.cn/enven/', organisation='Tsinghua', article_text='Environmental research and teaching')
+    b = SimpleNamespace(**vars(a))
+    b.url += 'index.htm'
+    assert public_description_key(a) == public_description_key(b)
+    for field, value in [('article_text', a.article_text+' New research'),
+                         ('organisation', 'Other'), ('url', b.url+'?edition=2')]:
+        changed = SimpleNamespace(**vars(b))
+        setattr(changed, field, value)
+        assert public_description_key(a) != public_description_key(changed)
+    b.url = 'https://www.tsinghua.edu.cn/enven/research.htm'
+    assert public_description_key(b) is None
+
+
 def test_rics_reviewed_pdf_aliases_require_matching_content_and_provenance():
     root = 'https://www.rics.org/content/dam/ricsglobal/documents/join-rics/'
     a = SimpleNamespace(url=root+'RICS-Associate-Assessment-Real-Estate-Agency-Feb-2017.pdf',
