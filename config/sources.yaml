@@ -2648,6 +2648,18 @@ sources:
   enabled: true
   max_listing_pages: 5
   use_browser_rendering: false
+- name: Shanghai Jiao Tong — Chinese-taught programme list 2026
+  url: https://isc.sjtu.edu.cn/kindeditor/Upload/file/20251124/20251124165651_6651.pdf
+  organisation: Shanghai Jiao Tong
+  source_family: HIGHER_LEARNING
+  source_type: CATALOGUE
+  source_role: PRIMARY_DISCOVERY
+  llm_allowed: true
+  max_articles_per_scan: 25
+  article_url_pattern: ''
+  enabled: true
+  max_listing_pages: 5
+  use_browser_rendering: false
 - name: Shanghai Jiao Tong — 794
   url: https://global.sjtu.edu.cn/en/study-sjtu/prospective/degree-programs/794
   organisation: Shanghai Jiao Tong

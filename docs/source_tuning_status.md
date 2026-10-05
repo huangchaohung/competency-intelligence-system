@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SJTU linked programme PDF — 2026-10-05
+
+- /387 links directly to the official isc.sjtu.edu.cn 2026 Chinese-taught undergraduate programme PDF. Added that reviewed document as a separate enabled catalogue source; original GIFT source unchanged. Direct robots-checked PDF routing avoids treating admissions HTML as the programme list.
+- Production text extraction returns 721 words with five PDF page markers. Mixed STE/non-STE scope is explicit; no table-row relationship or complete-syllabus claim. No visual table fidelity certification. URL/type/content guards reject redirected or invalid responses. 321 tests passed; build sjtu-catalogue-1. Cloud acceptance pending.
+- New sessions receive the new default source. Existing session source copies are intentionally preserved: restore defaults only if temporary edits may be discarded, or add the PDF URL manually. /387 admissions HTML cleanup remains pending; no historical exports modified.
+
 ## SJTU engineering cluster programmes — 2026-10-05
 
 - Reviewed /278 English and /279 French pages using permitted live retrieval. Their substantive introductions are unheaded .page-item blocks; named sections contain admissions, fees and application paperwork. Exact-page profiles retain the introductions with distinct language-specific titles and a selected-overview disclaimer. Planned-offering qualifiers are preserved verbatim.
