@@ -15,6 +15,26 @@ class SourceRouter:
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
         parsed_source = urlparse(source.url)
+        if source.url.rstrip('/') == 'https://www.icheme.org/knowledge-networks/knowledge-resources/safety-centre/framework/knowledge-and-competence':
+            scanner = self._discovery._scanner
+            if not scanner.is_allowed(source.url):
+                raise ScanError('IChemE competency discovery is not permitted')
+            page = scanner.fetch_url(source.url, source.name)
+            if page.url.rstrip('/') != source.url.rstrip('/'):
+                raise ScanError('IChemE competency page redirected away from the reviewed page')
+            from src.scanner.web_page_scanner import REVIEWED_LARGE_PDFS
+            urls = []
+            for link in BeautifulSoup(page.html, 'lxml').select('a[href]'):
+                candidate = urljoin(page.url, link['href']).split('#')[0]
+                if (candidate.startswith('https://www.icheme.org/media/')
+                        and candidate in REVIEWED_LARGE_PDFS and candidate not in urls
+                        and scanner.is_allowed(candidate)):
+                    urls.append(candidate)
+                if len(urls) >= source.max_articles_per_scan:
+                    break
+            if not urls:
+                raise ScanError('No reviewed IChemE competency documents linked by the source page')
+            return urls
         from src.scanner.icheme_catalogue import ROOT as icheme_root, discover as discover_icheme
         if source.url.rstrip('/') == icheme_root:
             return discover_icheme(source, self._discovery._scanner)

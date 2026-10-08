@@ -122,7 +122,12 @@ class WebPageScanner:
             response.close()
         content = b''.join(chunks)
         if b'%PDF-' not in content[:1024]:
-            raise ScanError(f"Expected PDF but received non-PDF content: {source_name}")
+            # Report only a coarse format and byte count, never gateway payloads.
+            prefix = content[:1024].lstrip().lower()
+            kind = 'HTML' if b'<html' in prefix or b'<!doctype html' in prefix else 'unrecognised'
+            raise ScanError(f"Expected PDF but received non-PDF content: {source_name} "
+                            f"(response format: {kind}; received bytes: {len(content)}). "
+                            'The server may have returned an access notice; no document evidence was stored.')
         try:
             reader = PdfReader(BytesIO(content))
             if len(reader.pages) > max_pages:

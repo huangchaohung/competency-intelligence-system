@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Export (6) document discovery correction — 2026-10-08
+
+- Cloud recovered two IChemE PDFs (7,945 and 20,136 words) but also retained four navigation/overview records; Learning Outcomes was absent. Exact competency-root routing now selects only actually linked reviewed IChemE PDFs, bypassing generic keyword filtering and excluding navigation. Deduplication, robots checks, final landing-page validation and article cap remain enforced. Expected target: three documents, not six mixed records.
+- IMDA raw error confirms non-PDF bytes, not a size rejection. Cloud cause remains unknown; valid local response is not proof of Cloud access. Signature rejection now adds coarse HTML/unrecognised format and byte count without disclosing response payloads. No bypass, automatic URL swap or claim of recovery. Runtime icheme-documents-1; retest the existing two-source preset.
+
 ## Small test groups without manual unticking — 2026-10-08
 
 - Source Configuration offers Quick scan selection for personal sessions: one-click IChemE competency PDFs + IMDA GenAI preset, arbitrary multiselect, and Restore previous selection. Repeated test selections preserve the first enabled-state snapshot until restored. Restore does not overwrite source details, recreate removed rows, or alter new/changed-URL rows. Master configuration is unchanged.
