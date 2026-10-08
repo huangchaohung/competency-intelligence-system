@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Small test groups without manual unticking — 2026-10-08
+
+- Source Configuration offers Quick scan selection for personal sessions: one-click IChemE competency PDFs + IMDA GenAI preset, arbitrary multiselect, and Restore previous selection. Repeated test selections preserve the first enabled-state snapshot until restored. Restore does not overwrite source details, recreate removed rows, or alter new/changed-URL rows. Master configuration is unchanged.
+- Applying a selection discards unsaved editor drafts as indicated in the UI; it does not start a scan. Use Scan & Download normally. Session restart loses the restore snapshot and loads normal defaults. 370 tests passed; Cloud UI check pending.
+
 ## IChemE PDF size diagnosis and IMDA recheck — 2026-10-08
 
 - The Knowledge and Competence page links three permitted PDFs: media/12452/0007_18-competency_brochure-update.pdf (2,470,394 bytes, 28 pages), media/16241/competency-guidance-supplementary-guide.pdf (2,816,078 bytes, 85 pages), and media/14927/0008_18-learning_outcomes_brochure-final.pdf (3,044,103 bytes, 14 pages). All extracted text locally; their sizes explain the generic 2MB rejection. Allow these exact final URLs the existing 8MB reviewed-document ceiling, with robots, page/text bounds and signature checks unchanged. This is text extractability validation, not PDF table-layout fidelity certification.

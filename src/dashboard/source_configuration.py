@@ -58,6 +58,8 @@ def render(services: dict) -> None:
     if services.get('session_only'):
         _render_session_sources(services)
     sources = services["source_repository"].list_all()
+    if services.get('session_only'):
+        _render_quick_selection(services, sources)
     enabled_sources = [source for source in sources if source.enabled]
     st.info("Colour guide: 🟢 professional bodies; 🔵 higher learning; 🟣 government agencies.")
     _render_catalogue_exports(sources, enabled_sources)
@@ -76,6 +78,7 @@ def _render_session_sources(services):
     master = ConfigurationService(Path(__file__).resolve().parents[2] / 'config' / 'sources.yaml')
     if st.button('Restore default sources'):
         services['source_configuration_workflow'].replace_catalogue(master.load_sources())
+        st.session_state.pop('source_test_previous', None)
         st.session_state.pop('pending_source_catalogue', None)
         st.session_state['source_editor_revision'] = st.session_state.get('source_editor_revision', 0) + 1
         st.rerun()
@@ -92,6 +95,35 @@ def _render_session_sources(services):
                 st.session_state['pending_source_catalogue'] = proposed
                 st.session_state['pending_source_baseline'] = services['source_repository'].list_all()
                 st.success('Validated. Open Edit Sources below to review and apply the proposed changes.')
+            except ConfigurationError as error:
+                st.error(str(error))
+
+
+def _render_quick_selection(services, sources):
+    from src.services.source_test_selection import PDF_TEST_URLS, select_only, restore_selection
+    with st.expander('Quick scan selection', expanded=True):
+        st.caption('Test a small group without unticking every row. This changes only your session. Restore previous selection afterwards; source details and the master list stay unchanged. Applying a selection discards unsaved table drafts.')
+        labels = {s.url: f'{s.name} — {s.url}' for s in sources}
+        chosen = st.multiselect('Sources to test', list(labels), format_func=labels.get)
+        preset_available = PDF_TEST_URLS.issubset(labels)
+        preset = st.button('Test IChemE competency PDFs + IMDA GenAI only', disabled=not preset_available)
+        if not preset_available:
+            st.caption('The suggested PDF test needs both original URLs in your catalogue. You can select other sources above.')
+        apply = st.button('Enable only selected sources', disabled=not chosen)
+        restore = st.button('Restore previous selection', disabled='source_test_previous' not in st.session_state)
+        if preset or apply or restore:
+            try:
+                proposed = (restore_selection(sources, st.session_state['source_test_previous']) if restore
+                            else select_only(sources, PDF_TEST_URLS if preset else chosen))
+                services['source_configuration_workflow'].replace_catalogue(proposed)
+                if restore:
+                    st.session_state.pop('source_test_previous', None)
+                elif 'source_test_previous' not in st.session_state:
+                    st.session_state['source_test_previous'] = {s.url: s.enabled for s in sources}
+                st.session_state.pop('pending_source_catalogue', None)
+                st.session_state.pop('pending_source_baseline', None)
+                st.session_state['source_editor_revision'] = st.session_state.get('source_editor_revision', 0) + 1
+                st.rerun()
             except ConfigurationError as error:
                 st.error(str(error))
 
