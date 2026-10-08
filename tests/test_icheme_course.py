@@ -20,3 +20,16 @@ def test_only_reviewed_course_families_match():
     assert matches(base+'layer-of-protection-analysis-lopa/')
     assert not matches(base+'unreviewed-course/')
     assert not matches(base.replace('www.icheme.org','other.example')+'fundamentals-of-process-safety/')
+
+
+@pytest.mark.parametrize('slug', [
+    'hazop-study-for-team-leaders-and-team-members',
+    'practical-distillation-technology',
+    'production-process-and-emergency-systems-on-oil-and-gas-installations',
+    'human-factors-module-3',
+])
+def test_additional_reviewed_families_are_exactly_scoped(slug):
+    base = 'https://www.icheme.org/training-events/training/courses-a-z/'
+    assert matches(base + slug + '/scheduled-course/')
+    assert not matches(base + slug + '-unreviewed/')
+    assert not matches(base.replace('https:', 'http:') + slug + '/')

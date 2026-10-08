@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## IChemE additional reviewed course families — 2026-10-08
+
+- Extended section-scoped extraction only to HAZOP Study for Team Leaders and Team Members, Practical Distillation Technology, Production Process and Emergency Systems on Oil and Gas Installations, and Human Factors Module 3. Permitted live checks confirmed Overview, Learning outcomes, Who will benefit and Course outline headings; extracted 404, 247, 194 and 269 words respectively including the scope note.
+- Public outlines are retained instead of whole-page booking/promotional content. These checks cover one scheduled page per family, not every catalogue item. Other course families remain unchanged. 345 tests passed; icheme-outline-2. New-scan Cloud acceptance remains pending; no source configuration changes.
+
 ## IChemE reviewed course outlines — 2026-10-08
 
 - Scoped extraction for Layer of Protection Analysis and Fundamentals of Process Safety retains overview, learning outcomes, intended audience and course outline, excluding testimonials and booking sections. Missing expected sections fail explicitly rather than reverting to promotional text. Other course families are unchanged pending review.

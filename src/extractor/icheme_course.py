@@ -1,10 +1,16 @@
-"""Reviewed IChemE process-safety course sections."""
+"""Reviewed IChemE engineering course sections."""
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 from src.core.exceptions import ExtractionError
 
 PREFIX = '/training-events/training/courses-a-z/'
-SLUGS = {'layer-of-protection-analysis-lopa', 'fundamentals-of-process-safety'}
+SLUGS = {
+    'layer-of-protection-analysis-lopa', 'fundamentals-of-process-safety',
+    'hazop-study-for-team-leaders-and-team-members',
+    'practical-distillation-technology',
+    'production-process-and-emergency-systems-on-oil-and-gas-installations',
+    'human-factors-module-3',
+}
 
 
 def matches(url):
