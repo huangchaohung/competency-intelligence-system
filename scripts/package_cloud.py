@@ -5,7 +5,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 
 
 def deployment_files(root):
-    names = ['app.py', 'cloud_app.py', 'requirements.txt', 'packages.txt',
+    names = ['app.py', 'requirements.txt', 'packages.txt',
              '.gitignore', 'config/sources.yaml', 'docs/streamlit_cloud_deployment.md',
              'README.md', 'CONTRIBUTING.md', 'SECURITY.md', 'requirements-dev.txt',
              'pyproject.toml', 'docs/architecture.md', 'docs/operations.md',

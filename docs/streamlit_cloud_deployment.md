@@ -1,6 +1,6 @@
 # Streamlit Cloud deployment — session workspaces
 
-1. Deploy the reviewed GitHub repository/branch using **app.py**. cloud_app.py is only a compatibility alias.
+1. Deploy the reviewed GitHub repository/branch using **app.py**, the only supported entrypoint for both local and Cloud use.
 2. Install from requirements.txt and packages.txt (Linux Chromium). Python 3.12 is the cloud trial target; local Windows tests are not Linux/browser acceptance.
 3. No ADMIN_PASSWORD or OpenAI key is needed. Old ADMIN_PASSWORD secrets are unused and may be removed.
 4. Restrict platform sharing to approved users. Removing the in-app administrator panel does not mean the crawler is hardened for anonymous internet traffic. See SECURITY.md.

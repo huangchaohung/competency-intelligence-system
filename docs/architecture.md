@@ -11,7 +11,7 @@ Master config/sources.yaml (read-only)
 
 ## Components
 
-`app.py` is the single entrypoint; `cloud_app.py` is a compatibility alias. `session_workspace.py` constructs separate SQLite `:memory:` services for each Streamlit session, with in-memory temporary tables and a per-session lock. It does not use a globally cached database or write YAML. `MemoryConfiguration` validates and copies sources without implementing disk saves. Legacy `collector_services.py` remains for compatibility tests/scripts, not the active entrypoint.
+`app.py` is the only entrypoint for local and Cloud use. `session_workspace.py` constructs separate SQLite `:memory:` services for each Streamlit session, with in-memory temporary tables and a per-session lock. It does not use a globally cached database or write YAML. `MemoryConfiguration` validates and copies sources without implementing disk saves. Legacy `collector_services.py` remains for compatibility tests/scripts, not the active entrypoint.
 
 Discovery uses `article_discovery.py` and site-specific routing. Requests fetches HTML/PDF, BeautifulSoup/lxml extracts HTML, pypdf handles text PDFs (no OCR), and Playwright/Chromium renders supported pages. The Browser toggle primarily affects discovery; full browser article extraction is not universal. HTTP responses/timeouts are bounded; site-specific paths differ. No AI API calls occur.
 

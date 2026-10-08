@@ -1,5 +1,9 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Single deployment entrypoint — 2026-10-08
+
+- Removed legacy Cloud alias; deploy app.py only. Packaging and active guides now agree. Recent scanner fixes are in imported modules; app build remains icheme-documents-1. Alias removal does not establish that Cloud has loaded the latest commit. Archived development notes describe superseded designs, not current deployment instructions.
+
 ## Export (6) document discovery correction — 2026-10-08
 
 - Cloud recovered two IChemE PDFs (7,945 and 20,136 words) but also retained four navigation/overview records; Learning Outcomes was absent. Exact competency-root routing now selects only actually linked reviewed IChemE PDFs, bypassing generic keyword filtering and excluding navigation. Deduplication, robots checks, final landing-page validation and article cap remain enforced. Expected target: three documents, not six mixed records.

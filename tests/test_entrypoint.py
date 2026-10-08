@@ -37,10 +37,11 @@ def test_navigation_survives_operation_without_sidebar(monkeypatch, busy_kind):
     assert test.header[0].value == 'Scan test'
 
 
-def test_cloud_alias_uses_canonical_main():
+def test_only_canonical_entrypoint_exists():
+    from pathlib import Path
     import app
-    import cloud_app
-    assert cloud_app.main is app.main
+    assert callable(app.main)
+    assert not Path(app.__file__).with_name('cloud_app.py').exists()
 
 
 def test_canonical_app_has_no_admin_and_session_navigation(monkeypatch, tmp_path):

@@ -42,6 +42,8 @@ def test_deployment_allowlist_excludes_data():
     from scripts.package_cloud import deployment_files
     root = Path(__file__).resolve().parents[1]
     paths = [p.relative_to(root).as_posix() for p in deployment_files(root)]
-    assert 'cloud_app.py' in paths
+    assert 'app.py' in paths
+    assert 'cloud_app.py' not in paths
+    assert not (root / 'cloud_app.py').exists()
     assert 'config/sources.yaml' in paths
     assert all(not p.startswith(('data/', 'logs/', '.env', '.streamlit/')) for p in paths)

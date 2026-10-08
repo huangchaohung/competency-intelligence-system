@@ -25,7 +25,7 @@ On Linux/macOS activate with `source .venv/bin/activate`. Linux browser dependen
 
 Use **`app.py` everywhere**, locally and on Streamlit Cloud. There is no administrator mode or API key. Each browser session gets its own temporary workspace. See [deployment instructions](docs/streamlit_cloud_deployment.md).
 
-Sources and evidence are held in a session-specific in-memory database, not saved to `.cloud_runtime/` or `data/`. Existing disk data is left untouched and never loaded by the UI. `cloud_app.py` is only a compatibility alias. New sessions start from the read-only master `config/sources.yaml` with no evidence. Brief reconnections may resume a session; **Start fresh** explicitly discards it.
+Sources and evidence are held in a session-specific in-memory database, not saved to `.cloud_runtime/` or `data/`. Existing disk data is left untouched and never loaded by the UI. Use `app.py` for both local and Cloud deployments. New sessions start from the read-only master `config/sources.yaml` with no evidence. Brief reconnections may resume a session; **Start fresh** explicitly discards it.
 
 ## Officer workflow
 
