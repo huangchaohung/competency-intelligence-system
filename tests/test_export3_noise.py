@@ -21,6 +21,19 @@ def test_tsinghua_duration_overview_does_not_exclude_short_curriculum():
     assert not ScanWorkflow._is_utility_url('https://www.3e.tsinghua.edu.cn/en/category/education-teaching-curriculum-en')
 
 
+def test_icheme_unresolved_course_template_is_not_evidence(monkeypatch):
+    url = 'https://www.icheme.org/training-events/training/courses-a-z'
+    source = Source(1, 'IChemE', url, 'IChemE', source_type=SourceType.CATALOGUE)
+    extractor = ArticleExtractor()
+    monkeypatch.setattr(extractor, '_extract_catalogue_text', lambda soup:
+        'Search our courses. Sorry, no events found. {{eventItem.Title}} {{eventItem.DateDisplayCalculated}}')
+    with pytest.raises(ExtractionError, match='unresolved template'):
+        extractor.extract(DownloadedPage(url, '<title>Courses A-Z</title>'), source, 1)
+    courses = 'Process Safety Leadership and Management\n\nAdvanced Chemical Process Engineering and Design'
+    monkeypatch.setattr(extractor, '_extract_catalogue_text', lambda soup: courses)
+    assert extractor.extract(DownloadedPage(url, '<title>Courses A-Z</title>'), source, 1).article_text == courses
+
+
 def test_sjtu_admissions_aliases_do_not_exclude_real_programmes():
     root = 'https://global.sjtu.edu.cn/en/study-sjtu/prospective/degree-programs/'
     for slug in ('267', '270', '387'):

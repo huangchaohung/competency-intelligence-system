@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## IChemE unresolved catalogue template — 2026-10-08
+
+- Export (3) Courses A-Z record contains unfilled eventItem template fields and a no-events message. Permitted live HTTP review confirms the same unresolved fields. Exact catalogue extraction now fails with an explicit reason when those fields remain in extracted text, rather than counting them as evidence.
+- Source stays configured and short genuine course lists remain accepted. This does not recover the missing dynamic catalogue; browser/API investigation remains next. Build icheme-template-1, Cloud acceptance pending. Existing downloads unchanged.
+
 ## Tsinghua postgraduate overview — 2026-10-08
 
 - Reviewed the public 3e.tsinghua.edu.cn postgraduate overview via permitted retrieval: only master's/doctoral study durations and an admissions link, matching the 46-word export record. Exclude that exact host/path from evidence storage; preserve the separate named-course curriculum and other research pages.

@@ -263,6 +263,10 @@ class ArticleExtractor:
             element.decompose()
         text = self._extract_catalogue_text(soup)
         parsed = urlparse(page.url)
+        if (parsed.hostname == 'www.icheme.org'
+                and parsed.path.rstrip('/') == '/training-events/training/courses-a-z'
+                and re.search(r'\{\{\s*eventItem\.', text)):
+            raise ExtractionError('IChemE course listing contains unresolved template fields; course records not reliably extracted')
         if (parsed.hostname == 'professional.mit.edu' and parsed.path.rstrip('/') == '/course-catalog'
                 and len(text.split()) < 100
                 and text.casefold().startswith('explore our course catalog below')):
