@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Export (8) document acceptance — 2026-10-08
+
+- Cloud now returns exactly the three reviewed IChemE documents, approximately 31,287 words, with original PDF page markers; navigation records removed. Targeted discovery accepted. Text extraction is not a guarantee of PDF table reading order.
+- Exact IChemE source health now recognises retrieval of all three expected document URLs instead of requiring five records. The reason explicitly separates retrieval completeness from content quality; errors retain precedence, missing documents retain low-output status, and other sources keep existing rules. Runtime icheme-health-1.
+- IMDA Cloud response confirmed HTML, 2,407 bytes, not a PDF. The actual notice contents and root cause remain unknown. Local success does not resolve Cloud access. Keep visible error; no automatic replacement or access-control workaround.
+
 ## Single deployment entrypoint — 2026-10-08
 
 - Removed legacy Cloud alias; deploy app.py only. Packaging and active guides now agree. Recent scanner fixes are in imported modules; app build remains icheme-documents-1. Alias removal does not establish that Cloud has loaded the latest commit. Archived development notes describe superseded designs, not current deployment instructions.

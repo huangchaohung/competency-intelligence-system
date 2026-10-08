@@ -6,6 +6,12 @@ import re
 from src.models.domain import Source
 
 LOW_EVIDENCE_THRESHOLD = 5
+ICHEME_DOCUMENT_ROOT = 'https://www.icheme.org/knowledge-networks/knowledge-resources/safety-centre/framework/knowledge-and-competence'
+ICHEME_EXPECTED_DOCUMENTS = {
+    'https://www.icheme.org/media/12452/0007_18-competency_brochure-update.pdf',
+    'https://www.icheme.org/media/16241/competency-guidance-supplementary-guide.pdf',
+    'https://www.icheme.org/media/14927/0008_18-learning_outcomes_brochure-final.pdf',
+}
 FALLBACK_READINESS_READY = "Ready for prompt review"
 FALLBACK_READINESS_ACCESS = "Needs access review"
 FALLBACK_READINESS_SIGNAL = "Optional signal recovery"
@@ -251,11 +257,15 @@ def source_health_rows(run, evidence: list, source_lookup: dict[int, Source] | N
         name = source.get("name", f"Source {index}")
         organisation = source.get("organisation", "Unknown")
         has_error = _source_has_error(error_text, str(name))
+        reviewed_documents_complete = (
+            str(source.get('url', '')).rstrip('/') == ICHEME_DOCUMENT_ROOT
+            and ICHEME_EXPECTED_DOCUMENTS.issubset({getattr(item, 'url', '') for item in evidence
+                                                  if item.source_id == source_id}))
         if has_error:
             status = "Error"
         elif count == 0:
             status = "No evidence"
-        elif count < LOW_EVIDENCE_THRESHOLD:
+        elif count < LOW_EVIDENCE_THRESHOLD and not reviewed_documents_complete:
             status = "Low evidence"
         else:
             status = "Healthy"
@@ -271,7 +281,12 @@ def source_health_rows(run, evidence: list, source_lookup: dict[int, Source] | N
                 "Source": name,
                 "Source URL": source.get("url", ""),
                 "Country": source.get("country", "Unknown"),
-                "Reason": "Crawler error or access issue" if has_error else ("Crawler produced no retained evidence" if count == 0 else "Evidence output below source-health threshold" if count < LOW_EVIDENCE_THRESHOLD else "Source produced enough retained evidence"),
+                "Reason": "Crawler error or access issue" if has_error else (
+                    "All three reviewed competency documents retrieved; inspect content quality separately"
+                    if reviewed_documents_complete else
+                    "Crawler produced no retained evidence" if count == 0 else
+                    "Evidence output below source-health threshold" if count < LOW_EVIDENCE_THRESHOLD else
+                    "Source produced enough retained evidence"),
                 "LLM fallback allowed": "Yes" if llm_allowed else "No",
                 "Suggested action": source_health_action(status, llm_allowed),
             }
