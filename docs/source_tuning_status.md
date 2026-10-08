@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## IChemE safety, control and hydrogen outlines — 2026-10-08
+
+- Reviewed one permitted live scheduled page each for Process Safety Leadership and Culture, Practical Aspects of Process Control and Instrumentation, Human Factors Module 4, Fundamentals of Nuclear Safety, and Principles of PEM Electrolyser Operation. All support the reviewed section structure, yielding 320/186/380/394/521 words including the scope note. Added these exact course families; other families unchanged.
+- Preserve the PEM page's explicit IMechE delivery attribution within its overview: IChemE is the publishing source, not necessarily the course provider. Its embedded discount sentence is retained with that attribution rather than deleting the whole paragraph. Separate fees/booking sections remain excluded. Nuclear course UK regulatory scope is also preserved.
+- Runtime icheme-outline-3; Cloud acceptance pending. No master source changes; existing exports unchanged. Next checkpoint is an IChemE source scan on Cloud to confirm API discovery and these outlines end to end.
+
 ## IChemE additional reviewed course families — 2026-10-08
 
 - Extended section-scoped extraction only to HAZOP Study for Team Leaders and Team Members, Practical Distillation Technology, Production Process and Emergency Systems on Oil and Gas Installations, and Human Factors Module 3. Permitted live checks confirmed Overview, Learning outcomes, Who will benefit and Course outline headings; extracted 404, 247, 194 and 269 words respectively including the scope note.

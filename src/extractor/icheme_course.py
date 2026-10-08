@@ -10,6 +10,11 @@ SLUGS = {
     'practical-distillation-technology',
     'production-process-and-emergency-systems-on-oil-and-gas-installations',
     'human-factors-module-3',
+    'process-safety-leadership-and-culture',
+    'practical-aspects-of-process-control-and-instrumentation',
+    'human-factors-module-4',
+    'fundamentals-of-nuclear-safety',
+    'principles-of-pem-electrolyser-operation',
 }
 
 
