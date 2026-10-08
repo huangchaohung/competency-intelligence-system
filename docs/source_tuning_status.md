@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Harvard discovery robustness — 2026-10-05
+
+- Avoid revisiting Drupal page=0 as a new listing; strip course-link fragments before deduplication. Same-subject pagination and total listing budget remain bounded. Added tests for six-request pagination, fragment aliases, cross-host rejection, partial success and complete failure.
+- A failed subject listing now emits a backend warning while successful subjects remain usable. This warning is not yet a per-subject UI health record; do not interpret source success as proof that every subject loaded. Build harvard-pagination-1; catalogue unchanged, Cloud verification pending.
+- Verification: 336 tests passed on full rerun. Initial run had one unrelated download AppTest three-second startup timeout (335 passed); no download code changed.
+
 ## Harvard subject-first discovery — 2026-10-05
 
 - The existing /catalog configuration now discovers course cards from official Computer Science, Data Science, Mathematics, Programming and Science subject pages, sharing max_listing_pages across requests. Interleave results to avoid first-subject dominance; deduplicate exact URLs and honour article cap/robots. Five-page default visits one page per subject; larger budgets can follow observed same-subject pagination.

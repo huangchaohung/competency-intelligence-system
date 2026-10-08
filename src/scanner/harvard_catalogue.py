@@ -1,12 +1,14 @@
 """Bounded subject-first discovery for the broad Harvard PLL catalogue."""
 from collections import deque
 from itertools import zip_longest
+import logging
 from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 from src.core.exceptions import ScanError
 
 ROOT = 'https://pll.harvard.edu/catalog'
 SUBJECTS = ('computer-science', 'data-science', 'mathematics', 'programming', 'science')
+LOGGER = logging.getLogger(__name__)
 
 
 def discover(source, scanner):
@@ -31,7 +33,7 @@ def discover(source, scanner):
                 raise ScanError('Harvard subject listing unavailable')
             urls = []
             for link in listing.select('h3 a[href]'):
-                candidate = urljoin(url, link['href'])
+                candidate = urlparse(urljoin(url, link['href']))._replace(fragment='').geturl()
                 parsed = urlparse(candidate)
                 if (parsed.scheme == 'https' and parsed.netloc == 'pll.harvard.edu'
                         and parsed.path.startswith('/course/') and not parsed.query
@@ -39,14 +41,20 @@ def discover(source, scanner):
                     urls.append(candidate)
             groups.append(urls)
             for link in soup.select('.pager a[href]'):
-                candidate = urljoin(url, link['href'])
+                candidate = urlparse(urljoin(url, link['href']))._replace(fragment='').geturl()
                 parsed = urlparse(candidate)
+                # Drupal's page=0 is the unparameterised first page, not a
+                # new listing. Do not spend the request budget on it twice.
+                if parsed.query == 'page=0':
+                    candidate = parsed._replace(query='').geturl()
+                    parsed = urlparse(candidate)
                 if (parsed.scheme == 'https' and parsed.netloc == 'pll.harvard.edu'
                         and parsed.path == urlparse(url).path and parsed.query.startswith('page=')
                         and parsed.query[5:].isdigit() and candidate not in visited and candidate not in queue):
                     queue.append(candidate)
         except ScanError as error:
             errors.append(str(error))
+            LOGGER.warning('Harvard subject listing skipped: %s (%s)', url, error)
     result = []
     for row in zip_longest(*groups):
         for url in row:
