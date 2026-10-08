@@ -13,6 +13,14 @@ def test_asce_meeting_form_is_not_a_standard():
     assert not ScanWorkflow._is_utility_url('https://other.example'+path)
 
 
+def test_tsinghua_duration_overview_does_not_exclude_short_curriculum():
+    path = '/en/category/education-teaching-postgraduate-en'
+    assert ScanWorkflow._is_utility_url('https://www.3e.tsinghua.edu.cn'+path)
+    assert ScanWorkflow._is_utility_url('https://www.3e.tsinghua.edu.cn'+path+'/')
+    assert not ScanWorkflow._is_utility_url('https://other.example'+path)
+    assert not ScanWorkflow._is_utility_url('https://www.3e.tsinghua.edu.cn/en/category/education-teaching-curriculum-en')
+
+
 def test_sjtu_admissions_aliases_do_not_exclude_real_programmes():
     root = 'https://global.sjtu.edu.cn/en/study-sjtu/prospective/degree-programs/'
     for slug in ('267', '270', '387'):

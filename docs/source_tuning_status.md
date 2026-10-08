@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Tsinghua postgraduate overview — 2026-10-08
+
+- Reviewed the public 3e.tsinghua.edu.cn postgraduate overview via permitted retrieval: only master's/doctoral study durations and an admissions link, matching the 46-word export record. Exclude that exact host/path from evidence storage; preserve the separate named-course curriculum and other research pages.
+- No generic short-text rejection or catalogue change. Build tsinghua-overview-1; applies to new scans, existing downloads unchanged. Cloud acceptance pending. Continue prioritising content usefulness over evidence counts.
+
 ## Harvard discovery robustness — 2026-10-05
 
 - Avoid revisiting Drupal page=0 as a new listing; strip course-link fragments before deduplication. Same-subject pagination and total listing budget remain bounded. Added tests for six-request pagination, fragment aliases, cross-host rejection, partial success and complete failure.

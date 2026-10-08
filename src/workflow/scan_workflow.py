@@ -235,6 +235,8 @@ class ScanWorkflow:
         # Exact host/path matches avoid rejecting technical articles merely
         # mentioning privacy, recruitment, grants or applications.
         reviewed_utility_pages = {
+            # Reviewed study-duration/admissions overview, not the separate curriculum.
+            ('www.3e.tsinghua.edu.cn', '/en/category/education-teaching-postgraduate-en'),
             # Research navigation/statistics hub, not a programme or article body.
             ('global.sjtu.edu.cn', '/en/research'),
             # Visiting-student application/registration instructions, no subject catalogue.
