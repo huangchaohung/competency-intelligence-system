@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## IChemE PDF size diagnosis and IMDA recheck — 2026-10-08
+
+- The Knowledge and Competence page links three permitted PDFs: media/12452/0007_18-competency_brochure-update.pdf (2,470,394 bytes, 28 pages), media/16241/competency-guidance-supplementary-guide.pdf (2,816,078 bytes, 85 pages), and media/14927/0008_18-learning_outcomes_brochure-final.pdf (3,044,103 bytes, 14 pages). All extracted text locally; their sizes explain the generic 2MB rejection. Allow these exact final URLs the existing 8MB reviewed-document ceiling, with robots, page/text bounds and signature checks unchanged. This is text extractability validation, not PDF table-layout fidelity certification.
+- IMDA GenAI asset f9e0ac04-898f-4de7-bc89-e6b34aa2e7d8.pdf returned HTTP 200 application/pdf, 2,804,080 bytes and a PDF signature; existing scanner extracted it successfully locally. Export (4)'s PDF_INVALID_RESPONSE remains Cloud-unresolved, potentially intermittent/environment-specific. No invalid-content bypass or speculative URL change.
+- Runtime icheme-pdf-1. New IChemE evidence requires a new scan; raw PDFs/exports not published. Check these two sources on Cloud before requesting another full scan.
+
 ## Export (4) acceptance and IChemE completion for sampled courses — 2026-10-08
 
 - User's fresh export: 1,608 evidence records, 133 organisations, 240 source-health rows (107 Error, 64 Healthy, 68 Low evidence, 1 No evidence). Error includes partial-success sources; counts alone are not evidence-quality assessments. Raw export remains private and is not published.

@@ -22,11 +22,11 @@ def test_pdf_page_references_preserve_original_numbers_when_pages_are_blank(monk
     response.close.assert_called_once()
 
 
-def test_larger_limit_only_for_exact_reviewed_final_url(monkeypatch):
+@pytest.mark.parametrize('url', sorted(module.REVIEWED_LARGE_PDFS))
+def test_larger_limit_only_for_exact_reviewed_final_url(monkeypatch, url):
     scanner = module.WebPageScanner()
     scanner.is_allowed = lambda url: True
     scanner._download_pdf = Mock(return_value='parsed')
-    url = next(iter(module.REVIEWED_LARGE_PDFS))
     response = SimpleNamespace(url=url, headers={'Content-Type': 'application/pdf'}, raise_for_status=lambda: None)
     monkeypatch.setattr(module.requests, 'get', lambda *a, **kw: response)
     scanner.fetch_url(url, 'Framework')

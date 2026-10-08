@@ -17,8 +17,11 @@ except ImportError:  # pragma: no cover - optional dependency
 
 LOGGER = logging.getLogger(__name__)
 MAX_RESPONSE_BYTES = 2_000_000
-# Larger allowance only for the two reviewed IMDA framework assets.
+# Larger allowance only for individually reviewed framework/learning assets.
 REVIEWED_LARGE_PDFS = {
+    'https://www.icheme.org/media/12452/0007_18-competency_brochure-update.pdf',
+    'https://www.icheme.org/media/16241/competency-guidance-supplementary-guide.pdf',
+    'https://www.icheme.org/media/14927/0008_18-learning_outcomes_brochure-final.pdf',
     'https://www.imda.gov.sg/assets/61b11126-441b-48fb-baed-5cebb6279305.pdf',
     'https://www.imda.gov.sg/assets/f9e0ac04-898f-4de7-bc89-e6b34aa2e7d8.pdf',
 }
