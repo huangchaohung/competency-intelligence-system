@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## IChemE public catalogue API — 2026-10-08
+
+- Observed SearchCoursesDirectory in the public courses-directory bundle. Permitted request returned Courses/TotalPageCount with same-site course URLs. Exact Courses A-Z source now uses this API with 12 records per request, configured listing/article limits, 2MB response bound, robots checks, no redirects and same-site course path filtering.
+- Live discovery returned 25 URLs; first detail page extracted 1,254 words without eventItem placeholders. This is one-page extraction verification, not certification of all returned pages. 339 tests passed; icheme-api-1. Catalogue unchanged; Cloud acceptance pending. API failure currently fails source discovery rather than falling back to placeholder HTML.
+
 ## IChemE unresolved catalogue template — 2026-10-08
 
 - Export (3) Courses A-Z record contains unfilled eventItem template fields and a no-events message. Permitted live HTTP review confirms the same unresolved fields. Exact catalogue extraction now fails with an explicit reason when those fields remain in extracted text, rather than counting them as evidence.
