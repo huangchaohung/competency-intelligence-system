@@ -1,5 +1,12 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Export (4) acceptance and IChemE completion for sampled courses — 2026-10-08
+
+- User's fresh export: 1,608 evidence records, 133 organisations, 240 source-health rows (107 Error, 64 Healthy, 68 Low evidence, 1 No evidence). Error includes partial-success sources; counts alone are not evidence-quality assessments. Raw export remains private and is not published.
+- IChemE Courses A-Z returned 25 records without a discovery error; 14 records already contain scoped outlines, confirming previous changes in the user's scan. Eleven remaining course families still contained booking/related-course/trainer material. Live permitted section checks succeeded for all eleven (207–486 words), including waste energy, Delta HAZOP, hydrogen safety, bowtie analysis, sustainability measurement, HAZOP leadership, chemical engineering foundations, explosion science, scale-up, piping/instrumentation diagrams and small modular reactors.
+- Added those exact families, now covering all 25 sampled course URLs, not claiming coverage of the entire changing catalogue. External IMechE delivery attribution remains intact. 362 tests passed; icheme-outline-4. New additions await next scan acceptance.
+- Next unresolved content/retrieval targets: IChemE Knowledge and Competence RESPONSE_TOO_LARGE (four retained records); IMDA GenAI PDF_INVALID_RESPONSE; A*STAR missing content bodies; NUS/SIT empty responses. Respect robots/access restrictions and retain the previously deferred ISA review. Do not remove otherwise useful sources merely for low counts.
+
 ## IChemE safety, control and hydrogen outlines — 2026-10-08
 
 - Reviewed one permitted live scheduled page each for Process Safety Leadership and Culture, Practical Aspects of Process Control and Instrumentation, Human Factors Module 4, Fundamentals of Nuclear Safety, and Principles of PEM Electrolyser Operation. All support the reviewed section structure, yielding 320/186/380/394/521 words including the scope note. Added these exact course families; other families unchanged.

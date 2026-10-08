@@ -32,6 +32,17 @@ def test_only_reviewed_course_families_match():
     'human-factors-module-4',
     'fundamentals-of-nuclear-safety',
     'principles-of-pem-electrolyser-operation',
+    'energy-from-waste',
+    'delta-hazop',
+    'advanced-process-safety-considerations-for-hydrogen-projects',
+    'bowtie-analysis-and-barrier-based-risk-management',
+    'sustainability-measurement',
+    'hazop-leadership-and-management',
+    'chemical-engineering-for-scientists-and-other-engineers',
+    'comprehensive-explosion-science',
+    'scale-up-of-chemical-processes',
+    'interpreting-and-applying-piping-and-instrumentation-diagrams',
+    'small-modular-reactors-smrs',
 ])
 def test_additional_reviewed_families_are_exactly_scoped(slug):
     base = 'https://www.icheme.org/training-events/training/courses-a-z/'

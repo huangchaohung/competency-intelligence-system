@@ -15,6 +15,17 @@ SLUGS = {
     'human-factors-module-4',
     'fundamentals-of-nuclear-safety',
     'principles-of-pem-electrolyser-operation',
+    'energy-from-waste',
+    'delta-hazop',
+    'advanced-process-safety-considerations-for-hydrogen-projects',
+    'bowtie-analysis-and-barrier-based-risk-management',
+    'sustainability-measurement',
+    'hazop-leadership-and-management',
+    'chemical-engineering-for-scientists-and-other-engineers',
+    'comprehensive-explosion-science',
+    'scale-up-of-chemical-processes',
+    'interpreting-and-applying-piping-and-instrumentation-diagrams',
+    'small-modular-reactors-smrs',
 }
 
 
