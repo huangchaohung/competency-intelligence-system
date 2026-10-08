@@ -31,6 +31,11 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
+        from src.extractor.icheme_course import matches as is_icheme_course, course_text as icheme_course_text
+        if is_icheme_course(page.url):
+            return Evidence(None, scan_run_id, source.id or 0, EvidenceType.COURSE.value,
+                            title, self._publication_date(soup), source.organisation, page.url,
+                            icheme_course_text(page.html), datetime.now().astimezone(), 'EXPLICIT')
         from src.extractor.harvard_course import matches as is_harvard_course, course_text as harvard_course_text
         if is_harvard_course(page.url):
             return Evidence(None, scan_run_id, source.id or 0, EvidenceType.COURSE.value,

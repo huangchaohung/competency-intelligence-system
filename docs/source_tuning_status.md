@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## IChemE reviewed course outlines — 2026-10-08
+
+- Scoped extraction for Layer of Protection Analysis and Fundamentals of Process Safety retains overview, learning outcomes, intended audience and course outline, excluding testimonials and booking sections. Missing expected sections fail explicitly rather than reverting to promotional text. Other course families are unchanged pending review.
+- Permitted live checks returned 335 and 367 words respectively, including learning outcomes and excluding testimonials/fees. These are public outlines, not full teaching materials. 341 tests passed; runtime icheme-outline-1. GitHub deployment targets new scans; Cloud acceptance and remaining course families still require review.
+
 ## IChemE public catalogue API — 2026-10-08
 
 - Observed SearchCoursesDirectory in the public courses-directory bundle. Permitted request returned Courses/TotalPageCount with same-site course URLs. Exact Courses A-Z source now uses this API with 12 records per request, configured listing/article limits, 2MB response bound, robots checks, no redirects and same-site course path filtering.
