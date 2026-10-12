@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## ICE duplicate default consolidated; Tokyo rechecked — 2026-10-12
+
+- ICE /attributes is already routed to /join-ice/attributes-for-professionally-qualified-membership. Both defaults were enabled, so attempted-URL dedup could leave the second row empty. Disabled only the legacy /attributes entry, preserving it and keeping the canonical entry enabled. This avoids a redundant scan target, not an access-control workaround.
+- Canonical ICE page retrieved locally; existing scoped extraction produced 1,641 words with CEng and EngTech content. Cloud recovery remains unverified. Build ice-canonical-1; fresh/default-restored sessions receive the flag change, existing selections remain private and unchanged.
+- Tokyo /en/academics/grad_engineering.html loaded in one permitted request; a subsequent robots request timed out, so access remains intermittent. Official alternative https://www.t.u-tokyo.ac.jp/en/study-at-utokyo/soe/overview loaded with a 153-word main section, not verified as an equivalent detailed curriculum. No Tokyo replacement/exclusion. Next Cloud check can select the single canonical ICE entry via Quick scan selection; no full scan required.
+
 ## Further NUS alternatives reviewed — 2026-10-12
 
 - Official search identified more specific Biomedical Engineering course/curriculum pages and the AY2026/27 SCALE undergraduate bulletin. Four robots-permitted requests through the bounded application scanner all failed with Incapsula access responses:
