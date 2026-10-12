@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Release-validation gate agreed — 2026-10-12
+
+- Stop open-ended tuning after: canonical ICE Cloud checkpoint; one full intended-release scan; content/coverage review; one final targeted replacement review; preservation of excluded-source details in a monitoring register; removal of persistent failures from the user-facing catalogue; final cleaned-catalogue Cloud validation.
+- Register must preserve organisation, name, original URL, intended information, reason, last-check date, verified replacement, and active/replaced/excluded-pending-review status. Do not interpret a single intermittent failure as permanent exclusion. Maintain STE and organisation-family coverage, not a target URL count.
+- Freeze only after validation; subsequent reviews periodic or incident-driven. No additional source removals in this checkpoint. Build release-validation-1 is a deployment marker only; GitHub main was verified at ac6f538 before pushing it. Cloud deployment uptake remains to be confirmed by the displayed build.
+
 ## ICE duplicate default consolidated; Tokyo rechecked — 2026-10-12
 
 - ICE /attributes is already routed to /join-ice/attributes-for-professionally-qualified-membership. Both defaults were enabled, so attempted-URL dedup could leave the second row empty. Disabled only the legacy /attributes entry, preserving it and keeping the canonical entry enabled. This avoids a redundant scan target, not an access-control workaround.
