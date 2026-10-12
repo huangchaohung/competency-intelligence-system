@@ -2,6 +2,12 @@
 from dataclasses import replace
 from src.core.exceptions import ConfigurationError
 
+ASTAR_TEST_URLS = {
+    'https://www.a-star.edu.sg/simtech/kto/industrial-automation',
+    'https://www.a-star.edu.sg/Research/medical-technologies',
+    'https://www.a-star.edu.sg/simtech/research/sustainability-informatics-strategy-%28sis%29',
+}
+
 def select_only(sources, urls):
     selected = set(urls)
     if not selected or not selected.issubset({s.url for s in sources}):

@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## A*STAR scoped Cloud checkpoint — 2026-10-12
+
+- Reviewed Industrial Automation, Medical Technologies and Sustainability Informatics & Strategy via permitted local requests. All expose main content; existing extractor accepts all three. Industrial Automation main overview has 239 words, MedTech main rich-text introduction 129, SIS 211. These are container counts, not claims about full exported text or Cloud success. No speculative selector changes made.
+- Export (4) has CONTENT_BODY_MISSING for all three. Added one-click three-source A*STAR test preset to capture current Cloud behaviour, retaining original enabled-state restoration. Build astar-test-1; request TXT and recorded errors. No master source flags changed this round.
+
 ## IMDA GenAI excluded from default scans — 2026-10-12
 
 - User approved disabling this source after export (9): the official alternate /-/media/.../sfw-for-ict-skills-in-genai.pdf also returned PDF_INVALID_RESPONSE on Cloud. The original /assets/f9e0ac04-898f-4de7-bc89-e6b34aa2e7d8.pdf returned HTML (2,407 bytes) in export (8). Both served identical valid PDFs locally, so the exact Cloud cause is unproven. Reason for exclusion: repeated non-PDF responses in the intended deployment, no document evidence retrievable there.

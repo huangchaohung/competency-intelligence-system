@@ -38,3 +38,13 @@ def test_failed_cloud_pdf_is_disabled_but_preserved_in_defaults():
     assert not by_name['IMDA GenAI Technical Skills and Competencies'].enabled
     assert by_name['IMDA GenAI Technical Skills and Competencies'].url.endswith('sfw-for-ict-skills-in-genai.pdf')
     assert by_name['IChemE — Knowledge And Competence'].enabled
+
+
+def test_astar_preset_matches_exactly_three_default_sources():
+    from pathlib import Path
+    from src.services.configuration_service import ConfigurationService
+    from src.services.source_test_selection import ASTAR_TEST_URLS
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    selected = select_only(sources, ASTAR_TEST_URLS)
+    assert len([s for s in selected if s.enabled]) == 3
+    assert {s.url for s in selected if s.enabled} == ASTAR_TEST_URLS
