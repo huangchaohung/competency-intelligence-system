@@ -1,5 +1,19 @@
 # Source tuning checkpoint — 2026-09-24
 
+## ICE Cloud checkpoint closed — 2026-10-12
+
+- User confirmed release-validation-1 deployed. Canonical ICE-only Cloud scan at 2026-10-12 08:04 returned zero evidence and HTTP 403 Forbidden. This is a retrieval refusal, not a parser failure or evidence that ICE attributes are obsolete; the underlying server policy is not established.
+- Canonical entry now disabled in defaults, alongside its already-disabled legacy alias. URLs retained pending final catalogue cleanup; no access bypass or speculative replacement. Build release-validation-2. No repeat ICE test required. Next gate: full scan of remaining default-enabled sources, then content/coverage review and final exclusion-register consolidation.
+
+### Source monitoring register — release exclusions (in progress)
+
+This register preserves review targets independently of their enabled status. Earlier exclusions remain detailed below and must be consolidated here before final catalogue removal.
+
+| Organisation | Source | Original URL | Intended information | Status / reason | Last checked | Verified accessible replacement |
+| --- | --- | --- | --- | --- | --- | --- |
+| Institution of Civil Engineers (ICE) | Attributes For Professionally Qualified Membership | https://www.ice.org.uk/join-ice/attributes-for-professionally-qualified-membership | Civil/infrastructure engineering professional competency attributes | Excluded pending review: repeated zero-output Cloud scans; latest exact canonical request HTTP 403. Local extraction succeeds, Cloud does not. | 2026-10-12 | None verified for Cloud |
+| Institution of Civil Engineers (ICE) | Attributes (legacy alias) | https://www.ice.org.uk/attributes | Same professional competency attributes | Excluded pending review: duplicate routed to canonical URL, which is Cloud-blocked. | 2026-10-12 (routing review; canonical Cloud test) | Canonical URL identified but not Cloud-accessible |
+
 ## Release-validation gate agreed — 2026-10-12
 
 - Stop open-ended tuning after: canonical ICE Cloud checkpoint; one full intended-release scan; content/coverage review; one final targeted replacement review; preservation of excluded-source details in a monitoring register; removal of persistent failures from the user-facing catalogue; final cleaned-catalogue Cloud validation.

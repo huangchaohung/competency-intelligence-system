@@ -63,10 +63,10 @@ def test_reviewed_nus_sit_exclusions_preserve_other_sources():
     assert by_name['NUS Biomedical Engineering — Undergraduate'].enabled
 
 
-def test_ice_defaults_scan_canonical_attributes_only():
+def test_ice_cloud_blocked_sources_are_preserved_disabled():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
     sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
     by_url = {s.url: s for s in sources}
     assert not by_url['https://www.ice.org.uk/attributes'].enabled
-    assert by_url['https://www.ice.org.uk/join-ice/attributes-for-professionally-qualified-membership'].enabled
+    assert not by_url['https://www.ice.org.uk/join-ice/attributes-for-professionally-qualified-membership'].enabled
