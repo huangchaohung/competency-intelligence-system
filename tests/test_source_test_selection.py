@@ -49,3 +49,15 @@ def test_three_cloud_unavailable_astar_sources_are_preserved_disabled():
         assert not by_name[name].enabled
         assert by_name[name].url.startswith('https://www.a-star.edu.sg/')
     assert by_name['A*STAR Research Features'].enabled
+
+
+def test_reviewed_nus_sit_exclusions_preserve_other_sources():
+    from pathlib import Path
+    from src.services.configuration_service import ConfigurationService
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    by_name = {s.name: s for s in sources}
+    for name in ['NUS Civil & Environmental Engineering — Courses', 'SIT — Engineering Systems',
+                 'SIT — Sit Civil Engineering', 'SIT — Sustainable Built Environment']:
+        assert not by_name[name].enabled
+        assert by_name[name].url.startswith('https://')
+    assert by_name['NUS Biomedical Engineering — Undergraduate'].enabled

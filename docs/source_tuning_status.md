@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Four reviewed NUS/SIT sources paused — 2026-10-12
+
+- User approved disabling NUS Civil & Environmental Engineering — Courses, SIT — Engineering Systems, SIT — Sit Civil Engineering, and SIT — Sustainable Built Environment. Entries and original URLs remain available; only enabled flags changed. Reason: recorded zero-evidence scans plus representative normal-request security-shell failures; official alternatives did not establish a usable equivalent. Evidence does not establish that the programmes are obsolete.
+- Other NUS/SIT entries remain unchanged. Build nus-sit-excluded-1. Fresh sessions/default restore receive the defaults; existing session customisations are not overwritten. No repeat scan required for these four. Continue individual review of other unresolved sources rather than excluding entire organisations.
+
 ## NUS/SIT official alternative review — 2026-10-12
 
 - Official search results confirm current programme/curriculum material exists. Normal robots-permitted requests to all four candidates returned an empty Incapsula security shell: https://cde.nus.edu.sg/cee/undergraduate/beng-civil/build-your-own-degree-civil-engineering/ ; https://cde.nus.edu.sg/cee/undergraduate/beng-env/curriculum/ ; https://www.singaporetech.edu.sg/undergraduate-programmes/civil-engineering ; https://www.singaporetech.edu.sg/undergraduate-programmes/engineering-systems . No challenge scripts executed, no source text obtained from these requests.
