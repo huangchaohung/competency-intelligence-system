@@ -235,6 +235,8 @@ class ScanWorkflow:
         # Exact host/path matches avoid rejecting technical articles merely
         # mentioning privacy, recruitment, grants or applications.
         reviewed_utility_pages = {
+            # Export (10): only a list of magazine volume numbers, not article text.
+            ('research.a-star.edu.sg', '/print-magazine'),
             # Reviewed study-duration/admissions overview, not the separate curriculum.
             ('www.3e.tsinghua.edu.cn', '/en/category/education-teaching-postgraduate-en'),
             # Research navigation/statistics hub, not a programme or article body.

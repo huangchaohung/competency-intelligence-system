@@ -71,6 +71,13 @@ def test_scan_workflow_applies_default_source_scope_for_brittle_hubs() -> None:
     )
 
 
+def test_astar_print_volume_index_is_not_article_evidence():
+    assert ScanWorkflow._is_utility_url('https://research.a-star.edu.sg/print-magazine/')
+    assert ScanWorkflow._is_utility_url('https://research.a-star.edu.sg/print-magazine')
+    assert not ScanWorkflow._is_utility_url('https://research.a-star.edu.sg/articles/features/materials-for-energy/')
+    assert not ScanWorkflow._is_utility_url('https://research.a-star.edu.sg/print-magazine/volume-65.pdf')
+
+
 def test_scan_workflow_source_snapshot_keeps_health_and_fallback_metadata() -> None:
     """Batch source snapshots keep the metadata needed for History health checks."""
     source = Source(

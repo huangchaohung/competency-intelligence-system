@@ -9,7 +9,7 @@ def deployment_files(root):
              '.gitignore', 'config/sources.yaml', 'docs/streamlit_cloud_deployment.md',
              'README.md', 'CONTRIBUTING.md', 'SECURITY.md', 'requirements-dev.txt',
              'pyproject.toml', 'docs/architecture.md', 'docs/operations.md',
-             'docs/source_tuning_status.md', 'scripts/package_cloud.py',
+             'docs/source_tuning_status.md', 'docs/source_review_register.md', 'scripts/package_cloud.py',
              'scripts/sync_cloud.py', 'scripts/apply_source_health_stage.py']
     files = [root / name for name in names]
     files.extend(sorted((root / 'src').rglob('*.py')))

@@ -1,5 +1,14 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Full release scan (export 10) preliminary audit — 2026-10-12
+
+- Scan 08:08–08:40 UTC; 230 source-health rows; 1,601 records with 1,601 distinct URLs. Sum of source counts equals 1,601, matching manifest/original retained count. Manifest reports 132 organisation labels; these are not necessarily normalised parent organisations.
+- 62 Healthy, 69 Low evidence, 99 Error. Of Error rows, 62 retained evidence and 37 retained none. Therefore 193 sources produced records; do not delete all Error rows. 31 zero-output URLs were also zero in export (4); six newly zero are IPMA ICB4, two SLA GeoWorks entries, Tokyo undergraduate engineering, and two UCLA life-sciences entries.
+- Exported family counts: government 374, higher learning 768, professional bodies 459. All three families represented, but discipline coverage and source independence still require review. Exported types: ARTICLE_TEXT 949, COURSE 46, EXPLICIT_COMPETENCY 128, PROFESSIONAL_RESOURCE 449, RESEARCH_CAPABILITY 29. Labels alone are not proof of news-vs-primary content or quality.
+- Content samples: IChemE retains all three reviewed PDFs (7,945 / 20,136 / 3,206 words). Harvard planning concentration documents contain actual academic text, but mixed STE/non-STE scope remains. A*STAR /print-magazine/ contains only volume numbers 65–1: added exact utility exclusion, keeping article and linked-document paths eligible. Build release-audit-1; existing downloads unchanged.
+- A simple access-notice phrase screen found no matches in retained article_text for the checked phrases; this is NOT a complete quality audit. Manual sampling is incomplete. Size-limited PDFs, partial child-page failures and robots/access failures remain separate issues; do not relax all safety limits to clear error counts.
+- Created source_review_register.md with all 37 zero-output URLs and prior-zero comparison. Entries are pending final equivalent-source review, not approved deletions. ISA unchanged as requested earlier. Raw export and raw error log not published. Release freeze NOT yet approved. Next: final bounded review of this queue plus retained-content/discipline coverage; no new full scan yet.
+
 ## ICE Cloud checkpoint closed — 2026-10-12
 
 - User confirmed release-validation-1 deployed. Canonical ICE-only Cloud scan at 2026-10-12 08:04 returned zero evidence and HTTP 403 Forbidden. This is a retrieval refusal, not a parser failure or evidence that ICE attributes are obsolete; the underlying server policy is not established.
