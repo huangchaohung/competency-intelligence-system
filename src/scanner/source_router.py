@@ -52,7 +52,7 @@ class SourceRouter:
                 raise ScanError('ICT framework retrieval is not permitted')
             return [source.url]
         from src.scanner.imda_framework import matches as is_imda_framework, GENAI_PDF_URL
-        if source.url == GENAI_PDF_URL:
+        if source.url in {GENAI_PDF_URL, 'https://www.imda.gov.sg/assets/f9e0ac04-898f-4de7-bc89-e6b34aa2e7d8.pdf'}:
             if not self._discovery._scanner.is_allowed(source.url):
                 raise ScanError('IMDA GenAI document retrieval is not permitted')
             return [source.url]

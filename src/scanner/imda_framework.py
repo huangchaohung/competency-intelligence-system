@@ -7,7 +7,7 @@ from src.scanner.browser_runtime import launch_chromium
 
 URL = 'https://www.imda.gov.sg/how-we-can-help/techskills-accelerator-tesa/skills-framework-for-infocomm-technology-sfw-for-ict'
 SELECTOR = 'main article.detail-content'
-GENAI_PDF_URL = 'https://www.imda.gov.sg/assets/f9e0ac04-898f-4de7-bc89-e6b34aa2e7d8.pdf'
+GENAI_PDF_URL = 'https://www.imda.gov.sg/-/media/imda/files/how-we-can-help/tesa/sfw-for-ict/sfw-for-ict-skills-in-genai.pdf'
 
 
 def matches(url):

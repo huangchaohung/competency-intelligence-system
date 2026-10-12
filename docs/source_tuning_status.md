@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## IMDA official alternative candidate — 2026-10-12
+
+- Officially indexed alternative: https://www.imda.gov.sg/-/media/imda/files/how-we-can-help/tesa/sfw-for-ict/sfw-for-ict-skills-in-genai.pdf . Permitted local request returned HTTP 200 application/pdf without redirect. Both this and the asset URL returned 2,804,080 bytes, SHA256 f68923f06c1fc7115cd2c422c823a4f8cead939ee1958051058e417ada0108c1: identical document, not substitute evidence.
+- Default GenAI URL and PDF test preset now use this candidate; exact size allowance and direct PDF routing added. Original URL remains supported for existing session copies. No automatic fallback or access bypass. Runtime imda-alternate-1; Cloud success remains unverified.
+- Existing sessions retain their catalogue. Download any wanted results/source edits, then Start fresh (or Restore default sources, which discards catalogue edits) before using the two-source preset. A failed alternate on Cloud remains an unresolved access issue; do not claim a fix from local success.
+
 ## Export (8) document acceptance — 2026-10-08
 
 - Cloud now returns exactly the three reviewed IChemE documents, approximately 31,287 words, with original PDF page markers; navigation records removed. Targeted discovery accepted. Text extraction is not a guarantee of PDF table reading order.

@@ -12,7 +12,7 @@ sources:
   max_listing_pages: 5
   use_browser_rendering: false
 - name: IMDA GenAI Technical Skills and Competencies
-  url: https://www.imda.gov.sg/assets/f9e0ac04-898f-4de7-bc89-e6b34aa2e7d8.pdf
+  url: https://www.imda.gov.sg/-/media/imda/files/how-we-can-help/tesa/sfw-for-ict/sfw-for-ict-skills-in-genai.pdf
   organisation: Infocomm Media Development Authority (IMDA)
   source_family: GOVERNMENT_AGENCY
   source_type: FRAMEWORK

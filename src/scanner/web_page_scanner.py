@@ -19,6 +19,7 @@ LOGGER = logging.getLogger(__name__)
 MAX_RESPONSE_BYTES = 2_000_000
 # Larger allowance only for individually reviewed framework/learning assets.
 REVIEWED_LARGE_PDFS = {
+    'https://www.imda.gov.sg/-/media/imda/files/how-we-can-help/tesa/sfw-for-ict/sfw-for-ict-skills-in-genai.pdf',
     'https://www.icheme.org/media/12452/0007_18-competency_brochure-update.pdf',
     'https://www.icheme.org/media/16241/competency-guidance-supplementary-guide.pdf',
     'https://www.icheme.org/media/14927/0008_18-learning_outcomes_brochure-final.pdf',

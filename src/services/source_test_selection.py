@@ -4,7 +4,7 @@ from src.core.exceptions import ConfigurationError
 
 PDF_TEST_URLS = {
     'https://www.icheme.org/knowledge-networks/knowledge-resources/safety-centre/framework/knowledge-and-competence',
-    'https://www.imda.gov.sg/assets/f9e0ac04-898f-4de7-bc89-e6b34aa2e7d8.pdf',
+    'https://www.imda.gov.sg/-/media/imda/files/how-we-can-help/tesa/sfw-for-ict/sfw-for-ict-skills-in-genai.pdf',
 }
 
 
