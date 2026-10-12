@@ -74,6 +74,20 @@ def test_reviewed_skillsfuture_pages_are_paused_without_changing_ipma():
     assert by_url['https://ipma.world/ipma-standards-development-programme/icb4'].enabled
 
 
+def test_reviewed_nus_process_fm_gis_sources_are_paused():
+    from pathlib import Path
+    from src.services.configuration_service import ConfigurationService
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    by_url = {s.url: s for s in sources}
+    for url in [
+        'https://cde.nus.edu.sg/chbe/undergraduate/beng-che/specialisation/specialisation-in-process-engineering',
+        'https://cde.nus.edu.sg/dbe/executive-course-for-facilities-management-fm',
+        'https://fass.nus.edu.sg/geog/graduate-certificate-in-applied-geographic-information-systems',
+    ]:
+        assert not by_url[url].enabled
+    assert by_url['https://cde.nus.edu.sg/bme/undergraduate'].enabled
+
+
 def test_ice_cloud_blocked_sources_are_preserved_disabled():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService

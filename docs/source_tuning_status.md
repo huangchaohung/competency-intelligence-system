@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Final review: three NUS course sources — 2026-10-12
+
+- Paused Process Engineering specialisation, Executive Facilities Management and Graduate Certificate Applied GIS. All were zero in exports (4)/(10); latest permitted local requests to the three official pages and two official directory alternatives returned security shells. Exact URLs and review reasons retained in source_review_register.md. No broad NUS exclusion or claim of obsolete programmes.
+- Build release-audit-3. No new scan yet: continue remaining review queue before consolidated validation and final catalogue removal. Other source flags unchanged; existing session customisations are not overwritten.
+
 ## Final review: SkillsFuture and IPMA — 2026-10-12
 
 - Disabled only the two repeatedly zero-output SkillsFuture root/FAQ entries; URLs retained until final catalogue cleanup, review reasons and alternatives recorded in source_review_register.md. Permitted local root, FAQ and two engineering-sector requests returned empty HTML. Readable TPGateway directory is not a detailed framework replacement; no speculative swap or assertion that frameworks are obsolete.
