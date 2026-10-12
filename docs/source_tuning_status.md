@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Final review: SkillsFuture and IPMA — 2026-10-12
+
+- Disabled only the two repeatedly zero-output SkillsFuture root/FAQ entries; URLs retained until final catalogue cleanup, review reasons and alternatives recorded in source_review_register.md. Permitted local root, FAQ and two engineering-sector requests returned empty HTML. Readable TPGateway directory is not a detailed framework replacement; no speculative swap or assertion that frameworks are obsolete.
+- IPMA ICB4 page locally readable; certification alternative less specific/historically worded, not substituted. Cloud success not established. IPMA unchanged. Build release-audit-2; other sources and limits unchanged. No new scan required yet; remaining final-review queue and content/coverage checks still open.
+
 ## Full release scan (export 10) preliminary audit — 2026-10-12
 
 - Scan 08:08–08:40 UTC; 230 source-health rows; 1,601 records with 1,601 distinct URLs. Sum of source counts equals 1,601, matching manifest/original retained count. Manifest reports 132 organisation labels; these are not necessarily normalised parent organisations.

@@ -37,14 +37,19 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 | Singapore Institute of Technology | Singapore Institute of Technology — Grid Integrated Energy Storage Systems Technologies Standardisation Applications | https://www.singaporetech.edu.sg/sitlearn/courses/engineering/grid-integrated-energy-storage-systems-technologies-standardisation-applications | ACCESS_BLOCKED | Yes | Pending final review; unchanged | None established |
 | Singapore Institute of Technology | Singapore Institute of Technology — Smart Grids Masterclass | https://www.singaporetech.edu.sg/sitlearn/courses/engineering/smart-grids-masterclass | ACCESS_BLOCKED | Yes | Pending final review; unchanged | None established |
 | Singapore Land Authority / GeoWorks | Singapore Land Authority / GeoWorks — Programmes | https://geoworks.sla.gov.sg/programmes | ROBOTS_RESTRICTED | No | Pending final review; unchanged | None established |
-| SkillsFuture Singapore | SkillsFuture Singapore — Skills Framework | https://www.skillsfuture.gov.sg/skills-framework | INSUFFICIENT_TEXT | Yes | Pending final review; unchanged | None established |
-| SkillsFuture Singapore | SkillsFuture Skills Frameworks | https://www.skillsfuture.gov.sg/skills-framework/skills-frameworks-faq | INSUFFICIENT_TEXT | Yes | Pending final review; unchanged | None established |
+| SkillsFuture Singapore | SkillsFuture Singapore — Skills Framework | https://www.skillsfuture.gov.sg/skills-framework | INSUFFICIENT_TEXT | Yes | Excluded pending review, disabled 2026-10-12: repeated Cloud zero; local response empty; reviewed sector alternatives empty too | None established; TPGateway directory is not detailed framework evidence |
+| SkillsFuture Singapore | SkillsFuture Skills Frameworks | https://www.skillsfuture.gov.sg/skills-framework/skills-frameworks-faq | INSUFFICIENT_TEXT | Yes | Excluded pending review, disabled 2026-10-12: repeated Cloud zero; local response empty; FAQ explains framework use rather than listing STE competencies | None established |
 | U Tokyo | U Tokyo — Facultyofengineering.Html | https://www.u-tokyo.ac.jp/en/academics/facultyofengineering.html | ROBOTS_RESTRICTED | No | Pending final review; unchanged | None established |
 | U Tokyo | U Tokyo — Grad Engineering.Html | https://www.u-tokyo.ac.jp/en/academics/grad_engineering.html | ROBOTS_RESTRICTED | Yes | Pending final review; unchanged | None established |
 | UCLA | UCLA — Graduate Training | https://lifesciences.ucla.edu/graduate-training | ROBOTS_RESTRICTED | No | Pending final review; unchanged | None established |
 | UCLA | UCLA — Undergraduates | https://lifesciences.ucla.edu/undergraduates | ROBOTS_RESTRICTED | No | Pending final review; unchanged | None established |
 
 ## Next decisions
+
+### Review findings — 2026-10-12
+
+- SkillsFuture root and FAQ: permitted local requests returned no readable HTML, consistent with repeated zero-output Cloud results, but precise access/rendering cause unproven. TPGateway https://www.tpgateway.gov.sg/plan-courses/skills-framework is readable and links sector pages. Its actual Engineering Services and Precision Engineering links (https://www.skillsfuture.gov.sg/skills-framework/engineeringservices and https://www.skillsfuture.gov.sg/skills-framework/pe) also returned empty HTML. Directory not substituted as full competency evidence. Older sector PDFs found in search remain unverified for currency/retrieval and are not configured as equivalent replacements.
+- IPMA original https://ipma.world/ipma-standards-development-programme/icb4/ readable locally; Cloud EMPTY_HTML remains unresolved. https://ipma.world/certification/ is less specific and contains historical transition-to-ICB4 wording. No replacement or exclusion. General project-management competence is not inherently STE-specific; retain scope caution in downstream use. No full-baseline retrieval claim.
 
 - Review accessible official equivalents once for unresolved sources; record review date and outcome before exclusion.
 - Do not remove partially successful sources solely because one child page failed.
