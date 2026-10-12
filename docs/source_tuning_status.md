@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## NUS/SIT empty-shell review — 2026-10-12
+
+- Permitted live HTTP checks of NUS CEE civil courses and SIT Civil Engineering returned HTTP 200, 955/950 bytes, no visible content and an /_Incapsula_Resource script. SIT Sustainable Built Environment also failed the existing empty-HTML guard. These are retrieval failures, not evidence that the courses are absent. Official SIT search results still index the configured programme pages; no speculative URL swaps made.
+- Scanner now reports access-blocked for a completely text-empty response with the observed Incapsula script path, without executing it or logging its query. Even short genuine content with that script is preserved. Existing notice checks unchanged. Build security-shell-1. No further source exclusions this round; other NUS/SIT URLs remain unverified individually.
+
 ## Three A*STAR sources excluded from defaults — 2026-10-12
 
 - User-approved exclusion: SIMTech Industrial Automation (/simtech/kto/industrial-automation), Medical Technologies (/Research/medical-technologies), and Sustainability Informatics & Strategy (/simtech/research/sustainability-informatics-strategy-%28sis%29), all on www.a-star.edu.sg. Preserve each URL disabled, not deleted; other A*STAR sources unchanged.

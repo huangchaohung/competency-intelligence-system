@@ -93,6 +93,12 @@ class WebPageScanner:
             readable = BeautifulSoup(html or '', 'lxml')
             for element in readable.select('script, style, head, template'):
                 element.decompose()
+            # Some Incapsula gates have no visible notice, only a resource script.
+            # Do not execute the challenge or mistake it for an empty curriculum.
+            if (not readable.get_text(' ', strip=True)
+                    and any(urlparse(node.get('src', '')).path.startswith('/_Incapsula_Resource')
+                            for node in BeautifulSoup(html or '', 'lxml').select('script[src]'))):
+                raise ScanError(f'Access blocked by Incapsula security shell; no source content retrieved: {source_name}')
             if not readable.get_text(' ', strip=True):
                 raise ScanError(
                     f'No readable HTML content retrieved: {source_name}. '
