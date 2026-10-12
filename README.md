@@ -1,6 +1,6 @@
 # STE Public Evidence Collector
 
-For a small test scan, open **Source Configuration → Quick scan selection**. Choose sources and click **Enable only selected sources**, or use the suggested PDF-test preset. Run the scan normally, then click **Restore previous selection** to return to your earlier enabled sources. These controls affect only your session and discard unsaved editor drafts; they never modify the master list. The restore snapshot lasts only for the current session.
+For a small test scan, open **Source Configuration → Quick scan selection**. Choose sources and click **Enable only selected sources**. Run the scan normally, then click **Restore previous selection** to return to your earlier enabled sources. These controls affect only your session and discard unsaved editor drafts; they never modify the master list. The restore snapshot lasts only for the current session.
 
 A Streamlit prototype for collecting public Science, Technology and Engineering evidence from professional bodies, higher-learning institutions and government agencies. Officers configure sources, scan, inspect source health and download one evidence TXT for analysis in a separately approved government AI assistant.
 

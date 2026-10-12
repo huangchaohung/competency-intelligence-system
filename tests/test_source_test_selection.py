@@ -28,3 +28,13 @@ def test_invalid_selection_is_rejected(urls):
 def test_new_sources_keep_their_enabled_state_on_restore():
     new = Source(3, 'New', 'https://example.org/new', 'Org', enabled=True)
     assert restore_selection([new], {'https://example.org/removed': False}) == [new]
+
+
+def test_failed_cloud_pdf_is_disabled_but_preserved_in_defaults():
+    from pathlib import Path
+    from src.services.configuration_service import ConfigurationService
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    by_name = {s.name: s for s in sources}
+    assert not by_name['IMDA GenAI Technical Skills and Competencies'].enabled
+    assert by_name['IMDA GenAI Technical Skills and Competencies'].url.endswith('sfw-for-ict-skills-in-genai.pdf')
+    assert by_name['IChemE — Knowledge And Competence'].enabled

@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## IMDA GenAI excluded from default scans — 2026-10-12
+
+- User approved disabling this source after export (9): the official alternate /-/media/.../sfw-for-ict-skills-in-genai.pdf also returned PDF_INVALID_RESPONSE on Cloud. The original /assets/f9e0ac04-898f-4de7-bc89-e6b34aa2e7d8.pdf returned HTML (2,407 bytes) in export (8). Both served identical valid PDFs locally, so the exact Cloud cause is unproven. Reason for exclusion: repeated non-PDF responses in the intended deployment, no document evidence retrievable there.
+- Keep the URL in the catalogue with enabled=false for future review, not deleted. No statement that IMDA lacks useful content. Overview source unchanged; optional full framework remains disabled. IChemE's three-document source remains enabled and Cloud-verified.
+- Retired the completed two-source preset to avoid accidental re-enabling; general Quick scan selection and Restore previous selection remain. Build imda-excluded-1. Fresh/default-restored sessions receive the change; existing session edits are not overwritten. Next review target: A*STAR missing content bodies from export (4); no further IMDA repeat test requested.
+
 ## IMDA official alternative candidate — 2026-10-12
 
 - Officially indexed alternative: https://www.imda.gov.sg/-/media/imda/files/how-we-can-help/tesa/sfw-for-ict/sfw-for-ict-skills-in-genai.pdf . Permitted local request returned HTTP 200 application/pdf without redirect. Both this and the asset URL returned 2,804,080 bytes, SHA256 f68923f06c1fc7115cd2c422c823a4f8cead939ee1958051058e417ada0108c1: identical document, not substitute evidence.
