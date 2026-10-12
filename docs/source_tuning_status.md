@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## NUS/SIT official alternative review — 2026-10-12
+
+- Official search results confirm current programme/curriculum material exists. Normal robots-permitted requests to all four candidates returned an empty Incapsula security shell: https://cde.nus.edu.sg/cee/undergraduate/beng-civil/build-your-own-degree-civil-engineering/ ; https://cde.nus.edu.sg/cee/undergraduate/beng-env/curriculum/ ; https://www.singaporetech.edu.sg/undergraduate-programmes/civil-engineering ; https://www.singaporetech.edu.sg/undergraduate-programmes/engineering-systems . No challenge scripts executed, no source text obtained from these requests.
+- Alternatives are not automatically equivalent: NUS degree-design overview is not the full civil course list; environmental curriculum is a different discipline; SIT civil-engineering and sit-civil-engineering distinguish programme offerings. Do not replace merely because search results are readable or title words overlap. Older brochures/timetables were not adopted as current curricula.
+- Catalogue unchanged pending user decision about temporarily disabling the configured NUS CEE civil course list and three SIT undergraduate sources (Engineering Systems, SIT Civil Engineering, Sustainable Built Environment). Other NUS/SIT domains and short courses not blanket-excluded. No further identical test scan requested; independent access review or a genuinely accessible equivalent is needed.
+
 ## NUS/SIT empty-shell review — 2026-10-12
 
 - Permitted live HTTP checks of NUS CEE civil courses and SIT Civil Engineering returned HTTP 200, 955/950 bytes, no visible content and an /_Incapsula_Resource script. SIT Sustainable Built Environment also failed the existing empty-HTML guard. These are retrieval failures, not evidence that the courses are absent. Official SIT search results still index the configured programme pages; no speculative URL swaps made.
