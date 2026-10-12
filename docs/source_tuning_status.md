@@ -1,5 +1,11 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Three A*STAR sources excluded from defaults — 2026-10-12
+
+- User-approved exclusion: SIMTech Industrial Automation (/simtech/kto/industrial-automation), Medical Technologies (/Research/medical-technologies), and Sustainability Informatics & Strategy (/simtech/research/sustainability-informatics-strategy-%28sis%29), all on www.a-star.edu.sg. Preserve each URL disabled, not deleted; other A*STAR sources unchanged.
+- Cloud astar-diagnostics-1 returned zero evidence: each response had 2,407 HTML bytes, 26 visible words, no main element, three scripts, and no recognised access-notice phrase. Identical counts suggest a shared intermediary/access response but do not identify its cause. Local pages contain expected content and extract successfully. Reason for default exclusion: repeat unusable responses in the intended Cloud deployment, not lack of valuable source material.
+- Retired A*STAR preset; general quick selection/restore retained. Build astar-excluded-1. Existing session selections are preserved; new defaults apply on Start fresh or Restore default sources. No further identical A*STAR test requested. Next source-review candidates remain the unresolved NUS/SIT response failures in export (4).
+
 ## A*STAR Cloud missing-body diagnosis — 2026-10-12
 
 - User's astar-test-1 run returns zero records; all three errors report missing reviewed body containers. The same containers and extraction worked locally. Cause is not established: do not infer a layout change or access block solely from missing selectors.

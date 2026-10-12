@@ -100,18 +100,17 @@ def _render_session_sources(services):
 
 
 def _render_quick_selection(services, sources):
-    from src.services.source_test_selection import ASTAR_TEST_URLS, select_only, restore_selection
+    from src.services.source_test_selection import select_only, restore_selection
     with st.expander('Quick scan selection', expanded=True):
         st.caption('Test a small group without unticking every row. This changes only your session. Restore previous selection afterwards; source details and the master list stay unchanged. Applying a selection discards unsaved table drafts.')
         labels = {s.url: f'{s.name} — {s.url}' for s in sources}
         chosen = st.multiselect('Sources to test', list(labels), format_func=labels.get)
-        preset = st.button('Test three A*STAR sources only', disabled=not ASTAR_TEST_URLS.issubset(labels))
         apply = st.button('Enable only selected sources', disabled=not chosen)
         restore = st.button('Restore previous selection', disabled='source_test_previous' not in st.session_state)
-        if preset or apply or restore:
+        if apply or restore:
             try:
                 proposed = (restore_selection(sources, st.session_state['source_test_previous']) if restore
-                            else select_only(sources, ASTAR_TEST_URLS if preset else chosen))
+                            else select_only(sources, chosen))
                 services['source_configuration_workflow'].replace_catalogue(proposed)
                 if restore:
                     st.session_state.pop('source_test_previous', None)

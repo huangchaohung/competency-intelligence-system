@@ -40,11 +40,12 @@ def test_failed_cloud_pdf_is_disabled_but_preserved_in_defaults():
     assert by_name['IChemE — Knowledge And Competence'].enabled
 
 
-def test_astar_preset_matches_exactly_three_default_sources():
+def test_three_cloud_unavailable_astar_sources_are_preserved_disabled():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
-    from src.services.source_test_selection import ASTAR_TEST_URLS
     sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
-    selected = select_only(sources, ASTAR_TEST_URLS)
-    assert len([s for s in selected if s.enabled]) == 3
-    assert {s.url for s in selected if s.enabled} == ASTAR_TEST_URLS
+    by_name = {s.name: s for s in sources}
+    for name in ['A*STAR — Sustainability', 'A*STAR SIMTech — Industrial Automation', 'A*STAR — Medical Technologies']:
+        assert not by_name[name].enabled
+        assert by_name[name].url.startswith('https://www.a-star.edu.sg/')
+    assert by_name['A*STAR Research Features'].enabled
