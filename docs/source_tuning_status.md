@@ -1,5 +1,15 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Further NUS alternatives reviewed — 2026-10-12
+
+- Official search identified more specific Biomedical Engineering course/curriculum pages and the AY2026/27 SCALE undergraduate bulletin. Four robots-permitted requests through the bounded application scanner all failed with Incapsula access responses:
+  - https://cde.nus.edu.sg/bme/undergraduate/degree-programme/beng-bme/modules/
+  - https://cde.nus.edu.sg/bme/build-your-own-degree/
+  - https://scale.nus.edu.sg/programmes/undergraduate-programmes/btech-engineering/btech-civil-engineering
+  - https://www.nus.edu.sg/nusbulletin/ay202627/programmes/school-of-continuing-lifelong-education/undergraduate-education/
+- First two returned recognised access notices; last two returned text-empty security shells. No challenge execution, source body retention, or access bypass. Search indexing is not crawler accessibility. The bulletin also covers multiple programmes rather than just Civil Engineering; it is not an exact replacement without further content review.
+- No catalogue, scanner, or enabled-state changes this round. Existing NUS Biomedical and SCALE sources remain unchanged pending individual disposition. No repeat Cloud scan requested for these same candidates. Continue with remaining independent source reviews; do not blanket-exclude NUS or claim courses are obsolete.
+
 ## Four reviewed NUS/SIT sources paused — 2026-10-12
 
 - User approved disabling NUS Civil & Environmental Engineering — Courses, SIT — Engineering Systems, SIT — Sit Civil Engineering, and SIT — Sustainable Built Environment. Entries and original URLs remain available; only enabled flags changed. Reason: recorded zero-evidence scans plus representative normal-request security-shell failures; official alternatives did not establish a usable equivalent. Evidence does not establish that the programmes are obsolete.
