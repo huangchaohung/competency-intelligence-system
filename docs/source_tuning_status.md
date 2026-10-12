@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## A*STAR Cloud missing-body diagnosis — 2026-10-12
+
+- User's astar-test-1 run returns zero records; all three errors report missing reviewed body containers. The same containers and extraction worked locally. Cause is not established: do not infer a layout change or access block solely from missing selectors.
+- Missing-body errors now report HTML byte count, visible word count, main-element presence, script count and a boolean access-notice phrase hint. No response text, title, incident ID or token is included. Hints are not proof; no evidence acceptance rules changed. Build astar-diagnostics-1; keep same three-source preset and request only recorded errors before deciding whether normal browser rendering is appropriate.
+
 ## A*STAR scoped Cloud checkpoint — 2026-10-12
 
 - Reviewed Industrial Automation, Medical Technologies and Sustainability Informatics & Strategy via permitted local requests. All expose main content; existing extractor accepts all three. Industrial Automation main overview has 239 words, MedTech main rich-text introduction 129, SIS 211. These are container counts, not claims about full exported text or Cloud success. No speculative selector changes made.

@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 from src.core.exceptions import ExtractionError
 from src.models.domain import Evidence, EvidenceType, Source, SourceType
 from src.scanner.web_page_scanner import DownloadedPage
+from src.extractor.response_diagnostics import html_diagnostics
 
 
 class ArticleExtractor:
@@ -105,7 +106,7 @@ class ArticleExtractor:
                 raise ExtractionError('Structured resource redirected away from the reviewed page')
             body = soup.select_one(selector)
             if body is None:
-                raise ExtractionError('Structured resource body unavailable; navigation is not evidence')
+                raise ExtractionError('Structured resource body unavailable; navigation is not evidence. ' + html_diagnostics(page.html))
             for element in body.select('script, style, nav, header, footer, aside, form'):
                 element.decompose()
             text = body.get_text('\n', strip=True)
@@ -156,7 +157,7 @@ class ArticleExtractor:
                 and unquote(parsed_url.path).lower().rstrip('/') == '/simtech/research/sustainability-informatics-strategy-(sis)'):
             content = soup.select_one('main .rich-text.rte')
             if content is None:
-                raise ExtractionError('SIMTech research content block unavailable')
+                raise ExtractionError('SIMTech research content block unavailable. ' + html_diagnostics(page.html))
             for unwanted in content.select('script, style, nav, form'):
                 unwanted.decompose()
             text = content.get_text('\n', strip=True)
@@ -172,7 +173,7 @@ class ArticleExtractor:
                     '/research/medical-technologies/enablers'}):
             body = soup.select_one('section.page-content__inner')
             if body is None:
-                raise ExtractionError('MedTech content block unavailable')
+                raise ExtractionError('MedTech content block unavailable. ' + html_diagnostics(page.html))
             soup = BeautifulSoup(str(body), 'lxml')
             if parsed_url.path.lower().rstrip('/').endswith('/enablers'):
                 for unwanted in soup.select('script, style, nav, form'):
