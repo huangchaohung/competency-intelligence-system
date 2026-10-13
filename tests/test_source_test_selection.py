@@ -159,6 +159,18 @@ def test_remaining_nus_repeat_zero_sources_preserved_disabled(url):
     assert not matches[0].enabled
 
 
+def test_onemap_replacement_preserves_supporting_role_and_other_sla_sources():
+    from pathlib import Path
+    from src.services.configuration_service import ConfigurationService
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    by_url = {s.url: s for s in sources}
+    assert 'https://geoworks.sla.gov.sg/sla-products/onemap' not in by_url
+    source = by_url['https://www.sla.gov.sg/geospatial/onemap/']
+    assert source.enabled
+    assert source.source_role.value == 'SUPPORTING_DISCOVERY'
+    assert by_url['https://geoworks.sla.gov.sg/programmes'].enabled
+
+
 def test_ice_cloud_blocked_sources_are_preserved_disabled():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService

@@ -1,5 +1,9 @@
 # Source tuning checkpoint — 2026-09-24
 
+## NP / SLA / Tokyo review — 2026-10-13
+
+- Replaced GeoWorks OneMap with official SLA OneMap product page; 205 words extracted locally, Cloud pending. Existing NP adapter discovers nine programme links locally; retained. Tokyo graduate extracts locally; undergraduate fetch works but extractor fails, still needs review. GeoWorks Programmes retained pending DNS/Cloud recheck (not asserted robots-blocked). Detailed findings preserved in register. Build release-audit-11; final validation not yet requested.
+
 ## Remaining NUS repeat-zero review — 2026-10-13
 
 - Paused six sources after individual current access-block responses and repeat Cloud zeros: Green Energy, BTech Civil, Biomedical, Environmental Engineering courses, PC Applied GIS and Sustainability Continuing. Four official curriculum/GIS/sustainability alternatives also blocked; preserved as leads in the register, not adopted. Other sources unchanged. Build release-audit-10. No new full scan yet; remaining non-NUS review and final validation pending.

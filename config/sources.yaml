@@ -1467,7 +1467,7 @@ sources:
   max_listing_pages: 5
   use_browser_rendering: false
 - name: SLA — Onemap
-  url: https://geoworks.sla.gov.sg/sla-products/onemap
+  url: https://www.sla.gov.sg/geospatial/onemap/
   organisation: SLA
   source_family: GOVERNMENT_AGENCY
   source_type: ARTICLE
