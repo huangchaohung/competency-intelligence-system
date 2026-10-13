@@ -1,5 +1,9 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Compact preparation performance — 2026-10-13
+
+Build compact-download-3 removes the full-text export intermediate from Cloud preparation and repeated growing-part serialization. Same excerpt rules and individual downloads; original evidence remains session-only. Source tuning stays paused. Government portal usefulness/context acceptance remains a user-validation gate.
+
 ## Compact Cloud download UI — 2026-10-13
 
 Build compact-download-2: Prepare download files automatically reduces text and splits it into <=400,000-character TXT parts. Separate Download part X of Y buttons save each file; cached preparation survives reruns, no ZIP needed and no auto-prepare on page entry. Source tuning remains paused.

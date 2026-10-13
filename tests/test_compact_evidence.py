@@ -30,3 +30,30 @@ def test_excerpts_preserve_short_text_and_label_long_omissions():
 def test_oversized_metadata_fails_without_silent_loss():
     with pytest.raises(ValueError, match='metadata'):
         compact_payload({'evidence': [{'id': 1, 'title': 'x'*15000, 'article_text': 'text'}]}, 10000)
+
+
+def test_direct_session_export_matches_conversion_without_full_export(monkeypatch):
+    from test_public_handover import fixture
+    from src.services.public_handover import build_transfer_handover
+    from src.services.compact_evidence import build_compact_handover
+    run, items = fixture()
+    expected = compact_payload(json.loads(next(iter(build_transfer_handover(run, items).values()))))
+    def forbidden(*args, **kwargs):
+        raise AssertionError('Must not construct full-text export')
+    monkeypatch.setattr('src.services.public_handover.build_transfer_handover', forbidden)
+    assert build_compact_handover(run, items) == expected
+
+
+def test_direct_export_preserves_validation():
+    from dataclasses import replace
+    from test_public_handover import fixture
+    from src.services.compact_evidence import build_compact_handover
+    run, items = fixture()
+    for bad in [[], [items[0], items[0]], [replace(items[0], scan_run_id=999)],
+                [replace(items[0], url='https://user:secret@example.org/a')]]:
+        with pytest.raises(ValueError):
+            build_compact_handover(run, bad)
+    with pytest.raises(ValueError, match='original scan'):
+        build_compact_handover(run, items, scan_summary={'evidence_count': 999})
+    with pytest.raises(ValueError, match='finished'):
+        build_compact_handover(replace(run, completed_at=None), items)

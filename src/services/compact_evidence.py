@@ -73,13 +73,20 @@ def compact_payload(payload, max_characters=MAX_CHARACTERS):
     def pack(rows, index, count):
         return json.dumps(dict(base, part_index=index, part_count=count, evidence_count=len(rows), evidence=rows), ensure_ascii=False, separators=(',', ':'))
     groups, current = [], []
+    # Count serialized records once, reserving maximum index/count digits.
+    # Do not repeatedly serialize the entire growing part for each record.
+    overhead = len(pack([], len(records), len(records))) + len(str(len(records))) - 1
+    current_size = overhead
     for record in records:
-        if len(pack(current + [record], len(records), len(records))) > max_characters:
+        record_size = len(json.dumps(record, ensure_ascii=False, separators=(',', ':')))
+        if current_size + record_size + bool(current) > max_characters:
             if current:
                 groups.append(current)
                 current = []
-            if len(pack([record], len(records), len(records))) > max_characters:
+                current_size = overhead
+            if overhead + record_size > max_characters:
                 raise ValueError('Single evidence metadata exceeds the character limit; no file prepared.')
+        current_size += record_size + bool(current)
         current.append(record)
     if current:
         groups.append(current)
@@ -87,7 +94,31 @@ def compact_payload(payload, max_characters=MAX_CHARACTERS):
             for i, rows in enumerate(groups, 1)}
 
 
-def build_compact_handover(run, evidence, **kwargs):
-    from src.services.public_handover import build_transfer_handover
-    full = build_transfer_handover(run, evidence, **kwargs)
-    return compact_payload(json.loads(next(iter(full.values()))))
+def build_compact_handover(run, evidence, *, retention_eligible=True, scan_summary=None):
+    """Compact directly from session records without a full-text JSON copy."""
+    from src.services.public_handover import public_url
+    if run.id is None or run.completed_at is None or run.status.value == 'RUNNING':
+        raise ValueError('Only finished scan batches can be exported.')
+    if not retention_eligible or not evidence:
+        raise ValueError('No verified retained evidence package is available for this batch.')
+    if scan_summary is not None and scan_summary['evidence_count'] != len(evidence):
+        raise ValueError('Retained evidence count differs from the original scan.')
+    lookup = {s.get('id'): s for s in run.sources_snapshot}
+    for source in lookup.values():
+        if source.get('url'):
+            public_url(source['url'])
+    def records():
+        seen = set()
+        for item in evidence:
+            if item.scan_run_id != run.id or item.id is None or item.id in seen:
+                raise ValueError('Evidence has a missing/duplicate ID or belongs to another batch.')
+            seen.add(item.id)
+            source = lookup.get(item.source_id, {})
+            yield {'id': item.id, 'evidence_key': f'{run.id}:{item.id}', 'source_id': item.source_id,
+                   'organisation': item.organisation, 'source_name': source.get('name', 'Unknown'),
+                   'url': public_url(item.url), 'source_family': source.get('source_family', 'Unknown'),
+                   'source_type': source.get('source_type', 'Unknown'), 'evidence_type': item.evidence_type,
+                   'title': item.title, 'publication_date': item.publication_date,
+                   'article_text': item.article_text, 'explicit_or_inferred': item.explicit_or_inferred,
+                   'quality_warnings': ['Source snapshot metadata missing'] if not source else []}
+    return compact_payload({'batch_id': run.id, 'manifest': {'scan_status': run.status.value}, 'evidence': records()})

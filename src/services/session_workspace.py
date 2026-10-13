@@ -18,7 +18,7 @@ from src.services.source_service import SourceService
 from src.workflow.scan_workflow import ScanWorkflow
 from src.workflow.source_configuration_workflow import SourceConfigurationWorkflow
 
-RUNTIME_REVISION = 'compact-download-2'
+RUNTIME_REVISION = 'compact-download-3'
 
 
 def refresh_scan_runtime(services):
