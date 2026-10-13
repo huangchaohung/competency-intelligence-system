@@ -932,7 +932,7 @@ sources:
   llm_allowed: true
   max_articles_per_scan: 25
   article_url_pattern: ''
-  enabled: true
+  enabled: false
   max_listing_pages: 5
   use_browser_rendering: false
 - name: NUS Sustainability — Continuing
@@ -944,7 +944,7 @@ sources:
   llm_allowed: true
   max_articles_per_scan: 25
   article_url_pattern: ''
-  enabled: true
+  enabled: false
   max_listing_pages: 5
   use_browser_rendering: false
 - name: Politecnico di Milano — Building Engineering For Sustainability
@@ -1691,7 +1691,7 @@ sources:
   llm_allowed: true
   max_articles_per_scan: 25
   article_url_pattern: ''
-  enabled: true
+  enabled: false
   max_listing_pages: 5
   use_browser_rendering: false
 - name: NUS Civil & Environmental Engineering — Courses
@@ -1992,7 +1992,7 @@ sources:
   llm_allowed: true
   max_articles_per_scan: 25
   article_url_pattern: ''
-  enabled: true
+  enabled: false
   max_listing_pages: 5
   use_browser_rendering: false
 - name: NUS Geography — Graduate Certificate In Applied Geographic Information Systems
@@ -2729,7 +2729,7 @@ sources:
   llm_allowed: true
   max_articles_per_scan: 25
   article_url_pattern: ''
-  enabled: true
+  enabled: false
   max_listing_pages: 5
   use_browser_rendering: false
 - name: NUS Solar Energy Research Institute of Singapore
@@ -2969,7 +2969,7 @@ sources:
   llm_allowed: true
   max_articles_per_scan: 25
   article_url_pattern: ''
-  enabled: true
+  enabled: false
   max_listing_pages: 5
   use_browser_rendering: false
 - name: Peking University — 88.Html

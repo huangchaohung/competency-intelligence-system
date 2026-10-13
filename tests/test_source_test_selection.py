@@ -60,7 +60,7 @@ def test_reviewed_nus_sit_exclusions_preserve_other_sources():
                  'SIT — Sit Civil Engineering', 'SIT — Sustainable Built Environment']:
         assert not by_name[name].enabled
         assert by_name[name].url.startswith('https://')
-    assert by_name['NUS Biomedical Engineering — Undergraduate'].enabled
+    assert not by_name['NUS Biomedical Engineering — Undergraduate'].enabled
 
 
 def test_reviewed_skillsfuture_pages_are_paused_without_changing_ipma():
@@ -85,7 +85,7 @@ def test_reviewed_nus_process_fm_gis_sources_are_paused():
         'https://fass.nus.edu.sg/geog/graduate-certificate-in-applied-geographic-information-systems',
     ]:
         assert not by_url[url].enabled
-    assert by_url['https://cde.nus.edu.sg/bme/undergraduate'].enabled
+    assert not by_url['https://cde.nus.edu.sg/bme/undergraduate'].enabled
 
 
 def test_reviewed_smu_failures_preserve_separate_programmes_source():
@@ -146,7 +146,17 @@ def test_four_reviewed_nus_cde_security_shell_sources_are_paused():
     by_url = {s.url: s for s in sources}
     for url in ["https://cde.nus.edu.sg/dbe/graduate/msc-project-management","https://cde.nus.edu.sg/continuing-education-and-training","https://cde.nus.edu.sg/cet/","https://cde.nus.edu.sg/ece/undergraduate/electrical-engineering/specialisations-and-minor/specialisation-in-industry-4-0"]:
         assert not by_url[url].enabled
-    assert by_url['https://cde.nus.edu.sg/bme/undergraduate'].enabled
+    assert not by_url['https://cde.nus.edu.sg/bme/undergraduate'].enabled
+
+
+@pytest.mark.parametrize('url', ["https://www.nus.edu.sg/research/sustainability/research-pillars/green-energy-technologies","https://scale.nus.edu.sg/programmes/undergraduate-programmes/btech-engineering/btech-civil-engineering","https://cde.nus.edu.sg/bme/undergraduate","https://cde.nus.edu.sg/cee/undergraduate/beng-env/courses","https://fass.nus.edu.sg/geog/continuing-education-and-training/pc-in-applied-gis","https://sustainability.nus.edu.sg/education/continuing"])
+def test_remaining_nus_repeat_zero_sources_preserved_disabled(url):
+    from pathlib import Path
+    from src.services.configuration_service import ConfigurationService
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    matches = [s for s in sources if s.url == url]
+    assert len(matches) == 1
+    assert not matches[0].enabled
 
 
 def test_ice_cloud_blocked_sources_are_preserved_disabled():

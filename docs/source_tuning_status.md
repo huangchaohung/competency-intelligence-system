@@ -1,5 +1,9 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Remaining NUS repeat-zero review — 2026-10-13
+
+- Paused six sources after individual current access-block responses and repeat Cloud zeros: Green Energy, BTech Civil, Biomedical, Environmental Engineering courses, PC Applied GIS and Sustainability Continuing. Four official curriculum/GIS/sustainability alternatives also blocked; preserved as leads in the register, not adopted. Other sources unchanged. Build release-audit-10. No new full scan yet; remaining non-NUS review and final validation pending.
+
 ## NUS CDE access review — 2026-10-13
 
 - Paused four repeated-zero sources: MSc Project Management, ECE Industry 4.0, CDE Continuing Education and Training, and CET Learning. Individual current local requests and official CHBE Industry 4.0 alternative returned security shells. Registry preserves original URLs and reasons; no claim programmes are obsolete, other NUS entries unchanged. Build release-audit-9. Remaining queue and final Cloud validation still open; no new full scan yet.
