@@ -1,5 +1,9 @@
 # Source tuning checkpoint — 2026-09-24
 
+## SAE verification notice / HDB content distinction — 2026-10-13
+
+- Paused SAE standards after repeated Cloud zero and direct inspection of robot-verification notices on original and Mobilus alternative. No bypass. HDB homepage and technical alternative locally reachable; technical content is very short but genuine, so left unchanged pending usefulness/Cloud checks. Register updated; build release-audit-8. No new scan yet, final release gates remain open.
+
 ## Final review: EMA media / A*STAR overview — 2026-10-13
 
 - Paused EMA Media Releases after repeated Cloud zeros and security shells from both media and broader news roots locally. Paused A*STAR Research root after repeated no-link output and confirmation that official overview is the same general agency introduction, not detailed competency/course evidence. URLs and reasons retained in register; other EMA sources and A*STAR Research Features unchanged. Build release-audit-7. No new scan yet; remaining review/coverage gates open.

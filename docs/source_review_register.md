@@ -8,7 +8,7 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 | --- | --- | --- | --- | --- | --- | --- |
 | A*STAR | A*STAR — Research | https://www.a-star.edu.sg/research | NO_LINKS | Yes | Excluded pending review; disabled 2026-10-13: repeated zero discovery; local root/overview offer general agency introduction, not detailed competency/capability listings | None equivalent; separate Research Features remains enabled |
 | Energy Market Authority | Energy Market Authority — Media Releases | https://www.ema.gov.sg/news-events/news/media-releases | ACCESS_BLOCKED | Yes | Excluded pending review; disabled 2026-10-13: repeated Cloud zero; root and broader official news page return local security shells | None verified |
-| HDB | HDB | https://www.hdb.gov.sg/ | ROBOTS_RESTRICTED | Yes | Pending final review; unchanged | None established |
+| HDB | HDB | https://www.hdb.gov.sg/ | ROBOTS_RESTRICTED | Yes | Locally reachable 2026-10-13; unchanged pending content/discovery and Cloud verification | Technical page is short genuine content, not yet verified as useful replacement |
 | International Project Management Association (IPMA) | International Project Management Association (IPMA) — Icb4 | https://ipma.world/ipma-standards-development-programme/icb4 | EMPTY_HTML | No | Pending final review; unchanged | None established |
 | International Society of Automation (ISA) | International Society of Automation (ISA) — Isa Iec 62443 Cybersecurity Certificate Program | https://www.isa.org/certification/certificate-programs/isa-iec-62443-cybersecurity-certificate-program | INSUFFICIENT_TEXT | Yes | Pending final review; unchanged | None established |
 | NUS | NUS — Green Energy Technologies | https://www.nus.edu.sg/research/sustainability/research-pillars/green-energy-technologies | ACCESS_BLOCKED | Yes | Pending final review; unchanged | None established |
@@ -27,7 +27,7 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 | Ngee Ann Polytechnic | Ngee Ann Polytechnic — School Of Engineering | https://www.np.edu.sg/schools-courses/academic-schools/school-of-engineering | LISTING_MISSING | Yes | Pending final review; unchanged | None established |
 | Politecnico di Milano | Politecnico di Milano — Building Engineering For Sustainability | https://www.polimi.it/en/education/laurea-programmes/programme-detail/building-engineering-for-sustainability | ROBOTS_RESTRICTED | Yes | Locally retrievable 2026-10-13; retained pending Cloud/semantic verification | None established |
 | Politecnico di Milano | Politecnico di Milano — Civil Engineering | https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering | ROBOTS_RESTRICTED | Yes | Replaced 2026-10-13 after content-scope review | https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering-1 (local extraction verified; Cloud pending) |
-| SAE International | SAE International — Standards | https://www.sae.org/standards | EMPTY_HTML | Yes | Pending final review; unchanged | None established |
+| SAE International | SAE International — Standards | https://www.sae.org/standards | EMPTY_HTML | Yes | Excluded pending review; disabled 2026-10-13: repeated Cloud zero and current robot-verification notice | https://saemobilus.sae.org/standards also returns verification notice; not adopted |
 | SLA | SLA — Onemap | https://geoworks.sla.gov.sg/sla-products/onemap | ROBOTS_RESTRICTED | No | Pending final review; unchanged | None established |
 | SMU | SMU — Master Of Sustainability | https://masters.smu.edu.sg/programme/master-of-sustainability | ACCESS_BLOCKED | Yes | Excluded pending review; disabled 2026-10-13 after repeated Cloud zero and local security shell | CIS programme overview locally accessible but not equivalent detailed curriculum; see findings |
 | SMU | SMU — Project Management Course | https://academy.smu.edu.sg/courses/project-management-course | ACCESS_BLOCKED | Yes | Excluded pending review; disabled 2026-10-13 after repeated Cloud zero and local security shell | No equivalent accessible official course listing verified |
@@ -45,6 +45,11 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 | UCLA | UCLA — Undergraduates | https://lifesciences.ucla.edu/undergraduates | ROBOTS_RESTRICTED | No | Replaced 2026-10-13 after content-scope review | https://lifesciences.ucla.edu/undergraduates/majors-minors/ (local extraction verified; Cloud pending) |
 
 ## Next decisions
+
+### SAE / HDB review — 2026-10-13
+
+- SAE original and official Mobilus standards root both return a JavaScript-required robot-verification notice, not standards content. No challenge executed or restriction bypassed. Entry retained disabled for future access review.
+- HDB original locally redirects to /homepage and returns general housing navigation/news. Official https://www.hdb.gov.sg/about-us/our-role/build-quality-flats contains 26 words of actual building-technology descriptions, NOT the 26-word SAE notice. Counts alone cannot classify content or explain earlier Cloud failures. No speculative HDB replacement/exclusion; discovery usefulness and Cloud behaviour still need review.
 
 ### EMA / A*STAR final review — 2026-10-13
 

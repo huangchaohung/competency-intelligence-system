@@ -130,6 +130,15 @@ def test_reviewed_ema_media_and_astar_overview_are_paused():
     assert by_url['https://research.a-star.edu.sg/category/features/'].enabled
 
 
+def test_sae_security_notice_source_is_paused_but_hdb_unchanged():
+    from pathlib import Path
+    from src.services.configuration_service import ConfigurationService
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    by_url = {s.url: s for s in sources}
+    assert not by_url['https://www.sae.org/standards'].enabled
+    assert by_url['https://www.hdb.gov.sg/'].enabled
+
+
 def test_ice_cloud_blocked_sources_are_preserved_disabled():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
