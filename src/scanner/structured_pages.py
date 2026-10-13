@@ -6,6 +6,10 @@ def body_selector(url):
     parsed = urlparse(url)
     if parsed.scheme != 'https':
         return None
+    if (parsed.hostname == 'www.u-tokyo.ac.jp' and
+            parsed.path == '/en/academics/facultyofengineering.html'):
+        # Reviewed page uses div.edit prose rather than article/p paragraphs.
+        return '#contents .main'
     if (parsed.hostname == 'web.bio.pku.edu.cn' and parsed.path in {
             '/en/index/index/graduate/cid/134.html',
             '/en/index/index/degrees/cid/88.html'}):

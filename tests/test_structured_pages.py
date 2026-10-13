@@ -8,6 +8,8 @@ from src.core.exceptions import ExtractionError, ScanError
 
 
 @pytest.mark.parametrize('url,body,kind', [
+    ('https://www.u-tokyo.ac.jp/en/academics/facultyofengineering.html',
+     '<div id="contents"><div class="main">{}</div><aside>OUTSIDE MENU</aside></div>', SourceType.ARTICLE),
     ('https://web.bio.pku.edu.cn/en/index/index/graduate/cid/134.html',
      '<nav>OUTSIDE MENU</nav><main class="pad80">{}</main>', SourceType.CATALOGUE),
     ('https://web.bio.pku.edu.cn/en/index/index/degrees/cid/88.html',
@@ -44,6 +46,18 @@ def test_structured_overview_keeps_tabs_and_tables_not_navigation(url, body, kin
         ArticleExtractor().extract(DownloadedPage('https://example.org/login', html), source, 1)
     with pytest.raises(ScanError, match='not permitted'):
         SourceRouter(SimpleNamespace(is_allowed=lambda u: False)).discover(source)
+
+
+def test_tokyo_div_only_overview_preserves_prose_and_rejects_short_body():
+    url = 'https://www.u-tokyo.ac.jp/en/academics/facultyofengineering.html'
+    source = Source(1, 'Tokyo', url, 'University of Tokyo')
+    prose = 'Students combine engineering knowledge with research and design. ' * 20
+    html = '<nav>OUTSIDE MENU</nav><div id="contents"><div class="main"><div class="edit">' + prose + '</div></div></div>'
+    item = ArticleExtractor().extract(DownloadedPage(url, html), source, 1)
+    assert 'Students combine' in item.article_text
+    assert 'OUTSIDE MENU' not in item.article_text
+    with pytest.raises(ExtractionError, match='Insufficient structured'):
+        ArticleExtractor().extract(DownloadedPage(url, html.replace(prose, 'Unavailable')), source, 1)
 
 
 def test_ice_alias_uses_same_canonical_url_and_checks_permission():

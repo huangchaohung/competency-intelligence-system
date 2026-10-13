@@ -1,5 +1,9 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Tokyo undergraduate extraction fix — 2026-10-13
+
+- Exact-page selector now preserves the observed div-based engineering overview instead of relying on generic paragraph extraction. Minimum text and permission/redirect guards remain. Tests cover prose and failure cases. Live post-fix request encountered a connection timeout, so Cloud acceptance remains pending. Build release-audit-12. No new full scan requested yet.
+
 ## NP / SLA / Tokyo review — 2026-10-13
 
 - Replaced GeoWorks OneMap with official SLA OneMap product page; 205 words extracted locally, Cloud pending. Existing NP adapter discovers nine programme links locally; retained. Tokyo graduate extracts locally; undergraduate fetch works but extractor fails, still needs review. GeoWorks Programmes retained pending DNS/Cloud recheck (not asserted robots-blocked). Detailed findings preserved in register. Build release-audit-11; final validation not yet requested.

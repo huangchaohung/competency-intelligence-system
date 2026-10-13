@@ -46,6 +46,11 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 
 ## Next decisions
 
+### Tokyo undergraduate extraction correction — 2026-10-13
+
+- Inspected live HTML: engineering prose is in div.edit inside #contents .main (688 words in that container), not conventional article paragraphs. Added an exact-host/path structured selector and direct-page routing using existing safeguards. Navigation outside the container is excluded; missing/short content and redirects still fail safely. Original URL retained enabled.
+- Regression covers div-only prose, missing body, redirects, permission denial and minimum text. A subsequent live verification request timed out connecting; network reliability and Cloud acceptance remain unresolved. Do not mark this source fully healthy based on the code fix.
+
 ### NP / SLA / Tokyo review — 2026-10-13
 
 - NP original listing works locally with the existing adapter: nine exact engineering programme URLs discovered in the full-time section. No speculative selector relaxation or URL change. Cloud previously reported missing listing; Cloud verification remains necessary.
