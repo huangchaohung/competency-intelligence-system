@@ -10,7 +10,8 @@ def deployment_files(root):
              'README.md', 'CONTRIBUTING.md', 'SECURITY.md', 'requirements-dev.txt',
              'pyproject.toml', 'docs/architecture.md', 'docs/operations.md',
              'docs/source_tuning_status.md', 'docs/source_review_register.md', 'scripts/package_cloud.py',
-             'scripts/sync_cloud.py', 'scripts/apply_source_health_stage.py']
+             'scripts/sync_cloud.py', 'scripts/apply_source_health_stage.py',
+             'scripts/compact_public_evidence.py', 'docs/government_assistant_guide.txt']
     files = [root / name for name in names]
     files.extend(sorted((root / 'src').rglob('*.py')))
     files.extend(sorted((root / 'tests').rglob('*.py')))

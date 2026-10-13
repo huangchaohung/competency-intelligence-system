@@ -3,7 +3,7 @@ from math import ceil
 import streamlit as st
 from src.core.exceptions import CompetencyIntelligenceError
 from src.services.source_health_service import source_health_rows
-from src.services.public_handover import build_transfer_handover
+from src.services.compact_evidence import build_compact_handover as build_transfer_handover
 from src.services.session_workspace import clear_current_scan
 from src.services.scan_job import ScanJob
 
@@ -151,8 +151,8 @@ def history(services, *, completed_here=None):
 
 def render_download(run, evidence, summary, *, prepare_now=False):
     st.subheader('Download evidence TXT')
-    st.caption('All evidence from your current scan is included, regardless of preview filters. It is held only in session memory; download to keep your own copy.')
-    key = f'public_evidence_only_{run.id}'
+    st.caption('Compact excerpts retain every evidence ID and source URL, ordered by source type. Each TXT is at most 400,000 characters. Download all parts; excerpts are not full documents or AI summaries. Priority is reading order, not a reliability rating.')
+    key = f'public_evidence_only_compact_v3_{run.id}'
     # Bound session memory to one prepared batch, including legacy cache keys.
     for old_key in list(st.session_state):
         if (old_key.startswith('public_handover_') or old_key.startswith('public_evidence_only_')) and old_key != key:
@@ -166,16 +166,15 @@ def render_download(run, evidence, summary, *, prepare_now=False):
         requested = st.button('Prepare evidence TXT', key=f'prepare_txt_{run.id}')
     if key not in st.session_state and requested:
         try:
-            with st.spinner('Preparing complete evidence TXT…'):
+            with st.spinner('Preparing compact evidence TXT parts…'):
                 st.session_state[key] = build_transfer_handover(run, evidence, retention_eligible=True, scan_summary=summary)
         except ValueError as error:
             st.error(str(error))
     if key in st.session_state:
         files = st.session_state[key]
         for name, data in files.items():
-            filename = 'public_evidence.txt'
-            st.download_button('Download evidence TXT', data, file_name=filename, mime='text/plain', on_click='ignore')
-            st.caption(f'{filename} · {len(data)/1_000_000:.2f} MB · Full text preserved')
+            st.download_button(f'Download {name}', data, file_name=name, mime='text/plain', on_click='ignore', key=f'download_{run.id}_{name}')
+            st.caption(f'{name} · {len(data.decode("utf-8")):,} characters · Selected excerpts; full text remains in this session only')
         with st.expander('Download troubleshooting'):
             st.download_button('Download small test TXT', b'STE download test: public text only.\n', file_name='download_test.txt', mime='text/plain', on_click='ignore')
             st.write('If neither file downloads, ask IT whether downloads from this app are permitted. If only the large file fails, record its size and browser error. A new session or server restart loses this scan; download before leaving. Do not bypass government security controls.')

@@ -73,3 +73,7 @@ docs/                  Technical handover
 - No software licence is declared. Confirm ownership and redistribution terms before reuse beyond the agreed team.
 
 Share this repository, not the original working folder. Never commit databases, logs, evidence exports, internal frameworks or secrets.
+# Compact government transfer (2026-10-13)
+
+Scan & Download now prepares numbered TXT parts, each at most 400,000 characters. Download all parts. Every evidence ID and URL is retained, but text is whitespace-normalised and shortened to distributed excerpts with explicit omission flags. This is not an AI summary or a guarantee that all competencies are preserved. Reading priority follows source metadata, not credibility. Use the current `docs/government_assistant_guide.txt` for part-by-part cited-ledger analysis; uploading multiple parts does not enlarge the assistant's context window. The existing full-text exporter remains an internal compatibility function, not the default download. Source tuning is temporarily paused.
+
