@@ -29,8 +29,8 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 | Politecnico di Milano | Politecnico di Milano — Civil Engineering | https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering | ROBOTS_RESTRICTED | Yes | Pending final review; unchanged | None established |
 | SAE International | SAE International — Standards | https://www.sae.org/standards | EMPTY_HTML | Yes | Pending final review; unchanged | None established |
 | SLA | SLA — Onemap | https://geoworks.sla.gov.sg/sla-products/onemap | ROBOTS_RESTRICTED | No | Pending final review; unchanged | None established |
-| SMU | SMU — Master Of Sustainability | https://masters.smu.edu.sg/programme/master-of-sustainability | ACCESS_BLOCKED | Yes | Pending final review; unchanged | None established |
-| SMU | SMU — Project Management Course | https://academy.smu.edu.sg/courses/project-management-course | ACCESS_BLOCKED | Yes | Pending final review; unchanged | None established |
+| SMU | SMU — Master Of Sustainability | https://masters.smu.edu.sg/programme/master-of-sustainability | ACCESS_BLOCKED | Yes | Excluded pending review; disabled 2026-10-13 after repeated Cloud zero and local security shell | CIS programme overview locally accessible but not equivalent detailed curriculum; see findings |
+| SMU | SMU — Project Management Course | https://academy.smu.edu.sg/courses/project-management-course | ACCESS_BLOCKED | Yes | Excluded pending review; disabled 2026-10-13 after repeated Cloud zero and local security shell | No equivalent accessible official course listing verified |
 | Singapore Institute of Technology | Singapore Institute of Technology — Electric Vehicles Charging Infrastructure Decarbonisation Land Transportation | https://www.singaporetech.edu.sg/sitlearn/courses/executive-education/electric-vehicles-charging-infrastructure-decarbonisation-land-transportation | ACCESS_BLOCKED | Yes | Pending final review; unchanged | None established |
 | Singapore Institute of Technology | Singapore Institute of Technology — Energy Sustainability Energy Management Systems | https://www.singaporetech.edu.sg/sitlearn/courses/engineering/energy-sustainability-energy-management-systems | ACCESS_BLOCKED | Yes | Pending final review; unchanged | None established |
 | Singapore Institute of Technology | Singapore Institute of Technology — Grid Connected Solar Photovoltaic Systems | https://www.singaporetech.edu.sg/sitlearn/courses/engineering/grid-connected-solar-photovoltaic-systems | ACCESS_BLOCKED | Yes | Pending final review; unchanged | None established |
@@ -45,6 +45,10 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 | UCLA | UCLA — Undergraduates | https://lifesciences.ucla.edu/undergraduates | ROBOTS_RESTRICTED | No | Pending final review; unchanged | None established |
 
 ## Next decisions
+
+### Review findings — 2026-10-13
+
+- Both configured SMU pages return Incapsula security shells through permitted local requests, consistent with exports (4)/(10). Search still indexes their programme material; no claim that programmes are obsolete. https://cis.smu.edu.sg/programmes/postgraduate is a readable directory linking https://cis.smu.edu.sg/programmes/postgraduate/postgraduate-coursework/master-of-sustainability . The latter provides programme purpose and broad skills, not the detailed curriculum: locally accessible lead only, not a verified equivalent replacement or Cloud success. Both original URLs retained disabled until final catalogue cleanup. Separate sustainability.smu.edu.sg/education/programmes source unchanged.
 
 ### Review findings — 2026-10-12
 

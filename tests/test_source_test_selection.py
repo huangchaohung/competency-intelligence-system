@@ -88,6 +88,16 @@ def test_reviewed_nus_process_fm_gis_sources_are_paused():
     assert by_url['https://cde.nus.edu.sg/bme/undergraduate'].enabled
 
 
+def test_reviewed_smu_failures_preserve_separate_programmes_source():
+    from pathlib import Path
+    from src.services.configuration_service import ConfigurationService
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    by_url = {s.url: s for s in sources}
+    assert not by_url['https://masters.smu.edu.sg/programme/master-of-sustainability'].enabled
+    assert not by_url['https://academy.smu.edu.sg/courses/project-management-course'].enabled
+    assert by_url['https://sustainability.smu.edu.sg/education/programmes'].enabled
+
+
 def test_ice_cloud_blocked_sources_are_preserved_disabled():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService

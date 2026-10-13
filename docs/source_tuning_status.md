@@ -1,5 +1,9 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Final review: SMU — 2026-10-13
+
+- Paused Master of Sustainability and Project Management Course after repeat Cloud zeros and current local security-shell responses. Readable official CIS sustainability page is a broad programme overview, not an equivalent full curriculum; preserved as a review lead in source_review_register.md rather than automatically substituted. Other SMU source unchanged; no access bypass. Build release-audit-4; no new scan yet. Final release gate remains open.
+
 ## Final review: three NUS course sources — 2026-10-12
 
 - Paused Process Engineering specialisation, Executive Facilities Management and Graduate Certificate Applied GIS. All were zero in exports (4)/(10); latest permitted local requests to the three official pages and two official directory alternatives returned security shells. Exact URLs and review reasons retained in source_review_register.md. No broad NUS exclusion or claim of obsolete programmes.
