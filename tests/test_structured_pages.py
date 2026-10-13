@@ -60,6 +60,14 @@ def test_tokyo_div_only_overview_preserves_prose_and_rejects_short_body():
         ArticleExtractor().extract(DownloadedPage(url, html.replace(prose, 'Unavailable')), source, 1)
 
 
+def test_ipma_icb4_is_direct_evidence_not_sibling_standard_discovery():
+    url = 'https://ipma.world/ipma-standards-development-programme/icb4'
+    source = Source(1, 'IPMA', url, 'IPMA', source_type=SourceType.FRAMEWORK)
+    assert SourceRouter(SimpleNamespace(is_allowed=lambda u: True)).discover(source) == [url]
+    with pytest.raises(ScanError, match='not permitted'):
+        SourceRouter(SimpleNamespace(is_allowed=lambda u: False)).discover(source)
+
+
 def test_ice_alias_uses_same_canonical_url_and_checks_permission():
     canonical = 'https://www.ice.org.uk/join-ice/attributes-for-professionally-qualified-membership'
     source = Source(1, 'ICE', 'https://www.ice.org.uk/attributes', 'ICE')

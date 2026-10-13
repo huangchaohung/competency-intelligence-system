@@ -15,6 +15,11 @@ class SourceRouter:
     def discover(self, source: Source) -> list[str]:
         """Return candidate URLs using the strategy best suited to the source type."""
         parsed_source = urlparse(source.url)
+        if source.url.rstrip('/') == 'https://ipma.world/ipma-standards-development-programme/icb4':
+            if not self._discovery._scanner.is_allowed(source.url):
+                raise ScanError('IPMA ICB4 retrieval is not permitted')
+            # This reviewed page is the evidence, not its sibling standards/shop.
+            return [source.url]
         if source.url.rstrip('/') == 'https://www.icheme.org/knowledge-networks/knowledge-resources/safety-centre/framework/knowledge-and-competence':
             scanner = self._discovery._scanner
             if not scanner.is_allowed(source.url):

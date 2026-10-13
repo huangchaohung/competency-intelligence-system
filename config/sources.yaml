@@ -1835,7 +1835,7 @@ sources:
   llm_allowed: true
   max_articles_per_scan: 25
   article_url_pattern: ''
-  enabled: true
+  enabled: false
   max_listing_pages: 5
   use_browser_rendering: false
 - name: NUS College of Design and Engineering CET — Continuing Education And Training

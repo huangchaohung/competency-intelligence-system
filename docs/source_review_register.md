@@ -8,8 +8,8 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 | --- | --- | --- | --- | --- | --- | --- |
 | A*STAR | A*STAR — Research | https://www.a-star.edu.sg/research | NO_LINKS | Yes | Excluded pending review; disabled 2026-10-13: repeated zero discovery; local root/overview offer general agency introduction, not detailed competency/capability listings | None equivalent; separate Research Features remains enabled |
 | Energy Market Authority | Energy Market Authority — Media Releases | https://www.ema.gov.sg/news-events/news/media-releases | ACCESS_BLOCKED | Yes | Excluded pending review; disabled 2026-10-13: repeated Cloud zero; root and broader official news page return local security shells | None verified |
-| HDB | HDB | https://www.hdb.gov.sg/ | ROBOTS_RESTRICTED | Yes | Locally reachable 2026-10-13; unchanged pending content/discovery and Cloud verification | Technical page is short genuine content, not yet verified as useful replacement |
-| International Project Management Association (IPMA) | International Project Management Association (IPMA) — Icb4 | https://ipma.world/ipma-standards-development-programme/icb4 | EMPTY_HTML | No | Pending final review; unchanged | None established |
+| HDB | HDB | https://www.hdb.gov.sg/ | ROBOTS_RESTRICTED | Yes | Paused 2026-10-13: root discovers general housing-service links, not targeted STE evidence | None equivalent verified; preserve technical page as review lead |
+| International Project Management Association (IPMA) | International Project Management Association (IPMA) — Icb4 | https://ipma.world/ipma-standards-development-programme/icb4 | EMPTY_HTML | No | Retained 2026-10-13: 836 words of framework overview extracted; discovery narrowed to original page; Cloud pending | Original URL retained |
 | International Society of Automation (ISA) | International Society of Automation (ISA) — Isa Iec 62443 Cybersecurity Certificate Program | https://www.isa.org/certification/certificate-programs/isa-iec-62443-cybersecurity-certificate-program | INSUFFICIENT_TEXT | Yes | Pending final review; unchanged | None established |
 | NUS | NUS — Green Energy Technologies | https://www.nus.edu.sg/research/sustainability/research-pillars/green-energy-technologies | ACCESS_BLOCKED | Yes | Excluded pending review; disabled 2026-10-13 after repeated Cloud zero and individual local access-block response | None accessible verified; see remaining NUS review |
 | NUS BTech Civil Engineering | NUS BTech Civil Engineering — Btech Civil Engineering | https://scale.nus.edu.sg/programmes/undergraduate-programmes/btech-engineering/btech-civil-engineering | ACCESS_BLOCKED | Yes | Excluded pending review; disabled 2026-10-13 after repeated Cloud zero and individual local access-block response | None accessible verified; see remaining NUS review |
@@ -45,6 +45,11 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 | UCLA | UCLA — Undergraduates | https://lifesciences.ucla.edu/undergraduates | ROBOTS_RESTRICTED | No | Replaced 2026-10-13 after content-scope review | https://lifesciences.ucla.edu/undergraduates/majors-minors/ (local extraction verified; Cloud pending) |
 
 ## Next decisions
+
+### HDB / IPMA final disposition — 2026-10-13
+
+- HDB root locally discovers buying/managing/renting flats, shops/offices, business partners, parking and news. Sample extraction insufficient; combined with repeat zero Cloud output, pause the untargeted homepage. The previously reviewed Build Quality Flats page is a short genuine technical directory, not a verified detailed equivalent. Search found specific construction news, but a single news item does not replace a general capabilities source. No broad HDB exclusion; original root retained disabled for monitoring.
+- IPMA original locally extracts 836 words discussing ICB4 competence areas. Retain, but route directly to that page: generic framework discovery also followed sibling standards, a trailing-slash duplicate and a research-evaluation shop redirect returning 404. This is framework overview evidence, not a claim that the full downloadable standard was retrieved or every management competency is STE. Cloud acceptance pending.
 
 ### Tokyo undergraduate extraction correction — 2026-10-13
 

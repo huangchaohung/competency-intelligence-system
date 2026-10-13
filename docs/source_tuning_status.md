@@ -1,5 +1,9 @@
 # Source tuning checkpoint — 2026-09-24
 
+## HDB / IPMA release review — 2026-10-13
+
+- Paused HDB homepage: general housing-service discovery, insufficient sample extraction and repeated Cloud zero. No verified equivalent adopted. IPMA ICB4 retained and routed directly to reviewed overview (836 words locally), avoiding unrelated sibling standards/shop errors. Registry and blueprint updated; build release-audit-13. Remaining gates: content/coverage audit and consolidated Cloud validation; ISA unchanged as requested, GeoWorks network uncertainty retained.
+
 ## Tokyo undergraduate extraction fix — 2026-10-13
 
 - Exact-page selector now preserves the observed div-based engineering overview instead of relying on generic paragraph extraction. Minimum text and permission/redirect guards remain. Tests cover prose and failure cases. Live post-fix request encountered a connection timeout, so Cloud acceptance remains pending. Build release-audit-12. No new full scan requested yet.
