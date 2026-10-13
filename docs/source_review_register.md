@@ -25,8 +25,8 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 | NUS Sustainability | NUS Sustainability — Continuing | https://sustainability.nus.edu.sg/education/continuing | ACCESS_BLOCKED | Yes | Pending final review; unchanged | None established |
 | National University of Singapore | NUS CET Learning | https://cde.nus.edu.sg/cet/ | ACCESS_BLOCKED | Yes | Pending final review; unchanged | None established |
 | Ngee Ann Polytechnic | Ngee Ann Polytechnic — School Of Engineering | https://www.np.edu.sg/schools-courses/academic-schools/school-of-engineering | LISTING_MISSING | Yes | Pending final review; unchanged | None established |
-| Politecnico di Milano | Politecnico di Milano — Building Engineering For Sustainability | https://www.polimi.it/en/education/laurea-programmes/programme-detail/building-engineering-for-sustainability | ROBOTS_RESTRICTED | Yes | Pending final review; unchanged | None established |
-| Politecnico di Milano | Politecnico di Milano — Civil Engineering | https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering | ROBOTS_RESTRICTED | Yes | Pending final review; unchanged | None established |
+| Politecnico di Milano | Politecnico di Milano — Building Engineering For Sustainability | https://www.polimi.it/en/education/laurea-programmes/programme-detail/building-engineering-for-sustainability | ROBOTS_RESTRICTED | Yes | Locally retrievable 2026-10-13; retained pending Cloud/semantic verification | None established |
+| Politecnico di Milano | Politecnico di Milano — Civil Engineering | https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering | ROBOTS_RESTRICTED | Yes | Locally retrievable 2026-10-13; retained pending Cloud/semantic verification | None established |
 | SAE International | SAE International — Standards | https://www.sae.org/standards | EMPTY_HTML | Yes | Pending final review; unchanged | None established |
 | SLA | SLA — Onemap | https://geoworks.sla.gov.sg/sla-products/onemap | ROBOTS_RESTRICTED | No | Pending final review; unchanged | None established |
 | SMU | SMU — Master Of Sustainability | https://masters.smu.edu.sg/programme/master-of-sustainability | ACCESS_BLOCKED | Yes | Excluded pending review; disabled 2026-10-13 after repeated Cloud zero and local security shell | CIS programme overview locally accessible but not equivalent detailed curriculum; see findings |
@@ -41,10 +41,16 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 | SkillsFuture Singapore | SkillsFuture Skills Frameworks | https://www.skillsfuture.gov.sg/skills-framework/skills-frameworks-faq | INSUFFICIENT_TEXT | Yes | Excluded pending review, disabled 2026-10-12: repeated Cloud zero; local response empty; FAQ explains framework use rather than listing STE competencies | None established |
 | U Tokyo | U Tokyo — Facultyofengineering.Html | https://www.u-tokyo.ac.jp/en/academics/facultyofengineering.html | ROBOTS_RESTRICTED | No | Pending final review; unchanged | None established |
 | U Tokyo | U Tokyo — Grad Engineering.Html | https://www.u-tokyo.ac.jp/en/academics/grad_engineering.html | ROBOTS_RESTRICTED | Yes | Pending final review; unchanged | None established |
-| UCLA | UCLA — Graduate Training | https://lifesciences.ucla.edu/graduate-training | ROBOTS_RESTRICTED | No | Pending final review; unchanged | None established |
-| UCLA | UCLA — Undergraduates | https://lifesciences.ucla.edu/undergraduates | ROBOTS_RESTRICTED | No | Pending final review; unchanged | None established |
+| UCLA | UCLA — Graduate Training | https://lifesciences.ucla.edu/graduate-training | ROBOTS_RESTRICTED | No | Locally retrievable 2026-10-13; retained pending Cloud/semantic verification | None established |
+| UCLA | UCLA — Undergraduates | https://lifesciences.ucla.edu/undergraduates | ROBOTS_RESTRICTED | No | Locally retrievable 2026-10-13; retained pending Cloud/semantic verification | None established |
 
 ## Next decisions
+
+### University access recheck — 2026-10-13
+
+- Both UCLA configured URLs and both Polimi configured URLs passed local robots checks and existing extraction: UCLA graduate 192 words, undergraduate 273; Polimi Building Engineering 694, Civil Engineering 611. No Cloud recovery claimed. is_allowed also returns false when robots retrieval fails, so exported ROBOTS_RESTRICTED is not sufficient proof of a permanent publisher prohibition.
+- UCLA graduate output lists PhD programmes; undergraduate output begins with student news and needs further content-scope review. Polimi Civil output identifies Bachelor of Science despite the configured URL's laurea-magistrale path: qualification/final-destination equivalence must be checked before accepting it as master's curriculum. Do not infer usefulness merely from successful extraction or word count.
+- Official related https://www.bes.polimi.it/ is locally readable; no replacement made because original Building Engineering page is also locally readable. All four entries remain unchanged, pending consolidated Cloud check and the content questions above. This is not approval to freeze these sources.
 
 ### Review findings — 2026-10-13
 

@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Final review: UCLA and Polimi access uncertainty — 2026-10-13
+
+- Four configured pages now pass local permission checks and extract (UCLA graduate/undergraduate 192/273 words, Polimi Building/Civil 694/611). Retained unchanged; Cloud robots diagnostics may include failed robots retrieval, not necessarily an explicit prohibition. No permanent-exclusion decision from one environment alone.
+- Registry records outstanding content issues: UCLA undergraduate starts with news; Polimi Civil output says Bachelor of Science despite master's-looking configured path. Verify semantic scope/final destination before acceptance. Readable BES official alternative not adopted while original also works locally. Documentation-only checkpoint; runtime remains release-audit-5. No new user scan yet.
+
 ## Final review: five SIT short courses — 2026-10-13
 
 - Paused the five configured SITLearn courses after zero evidence in exports (4)/(10) and current individual permitted requests returning Incapsula security shells: energy management, energy storage, EV charging, smart grids, solar PV. Retained URLs and monitoring topics in source_review_register.md. Related official Electrical System and Energy Management microcredential also blocked; no equivalent accessible replacement verified, no claim courses are obsolete.
