@@ -1,5 +1,10 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Final review: five SIT short courses — 2026-10-13
+
+- Paused the five configured SITLearn courses after zero evidence in exports (4)/(10) and current individual permitted requests returning Incapsula security shells: energy management, energy storage, EV charging, smart grids, solar PV. Retained URLs and monitoring topics in source_review_register.md. Related official Electrical System and Energy Management microcredential also blocked; no equivalent accessible replacement verified, no claim courses are obsolete.
+- Build release-audit-5. Other source flags unchanged. No new scan yet; finish remaining release queue and coverage review before final consolidated validation.
+
 ## Final review: SMU — 2026-10-13
 
 - Paused Master of Sustainability and Project Management Course after repeat Cloud zeros and current local security-shell responses. Readable official CIS sustainability page is a broad programme overview, not an equivalent full curriculum; preserved as a review lead in source_review_register.md rather than automatically substituted. Other SMU source unchanged; no access bypass. Build release-audit-4; no new scan yet. Final release gate remains open.

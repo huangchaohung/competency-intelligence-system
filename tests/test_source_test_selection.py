@@ -98,6 +98,15 @@ def test_reviewed_smu_failures_preserve_separate_programmes_source():
     assert by_url['https://sustainability.smu.edu.sg/education/programmes'].enabled
 
 
+def test_five_reviewed_sit_courses_are_preserved_disabled():
+    from pathlib import Path
+    from src.services.configuration_service import ConfigurationService
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    courses = [s for s in sources if s.url.startswith('https://www.singaporetech.edu.sg/sitlearn/courses/')]
+    assert len(courses) == 5
+    assert all(not s.enabled for s in courses)
+
+
 def test_ice_cloud_blocked_sources_are_preserved_disabled():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
