@@ -1,5 +1,24 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Ready for consolidated Cloud validation — 2026-10-13
+
+Build: release-validation-3. This supersedes earlier instructions to postpone the next full scan. This is validation readiness, NOT release acceptance or a promise all sources work.
+
+Master audit: 258 entries, 204 enabled, 54 disabled; no duplicate enabled URLs. Enabled families: 91 higher-learning, 57 government-agency, 56 professional-body. There are 138 organisation labels, not necessarily distinct parent organisations. Source types: 77 catalogue, 65 article, 27 framework, 14 trend, 12 index, 9 research. Roles: 153 primary, 36 supporting, 15 trend-validation. These are configuration labels, not measured evidence quality.
+
+Content spot-check of export (10): UK-SPEC requirements, IChemE process-safety learning outcomes, NTU biological sciences course tables, MIT CAD course description, NUS urban-planning curriculum, EMA grid-roadmap PDF and Harvard AI course outcomes provide substantive material. CSA OTCCF item is an overview/download landing page, not the full framework. These examples support continued monitoring of systems/civil engineering, safety, bioscience, energy, computing and cybersecurity; they do not prove comprehensive STE coverage. NUS/SIT course access exclusions leave gaps, not permission to infer missing competencies.
+
+NASA APPEL overview had global-menu contamination. Exact-page extraction now scopes to main article .entry-content with missing/short-body rejection. Live verification: 274 words, no Suggested Searches menu. Existing PDF discovery unchanged. Regression coverage added.
+
+### User validation procedure
+
+1. Wait for App build release-validation-3. Use a fresh session, or Source Configuration > Restore default sources (this discards temporary edits; download anything needed first).
+2. Confirm 204 enabled sources. Do not use Enable all: the 54 paused/optional entries should remain disabled. No manual row-by-row selection needed.
+3. Run Scan enabled sources once. Errors should be recorded while other sources continue.
+4. Prepare and download the evidence TXT, then share it and the recorded scan errors for content review.
+
+Review focus: NASA menu removal; Tokyo undergraduate text; NP programme discovery; OneMap/Polimi/UCLA replacements; IPMA direct overview; GeoWorks network behaviour; ISA unchanged by user request. Reconcile source/evidence totals and inspect actual text across families, not only counts. Keep partial-success sources when their evidence is useful. Final exclusion cleanup and release freeze follow this validation; the 54 disabled records remain recoverable in YAML meanwhile.
+
 ## HDB / IPMA release review — 2026-10-13
 
 - Paused HDB homepage: general housing-service discovery, insufficient sample extraction and repeated Cloud zero. No verified equivalent adopted. IPMA ICB4 retained and routed directly to reviewed overview (836 words locally), avoiding unrelated sibling standards/shop errors. Registry and blueprint updated; build release-audit-13. Remaining gates: content/coverage audit and consolidated Cloud validation; ISA unchanged as requested, GeoWorks network uncertainty retained.

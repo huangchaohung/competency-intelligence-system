@@ -32,6 +32,16 @@ class ArticleExtractor:
                     control.decompose()
                 form.unwrap()
         title = (soup.title.string if soup.title and soup.title.string else source.name).strip()
+        if (parsed_url.hostname == 'www.nasa.gov' and
+                parsed_url.path.rstrip('/') == '/learning-resources/for-professionals/appel-competency-models'):
+            body = soup.select_one('main article .entry-content')
+            if body is None:
+                raise ExtractionError('NASA competency overview body unavailable; navigation is not evidence')
+            soup = BeautifulSoup(str(body), 'lxml')
+            for element in soup.select('script, style, nav, header, footer, form'):
+                element.decompose()
+            if len(soup.get_text(' ', strip=True).split()) < self._MIN_WORDS:
+                raise ExtractionError('Insufficient NASA competency overview text')
         from src.extractor.icheme_course import matches as is_icheme_course, course_text as icheme_course_text
         if is_icheme_course(page.url):
             return Evidence(None, scan_run_id, source.id or 0, EvidenceType.COURSE.value,

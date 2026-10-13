@@ -68,6 +68,20 @@ def test_ipma_icb4_is_direct_evidence_not_sibling_standard_discovery():
         SourceRouter(SimpleNamespace(is_allowed=lambda u: False)).discover(source)
 
 
+def test_nasa_overview_excludes_global_navigation_without_changing_pdf_discovery():
+    url = 'https://www.nasa.gov/learning-resources/for-professionals/appel-competency-models/'
+    source = Source(1, 'NASA', url, 'NASA', source_type=SourceType.FRAMEWORK)
+    prose = 'Systems engineering competencies include risk management and product integration. ' * 15
+    html = '<nav>Moon missions</nav><main><article><div class="entry-content"><p>' + prose + '</p></div></article></main>'
+    item = ArticleExtractor().extract(DownloadedPage(url, html), source, 1)
+    assert 'risk management' in item.article_text
+    assert 'Moon missions' not in item.article_text
+    with pytest.raises(ExtractionError, match='body unavailable'):
+        ArticleExtractor().extract(DownloadedPage(url, '<nav>Moon missions</nav>'), source, 1)
+    with pytest.raises(ExtractionError, match='Insufficient NASA'):
+        ArticleExtractor().extract(DownloadedPage(url, html.replace(prose, 'Unavailable')), source, 1)
+
+
 def test_ice_alias_uses_same_canonical_url_and_checks_permission():
     canonical = 'https://www.ice.org.uk/join-ice/attributes-for-professionally-qualified-membership'
     source = Source(1, 'ICE', 'https://www.ice.org.uk/attributes', 'ICE')
