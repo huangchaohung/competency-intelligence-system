@@ -1,5 +1,9 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Final review: EMA media / A*STAR overview — 2026-10-13
+
+- Paused EMA Media Releases after repeated Cloud zeros and security shells from both media and broader news roots locally. Paused A*STAR Research root after repeated no-link output and confirmation that official overview is the same general agency introduction, not detailed competency/course evidence. URLs and reasons retained in register; other EMA sources and A*STAR Research Features unchanged. Build release-audit-7. No new scan yet; remaining review/coverage gates open.
+
 ## Polimi/UCLA scope corrections — 2026-10-13
 
 - Updated Polimi Civil Engineering to official civil-engineering-1 MSc page (634 extracted words locally, explicit degree and four tracks). Updated UCLA undergraduate news root to official majors/minors catalogue (295 words of programme names locally), renamed accordingly and classified CATALOGUE. Original URLs and scope caveats retained in source_review_register.md. Cloud retrieval not yet verified; no claim of full syllabus coverage. Build release-audit-6. Include in consolidated validation after remaining review, not another full scan now.

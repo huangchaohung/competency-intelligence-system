@@ -6,8 +6,8 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 
 | Organisation | Source / intended monitoring topic | Original URL | Observed diagnostic | Zero in export (4) too? | Disposition | Verified replacement |
 | --- | --- | --- | --- | --- | --- | --- |
-| A*STAR | A*STAR — Research | https://www.a-star.edu.sg/research | NO_LINKS | Yes | Pending final review; unchanged | None established |
-| Energy Market Authority | Energy Market Authority — Media Releases | https://www.ema.gov.sg/news-events/news/media-releases | ACCESS_BLOCKED | Yes | Pending final review; unchanged | None established |
+| A*STAR | A*STAR — Research | https://www.a-star.edu.sg/research | NO_LINKS | Yes | Excluded pending review; disabled 2026-10-13: repeated zero discovery; local root/overview offer general agency introduction, not detailed competency/capability listings | None equivalent; separate Research Features remains enabled |
+| Energy Market Authority | Energy Market Authority — Media Releases | https://www.ema.gov.sg/news-events/news/media-releases | ACCESS_BLOCKED | Yes | Excluded pending review; disabled 2026-10-13: repeated Cloud zero; root and broader official news page return local security shells | None verified |
 | HDB | HDB | https://www.hdb.gov.sg/ | ROBOTS_RESTRICTED | Yes | Pending final review; unchanged | None established |
 | International Project Management Association (IPMA) | International Project Management Association (IPMA) — Icb4 | https://ipma.world/ipma-standards-development-programme/icb4 | EMPTY_HTML | No | Pending final review; unchanged | None established |
 | International Society of Automation (ISA) | International Society of Automation (ISA) — Isa Iec 62443 Cybersecurity Certificate Program | https://www.isa.org/certification/certificate-programs/isa-iec-62443-cybersecurity-certificate-program | INSUFFICIENT_TEXT | Yes | Pending final review; unchanged | None established |
@@ -45,6 +45,11 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 | UCLA | UCLA — Undergraduates | https://lifesciences.ucla.edu/undergraduates | ROBOTS_RESTRICTED | No | Replaced 2026-10-13 after content-scope review | https://lifesciences.ucla.edu/undergraduates/majors-minors/ (local extraction verified; Cloud pending) |
 
 ## Next decisions
+
+### EMA / A*STAR final review — 2026-10-13
+
+- EMA configured media-release root and https://www.ema.gov.sg/news-events/news both returned Incapsula security shells in permitted local requests. No challenge execution. This does not establish that EMA has no news; only this source paused, other EMA configurations unchanged.
+- A*STAR /research and official /Research/Overview (final /research/overview) each yield a 204-word main section with the same general agency introduction. Not a verified source of detailed competencies or course records. Repeated zero discovery in exports (4)/(10); paused low-value root, not whole organisation. Existing research.a-star.edu.sg/category/features/ remains enabled. No speculative substitution with a single unrelated research topic.
 
 ### Verified scope replacements — 2026-10-13
 

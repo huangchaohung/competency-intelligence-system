@@ -120,6 +120,16 @@ def test_reviewed_university_urls_match_intended_programme_scope():
     assert ucla.enabled and ucla.source_type == SourceType.CATALOGUE
 
 
+def test_reviewed_ema_media_and_astar_overview_are_paused():
+    from pathlib import Path
+    from src.services.configuration_service import ConfigurationService
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    by_url = {s.url: s for s in sources}
+    assert not by_url['https://www.ema.gov.sg/news-events/news/media-releases'].enabled
+    assert not by_url['https://www.a-star.edu.sg/research'].enabled
+    assert by_url['https://research.a-star.edu.sg/category/features/'].enabled
+
+
 def test_ice_cloud_blocked_sources_are_preserved_disabled():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
