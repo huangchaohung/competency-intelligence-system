@@ -1707,7 +1707,7 @@ sources:
   max_listing_pages: 5
   use_browser_rendering: false
 - name: Politecnico di Milano — Civil Engineering
-  url: https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering
+  url: https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering-1
   organisation: Politecnico di Milano
   source_family: HIGHER_LEARNING
   source_type: CATALOGUE
@@ -3056,11 +3056,11 @@ sources:
   enabled: true
   max_listing_pages: 5
   use_browser_rendering: false
-- name: UCLA — Undergraduates
-  url: https://lifesciences.ucla.edu/undergraduates
+- name: UCLA — Life Sciences Majors and Minors
+  url: https://lifesciences.ucla.edu/undergraduates/majors-minors/
   organisation: UCLA
   source_family: HIGHER_LEARNING
-  source_type: ARTICLE
+  source_type: CATALOGUE
   source_role: PRIMARY_DISCOVERY
   llm_allowed: true
   max_articles_per_scan: 25

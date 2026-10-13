@@ -1,5 +1,9 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Polimi/UCLA scope corrections — 2026-10-13
+
+- Updated Polimi Civil Engineering to official civil-engineering-1 MSc page (634 extracted words locally, explicit degree and four tracks). Updated UCLA undergraduate news root to official majors/minors catalogue (295 words of programme names locally), renamed accordingly and classified CATALOGUE. Original URLs and scope caveats retained in source_review_register.md. Cloud retrieval not yet verified; no claim of full syllabus coverage. Build release-audit-6. Include in consolidated validation after remaining review, not another full scan now.
+
 ## Final review: UCLA and Polimi access uncertainty — 2026-10-13
 
 - Four configured pages now pass local permission checks and extract (UCLA graduate/undergraduate 192/273 words, Polimi Building/Civil 694/611). Retained unchanged; Cloud robots diagnostics may include failed robots retrieval, not necessarily an explicit prohibition. No permanent-exclusion decision from one environment alone.

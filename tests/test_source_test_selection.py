@@ -107,6 +107,19 @@ def test_five_reviewed_sit_courses_are_preserved_disabled():
     assert all(not s.enabled for s in courses)
 
 
+def test_reviewed_university_urls_match_intended_programme_scope():
+    from pathlib import Path
+    from src.services.configuration_service import ConfigurationService
+    from src.models.domain import SourceType
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    by_url = {s.url: s for s in sources}
+    assert 'https://lifesciences.ucla.edu/undergraduates' not in by_url
+    assert 'https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering' not in by_url
+    assert by_url['https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering-1'].enabled
+    ucla = by_url['https://lifesciences.ucla.edu/undergraduates/majors-minors/']
+    assert ucla.enabled and ucla.source_type == SourceType.CATALOGUE
+
+
 def test_ice_cloud_blocked_sources_are_preserved_disabled():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService

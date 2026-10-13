@@ -26,7 +26,7 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 | National University of Singapore | NUS CET Learning | https://cde.nus.edu.sg/cet/ | ACCESS_BLOCKED | Yes | Pending final review; unchanged | None established |
 | Ngee Ann Polytechnic | Ngee Ann Polytechnic — School Of Engineering | https://www.np.edu.sg/schools-courses/academic-schools/school-of-engineering | LISTING_MISSING | Yes | Pending final review; unchanged | None established |
 | Politecnico di Milano | Politecnico di Milano — Building Engineering For Sustainability | https://www.polimi.it/en/education/laurea-programmes/programme-detail/building-engineering-for-sustainability | ROBOTS_RESTRICTED | Yes | Locally retrievable 2026-10-13; retained pending Cloud/semantic verification | None established |
-| Politecnico di Milano | Politecnico di Milano — Civil Engineering | https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering | ROBOTS_RESTRICTED | Yes | Locally retrievable 2026-10-13; retained pending Cloud/semantic verification | None established |
+| Politecnico di Milano | Politecnico di Milano — Civil Engineering | https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering | ROBOTS_RESTRICTED | Yes | Replaced 2026-10-13 after content-scope review | https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering-1 (local extraction verified; Cloud pending) |
 | SAE International | SAE International — Standards | https://www.sae.org/standards | EMPTY_HTML | Yes | Pending final review; unchanged | None established |
 | SLA | SLA — Onemap | https://geoworks.sla.gov.sg/sla-products/onemap | ROBOTS_RESTRICTED | No | Pending final review; unchanged | None established |
 | SMU | SMU — Master Of Sustainability | https://masters.smu.edu.sg/programme/master-of-sustainability | ACCESS_BLOCKED | Yes | Excluded pending review; disabled 2026-10-13 after repeated Cloud zero and local security shell | CIS programme overview locally accessible but not equivalent detailed curriculum; see findings |
@@ -42,9 +42,14 @@ Robots-restricted diagnostics may also reflect unavailable robots retrieval unde
 | U Tokyo | U Tokyo — Facultyofengineering.Html | https://www.u-tokyo.ac.jp/en/academics/facultyofengineering.html | ROBOTS_RESTRICTED | No | Pending final review; unchanged | None established |
 | U Tokyo | U Tokyo — Grad Engineering.Html | https://www.u-tokyo.ac.jp/en/academics/grad_engineering.html | ROBOTS_RESTRICTED | Yes | Pending final review; unchanged | None established |
 | UCLA | UCLA — Graduate Training | https://lifesciences.ucla.edu/graduate-training | ROBOTS_RESTRICTED | No | Locally retrievable 2026-10-13; retained pending Cloud/semantic verification | None established |
-| UCLA | UCLA — Undergraduates | https://lifesciences.ucla.edu/undergraduates | ROBOTS_RESTRICTED | No | Locally retrievable 2026-10-13; retained pending Cloud/semantic verification | None established |
+| UCLA | UCLA — Undergraduates | https://lifesciences.ucla.edu/undergraduates | ROBOTS_RESTRICTED | No | Replaced 2026-10-13 after content-scope review | https://lifesciences.ucla.edu/undergraduates/majors-minors/ (local extraction verified; Cloud pending) |
 
 ## Next decisions
+
+### Verified scope replacements — 2026-10-13
+
+- Polimi Civil original /en/education/laurea-magistrale-programmes/programme-detail/civil-engineering replaced with https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering-1 . Official page, unchanged final URL, locally extracted 634 words: explicit MSc, two years, Geotechnics/Hydraulics/Transportation Infrastructures/Structures tracks. Replaces bachelor-level output from old URL; Cloud acceptance pending.
+- UCLA undergraduate root replaced with https://lifesciences.ucla.edu/undergraduates/majors-minors/ and renamed Life Sciences Majors and Minors, CATALOGUE. Locally extracted 295 words of named programmes, not student news. Directory is mixed-scope (includes psychology/social topics), not full syllabi or an assertion that every listed major is STE. Cloud acceptance pending. Original URLs retained in table for traceability; no other UCLA/Polimi entries changed.
 
 ### University access recheck — 2026-10-13
 
