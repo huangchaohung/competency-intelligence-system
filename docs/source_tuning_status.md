@@ -1,5 +1,9 @@
 # Source tuning checkpoint — 2026-09-24
 
+## NUS CDE access review — 2026-10-13
+
+- Paused four repeated-zero sources: MSc Project Management, ECE Industry 4.0, CDE Continuing Education and Training, and CET Learning. Individual current local requests and official CHBE Industry 4.0 alternative returned security shells. Registry preserves original URLs and reasons; no claim programmes are obsolete, other NUS entries unchanged. Build release-audit-9. Remaining queue and final Cloud validation still open; no new full scan yet.
+
 ## SAE verification notice / HDB content distinction — 2026-10-13
 
 - Paused SAE standards after repeated Cloud zero and direct inspection of robot-verification notices on original and Mobilus alternative. No bypass. HDB homepage and technical alternative locally reachable; technical content is very short but genuine, so left unchanged pending usefulness/Cloud checks. Register updated; build release-audit-8. No new scan yet, final release gates remain open.

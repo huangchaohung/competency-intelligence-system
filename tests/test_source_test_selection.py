@@ -139,6 +139,16 @@ def test_sae_security_notice_source_is_paused_but_hdb_unchanged():
     assert by_url['https://www.hdb.gov.sg/'].enabled
 
 
+def test_four_reviewed_nus_cde_security_shell_sources_are_paused():
+    from pathlib import Path
+    from src.services.configuration_service import ConfigurationService
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    by_url = {s.url: s for s in sources}
+    for url in ["https://cde.nus.edu.sg/dbe/graduate/msc-project-management","https://cde.nus.edu.sg/continuing-education-and-training","https://cde.nus.edu.sg/cet/","https://cde.nus.edu.sg/ece/undergraduate/electrical-engineering/specialisations-and-minor/specialisation-in-industry-4-0"]:
+        assert not by_url[url].enabled
+    assert by_url['https://cde.nus.edu.sg/bme/undergraduate'].enabled
+
+
 def test_ice_cloud_blocked_sources_are_preserved_disabled():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService

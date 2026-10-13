@@ -596,7 +596,7 @@ sources:
   llm_allowed: true
   max_articles_per_scan: 25
   article_url_pattern: ''
-  enabled: true
+  enabled: false
   max_listing_pages: 5
   use_browser_rendering: true
 - name: NTU PACE Learning
@@ -1161,7 +1161,7 @@ sources:
   llm_allowed: true
   max_articles_per_scan: 25
   article_url_pattern: ''
-  enabled: true
+  enabled: false
   max_listing_pages: 5
   use_browser_rendering: false
 - name: SMU — Project Management Course
@@ -1342,7 +1342,7 @@ sources:
   llm_allowed: true
   max_articles_per_scan: 25
   article_url_pattern: ''
-  enabled: true
+  enabled: false
   max_listing_pages: 5
   use_browser_rendering: false
 - name: SIT — Engineering Systems
@@ -1847,7 +1847,7 @@ sources:
   llm_allowed: true
   max_articles_per_scan: 25
   article_url_pattern: ''
-  enabled: true
+  enabled: false
   max_listing_pages: 5
   use_browser_rendering: false
 - name: NUS Department of Built Environment — Executive Course For Facilities Management
