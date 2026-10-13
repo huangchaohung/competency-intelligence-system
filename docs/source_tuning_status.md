@@ -1,5 +1,9 @@
 # Source tuning checkpoint — 2026-09-24
 
+## Compact Cloud download UI — 2026-10-13
+
+Build compact-download-2: Prepare download files automatically reduces text and splits it into <=400,000-character TXT parts. Separate Download part X of Y buttons save each file; cached preparation survives reruns, no ZIP needed and no auto-prepare on page entry. Source tuning remains paused.
+
 ## Source tuning paused; compact export — 2026-10-13
 
 User supplied export (11); source updates paused. Build compact-evidence-1 introduces numbered compact TXT parts <=400,000 Unicode characters including metadata. Every evidence ID/URL retained, selected distributed excerpts rather than full texts; metadata priority is not reliability. Benchmark 13.63M to 2.01M characters across six parts. Existing source settings unchanged. Government portal quality validation and full PDF relevance review remain pending; large useful PDFs not deleted. The earlier full-scan request below is superseded while transfer design is being validated.

@@ -163,7 +163,7 @@ def render_download(run, evidence, summary, *, prepare_now=False):
     requested = False
     if key not in st.session_state:
         st.caption('Opening this page never prepares a file. Click below when you are ready.')
-        requested = st.button('Prepare evidence TXT', key=f'prepare_txt_{run.id}')
+        requested = st.button('Prepare download files', key=f'prepare_txt_{run.id}')
     if key not in st.session_state and requested:
         try:
             with st.spinner('Preparing compact evidence TXT parts…'):
@@ -172,8 +172,10 @@ def render_download(run, evidence, summary, *, prepare_now=False):
             st.error(str(error))
     if key in st.session_state:
         files = st.session_state[key]
-        for name, data in files.items():
-            st.download_button(f'Download {name}', data, file_name=name, mime='text/plain', on_click='ignore', key=f'download_{run.id}_{name}')
+        st.success(f'{len(files)} compact TXT file(s) ready. Download every part in order.')
+        st.caption('Size reduction, priority ordering and splitting are automatic. Click each button below to save that individual file; no ZIP or manual splitting is needed. Browsers may not permit several files to download from one click.')
+        for index, (name, data) in enumerate(files.items(), 1):
+            st.download_button(f'Download part {index} of {len(files)}', data, file_name=name, mime='text/plain', on_click='ignore', key=f'download_{run.id}_{name}')
             st.caption(f'{name} · {len(data.decode("utf-8")):,} characters · Selected excerpts; full text remains in this session only')
         with st.expander('Download troubleshooting'):
             st.download_button('Download small test TXT', b'STE download test: public text only.\n', file_name='download_test.txt', mime='text/plain', on_click='ignore')

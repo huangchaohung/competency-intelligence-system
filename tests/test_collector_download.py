@@ -49,5 +49,26 @@ from src.dashboard.collector import render_download
 render_download(SimpleNamespace(id=1, completed_at=True), [object()], None, prepare_now=True)
 ''').run()
     assert not app.exception
-    assert app.button[0].label == 'Prepare evidence TXT'
+    assert app.button[0].label == 'Prepare download files'
     assert not app.get('download_button')
+
+
+def test_preparation_displays_individual_parts_and_caches_them(monkeypatch):
+    from src.dashboard import collector
+    def build(*args, **kwargs):
+        return {f'public_evidence_part_{i:03}.txt': b'{}' for i in range(1, 4)}
+    monkeypatch.setattr(collector, 'build_transfer_handover', build)
+    app = AppTest.from_string('''
+from types import SimpleNamespace
+from src.dashboard.collector import render_download
+render_download(SimpleNamespace(id=77, completed_at=True), [object()], None)
+''').run()
+    assert not app.get('download_button')
+    app.button[0].click().run()
+    assert not app.exception
+    buttons = app.get('download_button')
+    assert [b.proto.label for b in buttons[:3]] == ['Download part 1 of 3', 'Download part 2 of 3', 'Download part 3 of 3']
+    assert all(b.proto.ignore_rerun for b in buttons[:3])
+    assert '3 compact TXT' in app.success[0].value
+    app.run()
+    assert len(app.get('download_button')) == 4  # parts plus diagnostic download
