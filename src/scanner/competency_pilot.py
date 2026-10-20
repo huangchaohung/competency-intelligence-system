@@ -72,6 +72,9 @@ def canonical(url):
 def excluded_resource(url, title, text=''):
     """Conservative exclusions for named non-resource document genres."""
     path = urlsplit(url).path.lower()
+    if re.search(r'/(?:members-only|login|signin|sign-in|shibboleth|saml2?|idp|authn|request-information|enquiry|enquire)(?:/|$)', path) or re.search(
+            r'^(?:request information|enquir(?:y|e)|sign in|log in)\b', title, re.I):
+        return 'Restricted/login/enquiry page, not a public competency resource'
     if re.search(r'/academic-polic(?:ies|es)/|/auditing-courses/?$|/volunteer-for-research-study/|/scholarships/', path):
         return 'Course administration, participant recruitment or scholarship, not competency content'
     if re.search(r'/graduate/education/curriculum-instruction-|/desarrollo-de-competencias-gerenciales-', path):
@@ -193,6 +196,9 @@ def qualification(url, title, headings, blocks):
     if re.search(r'fellowship|undergraduate|programme|program\b', title, re.I) and not re.search(
             r'curricul|learning outcomes|credits|modules|will learn|training in|trained in|biodesign process|needs (?:identification|finding)', ' '.join(blocks), re.I):
         return False, 'Programme promotion without curriculum, modules or learning outcomes'
+    if re.search(r'customi[sz]ed training|courses by format', title, re.I) and not re.search(
+            r'module code|required modules|participants will (?:be able to|learn|apply)|on completion.*(?:able to|apply|design)', ' '.join(blocks), re.I):
+        return False, 'Training promotion without explicit curriculum or learner capabilities'
     if not any(SUBJECT.search(b) and len(b) >= 50 for b in blocks):
         return False, 'No substantive competency-bearing text'
     return True, ''
@@ -282,6 +288,10 @@ class PilotCollector:
 
     def raw(self, row, url, purpose='content', check_robots=True):
         for _ in range(6):
+            if excluded_resource(url, '') == 'Restricted/login/enquiry page, not a public competency resource':
+                self.log(row, urlsplit(url)._replace(query='', fragment='').geturl(),
+                         reason='Restricted/login/enquiry destination; not requested', purpose=purpose)
+                return None
             if not permitted(url, domains(row)):
                 self.log(row, url, reason='Outside Allowed_domains; not requested', purpose=purpose)
                 return None
@@ -350,6 +360,12 @@ class PilotCollector:
                         if req.resource_type in ('image', 'font', 'media'):
                             request_route.abort()
                             return
+                        if excluded_resource(req.url, '') == 'Restricted/login/enquiry page, not a public competency resource':
+                            self.log(row, urlsplit(req.url)._replace(query='', fragment='').geturl(),
+                                     rendering='browser', reason='Restricted/login/enquiry destination; not requested',
+                                     purpose='browser_resource')
+                            request_route.abort()
+                            return
                         if (not permitted(req.url, domains(row)) or
                                 not self.allowed_by_robots(row, req.url)):
                             self.log(row, req.url, rendering='browser', reason='Browser request blocked by domain/robots policy', purpose='browser_resource')
@@ -383,7 +399,7 @@ class PilotCollector:
             if row['Parent_organisation'] == 'Ngee Ann Polytechnic' and (urlsplit(url).hostname or '').endswith('moe.gov.sg'):
                 if not re.match(r'^/coursefinder/coursedetail/n\d', urlsplit(url).path):
                     continue
-            if permitted(url, domains(row)) and not search_trap(url) and KEY.search(urlsplit(url).path + ' ' + label) and not BAN.search(urlsplit(url).path):
+            if permitted(url, domains(row)) and not search_trap(url) and not excluded_resource(url, label) and KEY.search(urlsplit(url).path + ' ' + label) and not BAN.search(urlsplit(url).path):
                 if url not in found:
                     found.append(url)
         return sorted(found, key=lambda u: -(sum(h in u.lower() for h in hints) +
@@ -434,6 +450,11 @@ class PilotCollector:
             limit = 15 if discover else row['Max_cards'] + 1
             while queue and len(visited) < limit and produced < row['Max_cards']:
                 queue = sorted(set(queue) - visited, key=lambda u: (-frontier_score(u), u))
+                # The officer's explicit seed always gets one attempt before inferred candidates.
+                seed = canonical(row['URL'])
+                if seed not in visited and seed in queue:
+                    queue.remove(seed)
+                    queue.insert(0, seed)
                 if len(queue) > 100:
                     self.log(row, row['URL'], rendering='not_attempted',
                              reason=f'FRONTIER_PRUNED: {len(queue)-100} lower-ranked candidates not queued')

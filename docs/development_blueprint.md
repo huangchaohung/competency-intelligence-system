@@ -2131,3 +2131,11 @@ Current tracking checkpoint:
 - [x] Keep strict organisation, source ID and count checks. No guessed URL reconciliation for earlier in-memory results.
 - [ ] Verify fresh Cloud scan/export on build `redirect-provenance-1`. Old browser-redirect scans without recorded final URLs may still require rescanning.
 
+# Handover freeze candidate
+
+- [x] Prioritise explicit seeds before ranked discovery; exclude login/member-only/enquiry candidates and narrow training-promotion cases.
+- [x] Consolidate README into current officer workflow, architecture, troubleshooting and freeze checklist.
+- [x] Add `docs/handover_acceptance.md` to record acceptance without claiming unperformed checks.
+- [ ] Final Cloud acceptance on `handover-rc-1`; then record/tag accepted commit and freeze feature development.
+- Defer perfect source coverage, larger PDF/card budgets and new ingestion features to the receiving officer. Only blocking defects/security fixes belong before freeze.
+
