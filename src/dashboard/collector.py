@@ -116,6 +116,9 @@ def history(services, *, completed_here=None):
     st.caption(f"Status: {run.status.value.replace('_', ' ').title()}")
     evidence = repo.list_evidence_for_run(run.id)
     summary = repo.get_summary(run.id)
+    native = getattr(services.get('scan_workflow'), 'result', None)
+    if native and native['run_id'] == run.id:
+        summary = dict(summary or {}, competency_result=native)
     render_download(run, evidence, summary)
     st.metric('Evidence in this scan', len(evidence))
     if summary is not None:
@@ -158,7 +161,7 @@ def render_download(run, evidence, summary, *, prepare_now=False):
     for old_key in list(st.session_state):
         if (old_key.startswith('public_handover_') or old_key.startswith('public_evidence_only_')) and old_key != key:
             del st.session_state[old_key]
-    if not evidence or not run.completed_at:
+    if (not evidence and not (summary or {}).get('competency_result')) or not run.completed_at:
         st.info('A completed scan with retained evidence is required for download.')
         return
     requested = False
@@ -179,7 +182,10 @@ def render_download(run, evidence, summary, *, prepare_now=False):
         if isinstance(first, list):
             count = sum(len(json.loads(data)) for name, data in files.items() if name.startswith('cards_part_'))
             st.caption(f'{count} competency cards prepared. Non-qualifying records and budget exclusions are documented in url_log.txt. Review excerpts before analysis.')
-            st.info('URL log covers stored evidence only, not every network attempt. Blank HTTP status means unavailable. Coverage counts describe this scan, not earlier runs. Self-searched evidence must remain separately labelled and cannot alone support recommendations or support deletions.')
+            if (summary or {}).get('competency_result'):
+                st.info('URL log records bounded crawler attempts and explicit skips. Blank HTTP status means no status was received. These are partial, automatically filtered cards—not a manually reviewed inventory. Self-searched evidence must remain separate and cannot alone support recommendations or support deletions.')
+            else:
+                st.info('URL log covers stored evidence only, not every network attempt. Blank HTTP status means unavailable. Coverage counts describe this scan, not earlier runs. Self-searched evidence must remain separately labelled and cannot alone support recommendations or support deletions.')
         if stats:
             original = stats['original_text_characters']
             compact = stats['excerpt_text_characters']

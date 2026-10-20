@@ -20,6 +20,14 @@ def csv_bytes(rows, fields):
 
 
 def build_competency_handover(run, evidence, *, retention_eligible=True, scan_summary=None):
+    native = (scan_summary or {}).get('competency_result')
+    if native is not None:
+        if native['run_id'] != run.id or not run.completed_at:
+            raise ValueError('Card result does not belong to the completed scan')
+        files = {f'cards_part_{i:03}.txt': part.encode('utf-8') for i, part in enumerate(split_cards(native['cards']), 1)}
+        files['organisation_status.txt'] = csv_bytes(native['statuses'], list(native['statuses'][0]) if native['statuses'] else ['Parent_organisation', 'Status'])
+        files['url_log.txt'] = csv_bytes(native['logs'], list(native['logs'][0]) if native['logs'] else ['Scan_ID', 'url'])
+        return files
     # Reuse the existing public-URL, current-run and retained-count validation.
     validated = build_compact_handover(run, evidence, retention_eligible=retention_eligible, scan_summary=scan_summary)
     records = [r for data in validated.values() for r in json.loads(data)['evidence']]

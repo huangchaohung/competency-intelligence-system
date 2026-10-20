@@ -18,7 +18,7 @@ from src.services.source_service import SourceService
 from src.workflow.scan_workflow import ScanWorkflow
 from src.workflow.source_configuration_workflow import SourceConfigurationWorkflow
 
-RUNTIME_REVISION = 'competency-txt-1'
+RUNTIME_REVISION = 'master-v5-cards-1'
 
 
 def refresh_scan_runtime(services):
@@ -29,8 +29,7 @@ def refresh_scan_runtime(services):
         return False
     if services.get('runtime_revision') == RUNTIME_REVISION:
         return False
-    services['scan_workflow'] = ScanWorkflow(services['source_repository'], services['scan_repository'],
-                                           WebPageScanner(), ArticleExtractor())
+    services['scan_workflow'] = make_scan_workflow(services['source_repository'], services['scan_repository'], services.get('competency_plan'))
     services['scan_job'] = ScanJob()
     services['runtime_revision'] = RUNTIME_REVISION
     return True
@@ -48,6 +47,13 @@ class MemoryConfiguration(ConfigurationService):
         self._sources = deepcopy(sources)
 
 
+def make_scan_workflow(sources, scans, plan):
+    if plan is not None:
+        from src.workflow.competency_scan_workflow import CompetencyScanWorkflow
+        return CompetencyScanWorkflow(sources, scans, plan)
+    return ScanWorkflow(sources, scans, WebPageScanner(), ArticleExtractor())
+
+
 def build_session_services(root: Path):
     master = ConfigurationService(root / 'config' / 'sources.yaml').load_sources()
     connection = sqlite3.connect(':memory:', check_same_thread=False)
@@ -60,12 +66,15 @@ def build_session_services(root: Path):
     configuration = MemoryConfiguration(master)
     service = SourceService(sources)
     service.synchronise(master)
+    plan_path = root / 'config' / 'competency_scan_plan.json'
+    plan = json.loads(plan_path.read_text(encoding='utf-8')) if plan_path.exists() else None
     return {
         'connection': connection, 'lock': Lock(), 'session_only': True, 'runtime_revision': RUNTIME_REVISION,
         'source_repository': sources, 'scan_repository': scans,
         'configuration_service': configuration,
         'source_configuration_workflow': SourceConfigurationWorkflow(configuration, service),
-        'scan_workflow': ScanWorkflow(sources, scans, WebPageScanner(), ArticleExtractor()),
+        'competency_plan': plan,
+        'scan_workflow': make_scan_workflow(sources, scans, plan),
     }
 
 

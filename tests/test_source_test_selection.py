@@ -1,3 +1,5 @@
+# Historical catalogue assertions use the frozen pre-v5 fixture.
+# Current default catalogue invariants are covered in test_master_v5.py.
 from dataclasses import replace
 import pytest
 from src.models.domain import Source
@@ -33,7 +35,7 @@ def test_new_sources_keep_their_enabled_state_on_restore():
 def test_failed_cloud_pdf_is_disabled_but_preserved_in_defaults():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
-    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'tests/fixtures/sources_pre_v5.yaml').load_sources()
     by_name = {s.name: s for s in sources}
     assert not by_name['IMDA GenAI Technical Skills and Competencies'].enabled
     assert by_name['IMDA GenAI Technical Skills and Competencies'].url.endswith('sfw-for-ict-skills-in-genai.pdf')
@@ -43,7 +45,7 @@ def test_failed_cloud_pdf_is_disabled_but_preserved_in_defaults():
 def test_three_cloud_unavailable_astar_sources_are_preserved_disabled():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
-    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'tests/fixtures/sources_pre_v5.yaml').load_sources()
     by_name = {s.name: s for s in sources}
     for name in ['A*STAR — Sustainability', 'A*STAR SIMTech — Industrial Automation', 'A*STAR — Medical Technologies']:
         assert not by_name[name].enabled
@@ -54,7 +56,7 @@ def test_three_cloud_unavailable_astar_sources_are_preserved_disabled():
 def test_reviewed_nus_sit_exclusions_preserve_other_sources():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
-    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'tests/fixtures/sources_pre_v5.yaml').load_sources()
     by_name = {s.name: s for s in sources}
     for name in ['NUS Civil & Environmental Engineering — Courses', 'SIT — Engineering Systems',
                  'SIT — Sit Civil Engineering', 'SIT — Sustainable Built Environment']:
@@ -66,7 +68,7 @@ def test_reviewed_nus_sit_exclusions_preserve_other_sources():
 def test_reviewed_skillsfuture_pages_are_paused_without_changing_ipma():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
-    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'tests/fixtures/sources_pre_v5.yaml').load_sources()
     by_url = {s.url: s for s in sources}
     for url in ['https://www.skillsfuture.gov.sg/skills-framework',
                 'https://www.skillsfuture.gov.sg/skills-framework/skills-frameworks-faq']:
@@ -77,7 +79,7 @@ def test_reviewed_skillsfuture_pages_are_paused_without_changing_ipma():
 def test_reviewed_nus_process_fm_gis_sources_are_paused():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
-    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'tests/fixtures/sources_pre_v5.yaml').load_sources()
     by_url = {s.url: s for s in sources}
     for url in [
         'https://cde.nus.edu.sg/chbe/undergraduate/beng-che/specialisation/specialisation-in-process-engineering',
@@ -91,7 +93,7 @@ def test_reviewed_nus_process_fm_gis_sources_are_paused():
 def test_reviewed_smu_failures_preserve_separate_programmes_source():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
-    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'tests/fixtures/sources_pre_v5.yaml').load_sources()
     by_url = {s.url: s for s in sources}
     assert not by_url['https://masters.smu.edu.sg/programme/master-of-sustainability'].enabled
     assert not by_url['https://academy.smu.edu.sg/courses/project-management-course'].enabled
@@ -101,7 +103,7 @@ def test_reviewed_smu_failures_preserve_separate_programmes_source():
 def test_five_reviewed_sit_courses_are_preserved_disabled():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
-    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'tests/fixtures/sources_pre_v5.yaml').load_sources()
     courses = [s for s in sources if s.url.startswith('https://www.singaporetech.edu.sg/sitlearn/courses/')]
     assert len(courses) == 5
     assert all(not s.enabled for s in courses)
@@ -111,7 +113,7 @@ def test_reviewed_university_urls_match_intended_programme_scope():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
     from src.models.domain import SourceType
-    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'tests/fixtures/sources_pre_v5.yaml').load_sources()
     by_url = {s.url: s for s in sources}
     assert 'https://lifesciences.ucla.edu/undergraduates' not in by_url
     assert 'https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering' not in by_url
@@ -123,7 +125,7 @@ def test_reviewed_university_urls_match_intended_programme_scope():
 def test_reviewed_ema_media_and_astar_overview_are_paused():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
-    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'tests/fixtures/sources_pre_v5.yaml').load_sources()
     by_url = {s.url: s for s in sources}
     assert not by_url['https://www.ema.gov.sg/news-events/news/media-releases'].enabled
     assert not by_url['https://www.a-star.edu.sg/research'].enabled
@@ -133,7 +135,7 @@ def test_reviewed_ema_media_and_astar_overview_are_paused():
 def test_reviewed_sae_and_low_value_hdb_root_are_paused():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
-    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'tests/fixtures/sources_pre_v5.yaml').load_sources()
     by_url = {s.url: s for s in sources}
     assert not by_url['https://www.sae.org/standards'].enabled
     assert not by_url['https://www.hdb.gov.sg/'].enabled
@@ -142,7 +144,7 @@ def test_reviewed_sae_and_low_value_hdb_root_are_paused():
 def test_four_reviewed_nus_cde_security_shell_sources_are_paused():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
-    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'tests/fixtures/sources_pre_v5.yaml').load_sources()
     by_url = {s.url: s for s in sources}
     for url in ["https://cde.nus.edu.sg/dbe/graduate/msc-project-management","https://cde.nus.edu.sg/continuing-education-and-training","https://cde.nus.edu.sg/cet/","https://cde.nus.edu.sg/ece/undergraduate/electrical-engineering/specialisations-and-minor/specialisation-in-industry-4-0"]:
         assert not by_url[url].enabled
@@ -153,7 +155,7 @@ def test_four_reviewed_nus_cde_security_shell_sources_are_paused():
 def test_remaining_nus_repeat_zero_sources_preserved_disabled(url):
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
-    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'tests/fixtures/sources_pre_v5.yaml').load_sources()
     matches = [s for s in sources if s.url == url]
     assert len(matches) == 1
     assert not matches[0].enabled
@@ -162,7 +164,7 @@ def test_remaining_nus_repeat_zero_sources_preserved_disabled(url):
 def test_onemap_replacement_preserves_supporting_role_and_other_sla_sources():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
-    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'tests/fixtures/sources_pre_v5.yaml').load_sources()
     by_url = {s.url: s for s in sources}
     assert 'https://geoworks.sla.gov.sg/sla-products/onemap' not in by_url
     source = by_url['https://www.sla.gov.sg/geospatial/onemap/']
@@ -174,7 +176,7 @@ def test_onemap_replacement_preserves_supporting_role_and_other_sla_sources():
 def test_ice_cloud_blocked_sources_are_preserved_disabled():
     from pathlib import Path
     from src.services.configuration_service import ConfigurationService
-    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'config/sources.yaml').load_sources()
+    sources = ConfigurationService(Path(__file__).resolve().parents[1] / 'tests/fixtures/sources_pre_v5.yaml').load_sources()
     by_url = {s.url: s for s in sources}
     assert not by_url['https://www.ice.org.uk/attributes'].enabled
     assert not by_url['https://www.ice.org.uk/join-ice/attributes-for-professionally-qualified-membership'].enabled

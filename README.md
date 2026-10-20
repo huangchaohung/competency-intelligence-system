@@ -79,6 +79,16 @@ Scan & Download now prepares numbered TXT parts, each at most 400,000 characters
 
 # Current Cloud download format
 
+## V5 default collection plan
+
+Build `master-v5-cards-1` uses 164 enabled URLs for 106 organisations. V5 provides leaf URLs for eight organisations; the remaining URLs are resolved from the v4/v2 registries and existing catalogue, with provenance in `config/competency_scan_plan.json`. No URLs are invented and no organisation is dropped. `DROP_OR_DISCOVER` means bounded DISCOVER. Some inherited seeds remain unverified or unsuitable and may yield zero cards.
+
+The Cloud scanner now uses the bounded competency collector: SCAN follows a small candidate set, RETEST can use normal browser rendering, DISCOVER considers at most 15 candidates plus bounded sitemap discovery. Domain/robots policies remain enforced. Existing sessions preserve edits; click **Start fresh** after deployment to load the new defaults. User-added/changed URLs default to SCAN and the entered host boundary.
+
+Native v5 runs export actual request/skip logs and organisation statuses alongside cards, without shortening the cards a second time. Failed sources are isolated; zero-card scans can still download their logs/status. Four cards per source, 1,000 serialized characters per card, 5,000 per organisation and <300,000 characters per card file are ceilings, not promises of substantive coverage. Automatic filtering is not the historical manual review. Internal frameworks and AI calls remain outside the app.
+
+The legacy export behaviour below applies only to older in-memory scans without native collector results.
+
 Build `competency-txt-1` prepares competency cards from the current session only. On **Scan & Download**, click **Prepare download files**, then download every TXT button. Preparation is offline and does not make AI requests or start another scan.
 
 - `cards_part_001.txt` onward: JSON arrays of selective competency/course excerpts, each file below 300,000 characters. Complete cards are limited to 1,000 characters, four per configured source and 5,000 characters per organisation.

@@ -189,6 +189,9 @@ def make_card(row, url, title, blocks, remaining):
                 parent_organisation=row['Parent_organisation'], organisation=row['Organisation_as_listed'],
                 scan_id=row['Scan_ID'], mode=row['Mode'], source_type=source_type,
                 title=title[:160], url=url, article_text='', text_shortened=True)
+    if row.get('Source_family'):
+        card.update(source_family=row['Source_family'], publisher_host=urlsplit(url).hostname,
+                    retrieval_method='CRAWLER')
     if 'Verification' in row:
         card.update(retrieval_method='CRAWLER', publisher_host=urlsplit(url).hostname,
                     seed_verification_reported=row['Verification'])
@@ -323,13 +326,14 @@ class PilotCollector:
         found = []
         hints = set(re.findall(r'framework|training|course|standard|registration|licens|curricul|certificat', row['Page_types_to_find'].lower()))
         for url, label in links:
-            if row.get('Verification') and row['Parent_organisation'] == 'Ngee Ann Polytechnic' and (urlsplit(url).hostname or '').endswith('moe.gov.sg'):
+            if row['Parent_organisation'] == 'Ngee Ann Polytechnic' and (urlsplit(url).hostname or '').endswith('moe.gov.sg'):
                 if not re.match(r'^/coursefinder/coursedetail/n\d', urlsplit(url).path):
                     continue
             if permitted(url, domains(row)) and KEY.search(urlsplit(url).path + ' ' + label) and not BAN.search(urlsplit(url).path):
                 if url not in found:
                     found.append(url)
         return sorted(found, key=lambda u: -(sum(h in u.lower() for h in hints) +
+                       4 * bool(re.search(r'learning-outcomes|/curriculum|/modules?/|/coursebook/', u, re.I)) +
                        3 * bool(re.search(r'curricul|competenc|syllab|framework|\.pdf(?:$|\?)', u, re.I))))
 
     def run(self, rows):
