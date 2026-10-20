@@ -75,6 +75,8 @@ def canonical(url):
 def excluded_resource(url, title, text=''):
     """Conservative exclusions for named non-resource document genres."""
     path = urlsplit(url).path.lower()
+    if re.search(r'\bterms and conditions for (?:dcc |project )?support\b|\bcall for projects\b|\bapplication for (?:project |research )?support\b', title, re.I):
+        return 'Project support terms/call/application, not competency requirements'
     if re.search(r'/(?:annual-reports?)(?:/|$)', path):
         return 'Annual report, not a competency resource'
     if re.search(r'/submissions-archive/|/government-policy-and-submissions/|dcc.*project.*call|application%20form.*dcc|gls-disqualification', path):
@@ -173,13 +175,20 @@ def extract(data, content_type, url):
         title = body.h1.get_text(' ', strip=True)
     blocks = []
     outcome_section = False
+    section_heading = ''
     for tag in body.select('h1,h2,h3,h4,h5,h6,p,li,td,dt,dd'):
-        text = re.sub(r'\s+', ' ', tag.get_text(' ', strip=True))
+        # Parent cells/list items may contain the same paragraphs/list items.
+        # Read their own text only; descendants are processed in document order.
+        text = re.sub(r'\s+', ' ', ' '.join(
+            str(node).strip() for node in tag.find_all(string=True)
+            if node.find_parent(['h1','h2','h3','h4','h5','h6','p','li','td','dt','dd']) is tag)).strip()
         if tag.name.startswith('h') or tag.name == 'dt':
             outcome_section = bool(re.search(r'learning outcomes|what you.ll learn|intended learning|competenc(?:ies|y requirements)|course content', text, re.I))
             section_heading = text
         # Preserve heading context for short action statements without inventing source claims.
         if outcome_section and tag.name not in ('h1','h2','h3','h4','h5','h6','dt') and text:
+            text = section_heading + ': ' + text
+        elif section_heading and re.search(r'prerequisit|prior knowledge|reading|bibliograph|assessment method|teaching method', section_heading, re.I) and text and tag.name not in ('h1','h2','h3','h4','h5','h6','dt'):
             text = section_heading + ': ' + text
         blocks.append(text)
     return title, headings, list(dict.fromkeys(b for b in blocks if b)), links
@@ -225,7 +234,8 @@ def qualification(url, title, headings, blocks):
 
 def make_card(row, url, title, blocks, remaining):
     # Pick headed, exact evidence fragments, not a generated summary or navigation sample.
-    useful = [b for b in blocks if ((SUBJECT.search(b) and len(b) >= 50) or re.search(r'\b[A-Z]{2,}\s?\d{3,}\b', b))
+    useful = [b for b in blocks if ((SUBJECT.search(b) and len(b) >= 50) or re.search(r'\b[A-Z]{2,}\s?\d{3,}\b', b) or
+              re.search(r'^(?:learning outcomes|what you.ll learn|intended learning|course content):\s+\S', b, re.I))
               and not re.search(r'^(?:[“\"]|I |My |We are|Assistant Professor|Professor,)|\bI (?:gained|learned|am|was|had)|testimoni|funding|networking|licence application process', b, re.I)]
     # Requirements, outcomes and named module codes outrank promotional introductions.
     useful.sort(key=lambda b: -sum(bool(re.search(p, b, re.I)) for p in
@@ -234,7 +244,7 @@ def make_card(row, url, title, blocks, remaining):
                                   r'risk management|systems engineering|requirements|skills include')))
     useful.sort(key=lambda b: (
         -int(bool(re.search(r'^(?:learning outcomes|what you.ll learn|intended learning|competenc(?:ies|y requirements)|course content)\b', b, re.I))),
-        int(bool(re.search(r'prerequisit|recommended text|textbook|text book|moodle|lecture slides|course fees|register now', b, re.I)))))
+        int(bool(re.search(r'prerequisit|prior knowledge|reading|bibliograph|recommended text|textbook|text book|moodle|lecture slides|course fees|register now', b, re.I)))))
     text = '\n'.join(useful)
     if not text:
         return None
@@ -264,7 +274,12 @@ def make_card(row, url, title, blocks, remaining):
     units = [unit.strip() for block in useful
              for unit in re.split(r'(?<=[.!?])\s+(?=[A-Z0-9])', block) if unit.strip()]
     selected = []
+    seen_units = set()
     for unit in units:
+        key = ' '.join(unit.casefold().split())
+        if key in seen_units:
+            continue
+        seen_units.add(key)
         candidate = '\n'.join(selected + [unit])
         card['article_text'] = candidate
         if len(serial(card)) <= budget:

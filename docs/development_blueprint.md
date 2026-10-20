@@ -2157,3 +2157,11 @@ Freeze temporarily deferred at the officer's request. Scope remains critical rel
 - [ ] Verify new Cloud results; live recovery of unavailable sites remains unproven. Existing policy restrictions and bounded PDF limits stay intact.
 - Next: one combined scan for quality review; round 3 only for demonstrated high-impact defects.
 
+# Final targeted tuning: round 3
+
+- [x] Remove nested HTML extraction duplication (parent cells/list items versus their child blocks).
+- [x] Preserve short explicitly headed learning outcomes and deduplicate repeated excerpt units.
+- [x] Label prerequisite/reading sections and deprioritise them relative to explicit outcomes.
+- [x] Exclude observed project calls and support terms by title; retain actual competency standards/syllabi.
+- [ ] Final Cloud/export review on `final-tuning-3`, then freeze if no blocking issue. No recovery of restricted websites is claimed. Deterministic filtering still requires officer review.
+
