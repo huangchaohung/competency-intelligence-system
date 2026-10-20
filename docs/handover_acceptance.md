@@ -2,7 +2,7 @@
 
 Status: **freeze deferred for up to three targeted tuning rounds at officer request**.
 
-Current development build: `final-tuning-1`. Previous acceptance baseline below remains historical; repeat relevant checks after the last round.
+Current development build: `final-tuning-2`. Previous acceptance baseline below remains historical; repeat relevant checks after the last round.
 
 Build: `handover-rc-1`
 

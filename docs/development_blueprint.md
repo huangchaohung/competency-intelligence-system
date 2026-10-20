@@ -2149,3 +2149,11 @@ Freeze temporarily deferred at the officer's request. Scope remains critical rel
 - [ ] Round 2: investigate empty IMDA/MOE responses and other recoverable failures without bypassing policy. Blocked sites remain documented.
 - [ ] Round 3 only if needed: review remaining high-impact PDF/excerpt issues, then repeat handover acceptance. No broad feature expansion.
 
+# Final targeted tuning: round 2
+
+- [x] Latest Cloud logs show HTTP 202, not successful document retrieval, for IMDA and MOE CourseFinder. Report this explicitly rather than misclassifying as irrelevant content; no access-bypass recovery claimed.
+- [x] Reject annual-report paths before download, including redirects (HTX's oversized file was an annual report, not a framework).
+- [x] Deduplicate repeated resolved content attempts within each source row, including equivalent default ports. Keep different hosts/schemes and different source rows separate.
+- [ ] Verify new Cloud results; live recovery of unavailable sites remains unproven. Existing policy restrictions and bounded PDF limits stay intact.
+- Next: one combined scan for quality review; round 3 only for demonstrated high-impact defects.
+

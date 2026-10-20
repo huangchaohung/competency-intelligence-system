@@ -66,12 +66,17 @@ def permitted(url, allowed):
 
 def canonical(url):
     p = urlsplit(url)
-    return urlunsplit((p.scheme, p.netloc.lower(), p.path or '/', p.query, ''))
+    netloc = p.netloc.lower()
+    if (p.scheme == 'https' and netloc.endswith(':443')) or (p.scheme == 'http' and netloc.endswith(':80')):
+        netloc = netloc.rsplit(':', 1)[0]
+    return urlunsplit((p.scheme, netloc, p.path or '/', p.query, ''))
 
 
 def excluded_resource(url, title, text=''):
     """Conservative exclusions for named non-resource document genres."""
     path = urlsplit(url).path.lower()
+    if re.search(r'/(?:annual-reports?)(?:/|$)', path):
+        return 'Annual report, not a competency resource'
     if re.search(r'/submissions-archive/|/government-policy-and-submissions/|dcc.*project.*call|application%20form.*dcc|gls-disqualification', path):
         return 'Policy consultation/support application or land-sales administration, not competency evidence'
     if re.search(r'certification of products and articles|letter of acceptance of type certificate|technical standard order certificate of approval|land sales disqualification|application for support|certificate request|assessment fees and additional services', title, re.I):
@@ -291,6 +296,7 @@ class PilotCollector:
         self.session = requests.Session()
         self.session.headers['User-Agent'] = AGENT
         self.robots, self.seen = {}, set()
+        self.content_attempts = set()
         self.sitemap_origins = set()
 
     def log(self, row, url, status='', rendering='plain', reason='', purpose='content', attempted=False):
@@ -305,6 +311,16 @@ class PilotCollector:
 
     def raw(self, row, url, purpose='content', check_robots=True):
         for _ in range(6):
+            url = canonical(url)
+            if purpose == 'content':
+                identity = (row.get('Scan_ID'), url)
+                if identity in self.content_attempts:
+                    self.log(row, url, reason='Duplicate resolved content URL in this source; not requested', purpose=purpose)
+                    return None
+                self.content_attempts.add(identity)
+                if excluded_resource(url, '') == 'Annual report, not a competency resource':
+                    self.log(row, url, reason='Annual report excluded before download', purpose=purpose)
+                    return None
             if excluded_resource(url, '') == 'Restricted/login/enquiry page, not a public competency resource':
                 self.log(row, urlsplit(url)._replace(query='', fragment='').geturl(),
                          reason='Restricted/login/enquiry destination; not requested', purpose=purpose)
@@ -331,6 +347,12 @@ class PilotCollector:
                         if len(buf) > MAX_BYTES or time.monotonic() - started > 35:
                             raise ValueError('Response exceeds 8MB/35-second download bound')
                     entry['resolved_url'] = url
+                    if response.status_code == 202:
+                        entry['reason_if_rejected'] = 'HTTP 202: no completed document response; review source access manually'
+                        return None
+                    if not buf:
+                        entry['reason_if_rejected'] = 'Empty response body; no document to extract'
+                        return None
                     return url, bytes(buf), response.headers.get('Content-Type', ''), entry
             except (requests.RequestException, ValueError) as error:
                 entry['reason_if_rejected'] = type(error).__name__ + ': ' + str(error)[:240]
@@ -395,6 +417,9 @@ class PilotCollector:
                     entry['attempted'] = True
                     response = page.goto(url, wait_until='domcontentloaded', timeout=25000)
                     entry['http_status'] = response.status if response else ''
+                    if response and response.status == 202:
+                        entry['reason_if_rejected'] = 'HTTP 202: browser did not receive a completed document response'
+                        return None
                     page.wait_for_timeout(1500)
                     if response and response.status >= 400:
                         raise ValueError('Browser HTTP failure')
