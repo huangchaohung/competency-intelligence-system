@@ -274,7 +274,7 @@ class PilotCollector:
         item = dict(Scan_ID=row['Scan_ID'], url=url, http_status=status, rendering_used=rendering,
                     cards_produced=0, chars=0, reason_if_rejected=reason, purpose=purpose, attempted=attempted,
                     parent_organisation=row.get('Parent_organisation', ''), configured_url=row.get('URL', ''),
-                    text_sample='')
+                    text_sample='', resolved_url='')
         if 'Verification' in row:
             item['seed_verification_reported'] = row['Verification']
         self.logs.append(item)
@@ -303,6 +303,7 @@ class PilotCollector:
                         buf.extend(chunk)
                         if len(buf) > MAX_BYTES or time.monotonic() - started > 35:
                             raise ValueError('Response exceeds 8MB/35-second download bound')
+                    entry['resolved_url'] = url
                     return url, bytes(buf), response.headers.get('Content-Type', ''), entry
             except (requests.RequestException, ValueError) as error:
                 entry['reason_if_rejected'] = type(error).__name__ + ': ' + str(error)[:240]
@@ -367,6 +368,7 @@ class PilotCollector:
                     data = page.content().encode('utf-8')
                     if len(data) > MAX_BYTES:
                         raise ValueError('Rendered HTML exceeds bound')
+                    entry['resolved_url'] = page.url
                     return page.url, data, 'text/html', entry
                 finally:
                     browser.close()
@@ -492,7 +494,7 @@ class PilotCollector:
                 size = len(serial(card))
                 used[parent] += size
                 produced += 1
-                result[3].update(cards_produced=1, chars=size, reason_if_rejected='')
+                result[3].update(cards_produced=1, chars=size, reason_if_rejected='', resolved_url=result[0])
             if queue:
                 self.log(row, row['URL'], rendering='not_attempted', reason=f'BOUND_REACHED: {len(set(queue) - visited)} queued URLs not requested')
         return self.summarise(rows)

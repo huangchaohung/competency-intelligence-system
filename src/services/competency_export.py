@@ -33,7 +33,7 @@ def build_competency_handover(run, evidence, *, retention_eligible=True, scan_su
         logged = Counter()
         for log in native['logs']:
             if int(log.get('cards_produced', 0)):
-                logged[(log.get('parent_organisation'), log.get('Scan_ID'), log.get('url'))] += int(log['cards_produced'])
+                logged[(log.get('parent_organisation'), log.get('Scan_ID'), log.get('resolved_url') or log.get('url'))] += int(log['cards_produced'])
         expected = Counter((c.get('parent_organisation'), c.get('scan_id'), c.get('url')) for c in native['cards'])
         if logged != expected:
             raise ValueError('Card provenance and URL log disagree; export stopped')

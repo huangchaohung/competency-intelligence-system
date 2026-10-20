@@ -2125,3 +2125,9 @@ Current tracking checkpoint:
 - [ ] Consider larger framework excerpts/PDF limits and authorised manual-file ingestion separately; existing bounds remain to protect Cloud resources.
 - [ ] Further canonical redirect deduplication, boilerplate and document-family review remain pending. Do not bypass robots or WAF restrictions.
 
+# Current checkpoint — redirect export repair
+
+- [x] Preserve requested and resolved URLs in scan logs; compare card provenance with resolved URL when present.
+- [x] Keep strict organisation, source ID and count checks. No guessed URL reconciliation for earlier in-memory results.
+- [ ] Verify fresh Cloud scan/export on build `redirect-provenance-1`. Old browser-redirect scans without recorded final URLs may still require rescanning.
+
