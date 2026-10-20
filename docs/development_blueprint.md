@@ -2139,3 +2139,13 @@ Current tracking checkpoint:
 - [ ] Final Cloud acceptance on `handover-rc-1`; then record/tag accepted commit and freeze feature development.
 - Defer perfect source coverage, larger PDF/card budgets and new ingestion features to the receiving officer. Only blocking defects/security fixes belong before freeze.
 
+# Final targeted tuning: round 1 of up to 3
+
+Freeze temporarily deferred at the officer's request. Scope remains critical relevance and recoverable-source failures.
+
+- [x] Exclude observed IET consultation paths before fetching; reject observed product-approval, support-application and land-sales administration false positives.
+- [x] Preserve explicit learning-outcome section context and prioritise it over prerequisite/readings boilerplate.
+- [ ] Fresh scan verifies gains; do not claim IET recovery from unit tests.
+- [ ] Round 2: investigate empty IMDA/MOE responses and other recoverable failures without bypassing policy. Blocked sites remain documented.
+- [ ] Round 3 only if needed: review remaining high-impact PDF/excerpt issues, then repeat handover acceptance. No broad feature expansion.
+

@@ -72,6 +72,10 @@ def canonical(url):
 def excluded_resource(url, title, text=''):
     """Conservative exclusions for named non-resource document genres."""
     path = urlsplit(url).path.lower()
+    if re.search(r'/submissions-archive/|/government-policy-and-submissions/|dcc.*project.*call|application%20form.*dcc|gls-disqualification', path):
+        return 'Policy consultation/support application or land-sales administration, not competency evidence'
+    if re.search(r'certification of products and articles|letter of acceptance of type certificate|technical standard order certificate of approval|land sales disqualification|application for support|certificate request|assessment fees and additional services', title, re.I):
+        return 'Product approval or administrative transaction, not personnel competency evidence'
     if re.search(r'/(?:members-only|login|signin|sign-in|shibboleth|saml2?|idp|authn|request-information|enquiry|enquire)(?:/|$)', path) or re.search(
             r'^(?:request information|enquir(?:y|e)|sign in|log in)\b', title, re.I):
         return 'Restricted/login/enquiry page, not a public competency resource'
@@ -162,7 +166,17 @@ def extract(data, content_type, url):
     headings = ' '.join(t.get_text(' ', strip=True) for t in body.select('h1, h2, h3'))
     if not title and body.h1:
         title = body.h1.get_text(' ', strip=True)
-    blocks = [re.sub(r'\s+', ' ', t.get_text(' ', strip=True)) for t in body.select('h1,h2,h3,h4,p,li,td,dt,dd')]
+    blocks = []
+    outcome_section = False
+    for tag in body.select('h1,h2,h3,h4,h5,h6,p,li,td,dt,dd'):
+        text = re.sub(r'\s+', ' ', tag.get_text(' ', strip=True))
+        if tag.name.startswith('h') or tag.name == 'dt':
+            outcome_section = bool(re.search(r'learning outcomes|what you.ll learn|intended learning|competenc(?:ies|y requirements)|course content', text, re.I))
+            section_heading = text
+        # Preserve heading context for short action statements without inventing source claims.
+        if outcome_section and tag.name not in ('h1','h2','h3','h4','h5','h6','dt') and text:
+            text = section_heading + ': ' + text
+        blocks.append(text)
     return title, headings, list(dict.fromkeys(b for b in blocks if b)), links
 
 
@@ -213,6 +227,9 @@ def make_card(row, url, title, blocks, remaining):
                                  (r'learning outcomes|curriculum|competencies|proficiencies',
                                   r'\b[A-Z]{2,}\s?\d{3,}\b|credits|modules|must|shall',
                                   r'risk management|systems engineering|requirements|skills include')))
+    useful.sort(key=lambda b: (
+        -int(bool(re.search(r'^(?:learning outcomes|what you.ll learn|intended learning|competenc(?:ies|y requirements)|course content)\b', b, re.I))),
+        int(bool(re.search(r'prerequisit|recommended text|textbook|text book|moodle|lecture slides|course fees|register now', b, re.I)))))
     text = '\n'.join(useful)
     if not text:
         return None

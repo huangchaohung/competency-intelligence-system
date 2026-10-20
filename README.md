@@ -2,7 +2,7 @@
 
 A Streamlit application for collecting public **Science, Technology and Engineering (STE)** competency, course, curriculum and standards evidence.
 
-**Handover candidate: `handover-rc-1`.** This is a collection prototype for approved trials, not a government-approved production service.
+**Current build: `final-tuning-1`.** Handover acceptance is temporarily deferred for up to three targeted tuning rounds. This is a collection prototype for approved trials, not a government-approved production service.
 
 ## Purpose and boundaries
 
@@ -112,7 +112,7 @@ Logs may include public-text samples and URL query strings. Review before sharin
 
 **Do one final Cloud acceptance run, then freeze features.** Perfect coverage of all organisations is not a release condition.
 
-- [ ] Visible build is `handover-rc-1`.
+- [ ] Visible build matches the final accepted candidate (currently `final-tuning-1`; further targeted rounds pending).
 - [ ] Temporary edits do not change a separate session's sources.
 - [ ] A failed source does not stop the scan; progress completes.
 - [ ] Preparation stays on Scan & Download and all TXT files download.
