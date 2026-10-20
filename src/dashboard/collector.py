@@ -1,9 +1,10 @@
 """Collection-only pages without recommendation dashboard dependencies."""
 from math import ceil
+import json
 import streamlit as st
 from src.core.exceptions import CompetencyIntelligenceError
 from src.services.source_health_service import source_health_rows
-from src.services.compact_evidence import build_compact_handover as build_transfer_handover
+from src.services.competency_export import build_competency_handover as build_transfer_handover
 from src.services.session_workspace import clear_current_scan
 from src.services.scan_job import ScanJob
 
@@ -151,8 +152,8 @@ def history(services, *, completed_here=None):
 
 def render_download(run, evidence, summary, *, prepare_now=False):
     st.subheader('Download evidence TXT')
-    st.caption('Compact excerpts retain every evidence ID and source URL, ordered by source type. Each TXT is at most 400,000 characters. Download all parts; excerpts are not full documents or AI summaries. Priority is reading order, not a reliability rating.')
-    key = f'public_evidence_only_compact_v3_{run.id}'
+    st.caption('Prepare competency/course cards, organisation coverage and a URL record. Cards are selective excerpts, not AI summaries. Each card part is below 300,000 characters. Download all files.')
+    key = f'public_evidence_only_cards_v1_{run.id}'
     # Bound session memory to one prepared batch, including legacy cache keys.
     for old_key in list(st.session_state):
         if (old_key.startswith('public_handover_') or old_key.startswith('public_evidence_only_')) and old_key != key:
@@ -166,17 +167,32 @@ def render_download(run, evidence, summary, *, prepare_now=False):
         requested = st.button('Prepare download files', key=f'prepare_txt_{run.id}')
     if key not in st.session_state and requested:
         try:
-            with st.spinner('Preparing compact evidence TXT parts…'):
+            with st.spinner('Preparing competency cards and coverage TXT files…'):
                 st.session_state[key] = build_transfer_handover(run, evidence, retention_eligible=True, scan_summary=summary)
         except ValueError as error:
             st.error(str(error))
     if key in st.session_state:
         files = st.session_state[key]
         st.success(f'{len(files)} compact TXT file(s) ready. Download every part in order.')
+        first = json.loads(next(iter(files.values()))) if files else {}
+        stats = first.get('export_summary') if isinstance(first, dict) else None
+        if isinstance(first, list):
+            count = sum(len(json.loads(data)) for name, data in files.items() if name.startswith('cards_part_'))
+            st.caption(f'{count} competency cards prepared. Non-qualifying records and budget exclusions are documented in url_log.txt. Review excerpts before analysis.')
+            st.info('URL log covers stored evidence only, not every network attempt. Blank HTTP status means unavailable. Coverage counts describe this scan, not earlier runs. Self-searched evidence must remain separately labelled and cannot alone support recommendations or support deletions.')
+        if stats:
+            original = stats['original_text_characters']
+            compact = stats['excerpt_text_characters']
+            reduction = 100 * (1 - compact / original) if original else 0
+            st.caption(f"{stats['records_included']:,} evidence records represented · "
+                       f"{stats['records_shortened']:,} shortened · "
+                       f"Evidence text: {original:,} → {compact:,} characters ({reduction:.1f}% reduction). "
+                       'Text only; excludes file metadata. This is not a token count or proof that all facts are retained.')
         st.caption('Size reduction, priority ordering and splitting are automatic. Click each button below to save that individual file; no ZIP or manual splitting is needed. Browsers may not permit several files to download from one click.')
         for index, (name, data) in enumerate(files.items(), 1):
-            st.download_button(f'Download part {index} of {len(files)}', data, file_name=name, mime='text/plain', on_click='ignore', key=f'download_{run.id}_{name}')
-            st.caption(f'{name} · {len(data.decode("utf-8")):,} characters · Selected excerpts; full text remains in this session only')
+            label = f'Download {name}' if name.startswith('cards_part_') or name in ('organisation_status.txt', 'url_log.txt') else f'Download part {index} of {len(files)}'
+            st.download_button(label, data, file_name=name, mime='text/plain', on_click='ignore', key=f'download_{run.id}_{name}')
+            st.caption(f'{name} · {len(data.decode("utf-8")):,} characters · Current session only; download before leaving')
         with st.expander('Download troubleshooting'):
             st.download_button('Download small test TXT', b'STE download test: public text only.\n', file_name='download_test.txt', mime='text/plain', on_click='ignore')
             st.write('If neither file downloads, ask IT whether downloads from this app are permitted. If only the large file fails, record its size and browser error. A new session or server restart loses this scan; download before leaving. Do not bypass government security controls.')

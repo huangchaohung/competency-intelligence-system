@@ -17,6 +17,12 @@ def test_compact_parts_bound_unicode_and_preserve_all_ids_and_priority():
     assert [r['priority'] for r in all_rows] == sorted(r['priority'] for r in all_rows)
     assert all(r['text_shortened'] for r in all_rows)
     assert all(p['part_count'] == len(parts) for p in parts)
+    stats = parts[0]['export_summary']
+    assert all(p['export_summary'] == stats for p in parts)
+    assert stats['records_included'] == 30
+    assert stats['records_shortened'] == 30
+    assert stats['original_text_characters'] == sum(len(r['article_text']) for r in rows)
+    assert stats['excerpt_text_characters'] == sum(len(r['article_text']) for r in all_rows)
     assert rows[0]['article_text'] != all_rows[0]['article_text']
 
 

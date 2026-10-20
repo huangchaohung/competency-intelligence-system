@@ -56,7 +56,10 @@ render_download(SimpleNamespace(id=1, completed_at=True), [object()], None, prep
 def test_preparation_displays_individual_parts_and_caches_them(monkeypatch):
     from src.dashboard import collector
     def build(*args, **kwargs):
-        return {f'public_evidence_part_{i:03}.txt': b'{}' for i in range(1, 4)}
+        import json
+        data = json.dumps({'export_summary': {'records_included': 3, 'records_shortened': 2,
+                         'original_text_characters': 10000, 'excerpt_text_characters': 2000}}).encode()
+        return {f'public_evidence_part_{i:03}.txt': data for i in range(1, 4)}
     monkeypatch.setattr(collector, 'build_transfer_handover', build)
     app = AppTest.from_string('''
 from types import SimpleNamespace
@@ -70,5 +73,6 @@ render_download(SimpleNamespace(id=77, completed_at=True), [object()], None)
     assert [b.proto.label for b in buttons[:3]] == ['Download part 1 of 3', 'Download part 2 of 3', 'Download part 3 of 3']
     assert all(b.proto.ignore_rerun for b in buttons[:3])
     assert '3 compact TXT' in app.success[0].value
+    assert any('3 evidence records represented' in c.value and '80.0% reduction' in c.value for c in app.caption)
     app.run()
     assert len(app.get('download_button')) == 4  # parts plus diagnostic download

@@ -77,3 +77,13 @@ Share this repository, not the original working folder. Never commit databases, 
 
 Scan & Download now prepares numbered TXT parts, each at most 400,000 characters. Download all parts. Every evidence ID and URL is retained, but text is whitespace-normalised and shortened to distributed excerpts with explicit omission flags. This is not an AI summary or a guarantee that all competencies are preserved. Reading priority follows source metadata, not credibility. Use the current `docs/government_assistant_guide.txt` for part-by-part cited-ledger analysis; uploading multiple parts does not enlarge the assistant's context window. The existing full-text exporter remains an internal compatibility function, not the default download. Source tuning is temporarily paused.
 
+# Current Cloud download format
+
+Build `competency-txt-1` prepares competency cards from the current session only. On **Scan & Download**, click **Prepare download files**, then download every TXT button. Preparation is offline and does not make AI requests or start another scan.
+
+- `cards_part_001.txt` onward: JSON arrays of selective competency/course excerpts, each file below 300,000 characters. Complete cards are limited to 1,000 characters, four per configured source and 5,000 characters per organisation.
+- `organisation_status.txt`: current-scan coverage, including organisations with no qualifying exported cards. This does not prove no public resource exists.
+- `url_log.txt`: retained-evidence export decisions, including budget exclusions. This is **not a complete network-attempt log**; HTTP statuses/rendering details unavailable in stored evidence are not invented.
+
+Use all files with the government assistant. Excerpts omit information and can lose PDF table relationships. Do not infer missing competencies, obsolescence or matrix mappings. Keep any separately self-searched material labelled and do not use it alone to support recommendations or to support deletion. Counts are computed from this session, not the historical reviewed corpus. Deterministic filtering does not replace content review.
+
