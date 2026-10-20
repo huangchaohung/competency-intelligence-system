@@ -2114,3 +2114,14 @@ Current tracking checkpoint:
 - [ ] Review a fresh Cloud scan for semantic usefulness, PDF boilerplate and partial duplicates. Exact duplicate suppression is not a complete document-family independence check.
 - [ ] Government assistant review of matching newly named files. Previously shortened cards cannot be expanded without a new scan.
 
+# Current checkpoint — ranked discovery
+
+- [x] Bounded sitemap discovery for native Cloud rows, once per origin/run; ranked frontier capped at 100 candidates with explicit pruning logs.
+- [x] Search/faceted URL exclusion; body-level learning-outcome signals and definition-list extraction.
+- [x] Optional browser escalation restricted to sparse JS shells. Explicit Required remains supported; images/fonts/media blocked, scripts and styles preserved for functionality.
+- [x] Up to 200 characters of extracted public text logged for qualification rejection diagnostics.
+- Redirects already follow up to six attempts. Browser assets never consumed the content-candidate budget. Robots policies remain cached per origin, not merged across hosts with potentially different rules.
+- [ ] Validate yield on next Cloud export. Scoring is a hypothesis, not proof of representative coverage.
+- [ ] Consider larger framework excerpts/PDF limits and authorised manual-file ingestion separately; existing bounds remain to protect Cloud resources.
+- [ ] Further canonical redirect deduplication, boilerplate and document-family review remain pending. Do not bypass robots or WAF restrictions.
+

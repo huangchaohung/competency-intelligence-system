@@ -24,6 +24,28 @@ BLOCK = re.compile(r'access denied|verify (?:that )?you are human|checking your 
 MAX_BYTES = 8_000_000
 
 
+def search_trap(url):
+    p = urlsplit(url)
+    return bool(re.search(r'/(?:search|search-results)(?:/|$)', p.path, re.I) or
+                re.search(r'(?:^|&)(?:search|q|facet|filter|sort|page)=', p.query, re.I))
+
+
+def frontier_score(url):
+    path = urlsplit(url).path.lower()
+    return (6 * bool(re.search(r'competenc|framework|curricul|syllab|learning.outcomes|/modules?/', path)) +
+            4 * bool(re.search(r'accredit|certificat|/courses?/|coursebook|\.pdf$', path)) +
+            min(3, len([part for part in path.split('/') if part])) -
+            20 * search_trap(url))
+
+
+def js_shell(result, parsed):
+    if not result or 'html' not in result[2].lower():
+        return False
+    html = result[1].decode('utf-8', 'replace')
+    visible = sum(map(len, parsed[2])) if parsed else len(BeautifulSoup(html, 'html.parser').get_text(strip=True))
+    return visible < 500 and bool(re.search(r'id=["\'](?:root|app|__next)["\']|<app-root', html, re.I))
+
+
 def serial(value):
     return json.dumps(value, ensure_ascii=False, separators=(',', ':'))
 
@@ -137,12 +159,14 @@ def extract(data, content_type, url):
     headings = ' '.join(t.get_text(' ', strip=True) for t in body.select('h1, h2, h3'))
     if not title and body.h1:
         title = body.h1.get_text(' ', strip=True)
-    blocks = [re.sub(r'\s+', ' ', t.get_text(' ', strip=True)) for t in body.select('h1,h2,h3,h4,p,li,td')]
+    blocks = [re.sub(r'\s+', ' ', t.get_text(' ', strip=True)) for t in body.select('h1,h2,h3,h4,p,li,td,dt,dd')]
     return title, headings, list(dict.fromkeys(b for b in blocks if b)), links
 
 
 def qualification(url, title, headings, blocks):
     path = urlsplit(url).path
+    if search_trap(url):
+        return False, 'Search/faceted listing is not a competency resource'
     if re.search(r'aircraft type.certification|cybersecurity labelling|amusement.ride', title + ' ' + headings, re.I) and not re.search(
             r'personnel|professional competenc|learning outcomes|training course|qualified (?:engineer|person)', ' '.join(blocks), re.I):
         return False, 'Product/asset certification without explicit personnel competency or training requirements'
@@ -161,9 +185,10 @@ def qualification(url, title, headings, blocks):
     if re.search(r'publication (?:list|library)|annual report', title + ' ' + headings, re.I):
         return False, 'Publication listing/annual report'
     resource_heading = title + ' ' + headings
-    if not KEY.search(resource_heading) and not re.search(r'body of knowledge|learning outcomes|unit of study', resource_heading, re.I) and not cebok:
+    body_signal = bool(re.search(r'learning outcomes|on completion of (?:this|the) course|assessment criteria|competency levels|module (?:code|list)|what you.ll learn', ' '.join(blocks), re.I))
+    if not KEY.search(resource_heading) and not re.search(r'body of knowledge|learning outcomes|unit of study', resource_heading, re.I) and not cebok and not body_signal:
         return False, 'No competency/course/standard heading'
-    if not STRONG.search(title) and not re.search(r'competenc|framework|standards?|certificat|accredit|curricul|courses?|modules?|syllab|learning.outcomes?|body of knowledge|unit of study', headings, re.I) and not cebok:
+    if not STRONG.search(title) and not re.search(r'competenc|framework|standards?|certificat|accredit|curricul|courses?|modules?|syllab|learning.outcomes?|body of knowledge|unit of study', headings, re.I) and not cebok and not body_signal:
         return False, 'Generic programme/project page, not an identified competency resource'
     if re.search(r'fellowship|undergraduate|programme|program\b', title, re.I) and not re.search(
             r'curricul|learning outcomes|credits|modules|will learn|training in|trained in|biodesign process|needs (?:identification|finding)', ' '.join(blocks), re.I):
@@ -243,11 +268,13 @@ class PilotCollector:
         self.session = requests.Session()
         self.session.headers['User-Agent'] = AGENT
         self.robots, self.seen = {}, set()
+        self.sitemap_origins = set()
 
     def log(self, row, url, status='', rendering='plain', reason='', purpose='content', attempted=False):
         item = dict(Scan_ID=row['Scan_ID'], url=url, http_status=status, rendering_used=rendering,
                     cards_produced=0, chars=0, reason_if_rejected=reason, purpose=purpose, attempted=attempted,
-                    parent_organisation=row.get('Parent_organisation', ''), configured_url=row.get('URL', ''))
+                    parent_organisation=row.get('Parent_organisation', ''), configured_url=row.get('URL', ''),
+                    text_sample='')
         if 'Verification' in row:
             item['seed_verification_reported'] = row['Verification']
         self.logs.append(item)
@@ -319,6 +346,9 @@ class PilotCollector:
                     context = browser.new_context(user_agent=AGENT, service_workers='block')
                     def route(request_route):
                         req = request_route.request
+                        if req.resource_type in ('image', 'font', 'media'):
+                            request_route.abort()
+                            return
                         if (not permitted(req.url, domains(row)) or
                                 not self.allowed_by_robots(row, req.url)):
                             self.log(row, req.url, rendering='browser', reason='Browser request blocked by domain/robots policy', purpose='browser_resource')
@@ -351,7 +381,7 @@ class PilotCollector:
             if row['Parent_organisation'] == 'Ngee Ann Polytechnic' and (urlsplit(url).hostname or '').endswith('moe.gov.sg'):
                 if not re.match(r'^/coursefinder/coursedetail/n\d', urlsplit(url).path):
                     continue
-            if permitted(url, domains(row)) and KEY.search(urlsplit(url).path + ' ' + label) and not BAN.search(urlsplit(url).path):
+            if permitted(url, domains(row)) and not search_trap(url) and KEY.search(urlsplit(url).path + ' ' + label) and not BAN.search(urlsplit(url).path):
                 if url not in found:
                     found.append(url)
         return sorted(found, key=lambda u: -(sum(h in u.lower() for h in hints) +
@@ -379,7 +409,10 @@ class PilotCollector:
                 alternate = urlunsplit((p.scheme, alt, p.path, p.query, ''))
                 if permitted(alternate, domains(row)):
                     queue.append(alternate)
-            if discover:
+            p = urlsplit(row['URL'])
+            origin = f'{p.scheme}://{p.netloc}'
+            if origin not in self.sitemap_origins and (discover or row.get('Export_id')):
+                self.sitemap_origins.add(origin)
                 # Sitemap traversal itself is bounded, independent of 15 content candidates.
                 self.allowed_by_robots(row, row['URL'])
                 origin = f'{p.scheme}://{p.netloc}'
@@ -398,6 +431,13 @@ class PilotCollector:
                                 queue.extend(self.candidate_links(row, [(n.get_text(strip=True), '') for n in BeautifulSoup(child[1], 'xml').select('url > loc')]))
             limit = 15 if discover else row['Max_cards'] + 1
             while queue and len(visited) < limit and produced < row['Max_cards']:
+                queue = sorted(set(queue) - visited, key=lambda u: (-frontier_score(u), u))
+                if len(queue) > 100:
+                    self.log(row, row['URL'], rendering='not_attempted',
+                             reason=f'FRONTIER_PRUNED: {len(queue)-100} lower-ranked candidates not queued')
+                    queue = queue[:100]
+                if not queue:
+                    break
                 url = canonical(queue.pop(0))
                 if url in visited:
                     continue
@@ -409,10 +449,12 @@ class PilotCollector:
                         parsed = extract(result[1], result[2], result[0])
                         good, reason = qualification(result[0], *parsed[:3])
                         result[3]['reason_if_rejected'] = reason
+                        if not good:
+                            result[3]['text_sample'] = ' '.join(parsed[2])[:200]
                     except Exception as error:
                         result[3]['reason_if_rejected'] = 'Extraction: ' + str(error)[:200]
                 needs_browser, required_browser = browser_policy(row)
-                if required_browser or (not good and needs_browser):
+                if required_browser or (not good and needs_browser and js_shell(result, parsed)):
                     rendered = self.rendered(row, url)
                     if rendered:
                         try:

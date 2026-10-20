@@ -103,3 +103,9 @@ New Cloud scans use up to 3,000 serialized characters per card and 15,000 per or
 
 Download **all files sharing the same scan identifier**: cards parts, organisation status and URL log. Do not mix earlier downloads. The exporter checks card totals before download. Each part remains under 300,000 characters. Start a new scan to benefit from longer excerpts; previously discarded text cannot be recovered from old cards.
 
+# Ranked discovery update
+
+Cloud scans use bounded sitemap discovery and a scored candidate queue rather than first-link order. Search/faceted pages are excluded. Explicit body-level learning outcomes can qualify even when headings are generic. Optional browser rendering is reserved for sparse JavaScript shells; explicitly required rendering remains available. Images, fonts and media are blocked during rendering.
+
+The URL log can include a 200-character public-text rejection sample and frontier-pruning reasons. These help tune selection; counts and ranking do not prove that a scan represents an organisation's entire competency inventory. Robots restrictions remain enforced separately for each origin.
+
