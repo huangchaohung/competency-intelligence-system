@@ -196,7 +196,7 @@ def render_download(run, evidence, summary, *, prepare_now=False):
                        'Text only; excludes file metadata. This is not a token count or proof that all facts are retained.')
         st.caption('Size reduction, priority ordering and splitting are automatic. Click each button below to save that individual file; no ZIP or manual splitting is needed. Browsers may not permit several files to download from one click.')
         for index, (name, data) in enumerate(files.items(), 1):
-            label = f'Download {name}' if name.startswith('cards_part_') or name in ('organisation_status.txt', 'url_log.txt') else f'Download part {index} of {len(files)}'
+            label = f'Download {name}' if name.startswith(('cards_part_', 'organisation_status', 'url_log')) else f'Download part {index} of {len(files)}'
             st.download_button(label, data, file_name=name, mime='text/plain', on_click='ignore', key=f'download_{run.id}_{name}')
             st.caption(f'{name} · {len(data.decode("utf-8")):,} characters · Current session only; download before leaving')
         with st.expander('Download troubleshooting'):

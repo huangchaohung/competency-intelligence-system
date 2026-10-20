@@ -143,6 +143,9 @@ def extract(data, content_type, url):
 
 def qualification(url, title, headings, blocks):
     path = urlsplit(url).path
+    if re.search(r'aircraft type.certification|cybersecurity labelling|amusement.ride', title + ' ' + headings, re.I) and not re.search(
+            r'personnel|professional competenc|learning outcomes|training course|qualified (?:engineer|person)', ' '.join(blocks), re.I):
+        return False, 'Product/asset certification without explicit personnel competency or training requirements'
     excluded = excluded_resource(url, title, ' '.join(blocks))
     if excluded:
         return False, excluded
@@ -189,6 +192,13 @@ def make_card(row, url, title, blocks, remaining):
                 parent_organisation=row['Parent_organisation'], organisation=row['Organisation_as_listed'],
                 scan_id=row['Scan_ID'], mode=row['Mode'], source_type=source_type,
                 title=title[:160], url=url, article_text='', text_shortened=True)
+    if row.get('Export_id'):
+        card.update(export_id=row['Export_id'], schema_version='ste-competency-cards/2.0',
+                    publication_date=None, country='Unknown',
+                    evidence_type='Framework or standard' if source_type == 'FRAMEWORK' else 'Course or curriculum',
+                    priority=1 if source_type == 'FRAMEWORK' else 2,
+                    original_text_characters=len('\n'.join(blocks)),
+                    excerpt_method='Selected complete blocks or sentences; not a full inventory')
     if row.get('Source_family'):
         card.update(source_family=row['Source_family'], publisher_host=urlsplit(url).hostname,
                     retrieval_method='CRAWLER')
@@ -197,17 +207,29 @@ def make_card(row, url, title, blocks, remaining):
                     seed_verification_reported=row['Verification'])
     budget = min(row['Max_chars_per_card'], remaining)
     # Include serialization escaping in all budgets; omit rather than emit unusable tiny text.
-    lo, hi = 0, len(text)
-    while lo < hi:
-        mid = (lo + hi + 1) // 2
-        card['article_text'] = text[:mid]
+    # Fit whole original blocks/sentences, never an arbitrary prefix.
+    units = [unit.strip() for block in useful
+             for unit in re.split(r'(?<=[.!?])\s+(?=[A-Z0-9])', block) if unit.strip()]
+    selected = []
+    for unit in units:
+        candidate = '\n'.join(selected + [unit])
+        card['article_text'] = candidate
         if len(serial(card)) <= budget:
-            lo = mid
-        else:
-            hi = mid - 1
-    excerpt = text[:lo]
-    if lo < len(text):
-        excerpt = excerpt.rsplit(' ', 1)[0]
+            selected.append(unit)
+    excerpt = '\n'.join(selected)
+    if not row.get('Export_id'):
+        # Historical CLI exports retain their original caller-selected budget contract.
+        lo, hi = 0, len(text)
+        while lo < hi:
+            mid = (lo + hi + 1) // 2
+            card['article_text'] = text[:mid]
+            if len(serial(card)) <= budget:
+                lo = mid
+            else:
+                hi = mid - 1
+        excerpt = text[:lo]
+        if lo < len(text):
+            excerpt = excerpt.rsplit(' ', 1)[0]
     if len(excerpt) < 80:
         return None
     card['article_text'] = excerpt
@@ -417,6 +439,11 @@ class PilotCollector:
                 card = make_card(row, result[0], parsed[0], parsed[2], row['Max_chars_per_organisation'] - used[parent])
                 if not card:
                     result[3]['reason_if_rejected'] = 'SKIPPED_CHAR_CAP: metadata leaves insufficient substantive excerpt'
+                    continue
+                if any(c['parent_organisation'] == parent and
+                       ' '.join(c['article_text'].lower().split()) == ' '.join(card['article_text'].lower().split())
+                       for c in self.cards):
+                    result[3]['reason_if_rejected'] = 'Duplicate organisation excerpt; not independent corroboration'
                     continue
                 self.cards.append(card)
                 self.seen.add(identity)

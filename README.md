@@ -97,3 +97,9 @@ Build `competency-txt-1` prepares competency cards from the current session only
 
 Use all files with the government assistant. Excerpts omit information and can lose PDF table relationships. Do not infer missing competencies, obsolescence or matrix mappings. Keep any separately self-searched material labelled and do not use it alone to support recommendations or to support deletion. Counts are computed from this session, not the historical reviewed corpus. Deterministic filtering does not replace content review.
 
+# Current card export update
+
+New Cloud scans use up to 3,000 serialized characters per card and 15,000 per organisation. Excerpts retain whole selected blocks/sentences, not full inventories. Missing dates and countries are explicitly unknown. Resource-type priority does not establish credibility.
+
+Download **all files sharing the same scan identifier**: cards parts, organisation status and URL log. Do not mix earlier downloads. The exporter checks card totals before download. Each part remains under 300,000 characters. Start a new scan to benefit from longer excerpts; previously discarded text cannot be recovered from old cards.
+

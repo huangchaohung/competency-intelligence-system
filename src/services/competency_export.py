@@ -24,9 +24,30 @@ def build_competency_handover(run, evidence, *, retention_eligible=True, scan_su
     if native is not None:
         if native['run_id'] != run.id or not run.completed_at:
             raise ValueError('Card result does not belong to the completed scan')
+        counts = Counter(c['parent_organisation'] for c in native['cards'])
+        status_counts = {s['Parent_organisation']: int(s['cards_produced']) for s in native['statuses']}
+        if any(status_counts.get(parent) != count for parent, count in counts.items()) or sum(status_counts.values()) != len(native['cards']):
+            raise ValueError('Cards and organisation status disagree; export stopped')
+        if sum(int(log.get('cards_produced', 0)) for log in native['logs']) != len(native['cards']):
+            raise ValueError('Cards and URL log disagree; export stopped')
+        logged = Counter()
+        for log in native['logs']:
+            if int(log.get('cards_produced', 0)):
+                logged[(log.get('parent_organisation'), log.get('Scan_ID'), log.get('url'))] += int(log['cards_produced'])
+        expected = Counter((c.get('parent_organisation'), c.get('scan_id'), c.get('url')) for c in native['cards'])
+        if logged != expected:
+            raise ValueError('Card provenance and URL log disagree; export stopped')
+        identifier = native.get('export_id')
+        if identifier:
+            if any(c.get('export_id') != identifier for c in native['cards']):
+                raise ValueError('Mixed scan identifiers; export stopped')
+            native = dict(native, statuses=[dict(s, export_id=identifier) for s in native['statuses']],
+                          logs=[dict(log, export_id=identifier) for log in native['logs']])
         files = {f'cards_part_{i:03}.txt': part.encode('utf-8') for i, part in enumerate(split_cards(native['cards']), 1)}
         files['organisation_status.txt'] = csv_bytes(native['statuses'], list(native['statuses'][0]) if native['statuses'] else ['Parent_organisation', 'Status'])
         files['url_log.txt'] = csv_bytes(native['logs'], list(native['logs'][0]) if native['logs'] else ['Scan_ID', 'url'])
+        if identifier:
+            files = {name.replace('.txt', f'_{identifier[:12]}.txt'): data for name, data in files.items()}
         return files
     # Reuse the existing public-URL, current-run and retained-count validation.
     validated = build_compact_handover(run, evidence, retention_eligible=retention_eligible, scan_summary=scan_summary)

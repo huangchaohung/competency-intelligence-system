@@ -2,6 +2,7 @@
 from dataclasses import asdict
 from datetime import datetime
 from urllib.parse import urlsplit
+from uuid import uuid4
 
 from src.models.domain import Evidence, ScanStatus
 from src.scanner.competency_pilot import PilotCollector
@@ -16,6 +17,7 @@ class CompetencyScanWorkflow:
     def run(self, progress_callback=None):
         self.result = None
         sources = self.sources.list_enabled()
+        export_id = uuid4().hex
         run = self.scans.create_run(datetime.now().astimezone(), [asdict(s) for s in sources])
         collector = self.collector_factory()
         rows, errors = [], []
@@ -25,7 +27,8 @@ class CompetencyScanWorkflow:
                        Organisation_as_listed=source.organisation, Source_family=source.source_family.value,
                        Mode=settings.get('mode', 'SCAN'), Source_type='UNKNOWN_UNTIL_FETCHED', URL=source.url,
                        Allowed_domains=settings.get('allowed_domains') or urlsplit(source.url).hostname.removeprefix('www.'),
-                       Max_cards=min(4, source.max_articles_per_scan), Max_chars_per_card=1000, Max_chars_per_organisation=5000,
+                       Export_id=export_id,
+                       Max_cards=min(4, source.max_articles_per_scan), Max_chars_per_card=3000, Max_chars_per_organisation=15000,
                        Browser_rendering='Required' if source.use_browser_rendering and settings.get('browser_required') else ('Yes' if source.use_browser_rendering else 'No'),
                        Page_types_to_find=settings.get('page_types_to_find', 'competency curriculum courses standards'), Notes='', Host_retry=True)
             rows.append(row)
@@ -53,5 +56,5 @@ class CompetencyScanWorkflow:
                 status['Status'] = 'CRAWLER_UNAVAILABLE'
             status['limitations'] = 'Partial deterministic excerpts; no human review. Do not infer omitted text, complete inventories or PDF table relationships. Missing cards do not prove obsolescence.'
         completed = self.scans.complete_run(run, ScanStatus.COMPLETED_WITH_ERRORS if errors else ScanStatus.COMPLETED, '; '.join(errors) or None)
-        self.result = dict(run_id=run.id, cards=collector.cards, logs=collector.logs, statuses=collector.statuses)
+        self.result = dict(run_id=run.id, export_id=export_id, cards=collector.cards, logs=collector.logs, statuses=collector.statuses)
         return completed
