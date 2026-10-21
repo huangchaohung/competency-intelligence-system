@@ -173,20 +173,31 @@ def extract(data, content_type, url):
     headings = ' '.join(t.get_text(' ', strip=True) for t in body.select('h1, h2, h3'))
     if not title and body.h1:
         title = body.h1.get_text(' ', strip=True)
+    block_tags = ['h1','h2','h3','h4','h5','h6','p','li','td','dt','dd']
+    def own_text(tag):
+        return re.sub(r'\s+', ' ', ' '.join(
+            str(node).strip() for node in tag.find_all(string=True)
+            if node.find_parent(block_tags) is tag)).strip()
     blocks = []
     outcome_section = False
     section_heading = ''
     for tag in body.select('h1,h2,h3,h4,h5,h6,p,li,td,dt,dd'):
         # Parent cells/list items may contain the same paragraphs/list items.
         # Read their own text only; descendants are processed in document order.
-        text = re.sub(r'\s+', ' ', ' '.join(
-            str(node).strip() for node in tag.find_all(string=True)
-            if node.find_parent(['h1','h2','h3','h4','h5','h6','p','li','td','dt','dd']) is tag)).strip()
+        text = own_text(tag)
+        list_context = ''
+        for parent in tag.find_parents('li'):
+            label = own_text(parent)
+            if re.match(r'^(?:skills and competencies|competencies|learning outcomes|required modules|core modules|course content)\b', label, re.I):
+                list_context = label.split(':', 1)[0]
+                break
         if tag.name.startswith('h') or tag.name == 'dt':
             outcome_section = bool(re.search(r'learning outcomes|what you.ll learn|intended learning|competenc(?:ies|y requirements)|course content', text, re.I))
             section_heading = text
         # Preserve heading context for short action statements without inventing source claims.
-        if outcome_section and tag.name not in ('h1','h2','h3','h4','h5','h6','dt') and text:
+        if list_context and text:
+            text = list_context + ': ' + text
+        elif outcome_section and tag.name not in ('h1','h2','h3','h4','h5','h6','dt') and text:
             text = section_heading + ': ' + text
         elif section_heading and re.search(r'prerequisit|prior knowledge|reading|bibliograph|assessment method|teaching method', section_heading, re.I) and text and tag.name not in ('h1','h2','h3','h4','h5','h6','dt'):
             text = section_heading + ': ' + text
@@ -235,7 +246,7 @@ def qualification(url, title, headings, blocks):
 def make_card(row, url, title, blocks, remaining):
     # Pick headed, exact evidence fragments, not a generated summary or navigation sample.
     useful = [b for b in blocks if ((SUBJECT.search(b) and len(b) >= 50) or re.search(r'\b[A-Z]{2,}\s?\d{3,}\b', b) or
-              re.search(r'^(?:learning outcomes|what you.ll learn|intended learning|course content):\s+\S', b, re.I))
+              re.search(r'^(?:skills and competencies|competencies|required modules|core modules|learning outcomes|what you.ll learn|intended learning|course content):\s+\S', b, re.I))
               and not re.search(r'^(?:[“\"]|I |My |We are|Assistant Professor|Professor,)|\bI (?:gained|learned|am|was|had)|testimoni|funding|networking|licence application process', b, re.I)]
     # Requirements, outcomes and named module codes outrank promotional introductions.
     useful.sort(key=lambda b: -sum(bool(re.search(p, b, re.I)) for p in
@@ -243,7 +254,7 @@ def make_card(row, url, title, blocks, remaining):
                                   r'\b[A-Z]{2,}\s?\d{3,}\b|credits|modules|must|shall',
                                   r'risk management|systems engineering|requirements|skills include')))
     useful.sort(key=lambda b: (
-        -int(bool(re.search(r'^(?:learning outcomes|what you.ll learn|intended learning|competenc(?:ies|y requirements)|course content)\b', b, re.I))),
+        -int(bool(re.search(r'^(?:skills and competencies|required modules|core modules|learning outcomes|what you.ll learn|intended learning|competenc(?:ies|y requirements)|course content)\b', b, re.I))),
         int(bool(re.search(r'prerequisit|prior knowledge|reading|bibliograph|recommended text|textbook|text book|moodle|lecture slides|course fees|register now', b, re.I)))))
     text = '\n'.join(useful)
     if not text:

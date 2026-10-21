@@ -2165,3 +2165,13 @@ Freeze temporarily deferred at the officer's request. Scope remains critical rel
 - [x] Exclude observed project calls and support terms by title; retain actual competency standards/syllabi.
 - [ ] Final Cloud/export review on `final-tuning-3`, then freeze if no blocking issue. No recovery of restricted websites is claimed. Deterministic filtering still requires officer review.
 
+# Concrete competency evidence checkpoint
+
+Scope remains named STE skills, professional requirements, curriculum/modules and explicit learning outcomes from professional bodies, Singapore agencies and leading STE universities. Do not treat institution reputation or a generic framework title as concrete competency evidence. The configured university list is not independently certified as a current top-50 ranking.
+
+- [x] Investigated lost BCA definitions: public BCA page retains them; nested-list deduplication removed their parent skills context before keyword selection.
+- [x] Preserve explicit parent labels for nested skills, competencies and core/required module lists; prioritise these statements without duplicating the parent aggregate.
+- [x] Add fixtures covering direct nested list text, paragraph-wrapped definitions, professional requirements, module lists and sibling-context isolation.
+- [ ] Cloud verification on `competency-context-1`: BCA named definitions must be restored, EPFL outcomes must stay nonduplicated, file provenance checks must still pass.
+- Local policy-aware retrieval did not fetch BCA in this environment; no claim of live local end-to-end crawler recovery. The public page was inspected through web retrieval. Unit fixtures verify the parser/selector repair; Cloud scan remains the acceptance check.
+

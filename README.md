@@ -2,7 +2,7 @@
 
 A Streamlit application for collecting public **Science, Technology and Engineering (STE)** competency, course, curriculum and standards evidence.
 
-**Current build: `final-tuning-3`.** Three targeted tuning rounds are implemented; final Cloud acceptance remains pending. This is a collection prototype for approved trials, not a government-approved production service.
+**Current build: `competency-context-1`.** Three targeted tuning rounds and a nested skill-list regression repair are implemented; final Cloud acceptance remains pending. This is a collection prototype for approved trials, not a government-approved production service.
 
 ## Purpose and boundaries
 
@@ -112,7 +112,7 @@ Logs may include public-text samples and URL query strings. Review before sharin
 
 **Do one final Cloud acceptance run, then freeze features.** Perfect coverage of all organisations is not a release condition.
 
-- [ ] Visible build matches the final accepted candidate (currently `final-tuning-3`; final review pending).
+- [ ] Visible build matches the final accepted candidate (currently `competency-context-1`; final review pending).
 - [ ] Temporary edits do not change a separate session's sources.
 - [ ] A failed source does not stop the scan; progress completes.
 - [ ] Preparation stays on Scan & Download and all TXT files download.

@@ -47,3 +47,25 @@ def test_project_calls_excluded_without_excluding_training_requirements():
     assert excluded_resource('https://example.org/document.pdf', 'DCC - Call for Projects 2026')
     assert excluded_resource('https://example.org/document.pdf', '1 Terms and Conditions for DCC Support')
     assert not excluded_resource('https://example.org/document.pdf', 'Engineering professional competency requirements')
+
+
+def test_nested_named_skills_preserve_context_without_parent_duplication():
+    html = b'''<main><h1>Skills Framework</h1><ul><li>Skills and competencies: Emerging skills include:
+    <ul><li>Computational Design - Use of programming for design automation and optimisation.</li>
+    <li><p>Green Building Strategy Implementation - Formulation of environmental sustainability plans throughout the building lifecycle.</p></li></ul>
+    </li><li>Training programmes: Find our training providers.</li></ul></main>'''
+    title, _, blocks, _ = extract(html, 'text/html', 'https://example.org/framework')
+    row = dict(Scan_ID='S1', Parent_organisation='Example', Organisation_as_listed='Example',
+               Mode='SCAN', Source_type='FRAMEWORK', Max_chars_per_card=3000, Export_id='test')
+    card = make_card(row, 'https://example.org/framework', title, blocks, 15000)
+    assert 'Skills and competencies: Computational Design - Use of programming' in card['article_text']
+    assert 'Skills and competencies: Green Building Strategy Implementation' in card['article_text']
+    assert card['article_text'].count('Computational Design') == 1
+    assert not any('Training programmes' in b and b.startswith('Skills and competencies:') for b in blocks)
+
+
+def test_professional_requirements_and_module_names_survive():
+    for label in ('Competencies', 'Required modules'):
+        html = f'<main><h1>Engineering</h1><ul><li>{label}:<ul><li>Design safe systems.</li><li>Evaluate operational risks and validate solutions against specified criteria.</li></ul></li></ul></main>'.encode()
+        _, _, blocks, _ = extract(html, 'text/html', 'https://example.org/resource')
+        assert f'{label}: Design safe systems.' in blocks
