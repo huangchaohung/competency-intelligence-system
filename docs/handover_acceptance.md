@@ -2,7 +2,7 @@
 
 Status: **freeze deferred for up to three targeted tuning rounds at officer request**.
 
-Current development build: `competency-context-1`. Three targeted rounds and a nested skills-context regression repair are implemented. Previous acceptance baseline below remains historical; verify BCA named definitions and repeat relevant checks before freezing.
+Current development build: `competency-context-2`. Live local BCA extraction/card construction retained all six named skills after fixing paragraph-wrapped parent labels. Previous acceptance baseline below remains historical; verify Cloud BCA output and repeat relevant checks before freezing.
 
 Build: `handover-rc-1`
 

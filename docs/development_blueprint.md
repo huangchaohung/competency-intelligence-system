@@ -2175,3 +2175,11 @@ Scope remains named STE skills, professional requirements, curriculum/modules an
 - [ ] Cloud verification on `competency-context-1`: BCA named definitions must be restored, EPFL outcomes must stay nonduplicated, file provenance checks must still pass.
 - Local policy-aware retrieval did not fetch BCA in this environment; no claim of live local end-to-end crawler recovery. The public page was inspected through web retrieval. Unit fixtures verify the parser/selector repair; Cloud scan remains the acceptance check.
 
+# Live BCA nested-label repair — 21 October 2026
+
+- [x] Bounded robots-respecting live fetch succeeded. Actual parent list label is inside an immediate paragraph; direct-text-only lookup missed it.
+- [x] Read immediate paragraph labels before nested lists, without reading descendant skill text twice.
+- [x] Live extraction plus card construction retained all six named skill entries in a 2,979-character serialized card (test metadata). No source text was hard-coded or invented.
+- [x] Added regression fixture matching this paragraph-wrapped parent structure.
+- [ ] Cloud confirmation on `competency-context-2`; local live success is not proof of Cloud access. Other blocked sources remain unchanged.
+

@@ -188,6 +188,16 @@ def extract(data, content_type, url):
         list_context = ''
         for parent in tag.find_parents('li'):
             label = own_text(parent)
+            # Editors commonly wrap the parent label in a paragraph. Read only
+            # immediate paragraphs before the nested list, never its descendants.
+            if not label:
+                labels = []
+                for child in parent.children:
+                    if getattr(child, 'name', None) in ('ul', 'ol'):
+                        break
+                    if getattr(child, 'name', None) == 'p':
+                        labels.append(own_text(child))
+                label = ' '.join(labels)
             if re.match(r'^(?:skills and competencies|competencies|learning outcomes|required modules|core modules|course content)\b', label, re.I):
                 list_context = label.split(':', 1)[0]
                 break

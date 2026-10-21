@@ -69,3 +69,17 @@ def test_professional_requirements_and_module_names_survive():
         html = f'<main><h1>Engineering</h1><ul><li>{label}:<ul><li>Design safe systems.</li><li>Evaluate operational risks and validate solutions against specified criteria.</li></ul></li></ul></main>'.encode()
         _, _, blocks, _ = extract(html, 'text/html', 'https://example.org/resource')
         assert f'{label}: Design safe systems.' in blocks
+
+
+def test_paragraph_wrapped_parent_label_as_on_live_bca_page():
+    html = b'''<main><h1>Skills Framework</h1><ul><li><p><b>Skills and competencies:</b> Details on emerging skills:</p>
+    <ul><li><p><b>Computational Design</b> - Use of programming and computational strategies for design automation.</p></li>
+    <li><p><b>Smart Facilities Management</b> - Integration of digital technologies into facility operations.</p></li></ul></li>
+    <li><p>Training programmes: Browse courses.</p></li></ul></main>'''
+    title, _, blocks, _ = extract(html, 'text/html', 'https://example.org/framework')
+    row = dict(Scan_ID='S1', Parent_organisation='Example', Organisation_as_listed='Example',
+               Mode='SCAN', Source_type='FRAMEWORK', Max_chars_per_card=3000, Export_id='test')
+    card = make_card(row, 'https://example.org/framework', title, blocks, 15000)
+    assert 'Skills and competencies: Computational Design' in card['article_text']
+    assert 'Skills and competencies: Smart Facilities Management' in card['article_text']
+    assert card['article_text'].count('Computational Design') == 1
