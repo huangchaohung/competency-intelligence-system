@@ -77,6 +77,8 @@ def test_paragraph_wrapped_parent_label_as_on_live_bca_page():
     <li><p><b>Smart Facilities Management</b> - Integration of digital technologies into facility operations.</p></li></ul></li>
     <li><p>Training programmes: Browse courses.</p></li></ul></main>'''
     title, _, blocks, _ = extract(html, 'text/html', 'https://example.org/framework')
+    assert not any('Skills and competencies: Skills and competencies:' in b for b in blocks)
+    assert 'Skills and competencies: Details on emerging skills:' in blocks
     row = dict(Scan_ID='S1', Parent_organisation='Example', Organisation_as_listed='Example',
                Mode='SCAN', Source_type='FRAMEWORK', Max_chars_per_card=3000, Export_id='test')
     card = make_card(row, 'https://example.org/framework', title, blocks, 15000)

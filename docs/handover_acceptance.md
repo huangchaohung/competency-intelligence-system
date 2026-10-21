@@ -1,8 +1,16 @@
 # Handover acceptance record
 
-Status: **freeze deferred for up to three targeted tuning rounds at officer request**.
+Status: **handover cleanup in progress; final officer acceptance pending**.
 
-Current development build: `competency-context-2`. Live local BCA extraction/card construction retained all six named skills after fixing paragraph-wrapped parent labels. Previous acceptance baseline below remains historical; verify Cloud BCA output and repeat relevant checks before freezing.
+Current development build: `handover-cleanup-1`. Removes duplicate context labels without changing source configuration or scan budgets.
+
+Current local validation: **455 tests passed**. The first sandboxed run encountered six file-rename permission failures; rerunning with filesystem permissions passed the full suite.
+
+Latest reviewed Cloud export: `fe07f21b096845d6a9a80c2f991c7a0a` — 229 cards from 74 of 106 organisations; card/status/log totals match and no provenance discrepancies were found. Both card files are below 300,000 characters. BCA retains all six named skill definitions; EPFL learning outcomes are no longer duplicated. These targeted checks do not certify every card or source. 32 organisations produced no cards; KIT coverage declined from the preceding run. Keep these gaps visible rather than claiming complete coverage.
+
+Before handover: verify the new visible build, smoke-test scan/prepare/download and session isolation, and have the receiving officer review the government-assistant output. Preserve raw attempt logs: `last_error` can include bounded-discovery notices and is not, by itself, proof that an organisation failed.
+
+## Historical acceptance baseline (not the current build)
 
 Build: `handover-rc-1`
 

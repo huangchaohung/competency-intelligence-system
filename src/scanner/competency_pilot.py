@@ -206,7 +206,8 @@ def extract(data, content_type, url):
             section_heading = text
         # Preserve heading context for short action statements without inventing source claims.
         if list_context and text:
-            text = list_context + ': ' + text
+            if not text.casefold().startswith((list_context + ':').casefold()):
+                text = list_context + ': ' + text
         elif outcome_section and tag.name not in ('h1','h2','h3','h4','h5','h6','dt') and text:
             text = section_heading + ': ' + text
         elif section_heading and re.search(r'prerequisit|prior knowledge|reading|bibliograph|assessment method|teaching method', section_heading, re.I) and text and tag.name not in ('h1','h2','h3','h4','h5','h6','dt'):

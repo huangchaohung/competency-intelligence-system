@@ -1,5 +1,14 @@
 # Multi-Source Competency Intelligence Blueprint
 
+## Current handover checkpoint — 2026-10-21
+
+- [x] Review Cloud export fe07f21b0968: 229 cards / 74 organisations; totals and provenance match; BCA six skill definitions retained.
+- [x] Remove repeated nested-list context labels and add a regression assertion; preserve child skill definitions.
+- [x] Align README and acceptance record with current build `handover-cleanup-1`; retain historical records as historical.
+- [ ] Final Cloud smoke test and government-assistant content review by receiving officer.
+- [ ] Record accepted commit/date, then freeze source tuning and hand over known coverage gaps. Do not delete historical data or compatibility modules merely for cosmetic cleanup.
+
+
 ## ACTIVE DIRECTION — split public collection and government analysis (2026-09-17)
 
 ### SUPERSEDING collection direction — competency-card pilot (2026-10-15)
