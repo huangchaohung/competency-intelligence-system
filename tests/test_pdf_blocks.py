@@ -2,6 +2,36 @@ from src.scanner.pdf_blocks import pdf_blocks
 from src.scanner.competency_pilot import make_card
 
 
+def test_pdf_fragments_removed_and_limitations_exported_without_pdf_extension():
+    from src.scanner.pdf_blocks import PdfBlocks
+    from src.scanner.competency_pilot import serial
+    blocks = PdfBlocks([
+        'Engineers must validate technical requirements against stakeholder needs and demonstrate compliance through documented test evidence.',
+        'Systems engineering requirements are implemented through product realiza -',
+        'Requirements are', '34', 'EE 1234 Power Systems'])
+    row = dict(Scan_ID='S1', Parent_organisation='Example', Organisation_as_listed='Example',
+               Mode='SCAN', Source_type='FRAMEWORK', Max_chars_per_card=3000, Export_id='test')
+    card = make_card(row, 'https://example.org/download?id=42', 'Engineering framework', blocks, 15000)
+    assert 'documented test evidence.' in card['article_text']
+    assert 'realiza' not in card['article_text']
+    assert 'Requirements are' not in card['article_text']
+    assert 'EE 1234 Power Systems' in card['article_text']
+    assert 'verify claims' in card['extraction_limitations']
+    assert len(serial(card)) <= 3000
+
+
+def test_pdf_guard_does_not_modify_html_outcomes():
+    from src.scanner.pdf_blocks import usable_pdf_unit
+    assert not usable_pdf_unit('implementation of engineering require-')
+    row = dict(Scan_ID='S1', Parent_organisation='Example', Organisation_as_listed='Example',
+               Mode='SCAN', Source_type='CATALOGUE', Max_chars_per_card=3000, Export_id='test')
+    card = make_card(row, 'https://example.org/course', 'Engineering course', [
+        'Learning outcomes: Design sensors.',
+        'Learning outcomes: Evaluate technical engineering systems against operational safety requirements.'], 15000)
+    assert 'Design sensors.' in card['article_text']
+    assert 'extraction_limitations' not in card
+
+
 def test_pdf_extraction_uses_recovered_blocks(monkeypatch):
     from types import SimpleNamespace
     from src.scanner.competency_pilot import extract

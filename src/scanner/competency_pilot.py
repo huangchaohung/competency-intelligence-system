@@ -255,6 +255,8 @@ def qualification(url, title, headings, blocks):
 
 
 def make_card(row, url, title, blocks, remaining):
+    from src.scanner.pdf_blocks import PdfBlocks, usable_pdf_unit
+    is_pdf = isinstance(blocks, PdfBlocks) or urlsplit(url).path.lower().endswith('.pdf')
     # Pick headed, exact evidence fragments, not a generated summary or navigation sample.
     useful = [b for b in blocks if ((SUBJECT.search(b) and len(b) >= 50) or re.search(r'\b[A-Z]{2,}\s?\d{3,}\b', b) or
               re.search(r'^(?:skills and competencies|competencies|required modules|core modules|learning outcomes|what you.ll learn|intended learning|course content):\s+\S', b, re.I))
@@ -287,6 +289,10 @@ def make_card(row, url, title, blocks, remaining):
     if row.get('Source_family'):
         card.update(source_family=row['Source_family'], publisher_host=urlsplit(url).hostname,
                     retrieval_method='CRAWLER')
+    if is_pdf:
+        card['extraction_limitations'] = ('PDF text may have reading-order or table-layout errors. '
+            'Obvious tiny fragments and broken endings are omitted; verify claims against the original PDF. '
+            'Missing text is not evidence that a competency is absent.')
     if 'Verification' in row:
         card.update(retrieval_method='CRAWLER', publisher_host=urlsplit(url).hostname,
                     seed_verification_reported=row['Verification'])
@@ -295,6 +301,9 @@ def make_card(row, url, title, blocks, remaining):
     # Fit whole original blocks/sentences, never an arbitrary prefix.
     units = [unit.strip() for block in useful
              for unit in re.split(r'(?<=[.!?])\s+(?=[A-Z0-9])', block) if unit.strip()]
+    if is_pdf:
+        units = [unit for unit in units if usable_pdf_unit(unit)]
+        text = '\n'.join(units)
     selected = []
     seen_units = set()
     for unit in units:

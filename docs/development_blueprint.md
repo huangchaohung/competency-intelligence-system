@@ -1,5 +1,11 @@
 # Multi-Source Competency Intelligence Blueprint
 
+## PDF quality guard — 2026-10-22
+
+- [x] Preserve PDF format provenance for extensionless downloads; omit excerpt units ending in a broken hyphen and units under six words unless they contain a module code. No missing text is invented. HTML short outcomes unchanged.
+- [x] Export an extraction_limitations warning within the existing card budget. Guard is deliberately narrow: valid short PDF statements may be omitted and other fragments may remain.
+- [ ] Validate fresh Cloud output and officer analysis before freezing `pdf-quality-1`. Do not equate missing excerpts with absent/obsolete competencies.
+
 ## Source health presentation and Cloud review — 2026-10-22
 
 - [x] Display Number of evidence cards, descending within successful/problem groups; errors and zero-card rows last. Display positive Low evidence rows as Healthy, but retain actual Error status and all recorded diagnostics. Stored snapshots/export schemas unchanged.

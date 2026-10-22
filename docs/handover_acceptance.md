@@ -2,7 +2,9 @@
 
 Status: **handover cleanup in progress; final officer acceptance pending**.
 
-Current development build: `source-health-1`. Source-health display uses descending card counts with problem rows last, Number of evidence cards, and Healthy for positive low-count sources. Errors remain visible. Source configuration and scan budgets are unchanged. Quick scan selection remains removed.
+Current development build: `pdf-quality-1`. Adds a narrow PDF fragment guard and exported extraction warnings, including extensionless PDF downloads. Valid short PDF statements may be omitted; other layout errors can remain. Source configuration and scan budgets are unchanged. Source-health improvements and removal of Quick scan selection remain in place.
+
+Current local regression result: **463 tests passed**. Fresh Cloud content-quality verification is pending; no live crawl was run for this change.
 
 Latest review: export `69724bc86a31` contains 235 cards / 76 parents; totals match and no provenance discrepancies were found. Both parts meet the size limit. NASA handbook still has broken words despite improved passages: PDF content-quality acceptance remains pending. Current regression suite: **461 passed**.
 
