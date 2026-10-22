@@ -2,7 +2,7 @@
 
 A Streamlit application for collecting public **Science, Technology and Engineering (STE)** competency, course, curriculum and standards evidence.
 
-**Current build: `pdf-prose-1`.** PDF extraction now joins likely wrapped prose within a page before selecting excerpts. This does not reconstruct tables or guarantee multi-column reading order; officers must verify important PDF claims against the original. Final handover acceptance remains pending. This is a collection prototype for approved trials, not a government-approved production service.
+**Current build: `source-health-1`.** Source health shows descending card counts, with errors and zero-card sources last. Low-count sources are labelled Healthy when cards were collected; this is not content-quality certification. PDF extraction does not reconstruct tables or guarantee multi-column reading order; verify important PDF claims against the original. Final handover acceptance remains pending. This is a collection prototype for approved trials, not a government-approved production service.
 
 ## Purpose and boundaries
 
@@ -112,7 +112,7 @@ Logs may include public-text samples and URL query strings. Review before sharin
 
 **Do one final Cloud acceptance run, then freeze features.** Perfect coverage of all organisations is not a release condition.
 
-- [ ] Visible build matches the final accepted candidate (currently `pdf-prose-1`; final review pending).
+- [ ] Visible build matches the final accepted candidate (currently `source-health-1`; final review pending).
 - [ ] Temporary edits do not change a separate session's sources.
 - [ ] A failed source does not stop the scan; progress completes.
 - [ ] Preparation stays on Scan & Download and all TXT files download.

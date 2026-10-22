@@ -1,5 +1,12 @@
 # Multi-Source Competency Intelligence Blueprint
 
+## Source health presentation and Cloud review — 2026-10-22
+
+- [x] Display Number of evidence cards, descending within successful/problem groups; errors and zero-card rows last. Display positive Low evidence rows as Healthy, but retain actual Error status and all recorded diagnostics. Stored snapshots/export schemas unchanged.
+- [x] Review export 69724bc86a31: 235 cards / 76 parents; totals match, zero provenance mismatches; parts 299917 / 206802 characters. NASA prose has improved passages but still contains truncated words; PDF content quality is not accepted as solved.
+- [x] Regression suite: 461 passed. Build `source-health-1`.
+- [ ] Final content review: fragmented PDF excerpts must not independently justify competency changes. Review originals; do not infer missing words or table relationships.
+
 ## PDF readability checkpoint — 2026-10-22
 
 - [x] Join likely lowercase prose continuations within each PDF page before relevance selection. Preserve blank/list/sentence boundaries and detectable table rows; omit standalone page numbers. No OCR, AI rewriting, cross-page joining or inferred table relationships.

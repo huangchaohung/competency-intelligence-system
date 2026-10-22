@@ -2,9 +2,11 @@
 
 Status: **handover cleanup in progress; final officer acceptance pending**.
 
-Current development build: `pdf-prose-1`. Adds conservative within-page PDF prose joining. Source configuration and scan budgets are unchanged. Quick scan selection remains removed. Review fresh Cloud PDF excerpts against originals before acceptance; ambiguous layouts and tables are not reconstructed.
+Current development build: `source-health-1`. Source-health display uses descending card counts with problem rows last, Number of evidence cards, and Healthy for positive low-count sources. Errors remain visible. Source configuration and scan budgets are unchanged. Quick scan selection remains removed.
 
-Current local validation: **459 tests passed**, including four PDF-block and extraction-path checks. No fresh live PDF corpus scan was run during this change; Cloud content-quality acceptance remains pending.
+Latest review: export `69724bc86a31` contains 235 cards / 76 parents; totals match and no provenance discrepancies were found. Both parts meet the size limit. NASA handbook still has broken words despite improved passages: PDF content-quality acceptance remains pending. Current regression suite: **461 passed**.
+
+Prior PDF-build local validation: **459 tests passed**, including four PDF-block and extraction-path checks.
 
 Previous local validation (cleanup build): **455 tests passed**. The first sandboxed run encountered six file-rename permission failures; rerunning with filesystem permissions passed the full suite.
 

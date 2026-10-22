@@ -30,6 +30,22 @@ def fmt(value):
     return value.strftime('%Y-%m-%d %H:%M') if value else 'Unknown'
 
 
+def display_health_rows(rows):
+    """Present card yield without concealing actual scan errors or mutating snapshots."""
+    result = []
+    for original in rows:
+        row = dict(original)
+        count = int(row.pop('Evidence items', row.get('Number of evidence cards', 0)) or 0)
+        row['Number of evidence cards'] = count
+        if row.get('Status') == 'Low evidence' and count > 0:
+            row['Status'] = 'Healthy'
+            row['Suggested action'] = 'Review actual card text for relevance and completeness.'
+        result.append(row)
+    return sorted(result, key=lambda row: (
+        row.get('Status') == 'Error' or row['Number of evidence cards'] == 0,
+        -row['Number of evidence cards'], str(row.get('Organisation', '')), str(row.get('Source', ''))))
+
+
 def manual_health_rows(run, evidence):
     rows = []
     for original in source_health_rows(run, evidence):
@@ -124,14 +140,14 @@ def history(services, *, completed_here=None):
     if summary is not None:
         st.caption(f"Originally collected: {summary['evidence_count']} evidence records. Source health below was saved when the scan completed.")
         st.subheader('Source health at scan completion')
-        st.dataframe(summary['health'], hide_index=True, width='stretch')
-        st.caption('Review unsuccessful or low-output sources manually in Source Configuration. Counts alone do not establish content quality.')
+        st.dataframe(display_health_rows(summary['health']), hide_index=True, width='stretch')
+        st.caption('Healthy means cards were collected, not that their content was independently verified. Sources with errors or no cards appear last; review their details below.')
     elif run.id not in {r.id for r in runs[:5]} and not evidence:
         st.info('Evidence text is no longer retained for this older batch. Its empty retained list does not mean the sources failed.')
     else:
         st.subheader('Source health and manual URL review')
         st.caption('Counts are initial indicators, not proof of useful content. Inspect actual text.')
-        st.dataframe(manual_health_rows(run, evidence), hide_index=True, width='stretch')
+        st.dataframe(display_health_rows(manual_health_rows(run, evidence)), hide_index=True, width='stretch')
     if run.error_summary:
         with st.expander('Recorded scan errors'):
             st.text(run.error_summary)
