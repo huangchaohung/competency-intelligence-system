@@ -1,4 +1,5 @@
 """Session-only public collector. The master source catalogue is read-only."""
+# Deployment refresh: learner-evidence-1 (2026-10-22); no runtime changes.
 from pathlib import Path
 import streamlit as st
 from src.dashboard import collector, source_configuration
