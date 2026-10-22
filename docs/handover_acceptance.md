@@ -2,7 +2,9 @@
 
 Status: **handover cleanup in progress; final officer acceptance pending**.
 
-Current development build: `pdf-quality-1`. Adds a narrow PDF fragment guard and exported extraction warnings, including extensionless PDF downloads. Valid short PDF statements may be omitted; other layout errors can remain. Source configuration and scan budgets are unchanged. Source-health improvements and removal of Quick scan selection remain in place.
+Current development build: `learner-evidence-1`. Prioritises learner capabilities and excludes narrow administrative/biographical excerpts. PDF guards and warnings remain, but unresolved fragments require original-source review. Source configuration and scan budgets are unchanged. Fresh Cloud acceptance pending.
+
+Current local validation: **465 tests passed**. No live crawl was run for this change; review fresh Cloud AEE cards before judging real-world improvement.
 
 Current local regression result: **463 tests passed**. Fresh Cloud content-quality verification is pending; no live crawl was run for this change.
 

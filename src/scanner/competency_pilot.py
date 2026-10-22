@@ -254,12 +254,35 @@ def qualification(url, title, headings, blocks):
     return True, ''
 
 
+def learner_statement(text):
+    """Explicit learning statements, not a claim that every course is STE-relevant."""
+    return bool(re.search(r'^(?:learn (?:how|to|about)|understand (?:the|how)|become familiar with|'
+                          r'(?:participants|students|learners|attendees) will (?:learn|be able to)|'
+                          r'(?:on|upon) completion.{0,60}be able to)\b', text, re.I))
+
+
+def administrative_excerpt(text):
+    """Narrow enrolment/biography exclusions, not professional eligibility rules."""
+    return bool(re.search(r'register and pay|register for the exam and pay|'
+                          r'registering for the training does not|'
+                          r'(?:refund|cancellation|substitution) (?:fees?|cost|requests?|terms)|'
+                          r'(?:course|registration) transfer (?:fees?|cost|requests?|terms)|'
+                          r'all requests for transfers|registration can be substituted|'
+                          r'registrants who request a refund|'
+                          r'(?:he|she) has received.{0,60}awards|'
+                          r'has over \d+ publications|'
+                          r'has been a.{0,80}instructor since|'
+                          r'is the core instructor for|'
+                          r'currently also serves on.{0,80}committee', text, re.I))
+
+
 def make_card(row, url, title, blocks, remaining):
     from src.scanner.pdf_blocks import PdfBlocks, usable_pdf_unit
     is_pdf = isinstance(blocks, PdfBlocks) or urlsplit(url).path.lower().endswith('.pdf')
     # Pick headed, exact evidence fragments, not a generated summary or navigation sample.
-    useful = [b for b in blocks if ((SUBJECT.search(b) and len(b) >= 50) or re.search(r'\b[A-Z]{2,}\s?\d{3,}\b', b) or
+    useful = [b for b in blocks if ((SUBJECT.search(b) and len(b) >= 50) or (learner_statement(b) and len(b) >= 40) or re.search(r'\b[A-Z]{2,}\s?\d{3,}\b', b) or
               re.search(r'^(?:skills and competencies|competencies|required modules|core modules|learning outcomes|what you.ll learn|intended learning|course content):\s+\S', b, re.I))
+              and not administrative_excerpt(b)
               and not re.search(r'^(?:[“\"]|I |My |We are|Assistant Professor|Professor,)|\bI (?:gained|learned|am|was|had)|testimoni|funding|networking|licence application process', b, re.I)]
     # Requirements, outcomes and named module codes outrank promotional introductions.
     useful.sort(key=lambda b: -sum(bool(re.search(p, b, re.I)) for p in
@@ -267,7 +290,7 @@ def make_card(row, url, title, blocks, remaining):
                                   r'\b[A-Z]{2,}\s?\d{3,}\b|credits|modules|must|shall',
                                   r'risk management|systems engineering|requirements|skills include')))
     useful.sort(key=lambda b: (
-        -int(bool(re.search(r'^(?:skills and competencies|required modules|core modules|learning outcomes|what you.ll learn|intended learning|competenc(?:ies|y requirements)|course content)\b', b, re.I))),
+        -int(learner_statement(b) or bool(re.search(r'^(?:skills and competencies|required modules|core modules|learning outcomes|what you.ll learn|intended learning|competenc(?:ies|y requirements)|course content)\b', b, re.I))),
         int(bool(re.search(r'prerequisit|prior knowledge|reading|bibliograph|recommended text|textbook|text book|moodle|lecture slides|course fees|register now', b, re.I)))))
     text = '\n'.join(useful)
     if not text:

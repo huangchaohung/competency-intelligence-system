@@ -1,5 +1,11 @@
 # Multi-Source Competency Intelligence Blueprint
 
+## Learner evidence selection — 2026-10-22
+
+- [x] Review d15c61ebd8fd: 232 cards / 75 parents; status/log totals match; both parts below 300,000 characters. PDF warning appears, but NASA still contains fragments.
+- [x] Prioritise explicit Learn how/to, Understand, Become familiar and learner-outcome statements. Narrow exclusions for enrolment payment/refund text and instructor biographies; preserve professional competence requirements and heat-transfer content.
+- [ ] Verify fresh AEE excerpts and overall coverage in Cloud build `learner-evidence-1`. No claim that all promotional text is removed or every card is suitable.
+
 ## PDF quality guard — 2026-10-22
 
 - [x] Preserve PDF format provenance for extensionless downloads; omit excerpt units ending in a broken hyphen and units under six words unless they contain a module code. No missing text is invented. HTML short outcomes unchanged.
