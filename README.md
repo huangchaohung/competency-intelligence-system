@@ -2,7 +2,9 @@
 
 A Streamlit application for collecting public **Science, Technology and Engineering (STE)** competency, course, curriculum and standards evidence.
 
-**Current build: `learner-evidence-2`.** Explicit learner capabilities take priority over course administration and instructor biography excerpts; technical wording provides an additional ranking preference, not a relevance guarantee. PDF cards carry an `extraction_limitations` warning; extraction does not repair missing words or certify reading order. Verify important claims against the original. Source health reflects collection success, not content-quality certification. Final handover acceptance remains pending. This is a collection prototype for approved trials, not a government-approved production service.
+**Handover candidate: `handover-final-1`. Source tuning is frozen.** Explicit learner capabilities take priority over course administration; ranking is not a relevance guarantee. PDF extraction does not repair missing words or certify reading order. Verify important claims against the original. Source health reflects collection success, not content-quality certification. Receiving-officer acceptance remains pending. This is a collection prototype for approved trials, not a government-approved production service.
+
+Start the handover with [the receiving-officer checklist](docs/handover_acceptance.md). The latest reviewed scan produced **231 cards from 75 of 106 organisations**; missing organisations and imperfect excerpts are known limitations, not silently resolved issues.
 
 ## Purpose and boundaries
 
@@ -112,7 +114,7 @@ Logs may include public-text samples and URL query strings. Review before sharin
 
 **Do one final Cloud acceptance run, then freeze features.** Perfect coverage of all organisations is not a release condition.
 
-- [ ] Visible build matches the final accepted candidate (currently `learner-evidence-2`; final review pending).
+- [ ] Visible build matches the final accepted candidate (`handover-final-1`; receiving-officer acceptance pending).
 - [ ] Temporary edits do not change a separate session's sources.
 - [ ] A failed source does not stop the scan; progress completes.
 - [ ] Preparation stays on Scan & Download and all TXT files download.

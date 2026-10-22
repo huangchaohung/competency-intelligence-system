@@ -331,6 +331,9 @@ def make_card(row, url, title, blocks, remaining):
     # Fit whole original blocks/sentences, never an arbitrary prefix.
     units = [unit.strip() for block in useful
              for unit in re.split(r'(?<=[.!?])\s+(?=[A-Z0-9])', block) if unit.strip()]
+    # Administrative sentences can be embedded in a larger useful course block.
+    units = [unit for unit in units if not administrative_excerpt(unit)
+             and not re.fullmatch(r'(?:(?:In addition,\s*)?(?:Dr|Mr|Mrs|Ms)\.)', unit, re.I)]
     if is_pdf:
         units = [unit for unit in units if usable_pdf_unit(unit)]
         text = '\n'.join(units)

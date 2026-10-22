@@ -1,5 +1,13 @@
 # Multi-Source Competency Intelligence Blueprint
 
+## HANDOVER FREEZE — 2026-10-22 (supersedes earlier tuning to-dos)
+
+- [x] Final scan 544829126fe6: 231 cards / 75 of 106 organisations, matching totals and zero provenance discrepancies; parts 299772 / 198690 characters.
+- [x] Final narrow correction: apply administrative exclusions to selected sentences as well as blocks; remove standalone honorific fragments.
+- [x] Stop source tuning at `handover-final-1`. Preserve configurations, historical records and compatibility modules. No destructive cleanup.
+- [ ] Receiving officer confirms deployed build, download/session behaviour and reviews representative evidence with the government assistant. Record accepted commit/date in handover_acceptance.md.
+- [ ] Subsequent changes require a new scoped request; do not automatically resume older unchecked tuning tasks below.
+
 ## Technical learning preference — 2026-10-22
 
 - [x] Review f224b482e7cf: 230 cards / 75 organisations; totals match, zero provenance mismatches; parts 299772 / 198543 characters. AEE now includes learner capabilities but mixed-catalogue/interface/administrative content remains.

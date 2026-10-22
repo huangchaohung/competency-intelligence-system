@@ -43,3 +43,15 @@ def test_technical_learning_precedes_generic_sales_and_omits_interface_noise():
 def test_engineering_shipping_and_components_are_not_blanket_excluded():
     assert not administrative_excerpt('Learn how to design shipping systems for safe marine transport.')
     assert not administrative_excerpt('Describe mechanical components and validate their engineering requirements.')
+
+
+def test_embedded_fee_sentence_and_honorific_are_omitted():
+    row = dict(Scan_ID='S1', Parent_organisation='AEE', Organisation_as_listed='AEE',
+               Mode='SCAN', Source_type='CATALOGUE', Max_chars_per_card=3000, Export_id='test')
+    block = ('Learn how to evaluate energy systems and apply engineering standards. '
+             'A separate certification and application fee applies. Dr. '
+             'Engineering assessment includes validating requirements against measured performance.')
+    card = make_card(row, 'https://example.org/course', 'Energy course', [block], 15000)
+    assert 'Learn how to evaluate energy systems' in card['article_text']
+    assert 'fee applies' not in card['article_text']
+    assert '\nDr.' not in card['article_text']

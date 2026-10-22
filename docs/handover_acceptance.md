@@ -1,24 +1,41 @@
 # Handover acceptance record
 
-Status: **handover cleanup in progress; final officer acceptance pending**.
+## Current handover candidate
 
-Current development build: `learner-evidence-2`. Adds technical wording preference and narrow course-interface/shipping/registration exclusions. PDF guards and warnings remain, but unresolved fragments require original-source review. Source configuration and scan budgets are unchanged. Fresh Cloud acceptance pending.
+- Build: **handover-final-1**
+- Local regression validation: **468 tests passed** on 2026-10-22. Receiving environment and final Cloud smoke test remain pending.
+- Status: **source tuning frozen at the user's request; receiving-officer acceptance pending**
+- Latest reviewed Cloud scan: **544829126fe6** — 231 cards from 75 of 106 organisations.
+- Card/status/log totals match; zero provenance discrepancies.
+- Card parts: 299,772 and 198,690 characters, both below 300,000.
+- Final code change: sentence-level administrative filtering and standalone honorific removal. This final change still needs a deployment smoke test; the reviewed scan predates it.
+- Source configuration and scan budgets are unchanged. Historical records and compatibility modules are retained.
 
-Current local suite: **467 tests passed**. Latest reviewed export f224b482e7cf: 230 cards / 75 organisations, matching totals and zero provenance discrepancies. AEE learner statements improved, but catalogue excerpts can mix courses and still require original-source attribution checks.
+## Known limitations to explain
 
-Current local validation: **465 tests passed**. No live crawl was run for this change; review fresh Cloud AEE cards before judging real-world improvement.
+- 31 organisations produced no cards in the reviewed scan. Missing cards do not prove missing or obsolete competencies.
+- PDFs can retain fragments, broken words and ambiguous table/column order despite safeguards. Check original documents.
+- Catalogue excerpts can combine multiple courses; do not attribute all statements to a single programme.
+- Some promotional or biographical text remains. Healthy means cards were collected, not content certification.
+- Discovery and character budgets deliberately limit coverage. A last_error value can be a limit notice rather than a failed fetch.
+- The institution list is configured coverage, not a verified current top-50 university ranking.
+- Sessions are temporary; download all matching TXT files before leaving. No internal frameworks belong in this public app.
 
-Current local regression result: **463 tests passed**. Fresh Cloud content-quality verification is pending; no live crawl was run for this change.
+## Receiving-officer checklist
 
-Latest review: export `69724bc86a31` contains 235 cards / 76 parents; totals match and no provenance discrepancies were found. Both parts meet the size limit. NASA handbook still has broken words despite improved passages: PDF content-quality acceptance remains pending. Current regression suite: **461 passed**.
+- [ ] Confirm Cloud is configured for this repository, main branch, app.py, and shows handover-final-1.
+- [ ] Confirm source edits affect only the current session, not the master catalogue or another session.
+- [ ] Confirm scan progress, source-error isolation and explicit prepare/download controls.
+- [ ] Download all parts plus status/log TXT files with the same identifier; review totals and representative cards.
+- [ ] Review government-assistant analysis against original source URLs, especially PDFs and mixed-course catalogues.
+- [ ] Confirm repository/Cloud ownership and access with the receiving team; no credentials in handover files.
+- [ ] Run python -m pytest in the receiving environment and record the result.
+- [ ] Record accepted Git commit, accepting officer and date below.
 
-Prior PDF-build local validation: **459 tests passed**, including four PDF-block and extraction-path checks.
+Accepted Git commit: pending  
+Acceptance date / accepting officer: pending
 
-Previous local validation (cleanup build): **455 tests passed**. The first sandboxed run encountered six file-rename permission failures; rerunning with filesystem permissions passed the full suite.
-
-Latest reviewed Cloud export: `fe07f21b096845d6a9a80c2f991c7a0a` — 229 cards from 74 of 106 organisations; card/status/log totals match and no provenance discrepancies were found. Both card files are below 300,000 characters. BCA retains all six named skill definitions; EPFL learning outcomes are no longer duplicated. These targeted checks do not certify every card or source. 32 organisations produced no cards; KIT coverage declined from the preceding run. Keep these gaps visible rather than claiming complete coverage.
-
-Before handover: verify the new visible build, smoke-test scan/prepare/download and session isolation, and have the receiving officer review the government-assistant output. Preserve raw attempt logs: `last_error` can include bounded-discovery notices and is not, by itself, proof that an organisation failed.
+No further tuning is scheduled. Resume only through a new scoped request. The sections below are historical development records, not current acceptance results.
 
 ## Historical acceptance baseline (not the current build)
 
