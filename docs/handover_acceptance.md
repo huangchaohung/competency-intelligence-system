@@ -2,9 +2,11 @@
 
 Status: **handover cleanup in progress; final officer acceptance pending**.
 
-Current development build: `handover-cleanup-2`. Removes Quick scan selection; normal source editing remains. Includes the duplicate-context-label fix. Source configuration and scan budgets are unchanged.
+Current development build: `pdf-prose-1`. Adds conservative within-page PDF prose joining. Source configuration and scan budgets are unchanged. Quick scan selection remains removed. Review fresh Cloud PDF excerpts against originals before acceptance; ambiguous layouts and tables are not reconstructed.
 
-Current local validation: **455 tests passed**. The first sandboxed run encountered six file-rename permission failures; rerunning with filesystem permissions passed the full suite.
+Current local validation: **459 tests passed**, including four PDF-block and extraction-path checks. No fresh live PDF corpus scan was run during this change; Cloud content-quality acceptance remains pending.
+
+Previous local validation (cleanup build): **455 tests passed**. The first sandboxed run encountered six file-rename permission failures; rerunning with filesystem permissions passed the full suite.
 
 Latest reviewed Cloud export: `fe07f21b096845d6a9a80c2f991c7a0a` — 229 cards from 74 of 106 organisations; card/status/log totals match and no provenance discrepancies were found. Both card files are below 300,000 characters. BCA retains all six named skill definitions; EPFL learning outcomes are no longer duplicated. These targeted checks do not certify every card or source. 32 organisations produced no cards; KIT coverage declined from the preceding run. Keep these gaps visible rather than claiming complete coverage.
 

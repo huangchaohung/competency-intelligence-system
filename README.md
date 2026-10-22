@@ -2,7 +2,7 @@
 
 A Streamlit application for collecting public **Science, Technology and Engineering (STE)** competency, course, curriculum and standards evidence.
 
-**Current build: `handover-cleanup-2`.** Quick scan selection has been removed; use the normal source editor. Final handover acceptance remains pending. This is a collection prototype for approved trials, not a government-approved production service.
+**Current build: `pdf-prose-1`.** PDF extraction now joins likely wrapped prose within a page before selecting excerpts. This does not reconstruct tables or guarantee multi-column reading order; officers must verify important PDF claims against the original. Final handover acceptance remains pending. This is a collection prototype for approved trials, not a government-approved production service.
 
 ## Purpose and boundaries
 
@@ -112,7 +112,7 @@ Logs may include public-text samples and URL query strings. Review before sharin
 
 **Do one final Cloud acceptance run, then freeze features.** Perfect coverage of all organisations is not a release condition.
 
-- [ ] Visible build matches the final accepted candidate (currently `handover-cleanup-2`; final review pending).
+- [ ] Visible build matches the final accepted candidate (currently `pdf-prose-1`; final review pending).
 - [ ] Temporary edits do not change a separate session's sources.
 - [ ] A failed source does not stop the scan; progress completes.
 - [ ] Preparation stays on Scan & Download and all TXT files download.

@@ -1,5 +1,11 @@
 # Multi-Source Competency Intelligence Blueprint
 
+## PDF readability checkpoint — 2026-10-22
+
+- [x] Join likely lowercase prose continuations within each PDF page before relevance selection. Preserve blank/list/sentence boundaries and detectable table rows; omit standalone page numbers. No OCR, AI rewriting, cross-page joining or inferred table relationships.
+- [x] Add parser and extraction-path regression tests. Source URLs and budgets unchanged.
+- [ ] Review fresh Cloud PDF cards against originals before accepting `pdf-prose-1`; old exports cannot recover already omitted text. Multi-column order and fragmented tables remain limitations.
+
 ## UI simplification — 2026-10-22
 
 - [x] Remove Quick scan selection. Keep normal Enabled editing, validation, CSV upload and Restore default sources. Master catalogue and enabled states are unchanged. Build: `handover-cleanup-2`.

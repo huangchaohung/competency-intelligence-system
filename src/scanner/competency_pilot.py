@@ -150,8 +150,8 @@ def extract(data, content_type, url):
         reader = PdfReader(io.BytesIO(data))
         if len(reader.pages) > 300:
             raise ValueError('PDF exceeds 300-page extraction bound')
-        text = '\n'.join(p.extract_text() or '' for p in reader.pages)
-        lines = [re.sub(r'\s+', ' ', s).strip() for s in text.splitlines() if s.strip()]
+        from src.scanner.pdf_blocks import pdf_blocks
+        lines = pdf_blocks(p.extract_text() or '' for p in reader.pages)
         title = str((reader.metadata or {}).get('/Title') or '')
         if not title or title.lower().endswith(('.doc', '.docx')):
             title = ' '.join(lines[:3])[:160]
