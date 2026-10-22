@@ -2,7 +2,7 @@
 
 Status: **handover cleanup in progress; final officer acceptance pending**.
 
-Current development build: `handover-cleanup-1`. Removes duplicate context labels without changing source configuration or scan budgets.
+Current development build: `handover-cleanup-2`. Removes Quick scan selection; normal source editing remains. Includes the duplicate-context-label fix. Source configuration and scan budgets are unchanged.
 
 Current local validation: **455 tests passed**. The first sandboxed run encountered six file-rename permission failures; rerunning with filesystem permissions passed the full suite.
 

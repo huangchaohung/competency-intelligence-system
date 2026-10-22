@@ -2,7 +2,7 @@
 
 A Streamlit application for collecting public **Science, Technology and Engineering (STE)** competency, course, curriculum and standards evidence.
 
-**Current build: `handover-cleanup-1`.** The preceding Cloud scan confirmed the BCA skill-list repair. This build removes a repeated context label; final handover acceptance remains pending. This is a collection prototype for approved trials, not a government-approved production service.
+**Current build: `handover-cleanup-2`.** Quick scan selection has been removed; use the normal source editor. Final handover acceptance remains pending. This is a collection prototype for approved trials, not a government-approved production service.
 
 ## Purpose and boundaries
 
@@ -13,7 +13,7 @@ The active app makes **no AI requests** and needs **no OpenAI API key**. Legacy 
 ## Officer workflow
 
 1. Open **Source Configuration**. Use defaults, upload a source CSV or temporarily edit your copy. Validate and apply changes.
-2. For a small trial, use **Quick scan selection → Enable only selected sources**. Restore the earlier selection afterwards if needed.
+2. If needed, change the **Enabled** checkboxes under **Edit Sources**, then validate and apply. Only enabled sources are scanned.
 3. Open **Scan & Download**, start the scan and keep the session open. Failed sources are recorded; they should not stop the remaining scan.
 4. Review source health and actual card text. Counts alone do not establish quality.
 5. Click the prepare-download button and download **every TXT file with the same identifier**.
@@ -112,7 +112,7 @@ Logs may include public-text samples and URL query strings. Review before sharin
 
 **Do one final Cloud acceptance run, then freeze features.** Perfect coverage of all organisations is not a release condition.
 
-- [ ] Visible build matches the final accepted candidate (currently `handover-cleanup-1`; final review pending).
+- [ ] Visible build matches the final accepted candidate (currently `handover-cleanup-2`; final review pending).
 - [ ] Temporary edits do not change a separate session's sources.
 - [ ] A failed source does not stop the scan; progress completes.
 - [ ] Preparation stays on Scan & Download and all TXT files download.

@@ -1,5 +1,9 @@
 # Multi-Source Competency Intelligence Blueprint
 
+## UI simplification — 2026-10-22
+
+- [x] Remove Quick scan selection. Keep normal Enabled editing, validation, CSV upload and Restore default sources. Master catalogue and enabled states are unchanged. Build: `handover-cleanup-2`.
+
 ## Current handover checkpoint — 2026-10-21
 
 - [x] Review Cloud export fe07f21b0968: 229 cards / 74 organisations; totals and provenance match; BCA six skill definitions retained.
