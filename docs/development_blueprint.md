@@ -1,5 +1,12 @@
 # Multi-Source Competency Intelligence Blueprint
 
+## Technical learning preference — 2026-10-22
+
+- [x] Review f224b482e7cf: 230 cards / 75 organisations; totals match, zero provenance mismatches; parts 299772 / 198543 characters. AEE now includes learner capabilities but mixed-catalogue/interface/administrative content remains.
+- [x] Prefer technical wording within ranked learning statements; remove narrow catalogue interface, shipping-address and registration deadline excerpts. Retain energy economics, professional eligibility and technical shipping/heat-transfer content. No source or scan-budget changes.
+- [x] 467 regression tests passed; build `learner-evidence-2`.
+- [ ] Review fresh Cloud output. Catalogue excerpts may cover multiple courses: do not attribute every statement to one named course without checking the original. PDF fragmentation remains unresolved.
+
 ## Learner evidence selection — 2026-10-22
 
 - [x] Review d15c61ebd8fd: 232 cards / 75 parents; status/log totals match; both parts below 300,000 characters. PDF warning appears, but NASA still contains fragments.

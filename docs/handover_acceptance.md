@@ -2,7 +2,9 @@
 
 Status: **handover cleanup in progress; final officer acceptance pending**.
 
-Current development build: `learner-evidence-1`. Prioritises learner capabilities and excludes narrow administrative/biographical excerpts. PDF guards and warnings remain, but unresolved fragments require original-source review. Source configuration and scan budgets are unchanged. Fresh Cloud acceptance pending.
+Current development build: `learner-evidence-2`. Adds technical wording preference and narrow course-interface/shipping/registration exclusions. PDF guards and warnings remain, but unresolved fragments require original-source review. Source configuration and scan budgets are unchanged. Fresh Cloud acceptance pending.
+
+Current local suite: **467 tests passed**. Latest reviewed export f224b482e7cf: 230 cards / 75 organisations, matching totals and zero provenance discrepancies. AEE learner statements improved, but catalogue excerpts can mix courses and still require original-source attribution checks.
 
 Current local validation: **465 tests passed**. No live crawl was run for this change; review fresh Cloud AEE cards before judging real-world improvement.
 

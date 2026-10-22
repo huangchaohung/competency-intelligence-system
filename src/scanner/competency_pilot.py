@@ -273,7 +273,13 @@ def administrative_excerpt(text):
                           r'has over \d+ publications|'
                           r'has been a.{0,80}instructor since|'
                           r'is the core instructor for|'
-                          r'currently also serves on.{0,80}committee', text, re.I))
+                          r'currently also serves on.{0,80}committee|'
+                          r'^Contains \d+ Component\(s\).{0,80}Overview|'
+                          r'(?:shipping address|workbooks cannot be delivered|workbook has been shipped)|'
+                          r'^Shipping is only available|'
+                          r'^Registration closes|'
+                          r'^A separate certification and application fee applies|'
+                          r'^After you submit the certification application.{0,80}email confirmation', text, re.I))
 
 
 def make_card(row, url, title, blocks, remaining):
@@ -291,6 +297,7 @@ def make_card(row, url, title, blocks, remaining):
                                   r'risk management|systems engineering|requirements|skills include')))
     useful.sort(key=lambda b: (
         -int(learner_statement(b) or bool(re.search(r'^(?:skills and competencies|required modules|core modules|learning outcomes|what you.ll learn|intended learning|competenc(?:ies|y requirements)|course content)\b', b, re.I))),
+        -int(bool(re.search(r'\b(?:energy|engineering|HVAC|thermal|renewable|water|electrical|mechanical|software|cybersecurity|robotics|chemical|biological|materials|systems|data|computational|scientific)\b', b, re.I))),
         int(bool(re.search(r'prerequisit|prior knowledge|reading|bibliograph|recommended text|textbook|text book|moodle|lecture slides|course fees|register now', b, re.I)))))
     text = '\n'.join(useful)
     if not text:
